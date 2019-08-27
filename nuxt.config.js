@@ -23,13 +23,19 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    // You need a specific loader for CSS files
+    // https://github.com/mariomka/vue-datetime
+    '~node_modules/vue-datetime/dist/vue-datetime.css'
+  ],
   /*
    ** Plugins to load before mounting the App
    */
   plugins: [
     // The plugin is auth related which change user status to logged
-    '~plugins/mixins/user.js'
+    '~plugins/mixins/user.js',
+    // DateTimePicker
+    '~plugins/datetime.js'
   ],
   /*
    ** Nuxt.js dev-modules

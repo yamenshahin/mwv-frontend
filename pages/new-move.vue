@@ -92,6 +92,14 @@
             ></b-form-select>
           </b-form-group>
 
+          <h2>When you're moving</h2>
+
+          <datetime
+            v-model="moveDateTime"
+            type="datetime"
+            use12-hour
+          ></datetime>
+
           <h2>Note</h2>
 
           <b-form-group
@@ -143,7 +151,7 @@
         <b-card class="mt-3" header="Form Data Result">
           <pre class="m-0"
             >{{ job_metas }}{{ notification }}{{ collectionAddress
-            }}{{ deliveryAddress }}{{ customerInfo }}</pre
+            }}{{ deliveryAddress }}{{ customerInfo }} {{ moveDateTime }}</pre
           >
         </b-card>
       </div>
@@ -155,6 +163,7 @@
 export default {
   data() {
     return {
+      moveDateTime: '',
       job_metas: {},
       collectionAddress: {},
       deliveryAddress: {},
@@ -242,12 +251,11 @@ export default {
           {
             key: 'totalTime',
             value: this.totalTime
-          },
+          }, */
           {
             key: 'moveDateTime',
             value: this.moveDateTime
-          }, */
-
+          },
           {
             key: 'description',
             value: this.description
