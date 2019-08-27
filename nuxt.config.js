@@ -35,7 +35,9 @@ export default {
     // The plugin is auth related which change user status to logged
     '~plugins/mixins/user.js',
     // DateTimePicker
-    '~plugins/datetime.js'
+    '~plugins/datetime.js',
+    // Google Map API
+    { ssr: false, src: '~plugins/google-maps.js'  }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -52,8 +54,16 @@ export default {
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    // Load .env
+    '@nuxtjs/dotenv',
   ],
+  /**
+   * .env
+   */
+  env: {
+    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
