@@ -70,7 +70,9 @@ export default {
         this.place = null
       }
     },
-    onSendPlaces() {}
+    onSendPlaces() {
+      this.$store.dispatch('posts/setPosts', 'yamen')
+    }
   }
 }
 </script>
