@@ -3,7 +3,7 @@
     <h1>Hello New Move</h1>
     <template>
       <div>
-        <b-form @submit.prevent="onSubmit" @search.prevent="onSearch">
+        <b-form>
           <b-form-group label="Van Size">
             <b-form-radio-group
               id="vanSize"
@@ -144,8 +144,12 @@
             ></b-form-radio-group>
           </b-form-group>
 
-          <b-button type="search" variant="danger">Get My Free Quotes</b-button>
-          <b-button type="submit" variant="primary">Save</b-button>
+          <b-button type="submit" variant="danger" @click.prevent="onSearch"
+            >Get My Free Quotes</b-button
+          >
+          <b-button type="submit" variant="primary" @click.prevent="onSave"
+            >Save</b-button
+          >
         </b-form>
 
         <b-card class="mt-3" header="Form Data Result">
@@ -171,10 +175,10 @@ export default {
       customerInfo: {},
       notification: '',
       vanSizeOptions: [
-        { text: 'Small Van', value: 'vanSizeSmall' },
-        { text: 'Medium Van', value: 'vanSizeMedium' },
-        { text: 'Large van', value: 'vanSizeLarg' },
-        { text: 'Giant van', value: 'vanSizeGiant' }
+        { text: 'Small Van', value: '1' },
+        { text: 'Medium Van', value: '2' },
+        { text: 'Large van', value: '3' },
+        { text: 'Giant van', value: '4' }
       ],
       helpersRequiredOptions: [
         { text: 'No help needed', value: '0' },
@@ -192,7 +196,7 @@ export default {
         { text: 'are 6 flights of stairs', value: '6' },
         { text: 'are 7 flights of stairs', value: '7' },
         { text: 'are 8+ flights of stairs', value: '8' },
-        { text: 'is a lift', value: 'lift' }
+        { text: 'is a lift', value: '9' }
       ],
       notificationOptions: [
         { text: 'Yes', value: 'Yes' },
@@ -201,7 +205,7 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
+    async onSave() {
       await this.$axios.$post('jobs', {
         job_metas: [
           {
@@ -278,8 +282,41 @@ export default {
           }
         ]
       })
-
       this.$router.push('/')
+    },
+    async onSearch() {
+      await this.$axios.$post('places', {
+        // Collection
+        collectionPostcode: this.collectionAddress.postcode,
+        collectionStreetAddress: this.collectionAddress.streetAddress,
+        collectionCity: this.collectionAddress.city,
+        collectionLat: '-33.826201',
+        collectionLng: '150.895271',
+        collectionStairs: this.collectionAddress.stairs,
+        // Delivery
+        deliveryPostcode: this.deliveryAddress.postcode,
+        deliveryStreetAddress: this.deliveryAddress.streetAddress,
+        deliveryCity: this.deliveryAddress.city,
+        deliveryLat: '-33.826201',
+        deliveryLng: '150.895271',
+        deliveryStairs: this.deliveryAddress.stairs,
+        // Customer Info
+        customerInfoName: this.customerInfo.name,
+        customerInfoEmail: this.customerInfo.email,
+        customerInfoPhone: this.customerInfo.phone,
+        // Customer choice
+        vanSize: this.job_metas.vanSize,
+        helpersRequired: this.job_metas.helpersRequired,
+        movingDate: this.moveDateTime,
+        totalTime: 4.5,
+        description: this.description,
+        notification: this.notification,
+        // Calculated values
+        travelTime: 1.5,
+        weekDay: 'weekday',
+        estimatedDistance: 10,
+        estimatedDrivingTime: 10
+      })
     }
   }
 }
