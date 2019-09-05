@@ -9,6 +9,22 @@
         <nuxt-link to="/" class="nav-link" role="menuitem" exact
           >Home</nuxt-link
         >
+        <nuxt-link to="/new-move" class="nav-link" role="menuitem" exact
+          >New Move</nuxt-link
+        >
+        <nuxt-link
+          to="/google-maps-autocomplete"
+          class="nav-link"
+          role="menuitem"
+          exact
+          >gMap Autocomplete</nuxt-link
+        >
+        <nuxt-link to="/search-quotes" class="nav-link" role="menuitem" exact
+          >Search Quotes</nuxt-link
+        >
+        <nuxt-link to="/after-search" class="nav-link" role="menuitem" exact
+          >After Search</nuxt-link
+        >
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->

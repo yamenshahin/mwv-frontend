@@ -29,7 +29,23 @@
               ></b-col>
             </b-row>
           </b-container>
+          <input
+            id="collectionPostcode"
+            v-model="collectionAddress.postcode"
+            type="hidden"
+          />
 
+          <input
+            id="collectionStreetAddress"
+            v-model="collectionAddress.streetAddress"
+            type="hidden"
+          />
+
+          <input
+            id="collectionCity"
+            v-model="collectionAddress.city"
+            type="hidden"
+          />
           <!-- Delivery Address -->
           <h2>Delivery Address</h2>
           <b-container class="delivery-address-">
@@ -55,6 +71,23 @@
               ></b-col>
             </b-row>
           </b-container>
+          <input
+            id="deliveryPostcode"
+            v-model="deliveryAddress.postcode"
+            type="hidden"
+          />
+
+          <input
+            id="deliveryStreetAddress"
+            v-model="deliveryAddress.streetAddress"
+            type="hidden"
+          />
+
+          <input
+            id="deliveryCity"
+            v-model="deliveryAddress.city"
+            type="hidden"
+          />
 
           <!-- Van Size -->
           <b-form-group label="Van Size">
@@ -140,6 +173,12 @@
           <b-button type="submit" variant="primary" @click.prevent="onSearch"
             >Search</b-button
           >
+          <b-button
+            type="submit"
+            variant="primary"
+            @click.prevent="onFillAdress"
+            >Fill Adress</b-button
+          >
         </b-form>
 
         <b-card class="mt-3" header="Form Data Result">
@@ -147,11 +186,6 @@
             >{{ job_metas }}{{ notification }}{{ collectionAddress
             }}{{ deliveryAddress }}{{ customerInfo }} {{ moveDateTime }}</pre
           >
-        </b-card>
-        <b-card class="mt-3" header="address_componentsResult">
-          <pre v-if="collectionPlaceObject">{{
-            collectionPlaceObject.lat
-          }}</pre>
         </b-card>
         <b-card class="mt-3" header="Form Data Result">
           <pre class="m-0">{{ collectionPlace }}</pre>
@@ -221,23 +255,15 @@ export default {
           },
           {
             key: 'collectionPostcode',
-            value: this.collectionPlaceObject.postcode
+            value: this.collectionAddress.postcode
           },
           {
             key: 'collectionStreetAddress',
-            value: this.collectionPlaceObject.address
+            value: this.collectionAddress.streetAddress
           },
           {
             key: 'collectionCity',
-            value: this.collectionPlaceObject.city
-          },
-          {
-            key: 'collectionLat',
-            value: this.collectionPlaceObject.lat
-          },
-          {
-            key: 'collectionLng',
-            value: this.collectionPlaceObject.lng
+            value: this.collectionAddress.city
           },
           {
             key: 'collectionStairs',
@@ -245,23 +271,15 @@ export default {
           },
           {
             key: 'deliveryPostcode',
-            value: this.deliveryPlaceObject.postcode
+            value: this.deliveryAddress.postcode
           },
           {
             key: 'deliveryStreetAddress',
-            value: this.deliveryPlaceObject.address
+            value: this.deliveryAddress.streetAddress
           },
           {
             key: 'deliveryCity',
-            value: this.deliveryPlaceObject.city
-          },
-          {
-            key: 'deliveryLat',
-            value: this.deliveryPlaceObject.lat
-          },
-          {
-            key: 'deliveryLng',
-            value: this.deliveryPlaceObject.lng
+            value: this.deliveryAddress.city
           },
           {
             key: 'deliveryStairs',
@@ -306,18 +324,18 @@ export default {
     async onGetQuotes() {
       await this.$axios.$post('places', {
         // Collection
-        collectionPostcode: this.collectionPlaceObject.postcode,
-        collectionStreetAddress: this.collectionPlaceObject.address,
-        collectionCity: this.collectionPlaceObject.city,
-        collectionLat: this.collectionPlaceObject.lat,
-        collectionLng: this.collectionPlaceObject.lng,
+        collectionPostcode: this.collectionAddress.postcode,
+        collectionStreetAddress: this.collectionAddress.streetAddress,
+        collectionCity: this.collectionAddress.city,
+        collectionLat: '-33.826201',
+        collectionLng: '150.895271',
         collectionStairs: this.collectionAddress.stairs,
         // Delivery
-        deliveryPostcode: this.deliveryPlaceObject.postcode,
-        deliveryStreetAddress: this.deliveryPlaceObject.address,
-        deliveryCity: this.deliveryPlaceObject.city,
-        deliveryLat: this.deliveryPlaceObject.lat,
-        deliveryLng: this.deliveryPlaceObject.lng,
+        deliveryPostcode: this.deliveryAddress.postcode,
+        deliveryStreetAddress: this.deliveryAddress.streetAddress,
+        deliveryCity: this.deliveryAddress.city,
+        deliveryLat: '-33.826201',
+        deliveryLng: '150.895271',
         deliveryStairs: this.deliveryAddress.stairs,
         // Customer Info
         customerInfoName: this.customerInfo.name,
@@ -350,7 +368,8 @@ export default {
       )
       await this.$store.dispatch('places/setDeliveryPlace', this.deliveryPlace)
       this.$router.push('/search-quotes')
-    }
+    },
+    onFillAdress() {}
   }
 }
 </script>

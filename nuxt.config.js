@@ -34,6 +34,8 @@ export default {
   plugins: [
     // The plugin is auth related which change user status to logged
     '~plugins/mixins/user.js',
+    // The plugin is google map place object related which get collectionPlace and deliveryPlace objects
+    '~plugins/mixins/places.js',
     // DateTimePicker
     '~plugins/datetime.js',
     // Google Map API https://github.com/xkjyeah/vue-google-maps

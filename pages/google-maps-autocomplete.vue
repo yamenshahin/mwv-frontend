@@ -7,38 +7,29 @@
       <label>
         AutoComplete
         <gmap-autocomplete
-          placeholder="This is a placeholder text"
-          @place_changed="setPlace"
+          placeholder="Collection"
+          @place_changed="setCollectionPlace"
         >
         </gmap-autocomplete>
-        <button @click="usePlace">Add</button>
       </label>
       <br />
-
-      <Gmap-Map
-        style="width: 600px; height: 300px;"
-        :zoom="1"
-        :center="{ lat: 0, lng: 0 }"
+      <label>
+        AutoComplete
+        <gmap-autocomplete
+          placeholder="Delivery"
+          @place_changed="setDeliveryPlace"
+        >
+        </gmap-autocomplete>
+      </label>
+      <b-button type="submit" variant="primary" @click.prevent="onSearch"
+        >Search</b-button
       >
-        <Gmap-Marker
-          v-for="(marker, index) in markers"
-          :key="index"
-          :position="marker.position"
-        ></Gmap-Marker>
-        <Gmap-Marker
-          v-if="place"
-          label="&#x2605;"
-          :position="{
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng()
-          }"
-        ></Gmap-Marker>
-      </Gmap-Map>
-      <b-button type="submit" variant="primary" @click.prevent="onSendPlaces"
-        >Show Quotes</b-button
-      >
+      <br />
       <b-card class="mt-3" header="Form Data Result">
-        <pre class="m-0">{{ place }}</pre>
+        <pre class="m-0">{{ collectionPlace }}</pre>
+      </b-card>
+      <b-card class="mt-3" header="Form Data Result">
+        <pre class="m-0">{{ deliveryPlace }}</pre>
       </b-card>
     </div>
   </div>
@@ -48,38 +39,25 @@
 export default {
   data() {
     return {
-      markers: [],
-      place: null
+      collectionPlace: null,
+      deliveryPlace: null
     }
   },
   methods: {
-    setDescription(description) {
-      this.description = description
+    setCollectionPlace(collectionPlace) {
+      this.collectionPlace = collectionPlace
     },
-    setPlace(place) {
-      this.place = place
+    setDeliveryPlace(deliveryPlace) {
+      this.deliveryPlace = deliveryPlace
     },
-    usePlace(place) {
-      if (this.place) {
-        this.markers.push({
-          position: {
-            lat: this.place.geometry.location.lat(),
-            lng: this.place.geometry.location.lng()
-          }
-        })
-        this.place = null
-      }
-    },
-    onSendPlaces() {
-      this.$store.dispatch('posts/setPosts', 'yamen')
+    async onSearch() {
+      await this.$store.dispatch(
+        'places/setCollectionPlace',
+        this.collectionPlace
+      )
+      await this.$store.dispatch('places/setDeliveryPlace', this.deliveryPlace)
+      this.$router.push('/search-quotes')
     }
   }
 }
 </script>
-<style lang="css" scoped>
-.vue-map-container {
-  height: 450px;
-  max-width: 992px;
-  width: 100%;
-}
-</style>
