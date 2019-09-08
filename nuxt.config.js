@@ -34,8 +34,13 @@ export default {
   plugins: [
     // The plugin is auth related which change user status to logged
     '~plugins/mixins/user.js',
+    // The plugin is google map place object related which get collectionPlace and deliveryPlace objects
+    '~plugins/mixins/places.js',
     // DateTimePicker
-    '~plugins/datetime.js'
+    '~plugins/datetime.js',
+    // Google Map API https://github.com/xkjyeah/vue-google-maps
+    // https://developers.google.com/maps/solutions/store-locator/clothing-store-locator
+    { ssr: false, src: '~plugins/google-maps.js'  }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -52,15 +57,29 @@ export default {
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    // Load .env
+    '@nuxtjs/dotenv',
   ],
+  /**
+   * .env
+   */
+  env: {
+    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/'
+    baseURL: 'http://127.0.0.1:8000/api/' 
+    //proxy: true
   },
+  proxy: {
+    '/api/': {
+      target: 'http://127.0.0.1:8000'
+    }
+  }, 
   auth: {
     strategies: {
       local: {

@@ -3,7 +3,60 @@
     <h1>Hello New Move</h1>
     <template>
       <div>
-        <b-form @submit.prevent="onSubmit" @search.prevent="onSearch">
+        <b-form>
+          <!-- Collection Address -->
+          <h2>Collection Address</h2>
+          <b-container class="collection-address-">
+            <b-row>
+              <b-col
+                ><b-form-group label="Collection Address">
+                  <gmap-autocomplete
+                    class="form-control"
+                    placeholder="Collection Address"
+                    @place_changed="setCollectionPlace"
+                  >
+                  </gmap-autocomplete
+                ></b-form-group>
+              </b-col>
+              <b-col
+                ><b-form-group label="At my collection address there">
+                  <b-form-select
+                    id="collectionStairs"
+                    v-model="collectionAddress.stairs"
+                    :options="stairsOptions"
+                    name="collection_stairs"
+                  ></b-form-select> </b-form-group
+              ></b-col>
+            </b-row>
+          </b-container>
+
+          <!-- Delivery Address -->
+          <h2>Delivery Address</h2>
+          <b-container class="delivery-address-">
+            <b-row>
+              <b-col
+                ><b-form-group label="Delivery Address">
+                  <gmap-autocomplete
+                    class="form-control"
+                    placeholder="Delivery Address"
+                    @place_changed="setDeliveryPlace"
+                  >
+                  </gmap-autocomplete
+                ></b-form-group>
+              </b-col>
+              <b-col
+                ><b-form-group label="At my delivery address there">
+                  <b-form-select
+                    id="deliveryStairs"
+                    v-model="deliveryAddress.stairs"
+                    :options="stairsOptions"
+                    name="delivery_stairs"
+                  ></b-form-select> </b-form-group
+              ></b-col>
+            </b-row>
+          </b-container>
+
+          <!-- Van Size -->
           <b-form-group label="Van Size">
             <b-form-radio-group
               id="vanSize"
@@ -13,7 +66,8 @@
             ></b-form-radio-group>
           </b-form-group>
 
-          <b-form-group label="Van Size">
+          <!-- Helpers Required -->
+          <b-form-group label="Helpers Required">
             <b-form-radio-group
               id="helpersRequired"
               v-model="job_metas.helpersRequired"
@@ -22,76 +76,7 @@
             ></b-form-radio-group>
           </b-form-group>
 
-          <h2>Collection Address</h2>
-
-          <b-form-group label="Postcode" label-for="collectionPostcode">
-            <b-form-input
-              id="collectionPostcode"
-              v-model="collectionAddress.postcode"
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="Street Address"
-            label-for="collectionStreetAddress"
-          >
-            <b-form-input
-              id="collectionStreetAddress"
-              v-model="collectionAddress.streetAddress"
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group label="City" label-for="collectionCity">
-            <b-form-input
-              id="collectionCity"
-              v-model="collectionAddress.city"
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group label="At my collection address there">
-            <b-form-select
-              id="collectionStairs"
-              v-model="collectionAddress.stairs"
-              :options="stairsOptions"
-              name="collection_stairs"
-            ></b-form-select>
-          </b-form-group>
-
-          <h2>Delivery Address</h2>
-
-          <b-form-group label="Postcode" label-for="deliveryPostcode">
-            <b-form-input
-              id="deliveryPostcode"
-              v-model="deliveryAddress.postcode"
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="Street Address"
-            label-for="deliveryStreetAddress"
-          >
-            <b-form-input
-              id="deliveryStreetAddress"
-              v-model="deliveryAddress.streetAddress"
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group label="City" label-for="deliveryCity">
-            <b-form-input
-              id="deliveryCity"
-              v-model="deliveryAddress.city"
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group label="At my delivery address there">
-            <b-form-select
-              id="deliveryStairs"
-              v-model="deliveryAddress.stairs"
-              :options="stairsOptions"
-              name="delivery_stairs"
-            ></b-form-select>
-          </b-form-group>
-
+          <!-- Moving Date -->
           <h2>When you're moving</h2>
 
           <datetime
@@ -100,6 +85,17 @@
             use12-hour
           ></datetime>
 
+          <!-- Time -->
+          <b-form-group label="I need the vehicle for">
+            <b-form-select
+              id="totalTime"
+              v-model="totalTime"
+              :options="totalTimeOptions"
+              name="total_time"
+            ></b-form-select>
+          </b-form-group>
+
+          <!-- Description -->
           <h2>Note</h2>
 
           <b-form-group
@@ -109,6 +105,7 @@
             <b-form-input id="description" v-model="description"></b-form-input>
           </b-form-group>
 
+          <!-- Customer Info -->
           <h2>About you</h2>
 
           <b-form-group label="Name" label-for="customerInfoName">
@@ -144,8 +141,15 @@
             ></b-form-radio-group>
           </b-form-group>
 
-          <b-button type="search" variant="danger">Get My Free Quotes</b-button>
-          <b-button type="submit" variant="primary">Save</b-button>
+          <b-button type="submit" variant="danger" @click.prevent="onGetQuotes"
+            >Get My Free Quotes</b-button
+          >
+          <b-button type="submit" variant="primary" @click.prevent="onSave"
+            >Save as New Job</b-button
+          >
+          <b-button type="submit" variant="primary" @click.prevent="onSearch"
+            >Search</b-button
+          >
         </b-form>
 
         <b-card class="mt-3" header="Form Data Result">
@@ -153,6 +157,17 @@
             >{{ job_metas }}{{ notification }}{{ collectionAddress
             }}{{ deliveryAddress }}{{ customerInfo }} {{ moveDateTime }}</pre
           >
+        </b-card>
+        <b-card class="mt-3" header="address_componentsResult">
+          <pre v-if="collectionPlaceObject">{{
+            collectionPlaceObject.lat
+          }}</pre>
+        </b-card>
+        <b-card class="mt-3" header="Form Data Result">
+          <pre class="m-0">{{ collectionPlace }}</pre>
+        </b-card>
+        <b-card class="mt-3" header="Form Data Result">
+          <pre class="m-0">{{ deliveryPlace }}</pre>
         </b-card>
       </div>
     </template>
@@ -163,18 +178,48 @@
 export default {
   data() {
     return {
+      collectionPlace: null,
+      deliveryPlace: null,
       moveDateTime: '',
       job_metas: {},
       collectionAddress: {},
       deliveryAddress: {},
+      totalTime: '',
+      totalTimeOptions: [
+        { text: '30 minutes', value: '0.5' },
+        { text: '1 hour', value: '1' },
+        { text: '1 and a half hours', value: '1.5' },
+        { text: '2 hour', value: '2' },
+        { text: '2 and a half hours', value: '2.5' },
+        { text: '3 hour', value: '3' },
+        { text: '3 and a half hours', value: '3.5' },
+        { text: '4 hour', value: '4' },
+        { text: '4 and a half hours', value: '4.5' },
+        { text: '5 hour', value: '5' },
+        { text: '5 and a half hours', value: '4.5' },
+        { text: '6 hour', value: '6' },
+        { text: '6 and a half hours', value: '6.5' },
+        { text: '7 hour', value: '7' },
+        { text: '7 and a half hours', value: '7.5' },
+        { text: '8 hour', value: '8' },
+        { text: '8 and a half hours', value: '8.5' },
+        { text: '9 hour', value: '9' },
+        { text: '9 and a half hours', value: '9.5' },
+        { text: '10 hour', value: '10' },
+        { text: '10 and a half hours', value: '10.5' },
+        { text: '11 hour', value: '11' },
+        { text: '11 and a half hours', value: '11.5' },
+        { text: '12 hour', value: '12' },
+        { text: '12 and a half hours', value: '12.5' }
+      ],
       description: '',
       customerInfo: {},
       notification: '',
       vanSizeOptions: [
-        { text: 'Small Van', value: 'vanSizeSmall' },
-        { text: 'Medium Van', value: 'vanSizeMedium' },
-        { text: 'Large van', value: 'vanSizeLarg' },
-        { text: 'Giant van', value: 'vanSizeGiant' }
+        { text: 'Small Van', value: '1' },
+        { text: 'Medium Van', value: '2' },
+        { text: 'Large van', value: '3' },
+        { text: 'Giant van', value: '4' }
       ],
       helpersRequiredOptions: [
         { text: 'No help needed', value: '0' },
@@ -192,7 +237,7 @@ export default {
         { text: 'are 6 flights of stairs', value: '6' },
         { text: 'are 7 flights of stairs', value: '7' },
         { text: 'are 8+ flights of stairs', value: '8' },
-        { text: 'is a lift', value: 'lift' }
+        { text: 'is a lift', value: '9' }
       ],
       notificationOptions: [
         { text: 'Yes', value: 'Yes' },
@@ -201,7 +246,7 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
+    async onSave() {
       await this.$axios.$post('jobs', {
         job_metas: [
           {
@@ -214,15 +259,23 @@ export default {
           },
           {
             key: 'collectionPostcode',
-            value: this.collectionAddress.postcode
+            value: this.collectionPlaceObject.postcode
           },
           {
             key: 'collectionStreetAddress',
-            value: this.collectionAddress.streetAddress
+            value: this.collectionPlaceObject.address
           },
           {
             key: 'collectionCity',
-            value: this.collectionAddress.city
+            value: this.collectionPlaceObject.city
+          },
+          {
+            key: 'collectionLat',
+            value: this.collectionPlaceObject.lat
+          },
+          {
+            key: 'collectionLng',
+            value: this.collectionPlaceObject.lng
           },
           {
             key: 'collectionStairs',
@@ -230,15 +283,23 @@ export default {
           },
           {
             key: 'deliveryPostcode',
-            value: this.deliveryAddress.postcode
+            value: this.deliveryPlaceObject.postcode
           },
           {
             key: 'deliveryStreetAddress',
-            value: this.deliveryAddress.streetAddress
+            value: this.deliveryPlaceObject.address
           },
           {
             key: 'deliveryCity',
-            value: this.deliveryAddress.city
+            value: this.deliveryPlaceObject.city
+          },
+          {
+            key: 'deliveryLat',
+            value: this.deliveryPlaceObject.lat
+          },
+          {
+            key: 'deliveryLng',
+            value: this.deliveryPlaceObject.lng
           },
           {
             key: 'deliveryStairs',
@@ -247,11 +308,11 @@ export default {
           /* {
             key: 'travelTime',
             value: this.travelTime
-          },
+          }, */
           {
             key: 'totalTime',
             value: this.totalTime
-          }, */
+          },
           {
             key: 'moveDateTime',
             value: this.moveDateTime
@@ -278,8 +339,60 @@ export default {
           }
         ]
       })
-
       this.$router.push('/')
+    },
+    async onGetQuotes() {
+      await this.$axios.$post('places', {
+        // Collection
+        collectionPostcode: this.collectionPlaceObject.postcode,
+        collectionStreetAddress: this.collectionPlaceObject.address,
+        collectionCity: this.collectionPlaceObject.city,
+        collectionLat: this.collectionPlaceObject.lat,
+        collectionLng: this.collectionPlaceObject.lng,
+        collectionStairs: this.collectionAddress.stairs,
+        // Delivery
+        deliveryPostcode: this.deliveryPlaceObject.postcode,
+        deliveryStreetAddress: this.deliveryPlaceObject.address,
+        deliveryCity: this.deliveryPlaceObject.city,
+        deliveryLat: this.deliveryPlaceObject.lat,
+        deliveryLng: this.deliveryPlaceObject.lng,
+        deliveryStairs: this.deliveryAddress.stairs,
+        // Customer Info
+        customerInfoName: this.customerInfo.name,
+        customerInfoEmail: this.customerInfo.email,
+        customerInfoPhone: this.customerInfo.phone,
+        // Customer choice
+        vanSize: this.job_metas.vanSize,
+        helpersRequired: this.job_metas.helpersRequired,
+        movingDate: this.moveDateTime,
+        totalTime: 4.5,
+        description: this.description,
+        notification: this.notification,
+        // Calculated values
+        travelTime: 1.5,
+        weekDay: 'weekday',
+        estimatedDistance: 10,
+        estimatedDrivingTime: 10
+      })
+    },
+    async setCollectionPlace(collectionPlace) {
+      this.collectionPlace = collectionPlace
+      await this.$store.dispatch(
+        'places/setCollectionPlace',
+        this.collectionPlace
+      )
+    },
+    async setDeliveryPlace(deliveryPlace) {
+      this.deliveryPlace = deliveryPlace
+      await this.$store.dispatch('places/setDeliveryPlace', this.deliveryPlace)
+    },
+    async onSearch() {
+      await this.$store.dispatch(
+        'places/setCollectionPlace',
+        this.collectionPlace
+      )
+      await this.$store.dispatch('places/setDeliveryPlace', this.deliveryPlace)
+      this.$router.push('/search-quotes')
     }
   }
 }
