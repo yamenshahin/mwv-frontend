@@ -7,7 +7,8 @@ const Places = {
       computed: {
         ...mapGetters({
           collectionPlaceObject: 'places/collectionPlace',
-          deliveryPlaceObject: 'places/deliveryPlace'
+          deliveryPlaceObject: 'places/deliveryPlace',
+          wayPointPlacesObject: 'places/wayPointPlaces'
         })
       }
     })

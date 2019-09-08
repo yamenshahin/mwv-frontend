@@ -9,6 +9,9 @@
         <nuxt-link to="/" class="nav-link" role="menuitem" exact
           >Home</nuxt-link
         >
+        <nuxt-link to="/my-move" class="nav-link" role="menuitem" exact
+          >My Move</nuxt-link
+        >
         <nuxt-link to="/new-move" class="nav-link" role="menuitem" exact
           >New Move</nuxt-link
         >

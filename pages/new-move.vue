@@ -85,6 +85,16 @@
             use12-hour
           ></datetime>
 
+          <!-- Time -->
+          <b-form-group label="I need the vehicle for">
+            <b-form-select
+              id="totalTime"
+              v-model="totalTime"
+              :options="totalTimeOptions"
+              name="total_time"
+            ></b-form-select>
+          </b-form-group>
+
           <!-- Description -->
           <h2>Note</h2>
 
@@ -135,7 +145,7 @@
             >Get My Free Quotes</b-button
           >
           <b-button type="submit" variant="primary" @click.prevent="onSave"
-            >Save</b-button
+            >Save as New Job</b-button
           >
           <b-button type="submit" variant="primary" @click.prevent="onSearch"
             >Search</b-button
@@ -174,6 +184,34 @@ export default {
       job_metas: {},
       collectionAddress: {},
       deliveryAddress: {},
+      totalTime: '',
+      totalTimeOptions: [
+        { text: '30 minutes', value: '0.5' },
+        { text: '1 hour', value: '1' },
+        { text: '1 and a half hours', value: '1.5' },
+        { text: '2 hour', value: '2' },
+        { text: '2 and a half hours', value: '2.5' },
+        { text: '3 hour', value: '3' },
+        { text: '3 and a half hours', value: '3.5' },
+        { text: '4 hour', value: '4' },
+        { text: '4 and a half hours', value: '4.5' },
+        { text: '5 hour', value: '5' },
+        { text: '5 and a half hours', value: '4.5' },
+        { text: '6 hour', value: '6' },
+        { text: '6 and a half hours', value: '6.5' },
+        { text: '7 hour', value: '7' },
+        { text: '7 and a half hours', value: '7.5' },
+        { text: '8 hour', value: '8' },
+        { text: '8 and a half hours', value: '8.5' },
+        { text: '9 hour', value: '9' },
+        { text: '9 and a half hours', value: '9.5' },
+        { text: '10 hour', value: '10' },
+        { text: '10 and a half hours', value: '10.5' },
+        { text: '11 hour', value: '11' },
+        { text: '11 and a half hours', value: '11.5' },
+        { text: '12 hour', value: '12' },
+        { text: '12 and a half hours', value: '12.5' }
+      ],
       description: '',
       customerInfo: {},
       notification: '',
@@ -270,11 +308,11 @@ export default {
           /* {
             key: 'travelTime',
             value: this.travelTime
-          },
+          }, */
           {
             key: 'totalTime',
             value: this.totalTime
-          }, */
+          },
           {
             key: 'moveDateTime',
             value: this.moveDateTime
@@ -337,11 +375,16 @@ export default {
         estimatedDrivingTime: 10
       })
     },
-    setCollectionPlace(collectionPlace) {
+    async setCollectionPlace(collectionPlace) {
       this.collectionPlace = collectionPlace
+      await this.$store.dispatch(
+        'places/setCollectionPlace',
+        this.collectionPlace
+      )
     },
-    setDeliveryPlace(deliveryPlace) {
+    async setDeliveryPlace(deliveryPlace) {
       this.deliveryPlace = deliveryPlace
+      await this.$store.dispatch('places/setDeliveryPlace', this.deliveryPlace)
     },
     async onSearch() {
       await this.$store.dispatch(
