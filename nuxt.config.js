@@ -26,7 +26,9 @@ export default {
   css: [
     // You need a specific loader for CSS files
     // https://github.com/mariomka/vue-datetime
-    '~node_modules/vue-datetime/dist/vue-datetime.css'
+    '~node_modules/vue-datetime/dist/vue-datetime.css',
+    // Main CSS file in the project
+    '@/assets/css/main.css'
   ],
   /*
    ** Plugins to load before mounting the App

@@ -1,0 +1,88 @@
+/** 
+Colors
+primary, success, info, warning, danger, dark, or light.
+*/
+.color-white {
+    color: #fff;
+}
+/** 
+Body
+*/
+body{
+    font-family: Open Sans,sans-serif;
+}
+/** 
+Section
+*/
+.section-bg{
+    background: url('~assets/images/home-bg-info.png') top center;
+}
+.fullscreen {
+    width: 100%;
+    height: 100vh;
+}
+/** 
+NavBar
+*/
+.navbar-nav .nav-link{
+    font-size: 0.9rem;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.95);
+}
+.navbar-dark .navbar-nav .nuxt-link-active{
+    font-weight: 700;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+.navbar-logo {
+    max-width: 30px; 
+    margin-right: 10px;
+}
+/** 
+My Move
+*/
+.my-move h2{
+    border-bottom: 1px solid #17a2b8;
+}
+
+/** Vue DateTime Theme */
+.vdatetime-input {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.vdatetime-input::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+.theme-green .vdatetime-popup__header,
+.theme-green .vdatetime-calendar__month__day--selected > span > span,
+.theme-green .vdatetime-calendar__month__day--selected:hover > span > span {
+  background: #17a2b8;
+}
+
+.theme-green .vdatetime-year-picker__item--selected,
+.theme-green .vdatetime-time-picker__item--selected,
+.theme-green .vdatetime-popup__actions__button {
+  color: #17a2b8;
+}
+/** 
+Radio button
+**/
+.theme-green .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #17a2b8;
+    background-color: #17a2b8;
+}
