@@ -1,5 +1,8 @@
 <template>
   <b-container class="my-move">
+    <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ searchMetaObject }}</pre>
+    </b-card>
     <b-row>
       <b-col>
         <!-- Van Size -->
@@ -8,9 +11,9 @@
             <h2 class="pb-2 mb-3">Which vehicle do you need?</h2>
             <b-form-group>
               <b-form-radio-group
-                v-model="job_metas.vanSize"
                 :options="vanSizeOptions"
                 class="theme-green"
+                @input="setSerchMeta($event, 'vanSize')"
               ></b-form-radio-group>
             </b-form-group>
           </div>
@@ -24,9 +27,9 @@
             </h2>
             <b-form-group>
               <b-form-radio-group
-                v-model="job_metas.helpersRequired"
                 :options="helpersRequiredOptions"
                 class="theme-green"
+                @input="setSerchMeta($event, 'helpersRequired')"
               ></b-form-radio-group>
             </b-form-group>
           </div>
@@ -39,10 +42,10 @@
               When you're moving?
             </h2>
             <datetime
-              v-model="moveDateTime"
               class="theme-green"
               type="datetime"
               use12-hour
+              @input="setSerchMeta($event, 'movingDate')"
             ></datetime>
           </div>
         </div>
@@ -58,8 +61,7 @@
               label-for="description"
             >
               <b-form-input
-                id="description"
-                v-model="description"
+                @input="setSerchMeta($event, 'description')"
               ></b-form-input>
             </b-form-group>
           </div>
@@ -75,17 +77,15 @@
               <b-col>
                 <b-form-group label="Name" label-for="customerInfoName">
                   <b-form-input
-                    id="customerInfoName"
-                    v-model="customerInfo.name"
+                    @input="setSerchMeta($event, 'customerInfoName')"
                   ></b-form-input>
                 </b-form-group>
               </b-col>
               <b-col>
                 <b-form-group label="Email" label-for="customerInfoEmail">
                   <b-form-input
-                    id="customerInfoEmail"
-                    v-model="customerInfo.email"
                     type="email"
+                    @input="setSerchMeta($event, 'customerInfoEmail')"
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -95,8 +95,7 @@
                   label-for="customerInfoPhone"
                 >
                   <b-form-input
-                    id="customerInfoPhone"
-                    v-model="customerInfo.phone"
+                    @input="setSerchMeta($event, 'customerInfoPhone')"
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -216,8 +215,8 @@
             </h2>
             <b-form-group>
               <b-form-select
-                v-model="totalTime"
                 :options="totalTimeOptions"
+                @input="setSerchMeta($event, 'totalTime')"
               ></b-form-select>
             </b-form-group>
           </div>
@@ -231,9 +230,9 @@
               label="We'd love to keep in touch about this move by email and text message."
             >
               <b-form-radio-group
-                v-model="notification"
                 :options="notificationOptions"
                 class="theme-green"
+                @input="setSerchMeta($event, 'notification')"
               ></b-form-radio-group>
             </b-form-group>
           </div>
@@ -247,7 +246,6 @@
 export default {
   data() {
     return {
-      job_metas: {},
       vanSizeOptions: [
         { text: 'Small Van', value: '1' },
         { text: 'Medium Van', value: '2' },
@@ -260,9 +258,6 @@ export default {
         { text: 'Driver helping + 1 helper', value: '2' },
         { text: 'Driver helping + 2 helpers', value: '3' }
       ],
-      moveDateTime: '',
-      description: '',
-      customerInfo: {},
       collectionAddress: {
         stairs: null
       },
@@ -282,7 +277,6 @@ export default {
         { text: 'are 8+ flights of stairs', value: '8' },
         { text: 'is a lift', value: '9' }
       ],
-      totalTime: '',
       totalTimeOptions: [
         { text: '30 minutes', value: '0.5' },
         { text: '1 hour', value: '1' },
@@ -310,7 +304,6 @@ export default {
         { text: '12 hour', value: '12' },
         { text: '12 and a half hours', value: '12.5' }
       ],
-      notification: '',
       notificationOptions: [
         { text: 'Yes', value: 'Yes' },
         { text: 'No', value: 'No' }
@@ -409,6 +402,12 @@ export default {
     async setWayPointPlace(wayPointPlace) {
       wayPointPlace.id = this.currnetWayPointIndex
       await this.$store.dispatch('places/setWayPointPlaces', wayPointPlace)
+    },
+    async setSerchMeta(event, value) {
+      const metaObject = {
+        [value]: event
+      }
+      await this.$store.dispatch('search/setSearchMetaValue', metaObject)
     }
   }
 }
