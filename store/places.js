@@ -5,14 +5,16 @@ export const state = () => ({
     address: '',
     city: '',
     lat: 0.0,
-    lng: 0.0
+    lng: 0.0,
+    stairs: ''
   },
   deliveryPlace: {
     postcode: '',
     address: '',
     city: '',
     lat: 0.0,
-    lng: 0.0
+    lng: 0.0,
+    stairs: ''
   },
   wayPointPlaces: []
 })

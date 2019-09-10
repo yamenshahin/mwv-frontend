@@ -77,7 +77,7 @@
           <!-- Map -->
           <gmap-map
             v-show="showMap"
-            ref="map"
+            ref="mapDir"
             class="mt-2"
             :center="coords"
             :zoom="15"
@@ -107,8 +107,8 @@ export default {
       },
 
       currnetWayPointIndex: 0,
-      directionsService: {},
-      directionsDisplay: {}
+      directionsService: null,
+      directionsDisplay: null
     }
   },
   computed: {
@@ -128,6 +128,15 @@ export default {
       }
       return formatted
     }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.$gmapApiPromiseLazy().then(() => {
+        this.$options.directionsService = new google.maps.DirectionsService()
+        this.$options.directionsDisplay = new google.maps.DirectionsRenderer()
+        this.$options.directionsDisplay.setMap(this.$refs.mapDir.$mapObject)
+      })
+    })
   },
   methods: {
     async setCollectionPlace(collectionPlace) {
@@ -150,40 +159,23 @@ export default {
       }
     },
     getDirection() {
-      this.directionsService = new google.maps.DirectionsService()
-      this.directionsDisplay = new google.maps.DirectionsRenderer()
-      this.directionsDisplay.setMap(null)
-      this.directionsDisplay.setMap(this.$refs.map.$mapObject)
       const calculatedWayPoint = this.wayPoints
-      // google maps API's direction service
-      function calculateAndDisplayRoute(
-        directionsService,
-        directionsDisplay,
-        start,
-        destination
-      ) {
-        directionsService.route(
+      this.$gmapApiPromiseLazy().then(() => {
+        this.$options.directionsDisplay.set('directions', null)
+        this.$options.directionsService.route(
           {
-            origin: start,
-            destination,
+            origin: this.coords,
+            destination: this.destination,
             waypoints: calculatedWayPoint,
             travelMode: 'DRIVING'
           },
-          function(response, status) {
+          (result, status) => {
             if (status === 'OK') {
-              directionsDisplay.setDirections(response)
-            } else {
-              window.alert('Directions request failed due to ' + status)
+              this.$options.directionsDisplay.setDirections(result)
             }
           }
         )
-      }
-      calculateAndDisplayRoute(
-        this.directionsService,
-        this.directionsDisplay,
-        this.coords,
-        this.destination
-      )
+      })
     },
     async addEmptyWayPoint() {
       await this.$store.dispatch('places/setWayPointPlaces', 'empty')
