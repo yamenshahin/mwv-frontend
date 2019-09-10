@@ -125,6 +125,7 @@
                       <b-form-select
                         v-model="collectionAddress.stairs"
                         :options="stairsOptions"
+                        @input="setStairs($event, 'collection')"
                       ></b-form-select>
                     </b-form-group>
                   </b-col>
@@ -146,6 +147,7 @@
                       <b-form-select
                         v-model="deliveryAddress.stairs"
                         :options="stairsOptions"
+                        @input="setStairs($event, 'delivery')"
                       ></b-form-select>
                     </b-form-group>
                   </b-col>
@@ -159,26 +161,39 @@
                   index) in wayPointPlacesObject"
                   :key="index"
                 >
-                  <div class="input-group mb-3">
-                    <gmap-autocomplete
-                      :value="wayPointPlacesObject[index].address"
-                      class="form-control"
-                      placeholder="Waypoint Address"
-                      @click="setCurrnetWayPointIndex(index)"
-                      @place_changed="setWayPointPlace"
-                    ></gmap-autocomplete>
-                    <div
-                      v-if="wayPointPlacesObject.length - 1 == index"
-                      class="input-group-append"
-                    >
-                      <span
-                        class="input-group-text bg-danger color-white"
-                        @click.prevent="deleteWayPoint(index)"
-                      >
-                        X
-                      </span>
-                    </div>
-                  </div>
+                  <b-row>
+                    <b-col md>
+                      <div class="input-group mb-3">
+                        <gmap-autocomplete
+                          :value="wayPointPlacesObject[index].address"
+                          class="form-control"
+                          placeholder="Waypoint Address"
+                          @click="setCurrnetWayPointIndex(index)"
+                          @place_changed="setWayPointPlace"
+                        ></gmap-autocomplete>
+                        <div
+                          v-if="wayPointPlacesObject.length - 1 == index"
+                          class="input-group-append"
+                        >
+                          <span
+                            class="input-group-text bg-danger color-white"
+                            @click.prevent="deleteWayPoint(index)"
+                          >
+                            X
+                          </span>
+                        </div>
+                      </div>
+                    </b-col>
+                    <b-col md>
+                      <b-form-group>
+                        <b-form-select
+                          :value="wayPointPlacesObject[index].stairs"
+                          :options="stairsOptions"
+                          @input="setStairs($event, 'waypoint', index)"
+                        ></b-form-select>
+                      </b-form-group>
+                    </b-col>
+                  </b-row>
                 </div>
               </b-col>
               <b-col md>
@@ -408,6 +423,11 @@ export default {
         [value]: event
       }
       await this.$store.dispatch('search/setSearchMetaValue', metaObject)
+    },
+    async setStairs(event, locationType, index = null) {
+      const placeArray = [event, locationType, index]
+      console.log(placeArray)
+      await this.$store.dispatch('places/setStairsPlaces', placeArray)
     }
   }
 }
