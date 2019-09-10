@@ -118,9 +118,8 @@
                         placeholder="Collection Address"
                         :value="collectionPlaceObject.address"
                         @place_changed="setCollectionPlace"
-                      >
-                      </gmap-autocomplete
-                    ></b-form-group>
+                      ></gmap-autocomplete>
+                    </b-form-group>
                   </b-col>
                   <b-col md>
                     <b-form-group>
@@ -140,9 +139,8 @@
                         placeholder="Delivery Address"
                         :value="deliveryPlaceObject.address"
                         @place_changed="setDeliveryPlace"
-                      >
-                      </gmap-autocomplete
-                    ></b-form-group>
+                      ></gmap-autocomplete>
+                    </b-form-group>
                   </b-col>
                   <b-col md>
                     <b-form-group>
@@ -154,9 +152,9 @@
                   </b-col>
                 </b-row>
 
-                <b-button class="mb-3" @click.prevent="addEmptyWayPoint"
-                  >+ Add Waypoint</b-button
-                >
+                <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+                  + Add Waypoint
+                </b-button>
                 <div
                   v-for="(wayPointPlacesObjectSingle,
                   index) in wayPointPlacesObject"
@@ -169,8 +167,7 @@
                       placeholder="Waypoint Address"
                       @click="setCurrnetWayPointIndex(index)"
                       @place_changed="setWayPointPlace"
-                    >
-                    </gmap-autocomplete>
+                    ></gmap-autocomplete>
                     <div
                       v-if="wayPointPlacesObject.length - 1 == index"
                       class="input-group-append"
@@ -178,8 +175,9 @@
                       <span
                         class="input-group-text bg-danger color-white"
                         @click.prevent="deleteWayPoint(index)"
-                        >X</span
                       >
+                        X
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -202,8 +200,8 @@
                   :zoom="15"
                   style="width: 100%; height: 300px"
                 >
-                  <gmap-marker :position="coords"> </gmap-marker>
-                  <gmap-marker :position="destination"> </gmap-marker>
+                  <gmap-marker :position="coords"></gmap-marker>
+                  <gmap-marker :position="destination"></gmap-marker>
                 </gmap-map>
               </b-col>
             </b-row>

@@ -7,39 +7,30 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <nuxt-link to="/" class="nav-link" role="menuitem" exact
-          >Home</nuxt-link
-        >
-        <nuxt-link to="/my-move" class="nav-link" role="menuitem" exact
-          >My Move</nuxt-link
-        >
-        <nuxt-link to="/new-move" class="nav-link" role="menuitem" exact
-          >New Move</nuxt-link
-        >
-        <nuxt-link
-          to="/google-maps-autocomplete"
-          class="nav-link"
-          role="menuitem"
-          exact
-          >gMap Autocomplete</nuxt-link
-        >
-        <nuxt-link to="/search-quotes" class="nav-link" role="menuitem" exact
-          >Search Quotes</nuxt-link
-        >
-        <nuxt-link to="/after-search" class="nav-link" role="menuitem" exact
-          >After Search</nuxt-link
-        >
+        <nuxt-link to="/" class="nav-link" role="menuitem" exact>
+          Home
+        </nuxt-link>
+        <nuxt-link to="/my-move" class="nav-link" role="menuitem" exact>
+          My Move
+        </nuxt-link>
+
+        <nuxt-link to="/search-quotes" class="nav-link" role="menuitem" exact>
+          Search Quotes
+        </nuxt-link>
+        <nuxt-link to="/after-search" class="nav-link" role="menuitem" exact>
+          After Search
+        </nuxt-link>
 
         <b-nav-item-dropdown>
-          <template slot="button-content"
-            ><em>Design</em></template
-          >
-          <nuxt-link to="/design/" class="dropdown-item" role="menuitem"
-            >Home</nuxt-link
-          >
-          <nuxt-link to="/design/my-move" class="dropdown-item" role="menuitem"
-            >My Move</nuxt-link
-          >
+          <template slot="button-content">
+            <em>Design</em>
+          </template>
+          <nuxt-link to="/design/" class="dropdown-item" role="menuitem">
+            Home
+          </nuxt-link>
+          <nuxt-link to="/design/my-move" class="dropdown-item" role="menuitem">
+            My Move
+          </nuxt-link>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
@@ -50,25 +41,27 @@
           to="/login"
           class="nav-link"
           role="menuitem"
-          >Login</nuxt-link
         >
+          Login
+        </nuxt-link>
         <nuxt-link
           v-if="!authenticated"
           to="/register"
           class="nav-link"
           role="menuitem"
-          >Register</nuxt-link
         >
+          Register
+        </nuxt-link>
 
         <b-nav-item-dropdown v-if="authenticated" right>
           <!-- Using 'button-content' slot -->
-          <template slot="button-content"
-            ><em>My Account</em></template
-          >
+          <template slot="button-content">
+            <em>My Account</em>
+          </template>
           <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
-          <nuxt-link to="/profile" class="dropdown-item" role="menuitem"
-            >Profile</nuxt-link
-          >
+          <nuxt-link to="/profile" class="dropdown-item" role="menuitem">
+            Profile
+          </nuxt-link>
           <b-dropdown-item @click.prevent="logout">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>

@@ -10,18 +10,16 @@
               placeholder="Collection Address"
               :value="collectionPlaceObject.address"
               @place_changed="setCollectionPlace"
-            >
-            </gmap-autocomplete
-          ></b-form-group>
+            ></gmap-autocomplete>
+          </b-form-group>
           <b-form-group>
             <gmap-autocomplete
               class="form-control"
               placeholder="Delivery Address"
               :value="deliveryPlaceObject.address"
               @place_changed="setDeliveryPlace"
-            >
-            </gmap-autocomplete
-          ></b-form-group>
+            ></gmap-autocomplete>
+          </b-form-group>
           <div
             v-for="(wayPointPlacesObjectSingle, index) in wayPointPlacesObject"
             :key="index"
@@ -33,8 +31,7 @@
                 placeholder="Way Point Address"
                 @click="setCurrnetWayPointIndex(index)"
                 @place_changed="setWayPointPlace"
-              >
-              </gmap-autocomplete>
+              ></gmap-autocomplete>
               <div
                 v-if="wayPointPlacesObject.length - 1 == index"
                 class="input-group-append"
@@ -42,8 +39,9 @@
                 <span
                   class="input-group-text bg-danger color-white"
                   @click.prevent="deleteWayPoint(index)"
-                  >X</span
                 >
+                  X
+                </span>
               </div>
             </div>
           </div>
@@ -55,16 +53,18 @@
             "
             v-b-tooltip.hover
             title="Please select a valid collection and delivery address"
-            >Show Quotes</b-button
           >
+            Show Quotes
+          </b-button>
           <nuxt-link
             v-if="
               collectionPlaceObject.postcode && deliveryPlaceObject.postcode
             "
             to="/my-move"
             class="btn btn-success"
-            >Ready</nuxt-link
           >
+            Ready
+          </nuxt-link>
           <b-button
             v-if="
               collectionPlaceObject.postcode && deliveryPlaceObject.postcode
@@ -83,8 +83,8 @@
             :zoom="15"
             style="width: 100%; height: 300px"
           >
-            <gmap-marker :position="coords"> </gmap-marker>
-            <gmap-marker :position="destination"> </gmap-marker>
+            <gmap-marker :position="coords"></gmap-marker>
+            <gmap-marker :position="destination"></gmap-marker>
           </gmap-map>
         </b-col>
       </b-row>
