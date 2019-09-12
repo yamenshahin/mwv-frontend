@@ -1,10 +1,10 @@
 <template>
   <b-container class="my-move">
     <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ searchMetaObject }}</pre>
-    </b-card>
-    <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ collectionPlaceObject }}</pre>
+      <pre class="m-0">{{ deliveryPlaceObject }}</pre>
       <pre class="m-0">{{ wayPointPlacesObject }}</pre>
+      <pre class="m-0">{{ searchMetaObject }}</pre>
     </b-card>
     <form @submit.prevent="onSubmit">
       <b-row>
@@ -544,6 +544,12 @@ export default {
     },
     async deleteWayPoint(index) {
       await this.$store.dispatch('places/deleteWayPointPlaces', index)
+      if (
+        this.collectionPlaceObject.address &&
+        this.deliveryPlaceObject.address
+      ) {
+        this.getDirection()
+      }
     },
     setCurrnetWayPointIndex(index) {
       this.currnetWayPointIndex = index
