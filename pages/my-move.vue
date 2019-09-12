@@ -223,8 +223,8 @@
                 <b-col md>
                   <b-button
                     v-if="
-                      collectionPlaceObject.postcode &&
-                        deliveryPlaceObject.postcode
+                      collectionPlaceObject.address &&
+                        deliveryPlaceObject.address
                     "
                     @click="getDirection"
                   >
