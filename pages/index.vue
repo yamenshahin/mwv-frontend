@@ -1,6 +1,11 @@
 <template>
   <div class="section-bg fullscreen pt-5">
     <b-container class="color-white">
+      <b-card class="mt-3" header="Form Data Result">
+        <pre class="m-0">{{ collectionPlaceObject }}</pre>
+        <pre class="m-0">{{ deliveryPlaceObject }}</pre>
+        <pre class="m-0">{{ wayPointPlacesObject }}</pre>
+      </b-card>
       <h1 class="text-center">Moving Van</h1>
       <b-row>
         <b-col md>
@@ -49,7 +54,7 @@
         <b-col md>
           <b-button
             v-if="
-              !collectionPlaceObject.postcode || !deliveryPlaceObject.postcode
+              !collectionPlaceObject.address || !deliveryPlaceObject.address
             "
             v-b-tooltip.hover
             title="Please select a valid collection and delivery address"
@@ -57,18 +62,14 @@
             Show Quotes
           </b-button>
           <nuxt-link
-            v-if="
-              collectionPlaceObject.postcode && deliveryPlaceObject.postcode
-            "
+            v-if="collectionPlaceObject.address && deliveryPlaceObject.address"
             to="/my-move"
             class="btn btn-success"
           >
             Ready
           </nuxt-link>
           <b-button
-            v-if="
-              collectionPlaceObject.postcode && deliveryPlaceObject.postcode
-            "
+            v-if="collectionPlaceObject.address && deliveryPlaceObject.address"
             @click="getDirection"
           >
             Cheack Direction
