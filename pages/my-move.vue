@@ -3,257 +3,350 @@
     <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ searchMetaObject }}</pre>
     </b-card>
-    <b-row>
-      <b-col>
-        <!-- Van Size -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">Which vehicle do you need?</h2>
-            <b-form-group>
-              <b-form-radio-group
-                :options="vanSizeOptions"
+    <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ wayPointPlacesObject }}</pre>
+    </b-card>
+    <form @submit.prevent="onSubmit">
+      <b-row>
+        <b-col>
+          <!-- Van Size -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">Which vehicle do you need?</h2>
+              <b-form-group>
+                <b-form-radio-group
+                  v-model="vanSizeComputed"
+                  :options="vanSizeOptions"
+                  class="theme-green"
+                  required
+                  @input="setSerchMeta($event, 'vanSize')"
+                ></b-form-radio-group>
+              </b-form-group>
+            </div>
+          </div>
+
+          <!-- Helpers Required -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">
+                Will you need help with loading and unloading?
+              </h2>
+              <b-form-group>
+                <b-form-radio-group
+                  v-model="helpersRequiredComputed"
+                  :options="helpersRequiredOptions"
+                  class="theme-green"
+                  required
+                  @input="setSerchMeta($event, 'helpersRequired')"
+                ></b-form-radio-group>
+              </b-form-group>
+            </div>
+          </div>
+
+          <!-- Date time -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">
+                When you're moving?
+              </h2>
+              <datetime
+                v-model="movingDateComputed"
                 class="theme-green"
-                @input="setSerchMeta($event, 'vanSize')"
-              ></b-form-radio-group>
-            </b-form-group>
+                type="datetime"
+                use12-hour
+                required
+                @input="setSerchMeta($event, 'movingDate')"
+              ></datetime>
+            </div>
           </div>
-        </div>
 
-        <!-- Helpers Required -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">
-              Will you need help with loading and unloading?
-            </h2>
-            <b-form-group>
-              <b-form-radio-group
-                :options="helpersRequiredOptions"
-                class="theme-green"
-                @input="setSerchMeta($event, 'helpersRequired')"
-              ></b-form-radio-group>
-            </b-form-group>
+          <!-- description -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">
+                Any note?
+              </h2>
+              <b-form-group
+                label="Please enter a brief description of the items you will be moving and any additional contact numbers. Please also let us know if you need any items assembled or re-assembled."
+                label-for="description"
+              >
+                <b-form-input
+                  v-model="descriptionComputed"
+                  required
+                  @input="setSerchMeta($event, 'description')"
+                ></b-form-input>
+              </b-form-group>
+            </div>
           </div>
-        </div>
 
-        <!-- Date time -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">
-              When you're moving?
-            </h2>
-            <datetime
-              class="theme-green"
-              type="datetime"
-              use12-hour
-              @input="setSerchMeta($event, 'movingDate')"
-            ></datetime>
+          <!-- Customer Info -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">
+                About you
+              </h2>
+              <b-row>
+                <b-col>
+                  <b-form-group label="Name" label-for="customerInfoName">
+                    <b-form-input
+                      v-model="customerInfoNameComputed"
+                      required
+                      @input="setSerchMeta($event, 'customerInfoName')"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+                <b-col>
+                  <b-form-group label="Email" label-for="customerInfoEmail">
+                    <b-form-input
+                      v-model="customerInfoEmailComputed"
+                      type="email"
+                      required
+                      @input="setSerchMeta($event, 'customerInfoEmail')"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+                <b-col>
+                  <b-form-group
+                    label="Phone Number"
+                    label-for="customerInfoPhone"
+                  >
+                    <b-form-input
+                      v-model="customerInfoPhoneComputed"
+                      required
+                      @input="setSerchMeta($event, 'customerInfoPhone')"
+                    ></b-form-input>
+                  </b-form-group>
+                </b-col>
+              </b-row>
+            </div>
           </div>
-        </div>
 
-        <!-- description -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">
-              Any note?
-            </h2>
-            <b-form-group
-              label="Please enter a brief description of the items you will be moving and any additional contact numbers. Please also let us know if you need any items assembled or re-assembled."
-              label-for="description"
-            >
-              <b-form-input
-                @input="setSerchMeta($event, 'description')"
-              ></b-form-input>
-            </b-form-group>
-          </div>
-        </div>
-
-        <!-- Customer Info -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">
-              About you
-            </h2>
-            <b-row>
-              <b-col>
-                <b-form-group label="Name" label-for="customerInfoName">
-                  <b-form-input
-                    @input="setSerchMeta($event, 'customerInfoName')"
-                  ></b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group label="Email" label-for="customerInfoEmail">
-                  <b-form-input
-                    type="email"
-                    @input="setSerchMeta($event, 'customerInfoEmail')"
-                  ></b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group
-                  label="Phone Number"
-                  label-for="customerInfoPhone"
-                >
-                  <b-form-input
-                    @input="setSerchMeta($event, 'customerInfoPhone')"
-                  ></b-form-input>
-                </b-form-group>
-              </b-col>
-            </b-row>
-          </div>
-        </div>
-
-        <!-- Where you're moving? -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">Where you're moving?</h2>
-            <b-row>
-              <b-col md>
-                <b-row>
-                  <b-col md>
-                    <b-form-group>
-                      <gmap-autocomplete
-                        class="form-control"
-                        placeholder="Collection Address"
-                        :value="collectionPlaceObject.address"
-                        @place_changed="setCollectionPlace"
-                      ></gmap-autocomplete>
-                    </b-form-group>
-                  </b-col>
-                  <b-col md>
-                    <b-form-group>
-                      <b-form-select
-                        v-model="collectionAddress.stairs"
-                        :options="stairsOptions"
-                        @input="setStairs($event, 'collection')"
-                      ></b-form-select>
-                    </b-form-group>
-                  </b-col>
-                </b-row>
-
-                <b-row>
-                  <b-col md>
-                    <b-form-group>
-                      <gmap-autocomplete
-                        class="form-control"
-                        placeholder="Delivery Address"
-                        :value="deliveryPlaceObject.address"
-                        @place_changed="setDeliveryPlace"
-                      ></gmap-autocomplete>
-                    </b-form-group>
-                  </b-col>
-                  <b-col md>
-                    <b-form-group>
-                      <b-form-select
-                        v-model="deliveryAddress.stairs"
-                        :options="stairsOptions"
-                        @input="setStairs($event, 'delivery')"
-                      ></b-form-select>
-                    </b-form-group>
-                  </b-col>
-                </b-row>
-
-                <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
-                  + Add Waypoint
-                </b-button>
-                <div
-                  v-for="(wayPointPlacesObjectSingle,
-                  index) in wayPointPlacesObject"
-                  :key="index"
-                >
+          <!-- Where you're moving? -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">Where you're moving?</h2>
+              <b-row>
+                <b-col md>
                   <b-row>
                     <b-col md>
-                      <div class="input-group mb-3">
+                      <b-form-group>
                         <gmap-autocomplete
-                          :value="wayPointPlacesObject[index].address"
                           class="form-control"
-                          placeholder="Waypoint Address"
-                          @click="setCurrnetWayPointIndex(index)"
-                          @place_changed="setWayPointPlace"
+                          placeholder="Collection Address"
+                          :value="collectionPlaceObject.address"
+                          required
+                          @place_changed="setCollectionPlace"
                         ></gmap-autocomplete>
-                        <div
-                          v-if="wayPointPlacesObject.length - 1 == index"
-                          class="input-group-append"
-                        >
-                          <span
-                            class="input-group-text bg-danger color-white"
-                            @click.prevent="deleteWayPoint(index)"
-                          >
-                            X
-                          </span>
-                        </div>
-                      </div>
+                      </b-form-group>
                     </b-col>
                     <b-col md>
                       <b-form-group>
                         <b-form-select
-                          :value="wayPointPlacesObject[index].stairs"
+                          :value="collectionPlaceObject.stairs"
                           :options="stairsOptions"
-                          @input="setStairs($event, 'waypoint', index)"
+                          required
+                          @input="setStairs($event, 'collection')"
                         ></b-form-select>
                       </b-form-group>
                     </b-col>
                   </b-row>
+
+                  <b-row>
+                    <b-col md>
+                      <b-form-group>
+                        <gmap-autocomplete
+                          class="form-control"
+                          placeholder="Delivery Address"
+                          :value="deliveryPlaceObject.address"
+                          required
+                          @place_changed="setDeliveryPlace"
+                        ></gmap-autocomplete>
+                      </b-form-group>
+                    </b-col>
+                    <b-col md>
+                      <b-form-group>
+                        <b-form-select
+                          :value="deliveryPlaceObject.stairs"
+                          :options="stairsOptions"
+                          required
+                          @input="setStairs($event, 'delivery')"
+                        ></b-form-select>
+                      </b-form-group>
+                    </b-col>
+                  </b-row>
+
+                  <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+                    + Add Waypoint
+                  </b-button>
+                  <div
+                    v-for="(wayPointPlacesObjectSingle,
+                    index) in wayPointPlacesObject"
+                    :key="index"
+                  >
+                    <b-row>
+                      <b-col md>
+                        <div class="input-group mb-3">
+                          <gmap-autocomplete
+                            :value="wayPointPlacesObject[index].address"
+                            class="form-control"
+                            placeholder="Waypoint Address"
+                            required
+                            @click="setCurrnetWayPointIndex(index)"
+                            @place_changed="setWayPointPlace"
+                          ></gmap-autocomplete>
+                          <div
+                            v-if="wayPointPlacesObject.length - 1 == index"
+                            class="input-group-append"
+                          >
+                            <span
+                              class="input-group-text bg-danger color-white"
+                              @click.prevent="deleteWayPoint(index)"
+                            >
+                              X
+                            </span>
+                          </div>
+                        </div>
+                      </b-col>
+                      <b-col md>
+                        <b-form-group>
+                          <b-form-select
+                            :value="wayPointPlacesObject[index].stairs"
+                            :options="stairsOptions"
+                            required
+                            @input="setStairs($event, 'waypoint', index)"
+                          ></b-form-select>
+                        </b-form-group>
+                      </b-col>
+                    </b-row>
+                  </div>
+                </b-col>
+                <b-col md>
+                  <b-button
+                    v-if="
+                      collectionPlaceObject.postcode &&
+                        deliveryPlaceObject.postcode
+                    "
+                    @click="getDirection"
+                  >
+                    Cheack Direction
+                  </b-button>
+                  <!-- Map -->
+                  <gmap-map
+                    v-show="showMap"
+                    ref="mapDir"
+                    class="mt-2"
+                    :center="coords"
+                    :zoom="15"
+                    style="width: 100%; height: 300px"
+                  >
+                    <gmap-marker :position="coords"></gmap-marker>
+                    <gmap-marker :position="destination"></gmap-marker>
+                  </gmap-map>
+                </b-col>
+              </b-row>
+            </div>
+          </div>
+
+          <!-- Total Time -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">
+                How many hours do you want the vehicle for?
+              </h2>
+              <div class="row">
+                <div class="col-xs-12 col-sm-1">
+                  <p>Est:</p>
                 </div>
-              </b-col>
-              <b-col md>
-                <b-button
-                  v-if="
-                    collectionPlaceObject.address && deliveryPlaceObject.address
-                  "
-                  @click="getDirection"
-                >
-                  Cheack Direction
-                </b-button>
-                <!-- Map -->
-                <gmap-map
-                  v-show="showMap"
-                  ref="mapDir"
-                  class="mt-2"
-                  :center="coords"
-                  :zoom="15"
-                  style="width: 100%; height: 300px"
-                >
-                  <gmap-marker :position="coords"></gmap-marker>
-                  <gmap-marker :position="destination"></gmap-marker>
-                </gmap-map>
-              </b-col>
-            </b-row>
-          </div>
-        </div>
 
-        <!-- Total Time -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">
-              How many hours do you want the vehicle for?
-            </h2>
-            <b-form-group>
-              <b-form-select
-                :options="totalTimeOptions"
-                @input="setSerchMeta($event, 'totalTime')"
-              ></b-form-select>
-            </b-form-group>
-          </div>
-        </div>
+                <div class="col-xs-12 col-sm-3">
+                  <p>
+                    <span class="glyphicon glyphicon-road"></span>
+                    Travel time:
+                    <strong>
+                      <span id="estimated-driving-time">
+                        {{ formateTimeToString(searchMetaObject.travelTime) }}
+                      </span>
+                    </strong>
+                  </p>
+                </div>
 
-        <!-- Notification -->
-        <div class="card mt-3">
-          <div class="card-body">
-            <h2 class="pb-2 mb-3">Notify me</h2>
-            <b-form-group
-              label="We'd love to keep in touch about this move by email and text message."
-            >
-              <b-form-radio-group
-                :options="notificationOptions"
-                class="theme-green"
-                @input="setSerchMeta($event, 'notification')"
-              ></b-form-radio-group>
-            </b-form-group>
+                <div class="col-xs-12 col-sm-5">
+                  <p>
+                    <span class="glyphicon glyphicon-user"></span>
+                    Loading and unloading time:
+                    <strong>
+                      <span id="estimated-loading-time">
+                        {{
+                          formateTimeToString(
+                            searchMetaObject.loadingUnloadingTime
+                          )
+                        }}
+                      </span>
+                    </strong>
+                  </p>
+                </div>
+
+                <div class="col-xs-12 col-sm-3">
+                  <p>
+                    <span class="glyphicon glyphicon-time"></span>
+                    Total time:
+                    <strong>
+                      <span class="estimated-total-time">
+                        {{
+                          formateTimeToString(
+                            searchMetaObject.estimatedTotalTime
+                          )
+                        }}
+                      </span>
+                    </strong>
+                  </p>
+                </div>
+              </div>
+              <b-form-group>
+                <b-form-select
+                  v-model="totalTimeComputed"
+                  :options="totalTimeOptions"
+                  required
+                  @input="setSerchMeta($event, 'totalTime')"
+                ></b-form-select>
+              </b-form-group>
+            </div>
           </div>
-        </div>
-      </b-col>
-    </b-row>
+
+          <!-- Notification -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h2 class="pb-2 mb-3">Notify me</h2>
+              <b-form-group
+                label="We'd love to keep in touch about this move by email and text message."
+              >
+                <b-form-radio-group
+                  v-model="notificationComputed"
+                  :options="notificationOptions"
+                  class="theme-green"
+                  required
+                  @input="setSerchMeta($event, 'notification')"
+                ></b-form-radio-group>
+              </b-form-group>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col md></b-col>
+        <b-col md>
+          <div class="card mt-3 mb-3">
+            <div class="card-body">
+              <b-button block type="submit" variant="info">
+                Get My Free Quotes
+              </b-button>
+            </div>
+          </div>
+        </b-col>
+        <b-col md></b-col>
+      </b-row>
+    </form>
   </b-container>
 </template>
 <script>
@@ -261,6 +354,15 @@
 export default {
   data() {
     return {
+      vanSizeComputed: null,
+      helpersRequiredComputed: null,
+      movingDateComputed: null,
+      descriptionComputed: null,
+      customerInfoNameComputed: null,
+      customerInfoEmailComputed: null,
+      customerInfoPhoneComputed: null,
+      totalTimeComputed: null,
+      notificationComputed: null,
       vanSizeOptions: [
         { text: 'Small Van', value: '1' },
         { text: 'Medium Van', value: '2' },
@@ -365,6 +467,15 @@ export default {
         this.$options.directionsDisplay.setMap(this.$refs.mapDir.$mapObject)
       })
     })
+    this.vanSizeComputed = this.searchMetaObject.vanSize
+    this.helpersRequiredComputed = this.searchMetaObject.helpersRequired
+    this.movingDateComputed = this.searchMetaObject.movingDate
+    this.descriptionComputed = this.searchMetaObject.description
+    this.customerInfoNameComputed = this.searchMetaObject.customerInfoName
+    this.customerInfoEmailComputed = this.searchMetaObject.customerInfoEmail
+    this.customerInfoPhoneComputed = this.searchMetaObject.customerInfoPhone
+    this.totalTimeComputed = this.searchMetaObject.totalTime
+    this.notificationComputed = this.searchMetaObject.notification
   },
   methods: {
     async setCollectionPlace(collectionPlace) {
@@ -377,6 +488,9 @@ export default {
         lat: this.collectionPlaceObject.lat,
         lng: this.collectionPlaceObject.lng
       }
+      if (this.deliveryPlaceObject.address) {
+        this.getDirection()
+      }
     },
     async setDeliveryPlace(deliveryPlace) {
       this.deliveryPlace = deliveryPlace
@@ -384,6 +498,9 @@ export default {
       this.destination = {
         lat: this.deliveryPlaceObject.lat,
         lng: this.deliveryPlaceObject.lng
+      }
+      if (this.collectionPlaceObject.address) {
+        this.getDirection()
       }
     },
     getDirection() {
@@ -395,11 +512,32 @@ export default {
             origin: this.coords,
             destination: this.destination,
             waypoints: calculatedWayPoint,
-            travelMode: 'DRIVING'
+            travelMode: 'DRIVING',
+            region: 'uk'
           },
           (result, status) => {
             if (status === 'OK') {
+              console.log(
+                result.routes[0].legs[0].distance.value,
+                result.routes[0].legs[0].duration.value
+              )
+              const meters = result.routes[0].legs[0].distance.value
+              const travelTimeObject = {
+                travelTime: result.routes[0].legs[0].duration.value
+              }
+              const milesDrivenObjsct = {
+                milesDriven: this.convertMeterToMile(meters)
+              }
               this.$options.directionsDisplay.setDirections(result)
+
+              this.$store.dispatch(
+                'search/setSearchMetaValue',
+                travelTimeObject
+              )
+              this.$store.dispatch(
+                'search/setSearchMetaValue',
+                milesDrivenObjsct
+              )
             }
           }
         )
@@ -417,6 +555,12 @@ export default {
     async setWayPointPlace(wayPointPlace) {
       wayPointPlace.id = this.currnetWayPointIndex
       await this.$store.dispatch('places/setWayPointPlaces', wayPointPlace)
+      if (
+        this.collectionPlaceObject.address &&
+        this.deliveryPlaceObject.address
+      ) {
+        this.getDirection()
+      }
     },
     async setSerchMeta(event, value) {
       const metaObject = {
@@ -426,8 +570,53 @@ export default {
     },
     async setStairs(event, locationType, index = null) {
       const placeArray = [event, locationType, index]
-      console.log(placeArray)
       await this.$store.dispatch('places/setStairsPlaces', placeArray)
+      const metaObject = {
+        stairsTime: this.getStairsTime()
+      }
+      await this.$store.dispatch('search/setSearchMetaValue', metaObject)
+    },
+    onSubmit() {},
+    convertMeterToMile(meters) {
+      return meters / 1609.344
+    },
+    getStairsTime() {
+      let collectionStairsTime = 0
+      if (this.collectionPlaceObject.stairs < 9) {
+        collectionStairsTime = this.collectionPlaceObject.stairs * 15
+      } else {
+        collectionStairsTime = 10
+      }
+      let deliveryStairsTime = 0
+      if (this.deliveryPlaceObject.stairs < 9) {
+        deliveryStairsTime = this.deliveryPlaceObject.stairs * 15
+      } else {
+        deliveryStairsTime = 10
+      }
+      let waypointStairsTime = 0
+      if (this.wayPointPlacesObject.length >= 0) {
+        for (let i = 0; this.wayPointPlacesObject.length > i; i++) {
+          if (this.wayPointPlacesObject[i].stairs < 9) {
+            waypointStairsTime =
+              this.wayPointPlacesObject[i].stairs * 15 + waypointStairsTime
+          } else {
+            waypointStairsTime = 10 + waypointStairsTime
+          }
+        }
+      }
+
+      return (
+        (collectionStairsTime + deliveryStairsTime + waypointStairsTime) * 60
+      )
+    },
+    formateTimeToString(timeInSec) {
+      const h = Math.floor(timeInSec / 3600)
+      const m = Math.floor((timeInSec % 3600) / 60)
+
+      const hDisplay = h > 0 ? h + (h === 1 ? ' hour' : ' hours') : ''
+      const mDisplay = m > 0 ? m + (m === 1 ? ' minute, ' : ' minutes ') : ''
+      const coma = hDisplay && mDisplay ? ', ' : ''
+      return hDisplay + coma + mDisplay
     }
   }
 }

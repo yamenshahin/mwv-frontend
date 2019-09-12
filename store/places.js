@@ -99,7 +99,8 @@ export const mutations = {
             address: '',
             city: '',
             lat: 0.0,
-            lng: 0.0
+            lng: 0.0,
+            stairs: 0
           })
         }
         const indexAddress = wayPointPlaces.formatted_address
@@ -122,7 +123,8 @@ export const mutations = {
           address: indexAddress,
           city: indexCity,
           lat: indexLat,
-          lng: indexLng
+          lng: indexLng,
+          stairs: 0
         })
       }
     }
@@ -137,7 +139,7 @@ export const mutations = {
       state.deliveryPlace.stairs = placeArray[0]
     } else if (placeArray[1] === 'waypoint') {
       const index = placeArray[2]
-      state.wayPointPlaces[index].stairs = placeArray[0]
+      state.wayPointPlaces[index].stairs = parseInt(placeArray[0])
     }
   }
 }
