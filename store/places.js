@@ -134,9 +134,9 @@ export const mutations = {
   },
   SET_STAIRS_PLACES(state, placeArray) {
     if (placeArray[1] === 'collection') {
-      state.collectionPlace.stairs = placeArray[0]
+      state.collectionPlace.stairs = parseInt(placeArray[0])
     } else if (placeArray[1] === 'delivery') {
-      state.deliveryPlace.stairs = placeArray[0]
+      state.deliveryPlace.stairs = parseInt(placeArray[0])
     } else if (placeArray[1] === 'waypoint') {
       const index = placeArray[2]
       state.wayPointPlaces[index].stairs = parseInt(placeArray[0])
