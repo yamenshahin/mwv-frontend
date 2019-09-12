@@ -38,6 +38,8 @@ export default {
     '~plugins/mixins/user.js',
     // The plugin is google map place object related which get collectionPlace and deliveryPlace objects
     '~plugins/mixins/places.js',
+    // The plugin used for getting search for driver meta before searching
+    '~plugins/mixins/search.js',
     // DateTimePicker
     '~plugins/datetime.js',
     // Google Map API https://github.com/xkjyeah/vue-google-maps

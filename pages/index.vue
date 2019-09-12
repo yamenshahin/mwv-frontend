@@ -10,18 +10,16 @@
               placeholder="Collection Address"
               :value="collectionPlaceObject.address"
               @place_changed="setCollectionPlace"
-            >
-            </gmap-autocomplete
-          ></b-form-group>
+            ></gmap-autocomplete>
+          </b-form-group>
           <b-form-group>
             <gmap-autocomplete
               class="form-control"
               placeholder="Delivery Address"
               :value="deliveryPlaceObject.address"
               @place_changed="setDeliveryPlace"
-            >
-            </gmap-autocomplete
-          ></b-form-group>
+            ></gmap-autocomplete>
+          </b-form-group>
           <div
             v-for="(wayPointPlacesObjectSingle, index) in wayPointPlacesObject"
             :key="index"
@@ -33,8 +31,7 @@
                 placeholder="Way Point Address"
                 @click="setCurrnetWayPointIndex(index)"
                 @place_changed="setWayPointPlace"
-              >
-              </gmap-autocomplete>
+              ></gmap-autocomplete>
               <div
                 v-if="wayPointPlacesObject.length - 1 == index"
                 class="input-group-append"
@@ -42,8 +39,9 @@
                 <span
                   class="input-group-text bg-danger color-white"
                   @click.prevent="deleteWayPoint(index)"
-                  >X</span
                 >
+                  X
+                </span>
               </div>
             </div>
           </div>
@@ -55,16 +53,18 @@
             "
             v-b-tooltip.hover
             title="Please select a valid collection and delivery address"
-            >Show Quotes</b-button
           >
+            Show Quotes
+          </b-button>
           <nuxt-link
             v-if="
               collectionPlaceObject.postcode && deliveryPlaceObject.postcode
             "
             to="/my-move"
             class="btn btn-success"
-            >Ready</nuxt-link
           >
+            Ready
+          </nuxt-link>
           <b-button
             v-if="
               collectionPlaceObject.postcode && deliveryPlaceObject.postcode
@@ -77,14 +77,14 @@
           <!-- Map -->
           <gmap-map
             v-show="showMap"
-            ref="map"
+            ref="mapDir"
             class="mt-2"
             :center="coords"
             :zoom="15"
             style="width: 100%; height: 300px"
           >
-            <gmap-marker :position="coords"> </gmap-marker>
-            <gmap-marker :position="destination"> </gmap-marker>
+            <gmap-marker :position="coords"></gmap-marker>
+            <gmap-marker :position="destination"></gmap-marker>
           </gmap-map>
         </b-col>
       </b-row>
@@ -107,8 +107,8 @@ export default {
       },
 
       currnetWayPointIndex: 0,
-      directionsService: {},
-      directionsDisplay: {}
+      directionsService: null,
+      directionsDisplay: null
     }
   },
   computed: {
@@ -128,6 +128,15 @@ export default {
       }
       return formatted
     }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.$gmapApiPromiseLazy().then(() => {
+        this.$options.directionsService = new google.maps.DirectionsService()
+        this.$options.directionsDisplay = new google.maps.DirectionsRenderer()
+        this.$options.directionsDisplay.setMap(this.$refs.mapDir.$mapObject)
+      })
+    })
   },
   methods: {
     async setCollectionPlace(collectionPlace) {
@@ -150,40 +159,23 @@ export default {
       }
     },
     getDirection() {
-      this.directionsService = new google.maps.DirectionsService()
-      this.directionsDisplay = new google.maps.DirectionsRenderer()
-      this.directionsDisplay.setMap(null)
-      this.directionsDisplay.setMap(this.$refs.map.$mapObject)
       const calculatedWayPoint = this.wayPoints
-      // google maps API's direction service
-      function calculateAndDisplayRoute(
-        directionsService,
-        directionsDisplay,
-        start,
-        destination
-      ) {
-        directionsService.route(
+      this.$gmapApiPromiseLazy().then(() => {
+        this.$options.directionsDisplay.set('directions', null)
+        this.$options.directionsService.route(
           {
-            origin: start,
-            destination,
+            origin: this.coords,
+            destination: this.destination,
             waypoints: calculatedWayPoint,
             travelMode: 'DRIVING'
           },
-          function(response, status) {
+          (result, status) => {
             if (status === 'OK') {
-              directionsDisplay.setDirections(response)
-            } else {
-              window.alert('Directions request failed due to ' + status)
+              this.$options.directionsDisplay.setDirections(result)
             }
           }
         )
-      }
-      calculateAndDisplayRoute(
-        this.directionsService,
-        this.directionsDisplay,
-        this.coords,
-        this.destination
-      )
+      })
     },
     async addEmptyWayPoint() {
       await this.$store.dispatch('places/setWayPointPlaces', 'empty')

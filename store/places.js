@@ -5,14 +5,16 @@ export const state = () => ({
     address: '',
     city: '',
     lat: 0.0,
-    lng: 0.0
+    lng: 0.0,
+    stairs: null
   },
   deliveryPlace: {
     postcode: '',
     address: '',
     city: '',
     lat: 0.0,
-    lng: 0.0
+    lng: 0.0,
+    stairs: null
   },
   wayPointPlaces: []
 })
@@ -68,7 +70,8 @@ export const mutations = {
         address: '',
         city: '',
         lat: 0,
-        lng: 0
+        lng: 0,
+        stairs: null
       })
     } else {
       const index = wayPointPlaces.id
@@ -96,7 +99,8 @@ export const mutations = {
             address: '',
             city: '',
             lat: 0.0,
-            lng: 0.0
+            lng: 0.0,
+            stairs: 0
           })
         }
         const indexAddress = wayPointPlaces.formatted_address
@@ -119,13 +123,24 @@ export const mutations = {
           address: indexAddress,
           city: indexCity,
           lat: indexLat,
-          lng: indexLng
+          lng: indexLng,
+          stairs: 0
         })
       }
     }
   },
   DELETE_WAY_POINT_PLACES(state, index) {
     state.wayPointPlaces.splice(index, 1)
+  },
+  SET_STAIRS_PLACES(state, placeArray) {
+    if (placeArray[1] === 'collection') {
+      state.collectionPlace.stairs = placeArray[0]
+    } else if (placeArray[1] === 'delivery') {
+      state.deliveryPlace.stairs = placeArray[0]
+    } else if (placeArray[1] === 'waypoint') {
+      const index = placeArray[2]
+      state.wayPointPlaces[index].stairs = parseInt(placeArray[0])
+    }
   }
 }
 
@@ -142,5 +157,8 @@ export const actions = {
   },
   deleteWayPointPlaces({ commit }, index) {
     commit('DELETE_WAY_POINT_PLACES', index)
+  },
+  setStairsPlaces({ commit }, placeArray) {
+    commit('SET_STAIRS_PLACES', placeArray)
   }
 }
