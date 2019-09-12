@@ -517,10 +517,6 @@ export default {
           },
           (result, status) => {
             if (status === 'OK') {
-              console.log(
-                result.routes[0].legs[0].distance.value,
-                result.routes[0].legs[0].duration.value
-              )
               const meters = result.routes[0].legs[0].distance.value
               const travelTimeObject = {
                 travelTime: result.routes[0].legs[0].duration.value
