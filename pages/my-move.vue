@@ -1,10 +1,7 @@
 <template>
   <b-container class="my-move">
     <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ collectionPlaceObject }}</pre>
-      <pre class="m-0">{{ deliveryPlaceObject }}</pre>
-      <pre class="m-0">{{ wayPointPlacesObject }}</pre>
-      <pre class="m-0">{{ searchMetaObject }}</pre>
+      <pre class="m-0">{{ searchData }}</pre>
     </b-card>
     <form @submit.prevent="onSubmit">
       <b-row>
@@ -457,6 +454,28 @@ export default {
         }
       }
       return formatted
+    },
+    searchData() {
+      return {
+        collection: this.collectionPlaceObject,
+        delivery: this.deliveryPlaceObject,
+        waypoints: this.wayPointPlacesObject,
+        vanSize: this.searchMetaObject.vanSize,
+        movingDate: this.searchMetaObject.movingDate,
+        helpersRequired: this.searchMetaObject.helpersRequired,
+        description: this.searchMetaObject.description,
+        customerInfoName: this.searchMetaObject.customerInfoName,
+        customerInfoEmail: this.searchMetaObject.customerInfoEmail,
+        customerInfoPhone: this.searchMetaObject.customerInfoPhone,
+        notification: this.searchMetaObject.notification,
+        loadingUnloadingTime: this.searchMetaObject.loadingUnloadingTime,
+        travelTime: this.searchMetaObject.travelTime,
+        totalTime: this.searchMetaObject.totalTime,
+        milesDriven: this.searchMetaObject.milesDriven,
+        stairsTime: this.searchMetaObject.stairsTime,
+        estimatedTotalTime: this.searchMetaObject.estimatedTotalTime,
+        weekDay: 'weekday'
+      }
     }
   },
   mounted() {
@@ -578,7 +597,7 @@ export default {
       }
       await this.$store.dispatch('search/setSearchMetaValue', metaObject)
     },
-    onSubmit() {},
+
     convertMeterToMile(meters) {
       return meters / 1609.344
     },
@@ -619,6 +638,17 @@ export default {
       const mDisplay = m > 0 ? m + (m === 1 ? ' minute, ' : ' minutes ') : ''
       const coma = hDisplay && mDisplay ? ', ' : ''
       return hDisplay + coma + mDisplay
+    },
+    async onSubmit() {
+      await this.$axios
+        .$post('/places', this.searchData)
+        .then(function(response) {
+          // handle success
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     }
   }
 }
