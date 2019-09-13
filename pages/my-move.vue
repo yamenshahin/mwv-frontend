@@ -1,6 +1,7 @@
 <template>
   <b-container class="my-move">
     <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ searchResultObject }}</pre>
       <pre class="m-0">{{ searchData }}</pre>
     </b-card>
     <form @submit.prevent="onSubmit">
@@ -640,15 +641,17 @@ export default {
       return hDisplay + coma + mDisplay
     },
     async onSubmit() {
-      await this.$axios
+      const responseData = await this.$axios
         .$post('/places', this.searchData)
         .then(function(response) {
           // handle success
-          console.log(response)
+          return response
         })
         .catch(function(error) {
           console.log(error)
         })
+      await this.$store.dispatch('search-result/setSearchResult', responseData)
+      this.$router.push('/my-quotes')
     }
   }
 }
