@@ -20,6 +20,6 @@ export const mutations = {
 // Actions
 export const actions = {
   setCustomerJobs({ commit }, customerJobs) {
-    commit('CUSTOMER_JOBS', customerJobs)
+    commit('SET_CUSTOMER_JOBS', customerJobs)
   }
 }

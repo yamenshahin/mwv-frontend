@@ -17,13 +17,7 @@
         <nuxt-link to="/my-quotes" class="nav-link" role="menuitem" exact>
           My Quotes
         </nuxt-link>
-        <nuxt-link
-          v-if="authenticated"
-          to="/my-jobs"
-          class="nav-link"
-          role="menuitem"
-          exact
-        >
+        <nuxt-link to="/my-jobs" class="nav-link" role="menuitem" exact>
           My Jobs
         </nuxt-link>
       </b-navbar-nav>

@@ -6,7 +6,7 @@ const CustomerJobs = {
     Vue.mixin({
       computed: {
         ...mapGetters({
-          collectionPlaceObject: 'customer-jobs/customerJobs'
+          customerJobsObject: 'customer-jobs/customerJobs'
         })
       }
     })

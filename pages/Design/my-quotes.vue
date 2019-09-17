@@ -1,5 +1,10 @@
 <template>
   <b-container>
+    <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ customerJobsObject }}</pre>
+      <pre class="m-0">{{ searchMetaObject }}</pre>
+      <pre class="m-0">{{ searchResultObject }}</pre>
+    </b-card>
     <div v-for="(place, index) in places" :key="index">
       <div class="card mt-3">
         <div class="card-body">

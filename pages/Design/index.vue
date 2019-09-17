@@ -1,6 +1,13 @@
 <template>
   <div class="section-bg fullscreen pt-5">
     <b-container class="color-white">
+      <b-card class="mt-3" header="Form Data Result">
+        <pre class="m-0">{{ collectionPlaceObject }}</pre>
+        <pre class="m-0">{{ deliveryPlaceObject }}</pre>
+        <pre class="m-0">{{ wayPointPlacesObject }}</pre>
+        <pre class="m-0">{{ searchMetaObject }}</pre>
+      </b-card>
+      <h1 class="text-center">Moving Van</h1>
       <b-row>
         <b-col md>
           <b-form-group>

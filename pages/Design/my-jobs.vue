@@ -1,11 +1,14 @@
 <template>
   <b-container>
+    <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ customerJobsObject }}</pre>
+    </b-card>
     <b-button class="mt-3" @click="popToast">Show reminder</b-button>
     <b-row>
       <b-col>
         <div class="card mt-3">
           <div class="card-body">
-            <b-row v-if="customerJobsObject">
+            <b-row>
               <b-col md>
                 <b-table-simple hover small responsive>
                   <b-tbody>
@@ -102,13 +105,11 @@ export default {
         this.$options.directionsDisplay.setMap(this.$refs.mapDir.$mapObject)
       })
     })
-    if (this.customerJobsObject.job_meta) {
-      this.collectionComputed.lat = this.customerJobsObject.job_meta.collection.lat
-      this.collectionComputed.lng = this.customerJobsObject.job_meta.collection.lng
-      this.deliveryComputed.lat = this.customerJobsObject.job_meta.delivery.lat
-      this.deliveryComputed.lng = this.customerJobsObject.job_meta.delivery.lng
-      this.waypointsComputed = this.customerJobsObject.job_meta.delivery
-    }
+    this.collectionComputed.lat = this.customerJobsObject.job_meta.collection.lat
+    this.collectionComputed.lng = this.customerJobsObject.job_meta.collection.lng
+    this.deliveryComputed.lat = this.customerJobsObject.job_meta.delivery.lat
+    this.deliveryComputed.lng = this.customerJobsObject.job_meta.delivery.lng
+    this.waypointsComputed = this.customerJobsObject.job_meta.delivery
   },
   methods: {
     getDirection() {
