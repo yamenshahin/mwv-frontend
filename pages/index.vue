@@ -1,7 +1,6 @@
 <template>
   <div class="section-bg fullscreen pt-5">
     <b-container class="color-white">
-      <h1 class="text-center">Moving Van</h1>
       <b-row>
         <b-col md>
           <b-form-group>
@@ -20,6 +19,9 @@
               @place_changed="setDeliveryPlace"
             ></gmap-autocomplete>
           </b-form-group>
+          <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+            + Add Waypoint
+          </b-button>
           <div
             v-for="(wayPointPlacesObjectSingle, index) in wayPointPlacesObject"
             :key="index"
@@ -32,6 +34,7 @@
                 @click="setCurrnetWayPointIndex(index)"
                 @place_changed="setWayPointPlace"
               ></gmap-autocomplete>
+
               <div
                 v-if="wayPointPlacesObject.length - 1 == index"
                 class="input-group-append"
@@ -49,7 +52,7 @@
         <b-col md>
           <b-button
             v-if="
-              !collectionPlaceObject.postcode || !deliveryPlaceObject.postcode
+              !collectionPlaceObject.address || !deliveryPlaceObject.address
             "
             v-b-tooltip.hover
             title="Please select a valid collection and delivery address"
@@ -57,35 +60,28 @@
             Show Quotes
           </b-button>
           <nuxt-link
-            v-if="
-              collectionPlaceObject.postcode && deliveryPlaceObject.postcode
-            "
+            v-if="collectionPlaceObject.address && deliveryPlaceObject.address"
             to="/my-move"
             class="btn btn-success"
           >
-            Ready
+            Show Quotes
           </nuxt-link>
           <b-button
-            v-if="
-              collectionPlaceObject.postcode && deliveryPlaceObject.postcode
-            "
+            v-if="collectionPlaceObject.address && deliveryPlaceObject.address"
             @click="getDirection"
           >
             Cheack Direction
           </b-button>
-          <b-button @click.prevent="addEmptyWayPoint">+ Add Waypoint</b-button>
+
           <!-- Map -->
           <gmap-map
             v-show="showMap"
             ref="mapDir"
             class="mt-2"
-            :center="coords"
+            :center="center"
             :zoom="15"
             style="width: 100%; height: 300px"
-          >
-            <gmap-marker :position="coords"></gmap-marker>
-            <gmap-marker :position="destination"></gmap-marker>
-          </gmap-map>
+          ></gmap-map>
         </b-col>
       </b-row>
     </b-container>
@@ -97,13 +93,9 @@ export default {
   data() {
     return {
       showMap: true,
-      coords: {
+      center: {
         lat: 51.507441,
         lng: -0.1277
-      },
-      destination: {
-        lat: 51.527182,
-        lng: -0.133992
       },
 
       currnetWayPointIndex: 0,
@@ -145,17 +137,19 @@ export default {
         'places/setCollectionPlace',
         this.collectionPlace
       )
-      this.coords = {
+      this.center = {
         lat: this.collectionPlaceObject.lat,
         lng: this.collectionPlaceObject.lng
+      }
+      if (this.deliveryPlaceObject.address) {
+        this.getDirection()
       }
     },
     async setDeliveryPlace(deliveryPlace) {
       this.deliveryPlace = deliveryPlace
       await this.$store.dispatch('places/setDeliveryPlace', this.deliveryPlace)
-      this.destination = {
-        lat: this.deliveryPlaceObject.lat,
-        lng: this.deliveryPlaceObject.lng
+      if (this.collectionPlaceObject.address) {
+        this.getDirection()
       }
     },
     getDirection() {
@@ -164,14 +158,37 @@ export default {
         this.$options.directionsDisplay.set('directions', null)
         this.$options.directionsService.route(
           {
-            origin: this.coords,
-            destination: this.destination,
+            origin: {
+              lat: this.collectionPlaceObject.lat,
+              lng: this.collectionPlaceObject.lng
+            },
+            destination: {
+              lat: this.deliveryPlaceObject.lat,
+              lng: this.deliveryPlaceObject.lng
+            },
             waypoints: calculatedWayPoint,
-            travelMode: 'DRIVING'
+            travelMode: 'DRIVING',
+            region: 'uk'
           },
           (result, status) => {
             if (status === 'OK') {
+              const meters = result.routes[0].legs[0].distance.value
+              const travelTimeObject = {
+                travelTime: result.routes[0].legs[0].duration.value
+              }
+              const milesDrivenObjsct = {
+                milesDriven: this.convertMeterToMile(meters)
+              }
               this.$options.directionsDisplay.setDirections(result)
+
+              this.$store.dispatch(
+                'search/setSearchMetaValue',
+                travelTimeObject
+              )
+              this.$store.dispatch(
+                'search/setSearchMetaValue',
+                milesDrivenObjsct
+              )
             }
           }
         )
@@ -182,6 +199,12 @@ export default {
     },
     async deleteWayPoint(index) {
       await this.$store.dispatch('places/deleteWayPointPlaces', index)
+      if (
+        this.collectionPlaceObject.address &&
+        this.deliveryPlaceObject.address
+      ) {
+        this.getDirection()
+      }
     },
     setCurrnetWayPointIndex(index) {
       this.currnetWayPointIndex = index
@@ -189,6 +212,15 @@ export default {
     async setWayPointPlace(wayPointPlace) {
       wayPointPlace.id = this.currnetWayPointIndex
       await this.$store.dispatch('places/setWayPointPlaces', wayPointPlace)
+      if (
+        this.collectionPlaceObject.address &&
+        this.deliveryPlaceObject.address
+      ) {
+        this.getDirection()
+      }
+    },
+    convertMeterToMile(meters) {
+      return meters / 1609.344
     }
   }
 }

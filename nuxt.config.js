@@ -42,6 +42,10 @@ export default {
     '~plugins/mixins/search.js',
     // DateTimePicker
     '~plugins/datetime.js',
+    // The plugin used to store and getting final search result
+    '~plugins/mixins/search-result.js',
+    // The plugin used to store and getting customer jobs
+    '~plugins/mixins/customer-jobs.js',
     // Google Map API https://github.com/xkjyeah/vue-google-maps
     // https://developers.google.com/maps/solutions/store-locator/clothing-store-locator
     { ssr: false, src: '~plugins/google-maps.js'  }

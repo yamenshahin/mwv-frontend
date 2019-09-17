@@ -1,5 +1,9 @@
 <template>
   <b-container class="my-move">
+    <b-card class="mt-3" header="Form Data Result">
+      <pre class="m-0">{{ searchResultObject }}</pre>
+      <pre class="m-0">{{ searchData }}</pre>
+    </b-card>
     <form @submit.prevent="onSubmit">
       <b-row>
         <b-col>

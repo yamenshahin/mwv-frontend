@@ -14,24 +14,12 @@
           My Move
         </nuxt-link>
 
-        <nuxt-link to="/search-quotes" class="nav-link" role="menuitem" exact>
-          Search Quotes
+        <nuxt-link to="/my-quotes" class="nav-link" role="menuitem" exact>
+          My Quotes
         </nuxt-link>
-        <nuxt-link to="/after-search" class="nav-link" role="menuitem" exact>
-          After Search
+        <nuxt-link to="/my-jobs" class="nav-link" role="menuitem" exact>
+          My Jobs
         </nuxt-link>
-
-        <b-nav-item-dropdown>
-          <template slot="button-content">
-            <em>Design</em>
-          </template>
-          <nuxt-link to="/design/" class="dropdown-item" role="menuitem">
-            Home
-          </nuxt-link>
-          <nuxt-link to="/design/my-move" class="dropdown-item" role="menuitem">
-            My Move
-          </nuxt-link>
-        </b-nav-item-dropdown>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
