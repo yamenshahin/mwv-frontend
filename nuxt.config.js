@@ -48,7 +48,10 @@ export default {
     '~plugins/mixins/customer-jobs.js',
     // Google Map API https://github.com/xkjyeah/vue-google-maps
     // https://developers.google.com/maps/solutions/store-locator/clothing-store-locator
-    { ssr: false, src: '~plugins/google-maps.js'  }
+    { ssr: false, src: '~plugins/google-maps.js'  },
+    // Persist and rehydrate your Vuex state between page reloads.
+    // https://github.com/robinvdvleuten/vuex-persistedstate
+    { ssr: false, src: '~plugins/localStorage.js'  }
   ],
   /*
    ** Nuxt.js dev-modules
