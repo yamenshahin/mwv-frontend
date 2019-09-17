@@ -22,6 +22,7 @@
     "nuxt": "^2.0.0",
     "vue-datetime": "^1.0.0-beta.10",
     "vue2-google-maps": "^0.10.7",
+    "vuex-persistedstate": "^2.5.4",
     "weekstart": "^1.0.0"
   },
   "devDependencies": {
