@@ -1,49 +1,116 @@
 // Create Driver place store
 export const state = () => ({
-  driverPlace: {
-    postcode: '',
-    address: '',
-    city: '',
-    lat: 51.505624,
-    lng: -0.150406,
+  driverPlaceLocation: {
+    postcode: 'WC2N 5DU',
+    address: 'Trafalgar Square, Charing Cross, London WC2N 5DU, UK',
+    city: 'London',
+    lat: 51.5075467,
+    lng: -0.1278833000000077,
     distance: 50
+  },
+  driverPlacePrice: {
+    priceSmallVanWeekday: null,
+    priceSmallVanWeekday1: null,
+    priceSmallVanWeekday2: null,
+    priceSmallVanWeekday3: null,
+    priceSmallVanWeekend: null,
+    priceSmallVanWeekend1: null,
+    priceSmallVanWeekend2: null,
+    priceSmallVanWeekend3: null,
+    priceMidVanWeekday: null,
+    priceMidVanWeekday1: null,
+    priceMidVanWeekday2: null,
+    priceMidVanWeekday3: null,
+    priceMidVanWeekend: null,
+    priceMidVanWeekend1: null,
+    priceMidVanWeekend2: null,
+    priceMidVanWeekend3: null,
+    priceLargeVanWeekday: null,
+    priceLargeVanWeekday1: null,
+    priceLargeVanWeekday2: null,
+    priceLargeVanWeekday3: null,
+    priceLargeVanWeekend: null,
+    priceLargeVanWeekend1: null,
+    priceLargeVanWeekend2: null,
+    priceLargeVanWeekend3: null,
+    priceGiantVanWeekday: null,
+    priceGiantVanWeekday1: null,
+    priceGiantVanWeekday2: null,
+    priceGiantVanWeekday3: null,
+    priceGiantVanWeekend: null,
+    priceGiantVanWeekend1: null,
+    priceGiantVanWeekend2: null,
+    priceGiantVanWeekend3: null,
+    priceStop: null,
+    priceMile: null,
+    priceStairs: null
+  },
+  driverPlaceStatistic: {
+    stars: 0,
+    votes: 0,
+    milesDriven: 0,
+    jobsBooked: 0
   }
 })
 
 // Getters
 export const getters = {
-  driverPlace(state) {
-    return state.driverPlace
+  driverPlaceLocation(state) {
+    return state.driverPlaceLocation
+  },
+  driverPlacePrice(state) {
+    return state.driverPlacePrice
   }
 }
 
 // Mutations
 export const mutations = {
-  SET_DRIVER_PLACE(state, driverPlace) {
-    state.driverPlace.address = driverPlace.formatted_address
-    state.driverPlace.lat = driverPlace.geometry.location.lat()
-    state.driverPlace.lng = driverPlace.geometry.location.lng()
-    for (let i = 0; i < driverPlace.address_components.length; i++) {
-      const addressType = driverPlace.address_components[i].types[0]
+  SET_DRIVER_PLACE_LOCATION(state, driverPlaceLocation) {
+    state.driverPlaceLocation.address = driverPlaceLocation.formatted_address
+    state.driverPlaceLocation.lat = driverPlaceLocation.geometry.location.lat()
+    state.driverPlaceLocation.lng = driverPlaceLocation.geometry.location.lng()
+    for (let i = 0; i < driverPlaceLocation.address_components.length; i++) {
+      const addressType = driverPlaceLocation.address_components[i].types[0]
       if (addressType === 'postal_code') {
-        state.driverPlace.postcode = driverPlace.address_components[i].long_name
+        state.driverPlaceLocation.postcode =
+          driverPlaceLocation.address_components[i].long_name
       } else if (addressType === 'postal_town' || addressType === 'locality') {
-        state.driverPlace.city = driverPlace.address_components[i].long_name
+        state.driverPlaceLocation.city =
+          driverPlaceLocation.address_components[i].long_name
       }
     }
   },
+  SET_DRIVER_PLACE_LOCATION_FROM_DB(state, driverPlaceLocationDB) {
+    state.driverPlaceLocation.address = driverPlaceLocationDB.address
+    state.driverPlaceLocation.lat = driverPlaceLocationDB.lat
+    state.driverPlaceLocation.lng = driverPlaceLocationDB.lng
+    state.driverPlaceLocation.postcode = driverPlaceLocationDB.postcode
+    state.driverPlaceLocation.city = driverPlaceLocationDB.city
+    state.driverPlaceLocation.distance = driverPlaceLocationDB.distance
+  },
   SET_DISTANCE_PLACE(state, distance) {
-    state.driverPlace.distance = distance
+    state.driverPlaceLocation.distance = distance
+  },
+  SET_DRIVER_PLACE_PRICE(state, driverPlacePriceFormated) {
+    state.driverPlacePrice[Object.keys(driverPlacePriceFormated)[0]] =
+      driverPlacePriceFormated[Object.keys(driverPlacePriceFormated)[0]]
   }
 }
 
 // Actions
 export const actions = {
-  setDriverPlace({ commit }, driverPlace) {
-    commit('SET_DRIVER_PLACE', driverPlace)
+  setDriverPlaceLocation({ commit }, driverPlaceLocation) {
+    commit('SET_DRIVER_PLACE_LOCATION', driverPlaceLocation)
   },
 
+  setDriverPlaceLocationFromDb({ commit }, driverPlaceLocationDB) {
+    commit('SET_DRIVER_PLACE_LOCATION_FROM_DB', driverPlaceLocationDB)
+  },
   setDistancePlace({ commit }, distance) {
     commit('SET_DISTANCE_PLACE', distance)
+  },
+
+  setDriverPlacePrice({ commit }, driverPlacePriceFormated) {
+    commit('SET_DRIVER_PLACE_PRICE', driverPlacePriceFormated)
   }
 }

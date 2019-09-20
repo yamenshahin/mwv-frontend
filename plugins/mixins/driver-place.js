@@ -6,7 +6,8 @@ const DriverPlace = {
     Vue.mixin({
       computed: {
         ...mapGetters({
-          driverPlaceObject: 'driver-place/driverPlace'
+          driverPlaceLocationObject: 'driver-place/driverPlaceLocation',
+          driverPlacePriceObject: 'driver-place/driverPlacePrice'
         })
       }
     })
