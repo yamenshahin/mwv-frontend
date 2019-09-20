@@ -581,6 +581,7 @@
                   step="0.01"
                   min="1"
                   type="number"
+                  required
                   :value="driverPlacePriceObject.priceStop"
                   @input="setDriverPlacePrice($event, 'priceStop')"
                 ></b-form-input>
@@ -593,6 +594,7 @@
                   step="0.01"
                   min="1"
                   type="number"
+                  required
                   :value="driverPlacePriceObject.priceStairs"
                   @input="setDriverPlacePrice($event, 'priceStairs')"
                 ></b-form-input>
@@ -605,6 +607,7 @@
                   step="0.01"
                   min="0.6"
                   type="number"
+                  required
                   :value="driverPlacePriceObject.priceMile"
                   @input="setDriverPlacePrice($event, 'priceMile')"
                 ></b-form-input>

@@ -14,7 +14,8 @@ export const state = () => ({
     totalTime: null,
     milesDriven: null,
     stairsTime: 0,
-    estimatedTotalTime: 5400
+    estimatedTotalTime: 5400,
+    weekDay: 0
   }
 })
 
