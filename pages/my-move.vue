@@ -47,6 +47,7 @@
                 v-model="movingDateComputed"
                 class="theme-green"
                 type="datetime"
+                :value-zone="getUTCPlusTimeOffset"
                 use12-hour
                 required
                 @input="setSerchMeta($event, 'movingDate')"
@@ -464,8 +465,21 @@ export default {
         milesDriven: this.searchMetaObject.milesDriven,
         stairsTime: this.searchMetaObject.stairsTime,
         estimatedTotalTime: this.searchMetaObject.estimatedTotalTime,
-        weekDay: 'weekday'
+        weekDay: this.searchMetaObject.weekDay
       }
+    },
+    getUTCPlusTimeOffset() {
+      const d = new Date()
+      const n = d.getTimezoneOffset()
+      let offset = ''
+      if (n < 0) {
+        offset = 'UTC+' + (-1 * n) / 60
+      } else if (n < 0) {
+        offset = 'UTC-' + n / 60
+      } else {
+        offset = 'UTC'
+      }
+      return offset
     }
   },
   mounted() {
@@ -584,6 +598,16 @@ export default {
         [value]: event
       }
       await this.$store.dispatch('search/setSearchMetaValue', metaObject)
+      if (value === 'movingDate') {
+        const metaObjectWeekday = {
+          weekDay: this.isoStringToDate(event).getDay()
+        }
+        await this.$store.dispatch(
+          'search/setSearchMetaValue',
+          metaObjectWeekday
+        )
+        console.log(metaObjectWeekday)
+      }
     },
     async setStairs(event, locationType, index = null) {
       const placeArray = [event, locationType, index]
@@ -647,6 +671,12 @@ export default {
         })
       await this.$store.dispatch('search-result/setSearchResult', responseData)
       this.$router.push('/my-quotes')
+    },
+    isoStringToDate(s) {
+      const b = s.split(/\D/)
+      return new Date(
+        Date.UTC(b[0], --b[1], b[2], b[3] || 0, b[4] || 0, b[5] || 0, b[6] || 0)
+      )
     }
   }
 }
