@@ -20,6 +20,10 @@
         <nuxt-link to="/my-jobs" class="nav-link" role="menuitem" exact>
           My Jobs
         </nuxt-link>
+        <!-- Driver nav items -->
+        <nuxt-link to="/driver/pricing" class="nav-link" role="menuitem" exact>
+          Pricing
+        </nuxt-link>
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
