@@ -53,7 +53,11 @@ export default {
     { ssr: false, src: '~plugins/google-maps.js'  },
     // Persist and rehydrate your Vuex state between page reloads.
     // https://github.com/robinvdvleuten/vuex-persistedstate
-    { ssr: false, src: '~plugins/localStorage.js'  }
+    { ssr: false, src: '~plugins/localStorage.js'  },
+    // The plugin is contains google map common tasks
+    '~plugins/mixins/google-map-common-tasks.js',
+    // The plugin is contains math common tasks
+    '~plugins/mixins/math-common-tasks.js',
   ],
   /*
    ** Nuxt.js dev-modules
