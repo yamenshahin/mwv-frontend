@@ -501,98 +501,6 @@ export default {
     this.notificationComputed = this.searchMetaObject.notification
   },
   methods: {
-    async setCollectionPlace(collectionPlace) {
-      this.collectionPlace = collectionPlace
-      await this.$store.dispatch(
-        'places/setCollectionPlace',
-        this.collectionPlace
-      )
-      this.center = {
-        lat: this.collectionPlaceObject.lat,
-        lng: this.collectionPlaceObject.lng
-      }
-      if (this.deliveryPlaceObject.address) {
-        this.getDirection()
-      }
-    },
-    async setDeliveryPlace(deliveryPlace) {
-      this.deliveryPlace = deliveryPlace
-      await this.$store.dispatch('places/setDeliveryPlace', this.deliveryPlace)
-      this.destination = {
-        lat: this.deliveryPlaceObject.lat,
-        lng: this.deliveryPlaceObject.lng
-      }
-      if (this.collectionPlaceObject.address) {
-        this.getDirection()
-      }
-    },
-    getDirection() {
-      const calculatedWayPoint = this.wayPoints
-      this.$gmapApiPromiseLazy().then(() => {
-        this.$options.directionsDisplay.set('directions', null)
-        this.$options.directionsService.route(
-          {
-            origin: {
-              lat: this.collectionPlaceObject.lat,
-              lng: this.collectionPlaceObject.lng
-            },
-            destination: {
-              lat: this.deliveryPlaceObject.lat,
-              lng: this.deliveryPlaceObject.lng
-            },
-            waypoints: calculatedWayPoint,
-            travelMode: 'DRIVING',
-            region: 'uk'
-          },
-          (result, status) => {
-            if (status === 'OK') {
-              const meters = result.routes[0].legs[0].distance.value
-              const travelTimeObject = {
-                travelTime: result.routes[0].legs[0].duration.value
-              }
-              const milesDrivenObjsct = {
-                milesDriven: this.convertMeterToMile(meters)
-              }
-              this.$options.directionsDisplay.setDirections(result)
-
-              this.$store.dispatch(
-                'search/setSearchMetaValue',
-                travelTimeObject
-              )
-              this.$store.dispatch(
-                'search/setSearchMetaValue',
-                milesDrivenObjsct
-              )
-            }
-          }
-        )
-      })
-    },
-    async addEmptyWayPoint() {
-      await this.$store.dispatch('places/setWayPointPlaces', 'empty')
-    },
-    async deleteWayPoint(index) {
-      await this.$store.dispatch('places/deleteWayPointPlaces', index)
-      if (
-        this.collectionPlaceObject.address &&
-        this.deliveryPlaceObject.address
-      ) {
-        this.getDirection()
-      }
-    },
-    setCurrnetWayPointIndex(index) {
-      this.currnetWayPointIndex = index
-    },
-    async setWayPointPlace(wayPointPlace) {
-      wayPointPlace.id = this.currnetWayPointIndex
-      await this.$store.dispatch('places/setWayPointPlaces', wayPointPlace)
-      if (
-        this.collectionPlaceObject.address &&
-        this.deliveryPlaceObject.address
-      ) {
-        this.getDirection()
-      }
-    },
     async setSerchMeta(event, value) {
       const metaObject = {
         [value]: event
@@ -618,9 +526,6 @@ export default {
       await this.$store.dispatch('search/setSearchMetaValue', metaObject)
     },
 
-    convertMeterToMile(meters) {
-      return meters / 1609.344
-    },
     getStairsTime() {
       let collectionStairsTime = 0
       if (this.collectionPlaceObject.stairs < 9) {
@@ -650,15 +555,7 @@ export default {
         (collectionStairsTime + deliveryStairsTime + waypointStairsTime) * 60
       )
     },
-    formateTimeToString(timeInSec) {
-      const h = Math.floor(timeInSec / 3600)
-      const m = Math.floor((timeInSec % 3600) / 60)
 
-      const hDisplay = h > 0 ? h + (h === 1 ? ' hour' : ' hours') : ''
-      const mDisplay = m > 0 ? m + (m === 1 ? ' minute, ' : ' minutes ') : ''
-      const coma = hDisplay && mDisplay ? ', ' : ''
-      return hDisplay + coma + mDisplay
-    },
     async onSubmit() {
       const responseData = await this.$axios
         .$post('/places', this.searchData)
@@ -671,12 +568,6 @@ export default {
         })
       await this.$store.dispatch('search-result/setSearchResult', responseData)
       this.$router.push('/my-quotes')
-    },
-    isoStringToDate(s) {
-      const b = s.split(/\D/)
-      return new Date(
-        Date.UTC(b[0], --b[1], b[2], b[3] || 0, b[4] || 0, b[5] || 0, b[6] || 0)
-      )
     }
   }
 }
