@@ -86,11 +86,11 @@ const GoogleMapCommonTasks = {
             this.getDirection()
           }
         },
-        setCurrnetWayPointIndex(index) {
-          this.currnetWayPointIndex = index
+        setCurrentWayPointIndex(index) {
+          this.currentWayPointIndex = index
         },
         async setWayPointPlace(wayPointPlace) {
-          wayPointPlace.id = this.currnetWayPointIndex
+          wayPointPlace.id = this.currentWayPointIndex
           await this.$store.dispatch('places/setWayPointPlaces', wayPointPlace)
           if (
             this.collectionPlaceObject.address &&

@@ -31,7 +31,7 @@
                 :value="wayPointPlacesObject[index].address"
                 class="form-control"
                 placeholder="Way Point Address"
-                @click="setCurrnetWayPointIndex(index)"
+                @click="setCurrentWayPointIndex(index)"
                 @place_changed="setWayPointPlace"
               ></gmap-autocomplete>
 
@@ -98,7 +98,7 @@ export default {
         lng: -0.1277
       },
 
-      currnetWayPointIndex: 0,
+      currentWayPointIndex: 0,
       directionsService: null,
       directionsDisplay: null
     }

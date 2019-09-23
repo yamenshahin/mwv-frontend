@@ -186,7 +186,7 @@
                             class="form-control"
                             placeholder="Waypoint Address"
                             required
-                            @click="setCurrnetWayPointIndex(index)"
+                            @click="setCurrentWayPointIndex(index)"
                             @place_changed="setWayPointPlace"
                           ></gmap-autocomplete>
                           <div
@@ -424,7 +424,7 @@ export default {
         lng: -0.1277
       },
 
-      currnetWayPointIndex: 0,
+      currentWayPointIndex: 0,
       directionsService: null,
       directionsDisplay: null
     }
