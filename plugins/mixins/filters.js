@@ -13,6 +13,9 @@ const Filters = {
             m > 0 ? m + (m === 1 ? ' minute, ' : ' minutes ') : ''
           const coma = hDisplay && mDisplay ? ', ' : ''
           return hDisplay + coma + mDisplay
+        },
+        formateMoney(amount) {
+          return '£' + amount
         }
       }
     })

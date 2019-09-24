@@ -27,13 +27,15 @@
               </b-row>
             </b-col>
             <b-col md="4">
-              <h5>Total £{{ place.price.total }}</h5>
+              <h5>Total {{ place.price.total | formateMoney }}</h5>
               <p>Includes VAT &amp; booking fee</p>
               <p>
                 For the first
                 <strong>{{ jobMeta.totalTime }} hours</strong>
                 and then
-                <strong>£{{ place.price.additionalTimePrice }}</strong>
+                <strong>
+                  {{ place.price.additionalTimePrice | formateMoney }}
+                </strong>
                 per half hour
               </p>
               <b-button
@@ -71,29 +73,31 @@
             <b-tbody>
               <b-tr>
                 <b-td>Mileage charge</b-td>
-                <b-td>£{{ place.price.estimatedDistancePrice }}</b-td>
+                <b-td>
+                  {{ place.price.estimatedDistancePrice | formateMoney }}
+                </b-td>
               </b-tr>
               <b-tr>
                 <b-td>Driver time charge</b-td>
-                <b-td>£{{ place.price.totalTimePrice }}</b-td>
+                <b-td>{{ place.price.totalTimePrice | formateMoney }}</b-td>
               </b-tr>
               <b-tr>
                 <b-td>Total stairs price</b-td>
-                <b-td>£{{ place.price.stairsPrice }}</b-td>
+                <b-td>{{ place.price.stairsPrice | formateMoney }}</b-td>
               </b-tr>
               <b-tr>
                 <b-td>Subtotal</b-td>
-                <b-td>£{{ place.price.subtotal }}</b-td>
+                <b-td>{{ place.price.subtotal | formateMoney }}</b-td>
               </b-tr>
               <b-tr>
                 <b-td>Fee</b-td>
-                <b-td>£{{ place.price.fee }}</b-td>
+                <b-td>{{ place.price.fee | formateMoney }}</b-td>
               </b-tr>
             </b-tbody>
             <b-tfoot>
               <b-tr variant="secondary">
                 <b-td>Total</b-td>
-                <b-td>£{{ place.price.total }}</b-td>
+                <b-td>{{ place.price.total | formateMoney }}</b-td>
               </b-tr>
               <b-tr variant="info">
                 <b-td>Estimated distance</b-td>
@@ -103,14 +107,15 @@
                 <b-td>Estimated driving time</b-td>
                 <b-td>
                   {{
-                    formateTimeToString(searchResultObject.job_meta.travelTime)
+                    searchResultObject.job_meta.travelTime | formateTimeToString
                   }}
                 </b-td>
               </b-tr>
               <b-tr variant="info">
                 <b-td>Any additional time will be charged at</b-td>
                 <b-td>
-                  £{{ place.price.additionalTimePrice }} per half hour
+                  {{ place.price.additionalTimePrice | formateMoney }} per half
+                  hour
                 </b-td>
               </b-tr>
             </b-tfoot>
@@ -133,15 +138,6 @@ export default {
     this.places = this.searchResultObject.data
   },
   methods: {
-    formateTimeToString(timeInSec) {
-      const h = Math.floor(timeInSec / 3600)
-      const m = Math.floor((timeInSec % 3600) / 60)
-
-      const hDisplay = h > 0 ? h + (h === 1 ? ' hour' : ' hours') : ''
-      const mDisplay = m > 0 ? m + (m === 1 ? ' minute, ' : ' minutes ') : ''
-      const coma = hDisplay && mDisplay ? ', ' : ''
-      return hDisplay + coma + mDisplay
-    },
     async createCustomerJobs(placeIndex) {
       const customerJobs = {
         driver: this.searchResultObject.data[placeIndex],
