@@ -256,7 +256,7 @@
                     Travel time:
                     <strong>
                       <span id="estimated-driving-time">
-                        {{ formateTimeToString(searchMetaObject.travelTime) }}
+                        {{ searchMetaObject.travelTime | formateTimeToString }}
                       </span>
                     </strong>
                   </p>
@@ -269,9 +269,8 @@
                     <strong>
                       <span id="estimated-loading-time">
                         {{
-                          formateTimeToString(
-                            searchMetaObject.loadingUnloadingTime
-                          )
+                          searchMetaObject.loadingUnloadingTime
+                            | formateTimeToString
                         }}
                       </span>
                     </strong>
@@ -285,9 +284,8 @@
                     <strong>
                       <span class="estimated-total-time">
                         {{
-                          formateTimeToString(
-                            searchMetaObject.estimatedTotalTime
-                          )
+                          searchMetaObject.estimatedTotalTime
+                            | formateTimeToString
                         }}
                       </span>
                     </strong>

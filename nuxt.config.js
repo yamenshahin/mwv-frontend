@@ -58,6 +58,8 @@ export default {
     '~plugins/mixins/google-map-common-tasks.js',
     // The plugin is contains math common tasks
     '~plugins/mixins/math-common-tasks.js',
+    // The plugin is for formating or filters
+    '~plugins/mixins/filters.js',
   ],
   /*
    ** Nuxt.js dev-modules
