@@ -5,7 +5,7 @@
       <b-col>
         <div class="card mt-3">
           <div class="card-body">
-            <b-row v-if="customerJobsObject">
+            <b-row v-if="Object.keys(customerJobsObject).length">
               <b-col md>
                 <b-table-simple hover small responsive>
                   <b-tbody>
