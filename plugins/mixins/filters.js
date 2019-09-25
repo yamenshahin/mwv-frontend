@@ -4,7 +4,7 @@ const Filters = {
   install(Vue, Options) {
     Vue.mixin({
       filters: {
-        formateTimeToString(timeInSec) {
+        timeInHoursMinutes(timeInSec) {
           const h = Math.floor(timeInSec / 3600)
           const m = Math.floor((timeInSec % 3600) / 60)
 
@@ -14,7 +14,7 @@ const Filters = {
           const coma = hDisplay && mDisplay ? ', ' : ''
           return hDisplay + coma + mDisplay
         },
-        formateMoney(amount) {
+        currency(amount) {
           return '£' + amount
         }
       }

@@ -27,14 +27,14 @@
               </b-row>
             </b-col>
             <b-col md="4">
-              <h5>Total {{ place.price.total | formateMoney }}</h5>
+              <h5>Total {{ place.price.total | currency }}</h5>
               <p>Includes VAT &amp; booking fee</p>
               <p>
                 For the first
                 <strong>{{ jobMeta.totalTime }} hours</strong>
                 and then
                 <strong>
-                  {{ place.price.additionalTimePrice | formateMoney }}
+                  {{ place.price.additionalTimePrice | currency }}
                 </strong>
                 per half hour
               </p>
@@ -74,30 +74,30 @@
               <b-tr>
                 <b-td>Mileage charge</b-td>
                 <b-td>
-                  {{ place.price.estimatedDistancePrice | formateMoney }}
+                  {{ place.price.estimatedDistancePrice | currency }}
                 </b-td>
               </b-tr>
               <b-tr>
                 <b-td>Driver time charge</b-td>
-                <b-td>{{ place.price.totalTimePrice | formateMoney }}</b-td>
+                <b-td>{{ place.price.totalTimePrice | currency }}</b-td>
               </b-tr>
               <b-tr>
                 <b-td>Total stairs price</b-td>
-                <b-td>{{ place.price.stairsPrice | formateMoney }}</b-td>
+                <b-td>{{ place.price.stairsPrice | currency }}</b-td>
               </b-tr>
               <b-tr>
                 <b-td>Subtotal</b-td>
-                <b-td>{{ place.price.subtotal | formateMoney }}</b-td>
+                <b-td>{{ place.price.subtotal | currency }}</b-td>
               </b-tr>
               <b-tr>
                 <b-td>Fee</b-td>
-                <b-td>{{ place.price.fee | formateMoney }}</b-td>
+                <b-td>{{ place.price.fee | currency }}</b-td>
               </b-tr>
             </b-tbody>
             <b-tfoot>
               <b-tr variant="secondary">
                 <b-td>Total</b-td>
-                <b-td>{{ place.price.total | formateMoney }}</b-td>
+                <b-td>{{ place.price.total | currency }}</b-td>
               </b-tr>
               <b-tr variant="info">
                 <b-td>Estimated distance</b-td>
@@ -107,15 +107,14 @@
                 <b-td>Estimated driving time</b-td>
                 <b-td>
                   {{
-                    searchResultObject.job_meta.travelTime | formateTimeToString
+                    searchResultObject.job_meta.travelTime | timeInHoursMinutes
                   }}
                 </b-td>
               </b-tr>
               <b-tr variant="info">
                 <b-td>Any additional time will be charged at</b-td>
                 <b-td>
-                  {{ place.price.additionalTimePrice | formateMoney }} per half
-                  hour
+                  {{ place.price.additionalTimePrice | currency }} per half hour
                 </b-td>
               </b-tr>
             </b-tfoot>
