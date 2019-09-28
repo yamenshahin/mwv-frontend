@@ -60,6 +60,8 @@ export default {
     '~plugins/mixins/math-common-tasks.js',
     // The plugin is for formating or filters
     '~plugins/mixins/filters.js',
+    // The plugin is for store current checkout job
+    '~plugins/mixins/checkout.js',
   ],
   /*
    ** Nuxt.js dev-modules

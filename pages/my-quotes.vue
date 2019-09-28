@@ -143,20 +143,19 @@ export default {
         job_meta: this.searchResultObject.job_meta
       }
       // Loop!!!
-      await this.$store.dispatch('customer-jobs/setCustomerJobs', customerJobs)
+      // await this.$store.dispatch('customer-jobs/setCustomerJobs', customerJobs)
       // Create db Job from customerJobs
-      const responseData = await this.$axios
-        .$post('/jobs/store', this.customerJobsObject)
+      const response = await this.$axios
+        .$post('/jobs/store', customerJobs)
         .then(function(response) {
           // handle success
-          console.log(response)
           return response
         })
         .catch(function(error) {
           console.log(error)
         })
-      console.log(responseData)
-      // this.$router.push('/my-jobs')
+      await this.$store.dispatch('checkout/setCheckout', response.data)
+      // this.$router.push('/checkout')
     }
   }
 }

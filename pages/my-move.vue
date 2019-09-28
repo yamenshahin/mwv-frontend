@@ -512,7 +512,6 @@ export default {
           'search/setSearchMetaValue',
           metaObjectWeekday
         )
-        console.log(metaObjectWeekday)
       }
     },
     async setStairs(event, locationType, index = null) {
