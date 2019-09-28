@@ -142,8 +142,20 @@ export default {
         driver: this.searchResultObject.data[placeIndex],
         job_meta: this.searchResultObject.job_meta
       }
-      await this.$store.dispatch('customer-jobs/setCustomerJobs', customerJobs)
-      this.$router.push('/my-jobs')
+      // Loop!!!
+      // await this.$store.dispatch('customer-jobs/setCustomerJobs', customerJobs)
+      // Create db Job from customerJobs
+      const response = await this.$axios
+        .$post('/jobs/store', customerJobs)
+        .then(function(response) {
+          // handle success
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      await this.$store.dispatch('checkout/setCheckout', response.data)
+      // this.$router.push('/checkout')
     }
   }
 }
