@@ -130,7 +130,8 @@ export default {
   data() {
     return {
       places: {},
-      jobMeta: {}
+      jobMeta: {},
+      prices: {}
     }
   },
   mounted() {
@@ -148,9 +149,11 @@ export default {
       return hDisplay + coma + mDisplay
     },
     async createCustomerJobs(placeIndex) {
+      this.prices = this.searchResultObject.data[placeIndex].price
+      console.log(this.prices)
       const customerJobs = {
         driver: this.searchResultObject.data[placeIndex],
-        job_meta: this.searchResultObject.job_meta
+        job_meta: this.searchResultObject.job_meta.push(this.prices)
       }
       await this.$store.dispatch('customer-jobs/setCustomerJobs', customerJobs)
       this.$router.push('/my-jobs')
