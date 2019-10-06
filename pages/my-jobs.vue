@@ -1,27 +1,39 @@
 <template>
   <b-container>
     <div v-if="Object.keys(customerJobsObject).length">
-      <div v-for="job in customerJobsObject" :key="job" class="card mt-3">
-        <pre class="m-0">{{ job.id }}</pre>
+      <div v-for="job in customerJobsObject" :key="job.id" class="card mt-3">
         <div :class="getClassNames(job.status)" class="card-body">
           <b-row>
             <b-col md>
-              <b-table-simple hover small responsive>
-                <b-tbody>
-                  <b-tr>
-                    <b-td>Driver name</b-td>
-                    <b-td>{{ job.driver.name }}</b-td>
-                  </b-tr>
-                  <b-tr>
-                    <b-td>Driver email</b-td>
-                    <b-td>{{ job.driver.email }}</b-td>
-                  </b-tr>
-                  <b-tr>
-                    <b-td>Driver phone</b-td>
-                    <b-td>{{ job.driver.phone }}</b-td>
-                  </b-tr>
-                </b-tbody>
-              </b-table-simple>
+              <div>Your Driver Name: {{ job.driver.name }}</div>
+              <div v-if="job.status === 'booked'">
+                Your Driver Email: {{ job.driver.email }}
+              </div>
+              <div v-if="job.status === 'booked'">
+                Your Driver Phone: {{ job.driver.phone }}
+              </div>
+              <div v-for="job_meta in job.job_metas" :key="job_meta.index">
+                <div v-if="job_meta.key === 'movingDate'">
+                  Moving Date: {{ job_meta.value }}
+                </div>
+                <div v-if="job_meta.key === 'total'">
+                  Total Price: {{ job_meta.value | currency }}
+                </div>
+              </div>
+            </b-col>
+            <b-col md>
+              <b-button
+                v-if="job.status === 'unbooked'"
+                block
+                variant="info"
+                class="mb-1"
+                @click.prevent="createCurrnetJob(job.id)"
+              >
+                Book Now
+              </b-button>
+              <div v-if="job.status === 'booked'">
+                Booked
+              </div>
             </b-col>
           </b-row>
         </div>
@@ -53,6 +65,20 @@ export default {
       } else {
         return 'bg-warning'
       }
+    },
+    async createCurrnetJob(id) {
+      const response = await this.$axios
+        .$get('/jobs/get-current/' + id)
+        .then(function(response) {
+          // handle success
+          console.log(response)
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      await this.$store.dispatch('checkout/setCheckout', response.data)
+      this.$router.push('/checkout')
     }
   }
 }
