@@ -1,10 +1,18 @@
 <template>
   <div class="container">
     <div v-if="checkoutObject.driver.name != ''">
+      {{ success }}
       <div>
         <b-row>
           <b-col md>
-            <app-checkout></app-checkout>
+            <div>Name: {{ customerName }}</div>
+            <div>Email: {{ customerEmail }}</div>
+            <div>Phone: {{ customerPhone }}</div>
+            <app-checkout
+              :total="total"
+              :success="success"
+              @successSubmit="success = true"
+            ></app-checkout>
           </b-col>
           <b-col md>
             <div>Your Driver Name: {{ checkoutObject.driver.name }}</div>
@@ -36,7 +44,6 @@
 
     <!--If there's a success, let's let people know it's being processed, we'll add a success component later on-->
     <div v-else>
-      <app-success @restartCart="success = false" />
       <h1>Checkout</h1>
       <h2>Success!</h2>
       <p>Your order has been processed, it will be delivered shortly.</p>
@@ -62,9 +69,41 @@ export default {
       success: false
     }
   },
-  mounted() {
-    window.setTimeout(() => this.$emit('restartCart'), 3000)
+  computed: {
+    total() {
+      for (const index in this.checkoutObject.job_metas) {
+        if (this.checkoutObject.job_metas[index].key === 'total') {
+          return this.checkoutObject.job_metas[index].value
+        }
+      }
+      return 0
+    },
+    customerName() {
+      for (const index in this.checkoutObject.job_metas) {
+        if (this.checkoutObject.job_metas[index].key === 'customerInfoName') {
+          return this.checkoutObject.job_metas[index].value
+        }
+      }
+      return null
+    },
+    customerEmail() {
+      for (const index in this.checkoutObject.job_metas) {
+        if (this.checkoutObject.job_metas[index].key === 'customerInfoEmail') {
+          return this.checkoutObject.job_metas[index].value
+        }
+      }
+      return null
+    },
+    customerPhone() {
+      for (const index in this.checkoutObject.job_metas) {
+        if (this.checkoutObject.job_metas[index].key === 'customerInfoPhone') {
+          return this.checkoutObject.job_metas[index].value
+        }
+      }
+      return null
+    }
   },
+  mounted() {},
   methods: {}
 }
 </script>

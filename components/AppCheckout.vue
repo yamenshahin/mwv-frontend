@@ -1,13 +1,9 @@
 <template>
   <div v-if="!submitted" class="payment">
+    {{ total }}
+    {{ success }}
+    status: {{ status }}
     <h3>Please enter your payment details:</h3>
-    <label for="email">Email</label>
-    <input
-      id="email"
-      v-model="stripeEmail"
-      type="email"
-      placeholder="name@example.com"
-    />
     <label for="card">Credit Card</label>
     <p>
       Test using this credit card:
@@ -18,15 +14,11 @@
       id="card"
       class="stripe-card"
       :class="{ complete }"
-      stripe="pk_test_5ThYi0UvX3xwoNdgxxxTxxrG"
+      stripe="pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74"
       :options="stripeOptions"
       @change="complete = $event.complete"
     />
-    <button
-      class="pay-with-stripe"
-      :disabled="!complete || !stripeEmail"
-      @click="pay"
-    >
+    <button class="pay-with-stripe" :disabled="!complete" @click="pay">
       Pay with credit card
     </button>
     <div v-if="status === 'failure'">
@@ -42,43 +34,52 @@ import { Card, createToken } from 'vue-stripe-elements-plus'
 
 export default {
   components: { Card },
+  props: {
+    total: {
+      type: [Number, String],
+      default: '50.00'
+    },
+    success: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   data() {
     return {
       submitted: false,
       complete: false,
       status: '',
       response: '',
-      stripeEmail: '',
       stripeOptions: {
         // see https://stripe.com/docs/stripe.js#element-options for details
       }
     }
   },
-
   methods: {
-    pay() {
+    async pay() {
       // createToken returns a Promise which resolves in a result object with
       // either a token or an error key.
       // See https://stripe.com/docs/api#tokens for the token object.
       // See https://stripe.com/docs/api#errors for the error object.
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
-      createToken().then((data) => {
-        console.log(data.token)
-        this.submitted = true
+      await createToken().then((data) => {
         this.$axios
-          .$post()
+          .$post('/jobs/checkout', {
+            stripeToken: data.token.id,
+            id: this.checkoutObject.id,
+            amount: this.total
+          })
           .then((response) => {
             this.status = 'success'
             this.$emit('successSubmit')
-            this.$store.commit('clearCartCount')
-            // console logs for you :)
-            this.response = JSON.stringify(response, null, 2)
-            console.log(this.response)
+            this.restCheckoutState()
+            this.submitted = true
+            this.response = response
           })
           .catch((error) => {
             this.status = 'failure'
-            // console logs for you :)
-            this.response = 'Error: ' + JSON.stringify(error, null, 2)
+            this.response = 'Error!: ' + error
             console.log(this.response)
           })
       })
@@ -88,6 +89,14 @@ export default {
       this.status = ''
       this.complete = false
       this.response = ''
+    },
+    restCheckoutState() {
+      const checkoutState = {
+        driver: {
+          name: ''
+        }
+      }
+      this.$store.dispatch('checkout/setCheckout', checkoutState)
     }
   }
 }

@@ -96,8 +96,10 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/' 
-    //proxy: true
+    baseURL: 'http://127.0.0.1:8000/api/',
+    //credentials: false
+    //proxy: true,
+    //https: true
   },
   proxy: {
     '/api/': {
