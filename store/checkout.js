@@ -1,6 +1,10 @@
 // Create a global store
 export const state = () => ({
-  checkout: {}
+  checkout: {
+    driver: {
+      name: ''
+    }
+  }
 })
 
 // Getters

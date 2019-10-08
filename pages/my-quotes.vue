@@ -155,7 +155,7 @@ export default {
           console.log(error)
         })
       await this.$store.dispatch('checkout/setCheckout', response.data)
-      // this.$router.push('/checkout')
+      this.$router.push('/checkout')
     }
   }
 }
