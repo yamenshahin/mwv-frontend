@@ -71,7 +71,7 @@ export default {
         .$get('/jobs/get-current/' + id)
         .then(function(response) {
           // handle success
-          console.log(response)
+
           return response
         })
         .catch(function(error) {
