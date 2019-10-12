@@ -2,6 +2,50 @@
   <div class="container">
     <form @submit.prevent="onSubmit">
       <b-row>
+        <b-col>
+          <b-card>
+            <b-card-body>
+              <b-row>
+                <b-col>
+                  <div>
+                    <b-form-file
+                      ref="fileInput"
+                      v-model="file"
+                      placeholder="Choose a file or drop it here..."
+                      drop-placeholder="Drop file here..."
+                      class="mb-2"
+                      @change="btnToggle"
+                    ></b-form-file>
+
+                    <b-button
+                      class="mr-2"
+                      :disabled="btnDisabled"
+                      @click="handleFileUpload"
+                    >
+                      Upload
+                    </b-button>
+                    <p v-if="driverPlaceFilesObject.placeImageURL !== ''">
+                      <img
+                        :src="
+                          driverPlaceFilesObject.baseUrl +
+                            driverPlaceFilesObject.placeImageURL
+                        "
+                        alt="place-image"
+                      />
+                    </p>
+                    <p class="mt-2">
+                      Selected file:
+                      {{ file }}
+                      <b>{{ file ? file.name : '' }}</b>
+                    </p>
+                  </div>
+                </b-col>
+              </b-row>
+            </b-card-body>
+          </b-card>
+        </b-col>
+      </b-row>
+      <b-row>
         <b-col md>
           <b-card title="Small Van" class="mt-3">
             <b-card-body>
@@ -690,7 +734,9 @@ export default {
   middleware: ['auth'],
   data() {
     return {
-      showMap: true
+      showMap: true,
+      file: null,
+      btnDisabled: true
     }
   },
   computed: {
@@ -728,10 +774,23 @@ export default {
       .catch(function(error) {
         console.log(error)
       })
-    console.log(responseDataLocation)
     this.$store.dispatch(
       'driver-place/setDriverPlaceLocationFromDb',
       responseDataLocation
+    )
+
+    const responseDataFiles = await this.$axios
+      .get('/files/user-file/' + 'places/')
+      .then(function(response) {
+        return response.data.data
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+
+    await this.$store.dispatch(
+      'driver-place/setDriverPlaceFiles',
+      responseDataFiles.url
     )
   },
   methods: {
@@ -779,6 +838,32 @@ export default {
         'driver-place/setDriverPlaceLocationFromDb',
         responseDataLocation
       )
+    },
+    async handleFileUpload() {
+      // console.log(this.$refs.fileInput.$refs.input.files[0])
+
+      console.log(this.file)
+      const formData = new FormData()
+      formData.append('file', this.file)
+      formData.append('_method', 'PUT')
+      const responseDataFiles = await this.$axios
+        .$post('/files/user-file/' + 'places/', formData)
+        .then(function(response) {
+          // handle success
+          return response.data
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      await this.$store.dispatch(
+        'driver-place/setDriverPlaceFiles',
+        responseDataFiles.url
+      )
+    },
+    btnToggle() {
+      if (this.file !== '') {
+        this.btnDisabled = false
+      }
     }
   }
 }
