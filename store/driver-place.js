@@ -50,6 +50,10 @@ export const state = () => ({
     votes: 0,
     milesDriven: 0,
     jobsBooked: 0
+  },
+  driverPlaceFiles: {
+    baseUrl: 'http://127.0.0.1:8000/storage',
+    placeImageURL: ''
   }
 })
 
@@ -60,6 +64,9 @@ export const getters = {
   },
   driverPlacePrice(state) {
     return state.driverPlacePrice
+  },
+  driverPlaceFiles(state) {
+    return state.driverPlaceFiles
   }
 }
 
@@ -94,6 +101,9 @@ export const mutations = {
   SET_DRIVER_PLACE_PRICE(state, driverPlacePriceFormated) {
     state.driverPlacePrice[Object.keys(driverPlacePriceFormated)[0]] =
       driverPlacePriceFormated[Object.keys(driverPlacePriceFormated)[0]]
+  },
+  SET_DRIVER_PLACE_FILES(state, url) {
+    state.driverPlaceFiles.placeImageURL = url
   }
 }
 
@@ -112,5 +122,8 @@ export const actions = {
 
   setDriverPlacePrice({ commit }, driverPlacePriceFormated) {
     commit('SET_DRIVER_PLACE_PRICE', driverPlacePriceFormated)
+  },
+  setDriverPlaceFiles({ commit }, url) {
+    commit('SET_DRIVER_PLACE_FILES', url)
   }
 }
