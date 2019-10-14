@@ -13,6 +13,9 @@
         <nuxt-link to="/" class="nav-link" role="menuitem" exact>
           Home
         </nuxt-link>
+        <nuxt-link to="/design/my-move" class="nav-link" role="menuitem" exact>
+          My Move-D
+        </nuxt-link>
         <nuxt-link to="/my-move" class="nav-link" role="menuitem" exact>
           My Move
         </nuxt-link>

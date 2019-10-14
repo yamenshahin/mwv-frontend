@@ -47,7 +47,7 @@ export default {
     // The plugin used for getting search for driver meta before searching
     '~plugins/mixins/search.js',
     // DateTimePicker
-    '~plugins/datetime.js',
+    { ssr: false, src: '~plugins/datetime.js'  },
     // The plugin used to store and getting final search result
     '~plugins/mixins/search-result.js',
     // The plugin used to store and getting customer jobs

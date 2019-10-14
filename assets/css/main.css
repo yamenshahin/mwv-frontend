@@ -51,12 +51,7 @@ NavBar
     max-width: 30px; 
     margin-right: 10px;
 }
-/** 
-My Move
-*/
-.my-move h2{
-    border-bottom: 1px solid #17a2b8;
-}
+
 
 /** Vue DateTime Theme */
 .vdatetime-input {
@@ -70,8 +65,7 @@ My Move
     color: #495057;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    border: 1px solid #ffd526;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 .vdatetime-input::placeholder {
@@ -221,9 +215,18 @@ section_block-contacts
 .block-contacts__text {
 	font-weight: 400;
 }
+
+/**
+section_mod-2
+**/
+.card.section_mod-2 {
+    background-color: #f8f8f8;
+    border-radius: 0;
+    border: none;
+}
 /**
 Misc
-triagl, btn, form-control
+triagl, btn, form-control, border-color, custom-select
 **/
 .triagl {
 	position: relative;
@@ -302,4 +305,38 @@ triagl, btn, form-control
 
 .form-control {
     border-radius: 0;
+    border-color: #ffd526;
+}
+
+.border-color {
+	margin-right: auto;
+	margin-left: auto;
+	border-bottom: 1px solid #ffd526;
+}
+.border-color:after {
+	position: relative;
+	top: 3px;
+	margin: auto;
+	display: block;
+	content: '';
+	border-bottom: 3px solid #26c9ff;
+}
+.border-spacing{
+  margin: 50px 0 !important;
+}
+.border-color_default {
+	width: 370px;
+}
+.border-color_default:after {
+	margin-left: 0;
+	width: 100px;
+}
+.section_mod-2 .border-color {
+    margin-bottom: 40px;
+    margin-left: 0;
+}
+
+.custom-select {
+    border-radius: 0;
+    border-color: #ffd526;
 }

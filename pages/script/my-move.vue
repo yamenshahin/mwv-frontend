@@ -4,11 +4,9 @@
       <b-row>
         <b-col>
           <!-- Van Size -->
-          <div class="card mt-3 section_mod-2">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
-              <h2 class="ui-title-block">Which Vehicle Do You Need?</h2>
-              <div class="border-color border-color_default"></div>
+              <h2 class="pb-2 mb-3">Which vehicle do you need?</h2>
               <b-form-group>
                 <b-form-radio-group
                   v-model="vanSizeComputed"
@@ -22,15 +20,11 @@
           </div>
 
           <!-- Helpers Required -->
-          <div class="card mt-3 section_mod-2 ">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">
-                CHOOSE THE NUMBER OF REQUIRED HELPER
-              </div>
-              <h2 class="ui-title-block">
-                Will You Need Help With Loading And Unloading?
+              <h2 class="pb-2 mb-3">
+                Will you need help with loading and unloading?
               </h2>
-              <div class="border-color border-color_default"></div>
               <b-form-group>
                 <b-form-radio-group
                   v-model="helpersRequiredComputed"
@@ -44,11 +38,11 @@
           </div>
 
           <!-- Date time -->
-          <div class="card mt-3 section_mod-2">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">CHOOSE THE MOVING DATE</div>
-              <h2 class="ui-title-block">When You're Moving?</h2>
-              <div class="border-color border-color_default"></div>
+              <h2 class="pb-2 mb-3">
+                When you're moving?
+              </h2>
               <datetime
                 v-model="movingDateComputed"
                 class="theme-green"
@@ -62,11 +56,11 @@
           </div>
 
           <!-- description -->
-          <div class="card mt-3 section_mod-2 ">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">WRITE A NOTE FOR YOUR DRIVER</div>
-              <h2 class="ui-title-block">Any Note?</h2>
-              <div class="border-color border-color_default"></div>
+              <h2 class="pb-2 mb-3">
+                Any note?
+              </h2>
               <b-form-group
                 label="Please enter a brief description of the items you will be moving and any additional contact numbers. Please also let us know if you need any items assembled or re-assembled."
                 label-for="description"
@@ -81,11 +75,11 @@
           </div>
 
           <!-- Customer Info -->
-          <div class="card mt-3 section_mod-2">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">YOUR INFO</div>
-              <h2 class="ui-title-block">About You</h2>
-              <div class="border-color border-color_default"></div>
+              <h2 class="pb-2 mb-3">
+                About you
+              </h2>
               <b-row>
                 <b-col>
                   <b-form-group label="Name" label-for="customerInfoName">
@@ -123,13 +117,9 @@
           </div>
 
           <!-- Where you're moving? -->
-          <div class="card mt-3 section_mod-2 ">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">
-                COLLECTION, DELIVERY AND WAYPOINTS ADDRESSES
-              </div>
-              <h2 class="ui-title-block">Where You're Moving?</h2>
-              <div class="border-color border-color_default"></div>
+              <h2 class="pb-2 mb-3">Where you're moving?</h2>
               <b-row>
                 <b-col md>
                   <b-row>
@@ -254,15 +244,11 @@
           </div>
 
           <!-- Total Time -->
-          <div class="card mt-3 section_mod-2">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">
-                NUMBER OF REQUIRED HOURS FOR THE THE MOVE TO BE COMPLETED
-              </div>
-              <h2 class="ui-title-block">
-                How Many Hours Do You Want The Vehicle For?
+              <h2 class="pb-2 mb-3">
+                How many hours do you want the vehicle for?
               </h2>
-              <div class="border-color border-color_default"></div>
               <div class="row">
                 <div class="col-xs-12 col-sm-1">
                   <p>Est:</p>
@@ -270,7 +256,7 @@
 
                 <div class="col-xs-12 col-sm-3">
                   <p>
-                    <fa :icon="['fas', 'road']" />
+                    <span class="glyphicon glyphicon-road"></span>
                     Travel time:
                     <strong>
                       <span id="estimated-driving-time">
@@ -282,7 +268,7 @@
 
                 <div class="col-xs-12 col-sm-5">
                   <p>
-                    <fa :icon="['fas', 'truck-loading']" />
+                    <span class="glyphicon glyphicon-user"></span>
                     Loading and unloading time:
                     <strong>
                       <span id="estimated-loading-time">
@@ -297,7 +283,7 @@
 
                 <div class="col-xs-12 col-sm-3">
                   <p>
-                    <fa :icon="['fas', 'clock']" />
+                    <span class="glyphicon glyphicon-time"></span>
                     Total time:
                     <strong>
                       <span class="estimated-total-time">
@@ -322,11 +308,9 @@
           </div>
 
           <!-- Notification -->
-          <div class="card mt-3 section_mod-2 ">
+          <div class="card mt-3">
             <div class="card-body">
-              <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
-              <h2 class="ui-title-block">Notify Me</h2>
-              <div class="border-color border-color_default"></div>
+              <h2 class="pb-2 mb-3">Notify me</h2>
               <b-form-group
                 label="We'd love to keep in touch about this move by email and text message."
               >
@@ -346,7 +330,7 @@
       <b-row>
         <b-col md></b-col>
         <b-col md>
-          <div class="card mt-3 section_mod-2 mb-3">
+          <div class="card mt-3 mb-3">
             <b-button block type="submit" size="lg">
               Get My Free Quotes
             </b-button>
@@ -374,8 +358,8 @@ export default {
       vanSizeOptions: [
         { text: 'Small Van', value: '1' },
         { text: 'Medium Van', value: '2' },
-        { text: 'Large Van', value: '3' },
-        { text: 'Giant Van', value: '4' }
+        { text: 'Large van', value: '3' },
+        { text: 'Giant van', value: '4' }
       ],
       helpersRequiredOptions: [
         { text: 'No help needed', value: '0' },
