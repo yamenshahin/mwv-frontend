@@ -7,6 +7,9 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
+        <nuxt-link to="/design/" class="nav-link" role="menuitem" exact>
+          Home-D
+        </nuxt-link>
         <nuxt-link to="/" class="nav-link" role="menuitem" exact>
           Home
         </nuxt-link>

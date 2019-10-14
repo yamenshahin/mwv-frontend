@@ -1,0 +1,59 @@
+<template>
+  <div class="section_block-contacts triagl triagl_mod-c triagl-top">
+    <b-container>
+      <b-row>
+        <b-col md>
+          <div class="block-contacts__item">
+            <div class="block-contacts__title">
+              <fa :icon="['fas', 'clock']" />
+              MONDAY TO SATURDAY
+            </div>
+            <div class="block-contacts__text">9:00 AM to 7:00 PM</div>
+          </div>
+          <div class="block-contacts__item">
+            <div class="block-contacts__title">SUNDAY</div>
+            <div class="block-contacts__text">We Take Some Rest</div>
+          </div>
+        </b-col>
+        <b-col md class="text-center">
+          <ul class="social-links  list-inline">
+            <li class="social-links__item list-inline-item">
+              <a class="social-links__link">
+                <fa :icon="['fab', 'twitter']" />
+              </a>
+            </li>
+            <li class="social-links__item list-inline-item">
+              <a class="social-links__link">
+                <fa :icon="['fab', 'facebook-f']" />
+              </a>
+            </li>
+            <li class="social-links__item list-inline-item">
+              <a class="social-links__link">
+                <fa :icon="['fab', 'google-plus-g']" />
+              </a>
+            </li>
+            <li class="social-links__item list-inline-item">
+              <a class="social-links__link">
+                <fa :icon="['fab', 'linkedin-in']" />
+              </a>
+            </li>
+            <li class="social-links__item list-inline-item">
+              <a class="social-links__link">
+                <fa :icon="['fab', 'pinterest-p']" />
+              </a>
+            </li>
+          </ul>
+        </b-col>
+        <b-col md class="text-right">
+          <div class="block-contacts__phone">
+            0800-123456
+            <fa :icon="['fas', 'phone-square-alt']" />
+          </div>
+          <div class="block-contacts__text">
+            Ask Questions or Need a Free Estimate?
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>

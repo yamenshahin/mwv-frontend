@@ -171,7 +171,9 @@
                   </b-row>
 
                   <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
-                    + Add Waypoint
+                    +
+                    <fa :icon="['fas', 'map-marker-alt']" />
+                    Add Waypoint
                   </b-button>
                   <div
                     v-for="(wayPointPlacesObjectSingle,
@@ -221,9 +223,11 @@
                       collectionPlaceObject.address &&
                         deliveryPlaceObject.address
                     "
+                    variant="primary"
                     @click="getDirection"
                   >
-                    Cheack Direction
+                    <fa :icon="['fas', 'route']" />
+                    Check Direction
                   </b-button>
                   <!-- Map -->
                   <gmap-map
@@ -327,11 +331,9 @@
         <b-col md></b-col>
         <b-col md>
           <div class="card mt-3 mb-3">
-            <div class="card-body">
-              <b-button block type="submit" variant="info">
-                Get My Free Quotes
-              </b-button>
-            </div>
+            <b-button block type="submit" size="lg">
+              Get My Free Quotes
+            </b-button>
           </div>
         </b-col>
         <b-col md></b-col>

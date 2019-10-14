@@ -1,0 +1,166 @@
+<template>
+  <div class="main-slider-bg">
+    <b-container fluid class="main-slider main-slider_mod-2">
+      <b-row>
+        <b-col>
+          <b-container>
+            <form>
+              <b-row>
+                <b-col md>
+                  <div class="slide-title">
+                    We Provide You With
+                    <strong>A Smarter Way To Move</strong>
+                  </div>
+                  <b-form-group>
+                    <gmap-autocomplete
+                      class="form-control"
+                      placeholder="Collection Address"
+                      :value="collectionPlaceObject.address"
+                      required
+                      @place_changed="setCollectionPlace"
+                    ></gmap-autocomplete>
+                  </b-form-group>
+                  <b-form-group>
+                    <gmap-autocomplete
+                      class="form-control"
+                      placeholder="Delivery Address"
+                      :value="deliveryPlaceObject.address"
+                      required
+                      @place_changed="setDeliveryPlace"
+                    ></gmap-autocomplete>
+                  </b-form-group>
+                  <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+                    +
+                    <fa :icon="['fas', 'map-marker-alt']" />
+                    Add Waypoint
+                  </b-button>
+                  <div
+                    v-for="(wayPointPlacesObjectSingle,
+                    index) in wayPointPlacesObject"
+                    :key="index"
+                  >
+                    <div class="input-group mb-3">
+                      <gmap-autocomplete
+                        :value="wayPointPlacesObject[index].address"
+                        class="form-control"
+                        placeholder="Way Point Address"
+                        @click="setCurrentWayPointIndex(index)"
+                        @place_changed="setWayPointPlace"
+                      ></gmap-autocomplete>
+
+                      <div
+                        v-if="wayPointPlacesObject.length - 1 == index"
+                        class="input-group-append"
+                      >
+                        <span
+                          class="input-group-text bg-danger color-white"
+                          @click.prevent="deleteWayPoint(index)"
+                        >
+                          X
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </b-col>
+                <b-col md>
+                  <b-button
+                    v-if="
+                      !collectionPlaceObject.address ||
+                        !deliveryPlaceObject.address
+                    "
+                    v-b-tooltip.hover
+                    type="submit"
+                    size="lg"
+                    title="Please select a valid collection and delivery address"
+                  >
+                    <fa :icon="['fas', 'shipping-fast']" />
+                    GET FREE QUOTES
+                  </b-button>
+                  <nuxt-link
+                    v-if="
+                      collectionPlaceObject.address &&
+                        deliveryPlaceObject.address
+                    "
+                    to="/my-move"
+                    class="btn btn-secondary"
+                  >
+                    <fa :icon="['fas', 'shipping-fast']" />
+                    Get Free Quotes
+                  </nuxt-link>
+                  <b-button
+                    v-if="
+                      collectionPlaceObject.address &&
+                        deliveryPlaceObject.address
+                    "
+                    variant="primary"
+                    @click="getDirection"
+                  >
+                    <fa :icon="['fas', 'route']" />
+                    Check Direction
+                  </b-button>
+
+                  <!-- Map -->
+                  <gmap-map
+                    v-show="showMap"
+                    ref="mapDir"
+                    class="mt-2"
+                    :center="center"
+                    :zoom="15"
+                    style="width: 100%; height: 300px"
+                  ></gmap-map>
+                </b-col>
+              </b-row>
+            </form>
+          </b-container>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
+<script>
+export default {
+  /* global google */
+  data() {
+    return {
+      showMap: true,
+      center: {
+        lat: 51.507441,
+        lng: -0.1277
+      },
+
+      currentWayPointIndex: 0,
+      directionsService: null,
+      directionsDisplay: null
+    }
+  },
+  computed: {
+    wayPoints() {
+      const formatted = []
+      let googleLatLng = {}
+      for (let i = 0; i < this.wayPointPlacesObject.length; i++) {
+        if (this.wayPointPlacesObject[i].address) {
+          googleLatLng = new google.maps.LatLng(
+            this.wayPointPlacesObject[i].lat,
+            this.wayPointPlacesObject[i].lng
+          )
+          formatted[i] = {
+            location: googleLatLng
+          }
+        }
+      }
+      return formatted
+    }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.$gmapApiPromiseLazy().then(() => {
+        this.$options.directionsService = new google.maps.DirectionsService()
+        this.$options.directionsDisplay = new google.maps.DirectionsRenderer()
+        this.$options.directionsDisplay.setMap(this.$refs.mapDir.$mapObject)
+      })
+    })
+  },
+  methods: {}
+}
+</script>
