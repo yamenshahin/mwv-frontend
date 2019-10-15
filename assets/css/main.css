@@ -387,3 +387,10 @@ triagl, btn, form-control, border-color, custom-select, ui-title-page
 	color: #fff;
 	background-color: #26c9ff;
 }
+
+.table-secondary > td {
+    background-color: #ffd526;
+}
+.table-primary > td {
+    background-color: #26c9ff;
+}
