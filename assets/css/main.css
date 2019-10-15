@@ -226,7 +226,7 @@ section_mod-2
 }
 /**
 Misc
-triagl, btn, form-control, border-color, custom-select
+triagl, btn, form-control, border-color, custom-select, ui-title-page
 **/
 .triagl {
 	position: relative;
@@ -268,6 +268,9 @@ triagl, btn, form-control, border-color, custom-select
     border-radius: none !important;
     border-radius: 0;
 }
+.btn.lg {
+    font-size: 22px;
+}
 .btn:hover {
     border-bottom: 3px solid #26c9ff;
 }
@@ -286,7 +289,13 @@ triagl, btn, form-control, border-color, custom-select
     color: #000;
 }
 .btn-primary {
-	padding: 12px 31px;
+    padding: 12px 31px;
+}
+.btn-primary.disabled-alt {
+    padding: 12px 5px;
+    margin-bottom: 5px;
+}
+.btn-primary, .btn-primary.disabled-alt {
 	color: #000;
 	border-top: 1px solid #ebebeb;
 	border-right: 1px solid #ebebeb;
@@ -300,6 +309,21 @@ triagl, btn, form-control, border-color, custom-select
     border-right: 1px solid #ebebeb;
     border-left: 1px solid #ebebeb;
     background-color: #fff;
+    color: #000;
+}
+
+.btn-dark {
+	padding: 12px 31px;
+	color: #fff;
+	border-top: none;
+	border-right: none;
+	border-bottom: 3px solid #ffd526;
+    border-left: none;
+    
+    background-color: #002d3b;
+}
+.btn-dark:hover {
+    background-color: #ffd526;
     color: #000;
 }
 
@@ -335,8 +359,31 @@ triagl, btn, form-control, border-color, custom-select
     margin-bottom: 40px;
     margin-left: 0;
 }
-
+.section_mod-2 .border-color {
+    margin-bottom: 10px;
+}
+.page-my-quotes .card {
+    border-radius: 0;
+    border-color: #ebebeb;
+}
+.page-my-quotes .card-body p {
+    margin-bottom: 5px;
+}
 .custom-select {
     border-radius: 0;
     border-color: #ffd526;
+}
+
+.ui-title-page {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 50px;
+	padding-right: 15px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	font-size: 34px;
+	font-weight: 700;
+	text-align: center;
+	color: #fff;
+	background-color: #26c9ff;
 }

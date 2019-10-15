@@ -20,6 +20,14 @@
           My Move
         </nuxt-link>
 
+        <nuxt-link
+          to="/design/my-quotes"
+          class="nav-link"
+          role="menuitem"
+          exact
+        >
+          My Quotes-D
+        </nuxt-link>
         <nuxt-link to="/my-quotes" class="nav-link" role="menuitem" exact>
           My Quotes
         </nuxt-link>

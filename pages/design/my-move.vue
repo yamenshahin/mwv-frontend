@@ -1,5 +1,5 @@
 <template>
-  <b-container class="my-move">
+  <b-container class="page-my-move">
     <form @submit.prevent="onSubmit">
       <b-row>
         <b-col>
