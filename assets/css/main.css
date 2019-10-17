@@ -327,6 +327,20 @@ triagl, btn, form-control, border-color, custom-select, ui-title-page
     color: #000;
 }
 
+.pay-with-stripe.disabled {
+    color: #000;
+    border-top: 1px solid #ebebeb;
+	border-right: 1px solid #ebebeb;
+	border-bottom: 3px solid #71dbff;
+    border-left: 1px solid #ebebeb;
+    
+    background-color: #ffe371;
+}
+.stripe-card {
+    border: 1px solid #71dbff;
+    padding: 5px;
+    margin-bottom: 5px;
+}
 .form-control {
     border-radius: 0;
     border-color: #ffd526;

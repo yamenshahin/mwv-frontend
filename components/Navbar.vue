@@ -7,26 +7,11 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <nuxt-link to="/design/" class="nav-link" role="menuitem" exact>
-          Home-D
-        </nuxt-link>
         <nuxt-link to="/" class="nav-link" role="menuitem" exact>
           Home
         </nuxt-link>
-        <nuxt-link to="/design/my-move" class="nav-link" role="menuitem" exact>
-          My Move-D
-        </nuxt-link>
         <nuxt-link to="/my-move" class="nav-link" role="menuitem" exact>
           My Move
-        </nuxt-link>
-
-        <nuxt-link
-          to="/design/my-quotes"
-          class="nav-link"
-          role="menuitem"
-          exact
-        >
-          My Quotes-D
         </nuxt-link>
         <nuxt-link to="/my-quotes" class="nav-link" role="menuitem" exact>
           My Quotes
@@ -42,15 +27,6 @@
           exact
         >
           My Jobs
-        </nuxt-link>
-        <nuxt-link
-          v-if="authenticated"
-          to="/design/my-jobs"
-          class="nav-link"
-          role="menuitem"
-          exact
-        >
-          My Jobs-D
         </nuxt-link>
         <!-- Driver nav items -->
         <nuxt-link
