@@ -22,27 +22,17 @@
                       Book Now
                     </b-button>
                     <h2 class="ui-title-block">
-                      <div
-                        v-for="job_meta in job.job_metas"
-                        :key="job_meta.index"
+                      <fa :icon="['fas', 'calendar-check']" />
+                      2019-10-04 14:26:00
+                      <b-badge v-if="job.status === 'booked'" variant="success">
+                        Booked
+                      </b-badge>
+                      <b-badge
+                        v-if="job.status === 'unbooked'"
+                        variant="warning"
                       >
-                        <div v-if="job_meta.key === 'movingDate'">
-                          <fa :icon="['fas', 'calendar']" />
-                          {{ job_meta.value | isoDateToString }}
-                          <b-badge
-                            v-if="job.status === 'booked'"
-                            variant="success"
-                          >
-                            Booked
-                          </b-badge>
-                          <b-badge
-                            v-if="job.status === 'unbooked'"
-                            variant="warning"
-                          >
-                            Not Booked
-                          </b-badge>
-                        </div>
-                      </div>
+                        Not Booked
+                      </b-badge>
                     </h2>
                     <div class="border-color border-color_default"></div>
                     <div class="driver-info">
@@ -81,12 +71,8 @@
                       v-for="job_meta in job.job_metas"
                       :key="job_meta.index"
                     >
-                      <div v-if="job_meta.key === 'vanSize'">
-                        <h4>Others info:</h4>
-
-                        <p>Van Size: {{ job_meta.value | vanSize }}</p>
-                      </div>
                       <div v-if="job_meta.key === 'helpersRequired'">
+                        <h4>Others info:</h4>
                         <p>Helpers Required: {{ job_meta.value }}</p>
                       </div>
                       <div v-if="job_meta.key === 'total'">

@@ -362,11 +362,11 @@ triagl, btn, form-control, border-color, custom-select, ui-title-page
 .section_mod-2 .border-color {
     margin-bottom: 10px;
 }
-.page-my-quotes .card {
+.section-no-bg .card {
     border-radius: 0;
     border-color: #ebebeb;
 }
-.page-my-quotes .card-body p {
+.section-no-bg .card-body p {
     margin-bottom: 5px;
 }
 .custom-select {

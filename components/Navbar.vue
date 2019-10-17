@@ -43,6 +43,15 @@
         >
           My Jobs
         </nuxt-link>
+        <nuxt-link
+          v-if="authenticated"
+          to="/design/my-jobs"
+          class="nav-link"
+          role="menuitem"
+          exact
+        >
+          My Jobs-D
+        </nuxt-link>
         <!-- Driver nav items -->
         <nuxt-link
           v-if="authenticated"

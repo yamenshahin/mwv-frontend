@@ -1,365 +1,376 @@
 <template>
-  <b-container class="page-my-move">
-    <form @submit.prevent="onSubmit">
-      <b-row>
-        <b-col>
-          <!-- Van Size -->
-          <div class="card mt-3 section_mod-2">
-            <div class="card-body">
-              <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
-              <h2 class="ui-title-block">Which Vehicle Do You Need?</h2>
-              <div class="border-color border-color_default"></div>
-              <b-form-group>
-                <b-form-radio-group
-                  v-model="vanSizeComputed"
-                  :options="vanSizeOptions"
-                  class="theme-green"
-                  required
-                  @input="setSerchMeta($event, 'vanSize')"
-                ></b-form-radio-group>
-              </b-form-group>
-            </div>
-          </div>
-
-          <!-- Helpers Required -->
-          <div class="card mt-3 section_mod-2 ">
-            <div class="card-body">
-              <div class="ui-subtitle-block">
-                CHOOSE THE NUMBER OF REQUIRED HELPER
+  <div class="page-my-move">
+    <h1 class="ui-title-page">My Move</h1>
+    <div class="triagl triagl-btm"></div>
+    <EmptySpace />
+    <b-container>
+      <form @submit.prevent="onSubmit">
+        <b-row>
+          <b-col>
+            <!-- Van Size -->
+            <div class="card mt-3 section_mod-2">
+              <div class="card-body">
+                <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
+                <h2 class="ui-title-block">Which Vehicle Do You Need?</h2>
+                <div class="border-color border-color_default"></div>
+                <b-form-group>
+                  <b-form-radio-group
+                    v-model="vanSizeComputed"
+                    :options="vanSizeOptions"
+                    class="theme-green"
+                    required
+                    @input="setSerchMeta($event, 'vanSize')"
+                  ></b-form-radio-group>
+                </b-form-group>
               </div>
-              <h2 class="ui-title-block">
-                Will You Need Help With Loading And Unloading?
-              </h2>
-              <div class="border-color border-color_default"></div>
-              <b-form-group>
-                <b-form-radio-group
-                  v-model="helpersRequiredComputed"
-                  :options="helpersRequiredOptions"
-                  class="theme-green"
-                  required
-                  @input="setSerchMeta($event, 'helpersRequired')"
-                ></b-form-radio-group>
-              </b-form-group>
             </div>
-          </div>
 
-          <!-- Date time -->
-          <div class="card mt-3 section_mod-2">
-            <div class="card-body">
-              <div class="ui-subtitle-block">CHOOSE THE MOVING DATE</div>
-              <h2 class="ui-title-block">When You're Moving?</h2>
-              <div class="border-color border-color_default"></div>
-              <datetime
-                v-model="movingDateComputed"
-                class="theme-green"
-                type="datetime"
-                :value-zone="getUTCPlusTimeOffset"
-                use12-hour
-                required
-                @input="setSerchMeta($event, 'movingDate')"
-              ></datetime>
-            </div>
-          </div>
-
-          <!-- description -->
-          <div class="card mt-3 section_mod-2 ">
-            <div class="card-body">
-              <div class="ui-subtitle-block">WRITE A NOTE FOR YOUR DRIVER</div>
-              <h2 class="ui-title-block">Any Note?</h2>
-              <div class="border-color border-color_default"></div>
-              <b-form-group
-                label="Please enter a brief description of the items you will be moving and any additional contact numbers. Please also let us know if you need any items assembled or re-assembled."
-                label-for="description"
-              >
-                <b-form-input
-                  v-model="descriptionComputed"
-                  required
-                  @input="setSerchMeta($event, 'description')"
-                ></b-form-input>
-              </b-form-group>
-            </div>
-          </div>
-
-          <!-- Customer Info -->
-          <div class="card mt-3 section_mod-2">
-            <div class="card-body">
-              <div class="ui-subtitle-block">YOUR INFO</div>
-              <h2 class="ui-title-block">About You</h2>
-              <div class="border-color border-color_default"></div>
-              <b-row>
-                <b-col>
-                  <b-form-group label="Name" label-for="customerInfoName">
-                    <b-form-input
-                      v-model="customerInfoNameComputed"
-                      required
-                      @input="setSerchMeta($event, 'customerInfoName')"
-                    ></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col>
-                  <b-form-group label="Email" label-for="customerInfoEmail">
-                    <b-form-input
-                      v-model="customerInfoEmailComputed"
-                      type="email"
-                      required
-                      @input="setSerchMeta($event, 'customerInfoEmail')"
-                    ></b-form-input>
-                  </b-form-group>
-                </b-col>
-                <b-col>
-                  <b-form-group
-                    label="Phone Number"
-                    label-for="customerInfoPhone"
-                  >
-                    <b-form-input
-                      v-model="customerInfoPhoneComputed"
-                      required
-                      @input="setSerchMeta($event, 'customerInfoPhone')"
-                    ></b-form-input>
-                  </b-form-group>
-                </b-col>
-              </b-row>
-            </div>
-          </div>
-
-          <!-- Where you're moving? -->
-          <div class="card mt-3 section_mod-2 ">
-            <div class="card-body">
-              <div class="ui-subtitle-block">
-                COLLECTION, DELIVERY AND WAYPOINTS ADDRESSES
+            <!-- Helpers Required -->
+            <div class="card mt-3 section_mod-2 ">
+              <div class="card-body">
+                <div class="ui-subtitle-block">
+                  CHOOSE THE NUMBER OF REQUIRED HELPER
+                </div>
+                <h2 class="ui-title-block">
+                  Will You Need Help With Loading And Unloading?
+                </h2>
+                <div class="border-color border-color_default"></div>
+                <b-form-group>
+                  <b-form-radio-group
+                    v-model="helpersRequiredComputed"
+                    :options="helpersRequiredOptions"
+                    class="theme-green"
+                    required
+                    @input="setSerchMeta($event, 'helpersRequired')"
+                  ></b-form-radio-group>
+                </b-form-group>
               </div>
-              <h2 class="ui-title-block">Where You're Moving?</h2>
-              <div class="border-color border-color_default"></div>
-              <b-row>
-                <b-col md>
-                  <b-row>
-                    <b-col md>
-                      <b-form-group>
-                        <gmap-autocomplete
-                          class="form-control"
-                          placeholder="Collection Address"
-                          :value="collectionPlaceObject.address"
-                          required
-                          @place_changed="setCollectionPlace"
-                        ></gmap-autocomplete>
-                      </b-form-group>
-                    </b-col>
-                    <b-col md>
-                      <b-form-group>
-                        <b-form-select
-                          :value="collectionPlaceObject.stairs"
-                          :options="stairsOptions"
-                          required
-                          @input="setStairs($event, 'collection')"
-                        ></b-form-select>
-                      </b-form-group>
-                    </b-col>
-                  </b-row>
+            </div>
 
-                  <b-row>
-                    <b-col md>
-                      <b-form-group>
-                        <gmap-autocomplete
-                          class="form-control"
-                          placeholder="Delivery Address"
-                          :value="deliveryPlaceObject.address"
-                          required
-                          @place_changed="setDeliveryPlace"
-                        ></gmap-autocomplete>
-                      </b-form-group>
-                    </b-col>
-                    <b-col md>
-                      <b-form-group>
-                        <b-form-select
-                          :value="deliveryPlaceObject.stairs"
-                          :options="stairsOptions"
-                          required
-                          @input="setStairs($event, 'delivery')"
-                        ></b-form-select>
-                      </b-form-group>
-                    </b-col>
-                  </b-row>
+            <!-- Date time -->
+            <div class="card mt-3 section_mod-2">
+              <div class="card-body">
+                <div class="ui-subtitle-block">CHOOSE THE MOVING DATE</div>
+                <h2 class="ui-title-block">When You're Moving?</h2>
+                <div class="border-color border-color_default"></div>
+                <datetime
+                  v-model="movingDateComputed"
+                  class="theme-green"
+                  type="datetime"
+                  :value-zone="getUTCPlusTimeOffset"
+                  use12-hour
+                  required
+                  @input="setSerchMeta($event, 'movingDate')"
+                ></datetime>
+              </div>
+            </div>
 
-                  <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
-                    +
-                    <fa :icon="['fas', 'map-marker-alt']" />
-                    Add Waypoint
-                  </b-button>
-                  <div
-                    v-for="(wayPointPlacesObjectSingle,
-                    index) in wayPointPlacesObject"
-                    :key="index"
-                  >
+            <!-- description -->
+            <div class="card mt-3 section_mod-2 ">
+              <div class="card-body">
+                <div class="ui-subtitle-block">
+                  WRITE A NOTE FOR YOUR DRIVER
+                </div>
+                <h2 class="ui-title-block">Any Note?</h2>
+                <div class="border-color border-color_default"></div>
+                <b-form-group
+                  label="Please enter a brief description of the items you will be moving and any additional contact numbers. Please also let us know if you need any items assembled or re-assembled."
+                  label-for="description"
+                >
+                  <b-form-input
+                    v-model="descriptionComputed"
+                    required
+                    @input="setSerchMeta($event, 'description')"
+                  ></b-form-input>
+                </b-form-group>
+              </div>
+            </div>
+
+            <!-- Customer Info -->
+            <div class="card mt-3 section_mod-2">
+              <div class="card-body">
+                <div class="ui-subtitle-block">YOUR INFO</div>
+                <h2 class="ui-title-block">About You</h2>
+                <div class="border-color border-color_default"></div>
+                <b-row>
+                  <b-col>
+                    <b-form-group label="Name" label-for="customerInfoName">
+                      <b-form-input
+                        v-model="customerInfoNameComputed"
+                        required
+                        @input="setSerchMeta($event, 'customerInfoName')"
+                      ></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                  <b-col>
+                    <b-form-group label="Email" label-for="customerInfoEmail">
+                      <b-form-input
+                        v-model="customerInfoEmailComputed"
+                        type="email"
+                        required
+                        @input="setSerchMeta($event, 'customerInfoEmail')"
+                      ></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                  <b-col>
+                    <b-form-group
+                      label="Phone Number"
+                      label-for="customerInfoPhone"
+                    >
+                      <b-form-input
+                        v-model="customerInfoPhoneComputed"
+                        required
+                        @input="setSerchMeta($event, 'customerInfoPhone')"
+                      ></b-form-input>
+                    </b-form-group>
+                  </b-col>
+                </b-row>
+              </div>
+            </div>
+
+            <!-- Where you're moving? -->
+            <div class="card mt-3 section_mod-2 ">
+              <div class="card-body">
+                <div class="ui-subtitle-block">
+                  COLLECTION, DELIVERY AND WAYPOINTS ADDRESSES
+                </div>
+                <h2 class="ui-title-block">Where You're Moving?</h2>
+                <div class="border-color border-color_default"></div>
+                <b-row>
+                  <b-col md>
                     <b-row>
                       <b-col md>
-                        <div class="input-group mb-3">
+                        <b-form-group>
                           <gmap-autocomplete
-                            :value="wayPointPlacesObject[index].address"
                             class="form-control"
-                            placeholder="Waypoint Address"
+                            placeholder="Collection Address"
+                            :value="collectionPlaceObject.address"
                             required
-                            @click="setCurrentWayPointIndex(index)"
-                            @place_changed="setWayPointPlace"
+                            @place_changed="setCollectionPlace"
                           ></gmap-autocomplete>
-                          <div
-                            v-if="wayPointPlacesObject.length - 1 == index"
-                            class="input-group-append"
-                          >
-                            <span
-                              class="input-group-text bg-danger color-white"
-                              @click.prevent="deleteWayPoint(index)"
-                            >
-                              X
-                            </span>
-                          </div>
-                        </div>
+                        </b-form-group>
                       </b-col>
                       <b-col md>
                         <b-form-group>
                           <b-form-select
-                            :value="wayPointPlacesObject[index].stairs"
+                            :value="collectionPlaceObject.stairs"
                             :options="stairsOptions"
                             required
-                            @input="setStairs($event, 'waypoint', index)"
+                            @input="setStairs($event, 'collection')"
                           ></b-form-select>
                         </b-form-group>
                       </b-col>
                     </b-row>
+
+                    <b-row>
+                      <b-col md>
+                        <b-form-group>
+                          <gmap-autocomplete
+                            class="form-control"
+                            placeholder="Delivery Address"
+                            :value="deliveryPlaceObject.address"
+                            required
+                            @place_changed="setDeliveryPlace"
+                          ></gmap-autocomplete>
+                        </b-form-group>
+                      </b-col>
+                      <b-col md>
+                        <b-form-group>
+                          <b-form-select
+                            :value="deliveryPlaceObject.stairs"
+                            :options="stairsOptions"
+                            required
+                            @input="setStairs($event, 'delivery')"
+                          ></b-form-select>
+                        </b-form-group>
+                      </b-col>
+                    </b-row>
+
+                    <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+                      +
+                      <fa :icon="['fas', 'map-marker-alt']" />
+                      Add Waypoint
+                    </b-button>
+                    <div
+                      v-for="(wayPointPlacesObjectSingle,
+                      index) in wayPointPlacesObject"
+                      :key="index"
+                    >
+                      <b-row>
+                        <b-col md>
+                          <div class="input-group mb-3">
+                            <gmap-autocomplete
+                              :value="wayPointPlacesObject[index].address"
+                              class="form-control"
+                              placeholder="Waypoint Address"
+                              required
+                              @click="setCurrentWayPointIndex(index)"
+                              @place_changed="setWayPointPlace"
+                            ></gmap-autocomplete>
+                            <div
+                              v-if="wayPointPlacesObject.length - 1 == index"
+                              class="input-group-append"
+                            >
+                              <span
+                                class="input-group-text bg-danger color-white"
+                                @click.prevent="deleteWayPoint(index)"
+                              >
+                                X
+                              </span>
+                            </div>
+                          </div>
+                        </b-col>
+                        <b-col md>
+                          <b-form-group>
+                            <b-form-select
+                              :value="wayPointPlacesObject[index].stairs"
+                              :options="stairsOptions"
+                              required
+                              @input="setStairs($event, 'waypoint', index)"
+                            ></b-form-select>
+                          </b-form-group>
+                        </b-col>
+                      </b-row>
+                    </div>
+                  </b-col>
+                  <b-col md>
+                    <b-button
+                      v-if="
+                        collectionPlaceObject.address &&
+                          deliveryPlaceObject.address
+                      "
+                      variant="primary"
+                      @click="getDirection"
+                    >
+                      <fa :icon="['fas', 'route']" />
+                      Check Direction
+                    </b-button>
+                    <!-- Map -->
+                    <gmap-map
+                      v-show="showMap"
+                      ref="mapDir"
+                      class="mt-2"
+                      :center="center"
+                      :zoom="15"
+                      style="width: 100%; height: 300px"
+                    ></gmap-map>
+                  </b-col>
+                </b-row>
+              </div>
+            </div>
+
+            <!-- Total Time -->
+            <div class="card mt-3 section_mod-2">
+              <div class="card-body">
+                <div class="ui-subtitle-block">
+                  NUMBER OF REQUIRED HOURS FOR THE THE MOVE TO BE COMPLETED
+                </div>
+                <h2 class="ui-title-block">
+                  How Many Hours Do You Want The Vehicle For?
+                </h2>
+                <div class="border-color border-color_default"></div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-1">
+                    <p>Est:</p>
                   </div>
-                </b-col>
-                <b-col md>
-                  <b-button
-                    v-if="
-                      collectionPlaceObject.address &&
-                        deliveryPlaceObject.address
-                    "
-                    variant="primary"
-                    @click="getDirection"
-                  >
-                    <fa :icon="['fas', 'route']" />
-                    Check Direction
-                  </b-button>
-                  <!-- Map -->
-                  <gmap-map
-                    v-show="showMap"
-                    ref="mapDir"
-                    class="mt-2"
-                    :center="center"
-                    :zoom="15"
-                    style="width: 100%; height: 300px"
-                  ></gmap-map>
-                </b-col>
-              </b-row>
-            </div>
-          </div>
 
-          <!-- Total Time -->
-          <div class="card mt-3 section_mod-2">
-            <div class="card-body">
-              <div class="ui-subtitle-block">
-                NUMBER OF REQUIRED HOURS FOR THE THE MOVE TO BE COMPLETED
+                  <div class="col-xs-12 col-sm-3">
+                    <p>
+                      <fa :icon="['fas', 'road']" />
+                      Travel time:
+                      <strong>
+                        <span id="estimated-driving-time">
+                          {{ searchMetaObject.travelTime | timeInHoursMinutes }}
+                        </span>
+                      </strong>
+                    </p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-5">
+                    <p>
+                      <fa :icon="['fas', 'truck-loading']" />
+                      Loading and unloading time:
+                      <strong>
+                        <span id="estimated-loading-time">
+                          {{
+                            searchMetaObject.loadingUnloadingTime
+                              | timeInHoursMinutes
+                          }}
+                        </span>
+                      </strong>
+                    </p>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-3">
+                    <p>
+                      <fa :icon="['fas', 'clock']" />
+                      Total time:
+                      <strong>
+                        <span class="estimated-total-time">
+                          {{
+                            searchMetaObject.estimatedTotalTime
+                              | timeInHoursMinutes
+                          }}
+                        </span>
+                      </strong>
+                    </p>
+                  </div>
+                </div>
+                <b-form-group>
+                  <b-form-select
+                    v-model="totalTimeComputed"
+                    :options="totalTimeOptions"
+                    required
+                    @input="setSerchMeta($event, 'totalTime')"
+                  ></b-form-select>
+                </b-form-group>
               </div>
-              <h2 class="ui-title-block">
-                How Many Hours Do You Want The Vehicle For?
-              </h2>
-              <div class="border-color border-color_default"></div>
-              <div class="row">
-                <div class="col-xs-12 col-sm-1">
-                  <p>Est:</p>
-                </div>
+            </div>
 
-                <div class="col-xs-12 col-sm-3">
-                  <p>
-                    <fa :icon="['fas', 'road']" />
-                    Travel time:
-                    <strong>
-                      <span id="estimated-driving-time">
-                        {{ searchMetaObject.travelTime | timeInHoursMinutes }}
-                      </span>
-                    </strong>
-                  </p>
-                </div>
-
-                <div class="col-xs-12 col-sm-5">
-                  <p>
-                    <fa :icon="['fas', 'truck-loading']" />
-                    Loading and unloading time:
-                    <strong>
-                      <span id="estimated-loading-time">
-                        {{
-                          searchMetaObject.loadingUnloadingTime
-                            | timeInHoursMinutes
-                        }}
-                      </span>
-                    </strong>
-                  </p>
-                </div>
-
-                <div class="col-xs-12 col-sm-3">
-                  <p>
-                    <fa :icon="['fas', 'clock']" />
-                    Total time:
-                    <strong>
-                      <span class="estimated-total-time">
-                        {{
-                          searchMetaObject.estimatedTotalTime
-                            | timeInHoursMinutes
-                        }}
-                      </span>
-                    </strong>
-                  </p>
-                </div>
+            <!-- Notification -->
+            <div class="card mt-3 section_mod-2 ">
+              <div class="card-body">
+                <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
+                <h2 class="ui-title-block">Notify Me</h2>
+                <div class="border-color border-color_default"></div>
+                <b-form-group
+                  label="We'd love to keep in touch about this move by email and text message."
+                >
+                  <b-form-radio-group
+                    v-model="notificationComputed"
+                    :options="notificationOptions"
+                    class="theme-green"
+                    required
+                    @input="setSerchMeta($event, 'notification')"
+                  ></b-form-radio-group>
+                </b-form-group>
               </div>
-              <b-form-group>
-                <b-form-select
-                  v-model="totalTimeComputed"
-                  :options="totalTimeOptions"
-                  required
-                  @input="setSerchMeta($event, 'totalTime')"
-                ></b-form-select>
-              </b-form-group>
             </div>
-          </div>
+          </b-col>
+        </b-row>
 
-          <!-- Notification -->
-          <div class="card mt-3 section_mod-2 ">
-            <div class="card-body">
-              <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
-              <h2 class="ui-title-block">Notify Me</h2>
-              <div class="border-color border-color_default"></div>
-              <b-form-group
-                label="We'd love to keep in touch about this move by email and text message."
-              >
-                <b-form-radio-group
-                  v-model="notificationComputed"
-                  :options="notificationOptions"
-                  class="theme-green"
-                  required
-                  @input="setSerchMeta($event, 'notification')"
-                ></b-form-radio-group>
-              </b-form-group>
+        <b-row>
+          <b-col md></b-col>
+          <b-col md>
+            <div class="card mt-3 section_mod-2 mb-3">
+              <b-button block type="submit" size="lg">
+                Get My Free Quotes
+              </b-button>
             </div>
-          </div>
-        </b-col>
-      </b-row>
-
-      <b-row>
-        <b-col md></b-col>
-        <b-col md>
-          <div class="card mt-3 section_mod-2 mb-3">
-            <b-button block type="submit" size="lg">
-              Get My Free Quotes
-            </b-button>
-          </div>
-        </b-col>
-        <b-col md></b-col>
-      </b-row>
-    </form>
-  </b-container>
+          </b-col>
+          <b-col md></b-col>
+        </b-row>
+      </form>
+    </b-container>
+  </div>
 </template>
 <script>
+import EmptySpace from '~/components/EmptySpace.vue'
 /* global google */
 export default {
+  components: {
+    EmptySpace
+  },
   data() {
     return {
       vanSizeComputed: null,

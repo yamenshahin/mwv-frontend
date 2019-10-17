@@ -16,6 +16,31 @@ const Filters = {
         },
         currency(amount) {
           return '£' + amount
+        },
+        vanSize(vanSize) {
+          if (vanSize === '1') {
+            return 'Small Van'
+          } else if (vanSize === '2') {
+            return 'Medium Van'
+          } else if (vanSize === '3') {
+            return 'Large Van'
+          } else {
+            return 'Giant Van'
+          }
+        },
+        isoDateToString(isoDate) {
+          const dateString = new Date(isoDate)
+          return (
+            dateString.getDate() +
+            '/' +
+            (dateString.getMonth() + 1) +
+            '/' +
+            dateString.getFullYear() +
+            ' ' +
+            dateString.getHours() +
+            ':' +
+            dateString.getMinutes()
+          )
         }
       }
     })
