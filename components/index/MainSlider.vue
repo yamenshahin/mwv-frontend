@@ -72,6 +72,7 @@
                     type="submit"
                     size="lg"
                     title="Please select a valid collection and delivery address"
+                    class="mb-1"
                   >
                     <fa :icon="['fas', 'shipping-fast']" />
                     GET FREE QUOTES
@@ -82,7 +83,7 @@
                         deliveryPlaceObject.address
                     "
                     to="/my-move"
-                    class="btn btn-secondary"
+                    class="btn btn-secondary mb-1"
                   >
                     <fa :icon="['fas', 'shipping-fast']" />
                     Get Free Quotes
@@ -93,6 +94,7 @@
                         deliveryPlaceObject.address
                     "
                     variant="primary"
+                    class="mb-1"
                     @click="getDirection"
                   >
                     <fa :icon="['fas', 'route']" />
@@ -103,7 +105,7 @@
                   <gmap-map
                     v-show="showMap"
                     ref="mapDir"
-                    class="mt-2"
+                    class="mt-2 mb-3"
                     :center="center"
                     :zoom="15"
                     style="width: 100%; height: 300px"

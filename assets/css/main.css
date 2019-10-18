@@ -35,23 +35,39 @@ Section
 /** 
 NavBar
 */
-.navbar-nav .nav-link{
-    font-size: 0.9rem;
-}
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.95);
-}
-.navbar-dark .navbar-nav .nuxt-link-active{
-    font-weight: 700;
+.navbar {
+    padding: 1.5rem 0;
 }
 .navbar-brand {
     font-weight: bold;
 }
-.navbar-logo {
-    max-width: 30px; 
-    margin-right: 10px;
+.navbar-nav .nav-link{
+    font-size: 1rem;
+    text-transform: uppercase;
 }
-
+.navbar-light .navbar-nav .nav-link {
+    color: #444;
+    font-weight: 700;
+}
+.navbar-light .navbar-nav .nuxt-link-active{
+    border-bottom: 3px solid #ffd526;
+}
+@media screen and (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: .929rem;
+        padding-left: .929rem;
+    }
+    .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
+        background-color: #ffd526;
+        border-bottom: 3px solid #26c9ff;
+    }
+    .dropdown-menu {
+        border-radius: 0;
+    }
+    .dropdown-item:hover{
+        background-color: #ffd526;
+    }
+}
 
 /** Vue DateTime Theme */
 .vdatetime-input {
@@ -159,6 +175,11 @@ Sections
     color: #fff;
     padding-top: 180px;
 }
+@media screen and (max-width: 992px) {
+    .main-slider {
+        padding-top: 20px;
+    }
+}
 .main-slider .slide-text {
 	text-shadow: 1px 2px 0 rgba(0,0,0,.14);
 }
@@ -167,6 +188,11 @@ Sections
 	font-family: 'Roboto Condensed';
 	font-size: 44px;
 	text-shadow: 1px 2px 0 rgba(0,0,0,.14);
+}
+@media screen and (max-width: 992px) {
+    .main-slider .slide-title {
+        font-size: 20px;
+    }
 }
 .main-slider_mod-2 .slide-title {
 	margin-bottom: 25px;
@@ -177,6 +203,12 @@ Sections
 	display: block;
 	font-size: 50px;
 	font-weight: 700;
+}
+
+@media screen and (max-width: 992px) {
+    .main-slider_mod-2 .slide-title strong  {
+        font-size: 25px;
+    }
 }
 
 .main-slider_mod-2 .slide-text {

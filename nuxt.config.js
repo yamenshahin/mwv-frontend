@@ -68,6 +68,9 @@ export default {
     '~plugins/mixins/filters.js',
     // The plugin is for store current checkout job
     '~plugins/mixins/checkout.js',
+    // The plugin Vue MQ (MediaQuery)
+    // https://github.com/AlexandreBonaventure/vue-mq
+    '~plugins/media-query.js',
   ],
   /*
    ** Nuxt.js dev-modules
