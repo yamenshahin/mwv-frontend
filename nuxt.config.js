@@ -71,6 +71,8 @@ export default {
     // The plugin Vue MQ (MediaQuery)
     // https://github.com/AlexandreBonaventure/vue-mq
     '~plugins/media-query.js',
+    // https://github.com/cretueusebiu/vform
+    '~plugins/vform.js',
   ],
   /*
    ** Nuxt.js dev-modules

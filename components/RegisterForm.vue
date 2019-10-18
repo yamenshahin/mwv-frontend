@@ -1,54 +1,73 @@
 <template>
   <div>
     <b-form v-if="!authenticated" @submit.prevent="onSubmit">
-      <b-form-group id="input-group-1" label="Full Name:" label-for="input-1">
-        <b-form-input
-          id="input-1"
+      <div class="form-group">
+        <label>Name:</label>
+        <input
           v-model="form.name"
           type="text"
-          required
+          name="name"
+          class="form-control"
           placeholder="Enter your full name"
-        ></b-form-input>
-      </b-form-group>
+          :class="{ 'is-invalid': form.errors.has('name') }"
+        />
+        <has-error :form="form" field="name"></has-error>
+      </div>
 
-      <b-form-group
-        id="input-group-2"
-        label="Email:"
-        label-for="input-2"
-        description="We'll never share your email with anyone else."
-      >
-        <b-form-input
-          id="input-2"
+      <div class="form-group">
+        <label>Email:</label>
+        <input
           v-model="form.email"
           type="email"
-          required
+          name="email"
+          class="form-control"
           placeholder="Enter your email"
-        ></b-form-input>
-      </b-form-group>
+          :class="{ 'is-invalid': form.errors.has('email') }"
+        />
+        <small class="form-text text-muted">
+          We'll never share your email with anyone else.
+        </small>
+        <has-error :form="form" field="email"></has-error>
+      </div>
 
-      <b-form-group id="input-group-3" label="Password:" label-for="input-3">
-        <b-form-input
-          id="input-3"
+      <div class="form-group">
+        <label>Phone:</label>
+        <input
+          v-model="form.phone"
+          type="text"
+          name="phone"
+          class="form-control"
+          placeholder="Enter your phone number"
+          :class="{ 'is-invalid': form.errors.has('phone') }"
+        />
+        <has-error :form="form" field="phone"></has-error>
+      </div>
+
+      <div class="form-group">
+        <label>Password:</label>
+        <input
           v-model="form.password"
           type="password"
-          required
+          name="password"
+          class="form-control"
           placeholder="Enter password"
-        ></b-form-input>
-      </b-form-group>
+          :class="{ 'is-invalid': form.errors.has('password') }"
+        />
+        <has-error :form="form" field="password"></has-error>
+      </div>
 
-      <b-form-group
-        id="input-group-3"
-        label="Password Confirmation:"
-        label-for="input-4"
-      >
-        <b-form-input
-          id="input-4"
+      <div class="form-group">
+        <label>Password Confirmation:</label>
+        <input
           v-model="form.password_confirmation"
           type="password"
-          required
+          name="password_confirmation"
+          class="form-control"
           placeholder="Confirm password"
-        ></b-form-input>
-      </b-form-group>
+          :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
+        />
+        <has-error :form="form" field="password_confirmation"></has-error>
+      </div>
 
       <b-button type="submit" variant="primary">Register</b-button>
     </b-form>
@@ -59,25 +78,29 @@
 export default {
   data() {
     return {
-      form: {
+      form: this.$vform({
         name: '',
         email: '',
+        phone: '',
         password: '',
         password_confirmation: ''
-      }
+      })
     }
   },
   methods: {
-    async onSubmit(evt) {
-      await this.$axios.$post('register', this.form)
-      await this.$auth.loginWith('local', {
-        data: {
-          email: this.form.email,
-          password: this.form.password
-        }
-      })
-
-      this.$router.push('/')
+    async onSubmit() {
+      await this.form
+        .post('register')
+        .then(() => {
+          this.$auth.loginWith('local', {
+            data: {
+              email: this.form.email,
+              password: this.form.password
+            }
+          })
+          this.$router.push('/')
+        })
+        .catch(() => {})
     }
   }
 }
