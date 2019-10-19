@@ -129,6 +129,12 @@ export default {
     }
   }, 
   auth: {
+    /* redirect: {
+      login: '/my-move',
+      logout: '/my-move',
+      callback: '/my-move',
+      home: '/'
+    }, */
     strategies: {
       local: {
         endpoints: {
@@ -136,8 +142,8 @@ export default {
           logout: { url: 'logout', method: 'post' },
           user: { url: 'user', method: 'get', propertyName: 'data' }
         },
-        // tokenRequired: true,
-        // tokenType: 'bearer'
+        watchLoggedIn: true,
+        rewriteRedirects: true
       }
     }
   },

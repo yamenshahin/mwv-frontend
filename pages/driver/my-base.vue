@@ -3,7 +3,7 @@
     <h1 class="ui-title-page">My Base</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
-    <div class="container">
+    <div class="container section_mod-2">
       <form @submit.prevent="onSubmit">
         <b-row>
           <b-col>
@@ -12,14 +12,58 @@
                 <b-row>
                   <b-col>
                     <div>
-                      <b-form-file
-                        ref="fileInput"
-                        v-model="file"
-                        placeholder="Choose a file or drop it here..."
-                        drop-placeholder="Drop file here..."
-                        class="mb-2"
-                        @change="btnToggle"
-                      ></b-form-file>
+                      <div class="driver-info">
+                        <h2 class="ui-title-block">Your Professional Info</h2>
+                        <div class="border-color border-color_default"></div>
+                      </div>
+
+                      <b-form-group label="Vehicle registration">
+                        <b-form-input
+                          type="text"
+                          :value="
+                            driverPlacePriceObject.nationalInsuranceNumber
+                          "
+                          @input="
+                            setDriverPlacePrice($event, 'vehicleRegistration')
+                          "
+                        ></b-form-input>
+                      </b-form-group>
+
+                      <b-form-group label="National Insurance number">
+                        <b-form-input
+                          type="text"
+                          :value="
+                            driverPlacePriceObject.nationalInsuranceNumber
+                          "
+                          @input="
+                            setDriverPlacePrice(
+                              $event,
+                              'nationalInsuranceNumber'
+                            )
+                          "
+                        ></b-form-input>
+                      </b-form-group>
+
+                      <b-form-group label="Driving licence number">
+                        <b-form-input
+                          type="text"
+                          :value="driverPlacePriceObject.drivingLicenceNumber"
+                          @input="
+                            setDriverPlacePrice($event, 'drivingLicenceNumber')
+                          "
+                        ></b-form-input>
+                      </b-form-group>
+
+                      <b-form-group label="Your business image">
+                        <b-form-file
+                          ref="fileInput"
+                          v-model="file"
+                          placeholder="Choose a file or drop it here..."
+                          drop-placeholder="Drop file here..."
+                          class="mb-2"
+                          @change="btnToggle"
+                        ></b-form-file>
+                      </b-form-group>
 
                       <b-button
                         class="mr-2"
@@ -36,11 +80,6 @@
                           "
                           alt="place-image"
                         />
-                      </p>
-                      <p class="mt-2">
-                        Selected file:
-                        {{ file }}
-                        <b>{{ file ? file.name : '' }}</b>
                       </p>
                     </div>
                   </b-col>
@@ -779,6 +818,7 @@ export default {
       this.$store.dispatch('driver-place/setDriverPlacePrice', metaObject)
     }
 
+    // TODO: handle case where no id
     const responseDataLocation = await this.$axios
       .get('/driver/get-location')
       .then(function(response) {

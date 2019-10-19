@@ -52,7 +52,6 @@ export default {
         })
         .then(() => {
           this.showError = false
-          this.$router.push('/')
         })
         .catch(() => {
           this.errorText = 'Wrong details'

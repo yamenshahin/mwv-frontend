@@ -32,15 +32,33 @@
             My Jobs
           </nuxt-link>
           <!-- Driver nav items -->
+          <span v-if="authenticated">
+            <b-nav-item v-if="user.role !== 'driver'" href="#">
+              Join Our Drivers
+            </b-nav-item>
+          </span>
+
           <nuxt-link
-            v-if="authenticated"
-            to="/driver/my-base"
+            v-if="!authenticated"
+            to="/driver/join"
             class="nav-link"
             role="menuitem"
             exact
           >
-            My Base
+            Join Our Drivers
           </nuxt-link>
+          <span v-if="authenticated">
+            <nuxt-link
+              v-if="user.role === 'driver'"
+              to="/driver/my-base"
+              class="nav-link"
+              role="menuitem"
+              exact
+            >
+              My Base
+            </nuxt-link>
+          </span>
+
           <nuxt-link
             v-if="!authenticated"
             to="/login"
