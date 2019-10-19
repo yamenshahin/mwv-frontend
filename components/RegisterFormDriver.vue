@@ -69,6 +69,12 @@
         <has-error :form="form" field="password_confirmation"></has-error>
       </div>
 
+      <input
+        v-model="form.role"
+        type="hidden"
+        name="role"
+        class="form-control"
+      />
       <b-button type="submit" variant="primary">Register</b-button>
     </b-form>
   </div>
@@ -83,7 +89,8 @@ export default {
         email: '',
         phone: '',
         password: '',
-        password_confirmation: ''
+        password_confirmation: '',
+        role: 'driver'
       })
     }
   },
@@ -98,7 +105,7 @@ export default {
               password: this.form.password
             }
           })
-          this.$router.push('/')
+          this.$router.push('/driver/my-base')
         })
         .catch(() => {})
     }

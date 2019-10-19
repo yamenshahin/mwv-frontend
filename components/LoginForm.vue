@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-form v-if="!authenticated" @submit.prevent="onSubmit">
+      <b-alert :show="showError" variant="danger">{{ errorText }}</b-alert>
       <b-form-group
         id="input-group-1"
         label="Email address:"
@@ -26,11 +27,8 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="submit" variant="primary">Login</b-button>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card>
   </div>
 </template>
 
@@ -41,16 +39,24 @@ export default {
       form: {
         email: '',
         password: ''
-      }
+      },
+      errorText: '',
+      showError: false
     }
   },
   methods: {
     async onSubmit() {
-      await this.$auth.loginWith('local', {
-        data: this.form
-      })
-
-      this.$router.push('/')
+      await this.$auth
+        .loginWith('local', {
+          data: this.form
+        })
+        .then(() => {
+          this.showError = false
+        })
+        .catch(() => {
+          this.errorText = 'Wrong details'
+          this.showError = true
+        })
     }
   }
 }

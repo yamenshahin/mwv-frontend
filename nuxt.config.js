@@ -17,7 +17,10 @@ export default {
     script: [
       { src: 'https://js.stripe.com/v3/' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap' }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -44,7 +47,7 @@ export default {
     // The plugin used for getting search for driver meta before searching
     '~plugins/mixins/search.js',
     // DateTimePicker
-    '~plugins/datetime.js',
+    { ssr: false, src: '~plugins/datetime.js'  },
     // The plugin used to store and getting final search result
     '~plugins/mixins/search-result.js',
     // The plugin used to store and getting customer jobs
@@ -65,6 +68,11 @@ export default {
     '~plugins/mixins/filters.js',
     // The plugin is for store current checkout job
     '~plugins/mixins/checkout.js',
+    // The plugin Vue MQ (MediaQuery)
+    // https://github.com/AlexandreBonaventure/vue-mq
+    '~plugins/media-query.js',
+    // https://github.com/cretueusebiu/vform
+    '~plugins/vform.js',
   ],
   /*
    ** Nuxt.js dev-modules
@@ -84,6 +92,20 @@ export default {
     '@nuxtjs/auth',
     // Load .env
     '@nuxtjs/dotenv',
+    // Font awesome
+    ['nuxt-fontawesome', {
+      component: 'fa',
+      imports: [
+        {
+          set: '@fortawesome/free-solid-svg-icons',
+          icons: ['fas']
+        },
+        {
+          set: '@fortawesome/free-brands-svg-icons',
+          icons: ['fab']
+        },
+      ]
+    }]
   ],
   /**
    * .env
@@ -107,6 +129,12 @@ export default {
     }
   }, 
   auth: {
+    /* redirect: {
+      login: '/my-move',
+      logout: '/my-move',
+      callback: '/my-move',
+      home: '/'
+    }, */
     strategies: {
       local: {
         endpoints: {
@@ -114,8 +142,8 @@ export default {
           logout: { url: 'logout', method: 'post' },
           user: { url: 'user', method: 'get', propertyName: 'data' }
         },
-        // tokenRequired: true,
-        // tokenType: 'bearer'
+        watchLoggedIn: true,
+        rewriteRedirects: true
       }
     }
   },

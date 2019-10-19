@@ -1,15 +1,20 @@
 <template>
   <div v-if="!submitted" class="payment">
-    {{ total }}
-    {{ success }}
-    status: {{ status }}
-    <h3>Please enter your payment details:</h3>
+    <h2 class="ui-title-block">Please Enter Your Payment Details:</h2>
+    <div class="border-color border-color_default"></div>
     <label for="card">Credit Card</label>
     <p>
       Test using this credit card:
       <span class="cc-number">4242 4242 4242 4242</span>
       , and enter any 5 digits for the zip code
     </p>
+    <div v-if="status === 'failure'">
+      <b-alert show variant="danger">
+        <h3>Oh No!</h3>
+        <p>Something went wrong!</p>
+        <b-button @click="clearCheckout">Please try again</b-button>
+      </b-alert>
+    </div>
     <card
       id="card"
       class="stripe-card"
@@ -18,14 +23,15 @@
       :options="stripeOptions"
       @change="complete = $event.complete"
     />
-    <button class="pay-with-stripe" :disabled="!complete" @click="pay">
+    <b-button
+      variant="dark"
+      block
+      class="lg mb-1 pay-with-stripe"
+      :disabled="!complete"
+      @click="pay"
+    >
       Pay with credit card
-    </button>
-    <div v-if="status === 'failure'">
-      <h3>Oh No!</h3>
-      <p>Something went wrong!</p>
-      <button @click="clearCheckout">Please try again</button>
-    </div>
+    </b-button>
   </div>
 </template>
 

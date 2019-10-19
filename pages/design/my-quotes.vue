@@ -1,5 +1,5 @@
 <template>
-  <div class="page-my-quotes  section-no-bg">
+  <div class="page-my-quotes">
     <h1 class="ui-title-page">Quotes Results</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />

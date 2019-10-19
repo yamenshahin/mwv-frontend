@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <h1>Hello login</h1>
+  <div class="container section_mod-2">
+    <h2 class="ui-title-block">Login</h2>
+    <div class="border-color border-color_default"></div>
     <LoginForm />
   </div>
 </template>
