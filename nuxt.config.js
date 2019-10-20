@@ -34,7 +34,10 @@ export default {
     // https://github.com/mariomka/vue-datetime
     '~node_modules/vue-datetime/dist/vue-datetime.css',
     // Main CSS file in the project
-    '@/assets/css/main.css'
+    '@/assets/css/main.css',
+    // https://fullcalendar.io/docs/vue
+    '@fullcalendar/core/main.css',
+    '@fullcalendar/daygrid/main.css',
   ],
   /*
    ** Plugins to load before mounting the App
