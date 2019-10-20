@@ -129,12 +129,7 @@ export default {
     }
   }, 
   auth: {
-    /* redirect: {
-      login: '/my-move',
-      logout: '/my-move',
-      callback: '/my-move',
-      home: '/'
-    }, */
+    plugins: ['~/plugins/auth.js'],
     strategies: {
       local: {
         endpoints: {
@@ -142,9 +137,12 @@ export default {
           logout: { url: 'logout', method: 'post' },
           user: { url: 'user', method: 'get', propertyName: 'data' }
         },
-        watchLoggedIn: true,
-        rewriteRedirects: true
       }
+    },
+    redirect: {
+      login: '/login',
+      home: '/driver/my-base',
+      logout: '/login'
     }
   },
   /*

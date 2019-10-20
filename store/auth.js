@@ -7,3 +7,17 @@ export const getters = {
     return state.user
   }
 }
+
+// Mutations
+export const mutations = {
+  SET_ROLE(state, role) {
+    state.user.role = role
+  }
+}
+
+// Actions
+export const actions = {
+  setRole({ commit }, role) {
+    commit('SET_ROLE', role)
+  }
+}

@@ -33,7 +33,11 @@
           </nuxt-link>
           <!-- Driver nav items -->
           <span v-if="authenticated">
-            <b-nav-item v-if="user.role !== 'driver'" href="#">
+            <b-nav-item
+              v-if="user.role !== 'driver'"
+              href="#"
+              @click.prevent="setRole('driver')"
+            >
               Join Our Drivers
             </b-nav-item>
           </span>
@@ -99,6 +103,22 @@ export default {
     logout() {
       this.$auth.logout()
       this.$router.push('/')
+    },
+    async setRole(role) {
+      console.log(role)
+      await this.$axios
+        .post('/set-role', {
+          role
+        })
+        .then(function(response) {
+          // handle success
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      await this.$store.dispatch('auth/setRole', role)
+      this.$router.push('/driver/my-base')
     }
   }
 }
