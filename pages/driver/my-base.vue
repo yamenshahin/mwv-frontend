@@ -801,51 +801,55 @@ export default {
     }
   },
   async mounted() {
-    const responseDataPrice = await this.$axios
-      .get('/driver/get-price')
-      .then(function(response) {
-        // handle success
-        return response.data
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-    const entries = Object.entries(responseDataPrice.data)
-    for (let i = 0; i < entries.length; i++) {
-      const metaObject = {
-        [entries[i][0]]: entries[i][1]
+    if (this.user.role === 'driver') {
+      const responseDataPrice = await this.$axios
+        .get('/driver/get-price')
+        .then(function(response) {
+          // handle success
+          return response.data
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      const entries = Object.entries(responseDataPrice.data)
+      for (let i = 0; i < entries.length; i++) {
+        const metaObject = {
+          [entries[i][0]]: entries[i][1]
+        }
+        this.$store.dispatch('driver-place/setDriverPlacePrice', metaObject)
       }
-      this.$store.dispatch('driver-place/setDriverPlacePrice', metaObject)
+
+      // TODO: handle case where no id
+      const responseDataLocation = await this.$axios
+        .get('/driver/get-location')
+        .then(function(response) {
+          // handle success
+          return response.data.data
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      this.$store.dispatch(
+        'driver-place/setDriverPlaceLocationFromDb',
+        responseDataLocation
+      )
+
+      const responseDataFiles = await this.$axios
+        .get('/files/user-file/' + 'places/')
+        .then(function(response) {
+          return response.data.data
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+
+      await this.$store.dispatch(
+        'driver-place/setDriverPlaceFiles',
+        responseDataFiles.url
+      )
+    } else {
+      this.$router.push('/')
     }
-
-    // TODO: handle case where no id
-    const responseDataLocation = await this.$axios
-      .get('/driver/get-location')
-      .then(function(response) {
-        // handle success
-        return response.data.data
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-    this.$store.dispatch(
-      'driver-place/setDriverPlaceLocationFromDb',
-      responseDataLocation
-    )
-
-    const responseDataFiles = await this.$axios
-      .get('/files/user-file/' + 'places/')
-      .then(function(response) {
-        return response.data.data
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-
-    await this.$store.dispatch(
-      'driver-place/setDriverPlaceFiles',
-      responseDataFiles.url
-    )
   },
   methods: {
     async setDriverPlaceLocation(driverPlaceLocation) {
