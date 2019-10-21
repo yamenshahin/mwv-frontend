@@ -63,6 +63,18 @@
             </nuxt-link>
           </span>
 
+          <span v-if="authenticated">
+            <nuxt-link
+              v-if="user.role === 'driver'"
+              to="/driver/jobs"
+              class="nav-link"
+              role="menuitem"
+              exact
+            >
+              Driver Jobs
+            </nuxt-link>
+          </span>
+
           <nuxt-link
             v-if="!authenticated"
             to="/login"

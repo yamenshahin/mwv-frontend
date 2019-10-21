@@ -30,6 +30,18 @@ const Filters = {
         },
         isoDateToString(isoDate) {
           const dateString = new Date(isoDate)
+          let hours = ''
+          let minutes = ''
+          if (dateString.getHours() < 10) {
+            hours = '0' + dateString.getHours()
+          } else {
+            hours = dateString.getHours()
+          }
+          if (dateString.getMinutes() < 10) {
+            minutes = '0' + dateString.getMinutes()
+          } else {
+            minutes = dateString.getMinutes()
+          }
           return (
             dateString.getDate() +
             '/' +
@@ -37,9 +49,9 @@ const Filters = {
             '/' +
             dateString.getFullYear() +
             ' ' +
-            dateString.getHours() +
+            hours +
             ':' +
-            dateString.getMinutes()
+            minutes
           )
         }
       }

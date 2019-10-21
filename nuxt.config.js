@@ -34,7 +34,10 @@ export default {
     // https://github.com/mariomka/vue-datetime
     '~node_modules/vue-datetime/dist/vue-datetime.css',
     // Main CSS file in the project
-    '@/assets/css/main.css'
+    '@/assets/css/main.css',
+    // https://fullcalendar.io/docs/vue
+    '@fullcalendar/core/main.css',
+    '@fullcalendar/daygrid/main.css',
   ],
   /*
    ** Plugins to load before mounting the App
@@ -52,6 +55,8 @@ export default {
     '~plugins/mixins/search-result.js',
     // The plugin used to store and getting customer jobs
     '~plugins/mixins/customer-jobs.js',
+    // The plugin used to store and getting driver jobs
+    '~plugins/mixins/driver-jobs.js',
     // The plugin is google map place object related which get Driver Place object
     '~plugins/mixins/driver-place.js',
     // Google Map API https://github.com/xkjyeah/vue-google-maps
@@ -73,6 +78,8 @@ export default {
     '~plugins/media-query.js',
     // https://github.com/cretueusebiu/vform
     '~plugins/vform.js',
+    //https://github.com/fullcalendar/fullcalendar-vue/issues/5
+    { ssr: false, src: '~/plugins/full-calendar'  },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -129,7 +136,7 @@ export default {
     }
   }, 
   auth: {
-    plugins: ['~/plugins/auth.js'],
+    //plugins: ['~/plugins/auth.js'],
     strategies: {
       local: {
         endpoints: {
@@ -139,11 +146,11 @@ export default {
         },
       }
     },
-    redirect: {
+    /* redirect: {
       login: '/login',
       home: '/driver/my-base',
       logout: '/login'
-    }
+    } */
   },
   /*
    ** Build configuration
