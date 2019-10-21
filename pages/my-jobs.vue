@@ -89,6 +89,9 @@
                       <div v-if="job_meta.key === 'helpersRequired'">
                         <p>Helpers Required: {{ job_meta.value }}</p>
                       </div>
+                      <div v-if="job_meta.key === 'description'">
+                        <p>Note: {{ job_meta.value }}</p>
+                      </div>
                       <div v-if="job_meta.key === 'total'">
                         <h3>Total Price: {{ job_meta.value | currency }}</h3>
                       </div>

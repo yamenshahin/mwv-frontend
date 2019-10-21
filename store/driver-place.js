@@ -51,6 +51,12 @@ export const state = () => ({
     milesDriven: 0,
     jobsBooked: 0
   },
+  driverPlaceLegal: {
+    vehicleRegistration: '',
+    nationalInsuranceNumber: '',
+    drivingLicenceNumber: '',
+    disc: ''
+  },
   driverPlaceFiles: {
     baseUrl: 'http://127.0.0.1:8000/storage',
     placeImageURL: ''
@@ -64,6 +70,9 @@ export const getters = {
   },
   driverPlacePrice(state) {
     return state.driverPlacePrice
+  },
+  driverPlaceLegal(state) {
+    return state.driverPlaceLegal
   },
   driverPlaceFiles(state) {
     return state.driverPlaceFiles
@@ -102,6 +111,10 @@ export const mutations = {
     state.driverPlacePrice[Object.keys(driverPlacePriceFormated)[0]] =
       driverPlacePriceFormated[Object.keys(driverPlacePriceFormated)[0]]
   },
+  SET_DRIVER_PLACE_LEGAL(state, driverPlaceLegal) {
+    state.driverPlaceLegal[Object.keys(driverPlaceLegal)[0]] =
+      driverPlaceLegal[Object.keys(driverPlaceLegal)[0]]
+  },
   SET_DRIVER_PLACE_FILES(state, url) {
     state.driverPlaceFiles.placeImageURL = url
   }
@@ -122,6 +135,9 @@ export const actions = {
 
   setDriverPlacePrice({ commit }, driverPlacePriceFormated) {
     commit('SET_DRIVER_PLACE_PRICE', driverPlacePriceFormated)
+  },
+  setDriverPlaceLegal({ commit }, driverPlaceLegal) {
+    commit('SET_DRIVER_PLACE_LEGAL', driverPlaceLegal)
   },
   setDriverPlaceFiles({ commit }, url) {
     commit('SET_DRIVER_PLACE_FILES', url)

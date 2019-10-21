@@ -8,7 +8,8 @@ const DriverPlace = {
         ...mapGetters({
           driverPlaceLocationObject: 'driver-place/driverPlaceLocation',
           driverPlacePriceObject: 'driver-place/driverPlacePrice',
-          driverPlaceFilesObject: 'driver-place/driverPlaceFiles'
+          driverPlaceFilesObject: 'driver-place/driverPlaceFiles',
+          driverPlaceLegalObject: 'driver-place/driverPlaceLegal'
         })
       }
     })

@@ -3,7 +3,12 @@
     <h1 class="ui-title-page">Quotes Results</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
-    <b-container>
+    <b-container v-if="!Object.keys(places).length">
+      <nuxt-link to="/my-move" class="btn mb-1 btn-secondary btn-block lg">
+        Refine My Quotes
+      </nuxt-link>
+    </b-container>
+    <b-container v-if="Object.keys(places).length">
       <b-row>
         <b-col>
           <nuxt-link to="/my-move" class="btn btn-primary">
@@ -16,6 +21,7 @@
             <b-form-select
               :value="null"
               :options="sorteOptions"
+              @change="sortPlaces"
             ></b-form-select>
           </b-form-group>
         </b-col>
@@ -42,10 +48,7 @@
                       <div class="border-color border-color_default"></div>
                       <div class="driver-desc">
                         <p>
-                          ** I DO NOT TRANSPORT PIANOS ** ** ONLY MOVES 50 MILES
-                          AWAY FROM LONDON ** specialist moving company based in
-                          London, offering fast home and office removals
-                          services.
+                          {{ place.disc }}
                         </p>
                       </div>
                       <b-row>
@@ -55,11 +58,15 @@
                             disabled
                             class="disabled-alt"
                           >
-                            <fa :icon="['fas', 'star']" />
-                            <fa :icon="['fas', 'star']" />
-                            <fa :icon="['fas', 'star']" />
-                            <fa :icon="['fas', 'star']" />
-                            <fa :icon="['fas', 'star-half']" />
+                            <fa
+                              v-for="index in Math.round(place.score)"
+                              :key="index"
+                              :icon="['fas', 'star']"
+                            />
+                            <fa
+                              v-if="Math.round(place.score) < place.score"
+                              :icon="['fas', 'star-half']"
+                            />
                           </b-button>
                           <b-button
                             variant="primary"
@@ -347,6 +354,9 @@ export default {
         })
       await this.$store.dispatch('checkout/setCheckout', response.data)
       this.$router.push('/checkout')
+    },
+    async sortPlaces(sortOrder) {
+      await this.$store.dispatch('search-result/sortSearchResult', sortOrder)
     }
   }
 }
