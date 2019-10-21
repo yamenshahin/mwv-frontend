@@ -55,6 +55,8 @@ export default {
     '~plugins/mixins/search-result.js',
     // The plugin used to store and getting customer jobs
     '~plugins/mixins/customer-jobs.js',
+    // The plugin used to store and getting driver jobs
+    '~plugins/mixins/driver-jobs.js',
     // The plugin is google map place object related which get Driver Place object
     '~plugins/mixins/driver-place.js',
     // Google Map API https://github.com/xkjyeah/vue-google-maps

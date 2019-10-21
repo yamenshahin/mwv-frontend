@@ -12,14 +12,28 @@
 <script>
 import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   components: {
+    EmptySpace,
     FullCalendar // make the <FullCalendar> tag available
   },
   data() {
     return {
       calendarPlugins: [dayGridPlugin]
     }
+  },
+  async mounted() {
+    const response = await this.$axios
+      .$get('/driver/jobs')
+      .then(function(response) {
+        // handle success
+        return response
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+    this.$store.dispatch('driver-jobs/setDriverJobs', response.data)
   }
 }
 </script>
