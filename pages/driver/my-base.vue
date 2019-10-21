@@ -16,15 +16,26 @@
                         <h2 class="ui-title-block">Your Professional Info</h2>
                         <div class="border-color border-color_default"></div>
                       </div>
+                      <b-form-group
+                        label="Describe your service"
+                        description="150 characters max"
+                      >
+                        <b-form-textarea
+                          type="text"
+                          :value="driverPlaceLegalObject.disc"
+                          required
+                          maxlength="150"
+                          @input="setDriverPlaceLegal($event, 'disc')"
+                        ></b-form-textarea>
+                      </b-form-group>
 
                       <b-form-group label="Vehicle registration">
                         <b-form-input
                           type="text"
-                          :value="
-                            driverPlacePriceObject.nationalInsuranceNumber
-                          "
+                          :value="driverPlaceLegalObject.vehicleRegistration"
+                          required
                           @input="
-                            setDriverPlacePrice($event, 'vehicleRegistration')
+                            setDriverPlaceLegal($event, 'vehicleRegistration')
                           "
                         ></b-form-input>
                       </b-form-group>
@@ -33,10 +44,11 @@
                         <b-form-input
                           type="text"
                           :value="
-                            driverPlacePriceObject.nationalInsuranceNumber
+                            driverPlaceLegalObject.nationalInsuranceNumber
                           "
+                          required
                           @input="
-                            setDriverPlacePrice(
+                            setDriverPlaceLegal(
                               $event,
                               'nationalInsuranceNumber'
                             )
@@ -47,9 +59,10 @@
                       <b-form-group label="Driving licence number">
                         <b-form-input
                           type="text"
-                          :value="driverPlacePriceObject.drivingLicenceNumber"
+                          :value="driverPlaceLegalObject.drivingLicenceNumber"
+                          required
                           @input="
-                            setDriverPlacePrice($event, 'drivingLicenceNumber')
+                            setDriverPlaceLegal($event, 'drivingLicenceNumber')
                           "
                         ></b-form-input>
                       </b-form-group>
@@ -811,12 +824,29 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
-      const entries = Object.entries(responseDataPrice.data)
+      let entries = Object.entries(responseDataPrice.data)
       for (let i = 0; i < entries.length; i++) {
         const metaObject = {
           [entries[i][0]]: entries[i][1]
         }
         this.$store.dispatch('driver-place/setDriverPlacePrice', metaObject)
+      }
+
+      const responseDataLegal = await this.$axios
+        .get('/driver/get-legal')
+        .then(function(response) {
+          // handle success
+          return response.data
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      entries = Object.entries(responseDataLegal.data)
+      for (let i = 0; i < entries.length; i++) {
+        const metaObject = {
+          [entries[i][0]]: entries[i][1]
+        }
+        this.$store.dispatch('driver-place/setDriverPlaceLegal', metaObject)
       }
 
       // TODO: handle case where no id
@@ -868,7 +898,27 @@ export default {
       }
       await this.$store.dispatch('driver-place/setDriverPlacePrice', metaObject)
     },
+    async setDriverPlaceLegal(event, stateName) {
+      const metaObject = {
+        [stateName]: event
+      }
+      await this.$store.dispatch('driver-place/setDriverPlaceLegal', metaObject)
+    },
     async onSubmit() {
+      const responseDataLegal = await this.$axios
+        .post('/driver/create-update-legal', this.driverPlaceLegalObject)
+        .then(function(response) {
+          // handle success
+          return response.data.data
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      await this.$store.dispatch(
+        'driver-place/setDriverPlaceLegal',
+        responseDataLegal
+      )
+
       const responseDataPrice = await this.$axios
         .post('/driver/create-update-price', this.driverPlacePriceObject)
         .then(function(response) {
