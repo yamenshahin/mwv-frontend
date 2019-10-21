@@ -98,9 +98,6 @@
               <em>My Account</em>
             </template>
             <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
-            <nuxt-link to="/profile" class="dropdown-item" role="menuitem">
-              Profile
-            </nuxt-link>
             <b-dropdown-item @click.prevent="logout">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
