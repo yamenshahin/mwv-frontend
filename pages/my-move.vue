@@ -371,6 +371,18 @@ export default {
   components: {
     EmptySpace
   },
+  head() {
+    return {
+      title: 'My Move',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My Move description'
+        }
+      ]
+    }
+  },
   data() {
     return {
       vanSizeComputed: null,

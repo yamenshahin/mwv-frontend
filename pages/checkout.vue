@@ -81,6 +81,18 @@ export default {
     AppCheckout,
     EmptySpace
   },
+  head() {
+    return {
+      title: 'Checkout',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Checkout description'
+        }
+      ]
+    }
+  },
   data() {
     return {
       success: false

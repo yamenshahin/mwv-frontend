@@ -798,6 +798,18 @@ export default {
   components: {
     EmptySpace
   },
+  head() {
+    return {
+      title: 'My Base',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My Base description'
+        }
+      ]
+    }
+  },
   data() {
     return {
       showMap: true,

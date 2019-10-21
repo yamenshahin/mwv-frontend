@@ -13,6 +13,18 @@ export default {
   middleware: ['guest'],
   components: {
     RegisterForm
+  },
+  head() {
+    return {
+      title: 'Register',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Register description'
+        }
+      ]
+    }
   }
 }
 </script>

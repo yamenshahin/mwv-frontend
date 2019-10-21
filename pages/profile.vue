@@ -6,6 +6,18 @@
 
 <script>
 export default {
-  middleware: ['auth']
+  middleware: ['auth'],
+  head() {
+    return {
+      title: 'Checkout',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Profile description'
+        }
+      ]
+    }
+  }
 }
 </script>

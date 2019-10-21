@@ -315,6 +315,18 @@ export default {
   components: {
     EmptySpace
   },
+  head() {
+    return {
+      title: 'Quotes Results',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Quotes Results description'
+        }
+      ]
+    }
+  },
   data() {
     return {
       places: {},

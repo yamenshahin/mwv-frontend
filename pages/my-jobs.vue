@@ -1,6 +1,6 @@
 <template>
   <div class="page-my-jobs section-no-bg">
-    <h1 class="ui-title-page">My Move</h1>
+    <h1 class="ui-title-page">My Jobs</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
     <b-container>
@@ -112,6 +112,18 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   components: {
     EmptySpace
+  },
+  head() {
+    return {
+      title: 'My Jobs',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My Jobs description'
+        }
+      ]
+    }
   },
   data() {
     return {}
