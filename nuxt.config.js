@@ -78,6 +78,8 @@ export default {
     '~plugins/media-query.js',
     // https://github.com/cretueusebiu/vform
     '~plugins/vform.js',
+    //https://github.com/fullcalendar/fullcalendar-vue/issues/5
+    { ssr: false, src: '~/plugins/full-calendar'  },
   ],
   /*
    ** Nuxt.js dev-modules

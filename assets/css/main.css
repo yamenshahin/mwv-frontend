@@ -395,7 +395,8 @@ triagl, btn, form-control, border-color, custom-select, ui-title-page
   margin: 50px 0 !important;
 }
 .border-color_default {
-	width: 370px;
+    width: 100%;
+    max-width: 338px;
 }
 .border-color_default:after {
 	margin-left: 0;
