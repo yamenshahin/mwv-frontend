@@ -134,7 +134,7 @@ export default {
     }
   }, 
   auth: {
-    plugins: ['~/plugins/auth.js'],
+    //plugins: ['~/plugins/auth.js'],
     strategies: {
       local: {
         endpoints: {
@@ -144,11 +144,11 @@ export default {
         },
       }
     },
-    redirect: {
+    /* redirect: {
       login: '/login',
       home: '/driver/my-base',
       logout: '/login'
-    }
+    } */
   },
   /*
    ** Build configuration
