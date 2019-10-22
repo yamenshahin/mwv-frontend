@@ -7,11 +7,14 @@
       <div v-if="!Object.keys(customerJobsObject).length">
         <b-row>
           <b-col>
+            <b-alert show variant="warning" class="text-center">
+              <h2>You don't have any job</h2>
+            </b-alert>
             <nuxt-link
               to="/my-move"
               class="btn mb-1 btn-secondary btn-block lg"
             >
-              You don't have any job
+              Refine My Quotes
             </nuxt-link>
           </b-col>
         </b-row>

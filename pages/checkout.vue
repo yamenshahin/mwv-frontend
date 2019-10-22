@@ -52,12 +52,11 @@
         v-else-if="checkoutObject.driver.name === '' && success === false"
         class="empty"
       >
-        <nuxt-link
-          exact
-          to="/my-move"
-          class="btn mb-1 btn-secondary btn-block lg"
-        >
-          Your have no moving
+        <b-alert show variant="warning" class="text-center">
+          <h2>You have no moves</h2>
+        </b-alert>
+        <nuxt-link to="/my-move" class="btn mb-1 btn-secondary btn-block lg">
+          Refine My Quotes
         </nuxt-link>
       </div>
 
