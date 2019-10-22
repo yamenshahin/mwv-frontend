@@ -88,6 +88,8 @@ export default {
     '~plugins/vform.js',
     //https://github.com/fullcalendar/fullcalendar-vue/issues/5
     { ssr: false, src: '~/plugins/full-calendar'  },
+    // Get all places (id, lat, lng) used for area we cover
+    '~plugins/mixins/area.js',
   ],
   /*
    ** Nuxt.js dev-modules
