@@ -4,6 +4,18 @@
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
     <b-container>
+      <div v-if="!Object.keys(customerJobsObject).length">
+        <b-row>
+          <b-col>
+            <nuxt-link
+              to="/my-move"
+              class="btn mb-1 btn-secondary btn-block lg"
+            >
+              You don't have any job
+            </nuxt-link>
+          </b-col>
+        </b-row>
+      </div>
       <div v-if="Object.keys(customerJobsObject).length">
         <b-row v-for="job in customerJobsObject" :key="job.id">
           <b-col>
