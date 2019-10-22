@@ -14,6 +14,18 @@ export default {
   middleware: ['guest'],
   components: {
     RegisterFormDriver
+  },
+  head() {
+    return {
+      title: 'Join',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Join description'
+        }
+      ]
+    }
   }
 }
 </script>

@@ -1,9 +1,24 @@
 <template>
   <div class="page-my-jobs section-no-bg">
-    <h1 class="ui-title-page">My Move</h1>
+    <h1 class="ui-title-page">My Jobs</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
     <b-container>
+      <div v-if="!Object.keys(customerJobsObject).length">
+        <b-row>
+          <b-col>
+            <b-alert show variant="warning" class="text-center">
+              <h2>You don't have any job</h2>
+            </b-alert>
+            <nuxt-link
+              to="/my-move"
+              class="btn mb-1 btn-secondary btn-block lg"
+            >
+              Refine My Quotes
+            </nuxt-link>
+          </b-col>
+        </b-row>
+      </div>
       <div v-if="Object.keys(customerJobsObject).length">
         <b-row v-for="job in customerJobsObject" :key="job.id">
           <b-col>
@@ -112,6 +127,18 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   components: {
     EmptySpace
+  },
+  head() {
+    return {
+      title: 'My Jobs',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'My Jobs description'
+        }
+      ]
+    }
   },
   data() {
     return {}

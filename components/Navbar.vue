@@ -14,12 +14,18 @@
             Home
           </nuxt-link>
           <nuxt-link to="/my-move" class="nav-link" role="menuitem" exact>
-            My Move
+            Move
           </nuxt-link>
           <nuxt-link to="/my-quotes" class="nav-link" role="menuitem" exact>
-            My Quotes
+            Quotes
           </nuxt-link>
-          <nuxt-link to="/checkout" class="nav-link" role="menuitem" exact>
+          <nuxt-link
+            v-if="authenticated"
+            to="/checkout"
+            class="nav-link"
+            role="menuitem"
+            exact
+          >
             Checkout
           </nuxt-link>
           <nuxt-link
@@ -29,7 +35,10 @@
             role="menuitem"
             exact
           >
-            My Jobs
+            Jobs
+          </nuxt-link>
+          <nuxt-link to="/area-we-cover" class="nav-link" role="menuitem" exact>
+            Area We Cover
           </nuxt-link>
           <!-- Driver nav items -->
           <span v-if="authenticated">
@@ -38,7 +47,7 @@
               href="#"
               @click.prevent="setRole('driver')"
             >
-              Join Our Drivers
+              Join Us
             </b-nav-item>
           </span>
 
@@ -49,30 +58,31 @@
             role="menuitem"
             exact
           >
-            Join Our Drivers
+            Join Us
           </nuxt-link>
           <span v-if="authenticated">
-            <nuxt-link
-              v-if="user.role === 'driver'"
-              to="/driver/my-base"
-              class="nav-link"
-              role="menuitem"
-              exact
-            >
-              My Base
-            </nuxt-link>
-          </span>
-
-          <span v-if="authenticated">
-            <nuxt-link
-              v-if="user.role === 'driver'"
-              to="/driver/jobs"
-              class="nav-link"
-              role="menuitem"
-              exact
-            >
-              Driver Jobs
-            </nuxt-link>
+            <b-nav-item-dropdown v-if="user.role === 'driver'" right>
+              <!-- Using 'button-content' slot -->
+              <template slot="button-content">
+                <em>Driver</em>
+              </template>
+              <nuxt-link
+                to="/driver/my-base"
+                class="nav-link"
+                role="menuitem"
+                exact
+              >
+                My Base
+              </nuxt-link>
+              <nuxt-link
+                to="/driver/jobs"
+                class="nav-link"
+                role="menuitem"
+                exact
+              >
+                Driver Jobs
+              </nuxt-link>
+            </b-nav-item-dropdown>
           </span>
 
           <nuxt-link
@@ -98,9 +108,6 @@
               <em>My Account</em>
             </template>
             <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
-            <nuxt-link to="/profile" class="dropdown-item" role="menuitem">
-              Profile
-            </nuxt-link>
             <b-dropdown-item @click.prevent="logout">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>

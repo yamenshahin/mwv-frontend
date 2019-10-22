@@ -13,6 +13,18 @@ export default {
   middleware: ['guest'],
   components: {
     LoginForm
+  },
+  head() {
+    return {
+      title: 'Login',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Login description'
+        }
+      ]
+    }
   }
 }
 </script>

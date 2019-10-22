@@ -136,6 +136,18 @@ if (process.browser) {
 }
 export default {
   components,
+  head() {
+    return {
+      title: 'Jobs',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Jobs description'
+        }
+      ]
+    }
+  },
   data() {
     return {
       events: []

@@ -3,12 +3,15 @@
     <h1 class="ui-title-page">Quotes Results</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
-    <b-container v-if="!Object.keys(places).length">
+    <b-container v-if="searchResultObject.data.length === 0">
+      <b-alert show variant="warning" class="text-center">
+        <h2>We didn't find any quotes for you!</h2>
+      </b-alert>
       <nuxt-link to="/my-move" class="btn mb-1 btn-secondary btn-block lg">
         Refine My Quotes
       </nuxt-link>
     </b-container>
-    <b-container v-if="Object.keys(places).length">
+    <b-container v-if="searchResultObject.data.length !== 0">
       <b-row>
         <b-col>
           <nuxt-link to="/my-move" class="btn btn-primary">
@@ -26,7 +29,11 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <div v-for="(place, index) in places" :key="index" class="search-results">
+      <div
+        v-for="(place, index) in searchResultObject.data"
+        :key="index"
+        class="search-results"
+      >
         <div class="card mt-3">
           <div class="card-body section_mod-2">
             <div class="desktop d-none d-md-block">
@@ -315,9 +322,20 @@ export default {
   components: {
     EmptySpace
   },
+  head() {
+    return {
+      title: 'Quotes Results',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Quotes Results description'
+        }
+      ]
+    }
+  },
   data() {
     return {
-      places: {},
       jobMeta: {},
       sorteOptions: [
         { text: 'Sort My Quotes', value: null },
