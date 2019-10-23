@@ -121,6 +121,7 @@
                       <b-row>
                         <b-col>
                           <b-button
+                            v-if="authenticated"
                             variant="dark"
                             block
                             class="lg mb-1"
@@ -129,6 +130,14 @@
                             <fa :icon="['fas', 'calendar-check']" />
                             Book Now
                           </b-button>
+                          <nuxt-link
+                            v-if="!authenticated"
+                            to="/register"
+                            class="btn lg mb-1 btn-dark btn-block"
+                          >
+                            <fa :icon="['fas', 'calendar-check']" />
+                            Register To Book Now
+                          </nuxt-link>
                         </b-col>
                       </b-row>
                       <b-row>
@@ -167,10 +176,23 @@
                 <b-col cols="10">
                   <b-row>
                     <b-col>
-                      <b-button variant="dark" block class="lg mb-1">
+                      <b-button
+                        v-if="authenticated"
+                        variant="dark"
+                        block
+                        class="lg mb-1"
+                      >
                         <fa :icon="['fas', 'calendar-check']" />
                         Book Now
                       </b-button>
+                      <nuxt-link
+                        v-if="!authenticated"
+                        to="/register"
+                        class="btn lg mb-1 btn-dark btn-block"
+                      >
+                        <fa :icon="['fas', 'calendar-check']" />
+                        Register To Book Now
+                      </nuxt-link>
                       <div class="text-right">
                         <h3>Total £50.44</h3>
                         <p>Includes VAT &amp; booking fee</p>
