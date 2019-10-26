@@ -29,6 +29,7 @@
 
       <b-button type="submit" variant="primary">Login</b-button>
     </b-form>
+    <span v-else></span>
   </div>
 </template>
 

@@ -58,7 +58,7 @@ export const state = () => ({
     disc: ''
   },
   driverPlaceFiles: {
-    baseUrl: 'http://127.0.0.1:8000/storage',
+    baseUrl: 'https://hellovans-files.s3.eu-west-2.amazonaws.com/',
     placeImageURL: ''
   }
 })

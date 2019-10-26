@@ -965,9 +965,10 @@ export default {
       console.log(this.file)
       const formData = new FormData()
       formData.append('file', this.file)
-      formData.append('_method', 'PUT')
+      formData.append('key', 'places')
+      //formData.append('_method', 'PUT')
       const responseDataFiles = await this.$axios
-        .$post('/files/user-file/' + 'places/', formData)
+        .$post('/files/user-file', formData)
         .then(function(response) {
           // handle success
           return response.data
