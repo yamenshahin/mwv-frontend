@@ -141,13 +141,15 @@
                     <b-row>
                       <b-col md>
                         <b-form-group>
-                          <gmap-autocomplete
-                            class="form-control"
-                            placeholder="Collection Address"
-                            :value="collectionPlaceObject.address"
-                            required
-                            @place_changed="setCollectionPlace"
-                          ></gmap-autocomplete>
+                          <no-ssr>
+                            <gmap-autocomplete
+                              class="form-control"
+                              placeholder="Collection Address"
+                              :value="collectionPlaceObject.address"
+                              required
+                              @place_changed="setCollectionPlace"
+                            ></gmap-autocomplete>
+                          </no-ssr>
                         </b-form-group>
                       </b-col>
                       <b-col md>
@@ -165,13 +167,15 @@
                     <b-row>
                       <b-col md>
                         <b-form-group>
-                          <gmap-autocomplete
-                            class="form-control"
-                            placeholder="Delivery Address"
-                            :value="deliveryPlaceObject.address"
-                            required
-                            @place_changed="setDeliveryPlace"
-                          ></gmap-autocomplete>
+                          <no-ssr>
+                            <gmap-autocomplete
+                              class="form-control"
+                              placeholder="Delivery Address"
+                              :value="deliveryPlaceObject.address"
+                              required
+                              @place_changed="setDeliveryPlace"
+                            ></gmap-autocomplete>
+                          </no-ssr>
                         </b-form-group>
                       </b-col>
                       <b-col md>
@@ -199,14 +203,17 @@
                       <b-row>
                         <b-col md>
                           <div class="input-group mb-3">
-                            <gmap-autocomplete
-                              :value="wayPointPlacesObject[index].address"
-                              class="form-control"
-                              placeholder="Waypoint Address"
-                              required
-                              @click="setCurrentWayPointIndex(index)"
-                              @place_changed="setWayPointPlace"
-                            ></gmap-autocomplete>
+                            <no-ssr>
+                              <gmap-autocomplete
+                                :value="wayPointPlacesObject[index].address"
+                                class="form-control"
+                                placeholder="Waypoint Address"
+                                required
+                                @click="setCurrentWayPointIndex(index)"
+                                @place_changed="setWayPointPlace"
+                              ></gmap-autocomplete>
+                            </no-ssr>
+
                             <div
                               v-if="wayPointPlacesObject.length - 1 == index"
                               class="input-group-append"
@@ -246,14 +253,16 @@
                       Check Direction
                     </b-button>
                     <!-- Map -->
-                    <gmap-map
-                      v-show="showMap"
-                      ref="mapDir"
-                      class="mt-2"
-                      :center="center"
-                      :zoom="15"
-                      style="width: 100%; height: 300px"
-                    ></gmap-map>
+                    <no-ssr>
+                      <gmap-map
+                        v-show="showMap"
+                        ref="mapDir"
+                        class="mt-2"
+                        :center="center"
+                        :zoom="15"
+                        style="width: 100%; height: 300px"
+                      ></gmap-map>
+                    </no-ssr>
                   </b-col>
                 </b-row>
               </div>

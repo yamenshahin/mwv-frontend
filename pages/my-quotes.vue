@@ -11,7 +11,7 @@
         Refine My Quotes
       </nuxt-link>
     </b-container>
-    <b-container v-if="searchResultObject.data.length !== 0">
+    <b-container v-if="searchResultObject.data.length !== 0" class="mt-3">
       <b-row>
         <b-col>
           <nuxt-link to="/my-move" class="btn btn-primary">
