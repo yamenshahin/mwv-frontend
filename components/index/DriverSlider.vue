@@ -1,36 +1,40 @@
 <template>
   <div class="main-driver-banner">
-    <div v-if="authenticated">
-      <div v-if="user.role === 'driver'">
-        <div class="section_banner">
-          <b-container>
-            <b-row>
-              <b-col>
-                <div class="mt-50"></div>
-                <div class="banner">
-                  <div class="banner__inner">
-                    <h2 class="ui-subtitle-block">
-                      To Get More Jobs Set Your Base Information Now
-                    </h2>
-                    <p>
-                      By setting you base information senectus sed neus eft
-                      malesuada fames ac turpis egest as Aenean non tell
-                    </p>
+    <no-ssr>
+      <div v-if="authenticated">
+        <div v-if="user.role === 'driver'">
+          <div class="section_banner">
+            <b-container>
+              <b-row>
+                <b-col>
+                  <div class="mt-50"></div>
+                  <div class="banner">
+                    <div class="banner__inner">
+                      <h2 class="ui-subtitle-block">
+                        To Get More Jobs Set Your Base Information Now
+                      </h2>
+                      <p>
+                        By setting you base information senectus sed neus eft
+                        malesuada fames ac turpis egest as Aenean non tell
+                      </p>
+                    </div>
+                    <nuxt-link
+                      to="/driver/my-base"
+                      class="btn btn-secondary mb-1"
+                    >
+                      Set Your Base Information
+                    </nuxt-link>
                   </div>
-                  <nuxt-link
-                    to="/driver/my-base"
-                    class="btn btn-secondary mb-1"
-                  >
-                    Set Your Base Information
-                  </nuxt-link>
-                </div>
-                <div class="mt-50"></div>
-              </b-col>
-            </b-row>
-          </b-container>
+                  <div class="mt-50"></div>
+                </b-col>
+              </b-row>
+            </b-container>
+          </div>
         </div>
+        <span v-else></span>
       </div>
-    </div>
+      <span v-else></span>
+    </no-ssr>
   </div>
 </template>
 <script>

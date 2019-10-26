@@ -1,7 +1,42 @@
 <template>
   <div class="main-driver-banner">
-    <div v-if="authenticated">
-      <div v-if="user.role !== 'driver'">
+    <no-ssr>
+      <div v-if="authenticated">
+        <div v-if="user.role !== 'driver'">
+          <div class="section_banner">
+            <b-container>
+              <b-row>
+                <b-col>
+                  <div class="mt-50"></div>
+                  <div class="banner">
+                    <div class="banner__inner">
+                      <h2 class="ui-subtitle-block">
+                        ARE YOU AN EXCELLENT DRIVER?
+                      </h2>
+                      <p>
+                        Pellentesque habitant morbi tristique senectus sed neus
+                        eft malesuada fames ac turpis egest as Aenean non tell
+                      </p>
+                    </div>
+                    <a
+                      href="#"
+                      class="btn btn-secondary mb-1"
+                      @click.prevent="setRole('driver')"
+                    >
+                      Apply As A Driver Now
+                    </a>
+                  </div>
+                  <div class="mt-50"></div>
+                </b-col>
+              </b-row>
+            </b-container>
+          </div>
+        </div>
+      </div>
+      <span v-else></span>
+    </no-ssr>
+    <no-ssr>
+      <div v-if="!authenticated">
         <div class="section_banner">
           <b-container>
             <b-row>
@@ -17,13 +52,13 @@
                       eft malesuada fames ac turpis egest as Aenean non tell
                     </p>
                   </div>
-                  <a
-                    href="#"
+                  <nuxt-link
+                    to="/driver/join"
                     class="btn btn-secondary mb-1"
-                    @click.prevent="setRole('driver')"
+                    exact
                   >
                     Apply As A Driver Now
-                  </a>
+                  </nuxt-link>
                 </div>
                 <div class="mt-50"></div>
               </b-col>
@@ -31,38 +66,8 @@
           </b-container>
         </div>
       </div>
-    </div>
-
-    <div v-if="!authenticated">
-      <div class="section_banner">
-        <b-container>
-          <b-row>
-            <b-col>
-              <div class="mt-50"></div>
-              <div class="banner">
-                <div class="banner__inner">
-                  <h2 class="ui-subtitle-block">
-                    ARE YOU AN EXCELLENT DRIVER?
-                  </h2>
-                  <p>
-                    Pellentesque habitant morbi tristique senectus sed neus eft
-                    malesuada fames ac turpis egest as Aenean non tell
-                  </p>
-                </div>
-                <nuxt-link
-                  to="/driver/join"
-                  class="btn btn-secondary mb-1"
-                  exact
-                >
-                  Apply As A Driver Now
-                </nuxt-link>
-              </div>
-              <div class="mt-50"></div>
-            </b-col>
-          </b-row>
-        </b-container>
-      </div>
-    </div>
+      <span v-else></span>
+    </no-ssr>
   </div>
 </template>
 <script>

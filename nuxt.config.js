@@ -135,14 +135,14 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://127.0.0.1:8000/api/',
+    baseURL: 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com/api/',
     //credentials: false
     //proxy: true,
     //https: true
   },
   proxy: {
     '/api/': {
-      target: 'http://127.0.0.1:8000'
+      target: 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com'
     }
   }, 
   auth: {

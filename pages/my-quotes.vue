@@ -40,7 +40,7 @@
               <b-row>
                 <b-col cols="2">
                   <img
-                    src="http://127.0.0.1:8000/storage/user-files/2019/10/nafW5WbwHWsvUI3aBn4KgYVwVSlSpz9JqmGEGCGL.png"
+                    :src="driverPlaceFilesObject.baseUrl + place.placeFile.url"
                     alt="place-image"
                     class="img-fluid"
                   />

@@ -77,6 +77,7 @@
       />
       <b-button type="submit" variant="primary">Register</b-button>
     </b-form>
+    <span v-else></span>
   </div>
 </template>
 

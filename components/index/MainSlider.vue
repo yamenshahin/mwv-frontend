@@ -4,20 +4,20 @@
       <b-row>
         <b-col>
           <b-container>
-            <form>
-              <b-row>
-                <b-col md>
-                  <div class="slide-title">
-                    We Provide You With
-                    <strong>A Smarter Way To Move</strong>
-                  </div>
-                  <div
-                    v-for="addressItem in addressItems"
-                    :key="addressItem.index"
-                  >
-                    <div v-if="addressItem.name === 'Collection'">
-                      <b-form-group>
-                        <no-ssr>
+            <no-ssr>
+              <form>
+                <b-row>
+                  <b-col md>
+                    <div class="slide-title">
+                      We Provide You With
+                      <strong>A Smarter Way To Move</strong>
+                    </div>
+                    <div
+                      v-for="addressItem in addressItems"
+                      :key="addressItem.index"
+                    >
+                      <div v-if="addressItem.name === 'Collection'">
+                        <b-form-group>
                           <gmap-autocomplete
                             class="form-control"
                             placeholder="Collection Address"
@@ -25,13 +25,11 @@
                             required
                             @place_changed="setCollectionPlace"
                           ></gmap-autocomplete>
-                        </no-ssr>
-                      </b-form-group>
-                    </div>
+                        </b-form-group>
+                      </div>
 
-                    <div v-if="addressItem.name === 'Delivery'">
-                      <b-form-group>
-                        <no-ssr>
+                      <div v-if="addressItem.name === 'Delivery'">
+                        <b-form-group>
                           <gmap-autocomplete
                             class="form-control"
                             placeholder="Delivery Address"
@@ -39,82 +37,81 @@
                             required
                             @place_changed="setDeliveryPlace"
                           ></gmap-autocomplete>
-                        </no-ssr>
-                      </b-form-group>
-                    </div>
-                  </div>
-                  <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
-                    +
-                    <fa :icon="['fas', 'map-marker-alt']" />
-                    Add Waypoint
-                  </b-button>
-                  <div
-                    v-for="(wayPointPlacesObjectSingle,
-                    index) in wayPointPlacesObject"
-                    :key="index"
-                  >
-                    <div class="input-group mb-3">
-                      <gmap-autocomplete
-                        :value="wayPointPlacesObject[index].address"
-                        class="form-control"
-                        placeholder="Way Point Address"
-                        @click="setCurrentWayPointIndex(index)"
-                        @place_changed="setWayPointPlace"
-                      ></gmap-autocomplete>
-
-                      <div
-                        v-if="wayPointPlacesObject.length - 1 == index"
-                        class="input-group-append"
-                      >
-                        <span
-                          class="input-group-text bg-danger color-white"
-                          @click.prevent="deleteWayPoint(index)"
-                        >
-                          X
-                        </span>
+                        </b-form-group>
                       </div>
                     </div>
-                  </div>
-                </b-col>
-                <b-col md>
-                  <b-button
-                    v-if="
-                      !collectionPlaceObject.address ||
-                        !deliveryPlaceObject.address
-                    "
-                    v-b-tooltip.hover
-                    type="submit"
-                    size="lg"
-                    title="Please select a valid collection and delivery address"
-                    class="mb-1"
-                  >
-                    <fa :icon="['fas', 'shipping-fast']" />
-                    GET FREE QUOTES
-                  </b-button>
-                  <nuxt-link
-                    v-if="
-                      collectionPlaceObject.address &&
-                        deliveryPlaceObject.address
-                    "
-                    to="/my-move"
-                    class="btn btn-secondary mb-1"
-                  >
-                    <fa :icon="['fas', 'shipping-fast']" />
-                    Get Free Quotes
-                  </nuxt-link>
-                  <b-button
-                    v-if="
-                      collectionPlaceObject.address &&
-                        deliveryPlaceObject.address
-                    "
-                    variant="primary"
-                    class="mb-1"
-                    @click="getDirection"
-                  >
-                    <fa :icon="['fas', 'route']" />
-                    Check Direction
-                  </b-button>
-                  <no-ssr>
+                    <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+                      +
+                      <fa :icon="['fas', 'map-marker-alt']" />
+                      Add Waypoint
+                    </b-button>
+                    <div
+                      v-for="(wayPointPlacesObjectSingle,
+                      index) in wayPointPlacesObject"
+                      :key="index"
+                    >
+                      <div class="input-group mb-3">
+                        <gmap-autocomplete
+                          :value="wayPointPlacesObject[index].address"
+                          class="form-control"
+                          placeholder="Way Point Address"
+                          @click="setCurrentWayPointIndex(index)"
+                          @place_changed="setWayPointPlace"
+                        ></gmap-autocomplete>
+
+                        <div
+                          v-if="wayPointPlacesObject.length - 1 == index"
+                          class="input-group-append"
+                        >
+                          <span
+                            class="input-group-text bg-danger color-white"
+                            @click.prevent="deleteWayPoint(index)"
+                          >
+                            X
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </b-col>
+                  <b-col md>
+                    <b-button
+                      v-if="
+                        !collectionPlaceObject.address ||
+                          !deliveryPlaceObject.address
+                      "
+                      v-b-tooltip.hover
+                      type="submit"
+                      size="lg"
+                      title="Please select a valid collection and delivery address"
+                      class="mb-1"
+                    >
+                      <fa :icon="['fas', 'shipping-fast']" />
+                      GET FREE QUOTES
+                    </b-button>
+                    <nuxt-link
+                      v-if="
+                        collectionPlaceObject.address &&
+                          deliveryPlaceObject.address
+                      "
+                      to="/my-move"
+                      class="btn btn-secondary mb-1"
+                    >
+                      <fa :icon="['fas', 'shipping-fast']" />
+                      Get Free Quotes
+                    </nuxt-link>
+                    <b-button
+                      v-if="
+                        collectionPlaceObject.address &&
+                          deliveryPlaceObject.address
+                      "
+                      variant="primary"
+                      class="mb-1"
+                      @click="getDirection"
+                    >
+                      <fa :icon="['fas', 'route']" />
+                      Check Direction
+                    </b-button>
+
                     <!-- Map -->
                     <gmap-map
                       v-show="showMap"
@@ -126,10 +123,10 @@
                     >
                       <span></span>
                     </gmap-map>
-                  </no-ssr>
-                </b-col>
-              </b-row>
-            </form>
+                  </b-col>
+                </b-row>
+              </form>
+            </no-ssr>
           </b-container>
         </b-col>
       </b-row>
