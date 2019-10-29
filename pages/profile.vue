@@ -122,14 +122,18 @@ export default {
   },
   methods: {
     async onSubmit() {
-      await this.form
+      const newUser = await this.form
         .post('user/update')
         .then(function(response) {
           // handle success
-          console.log(response)
-          this.$store.dispatch('auth/updateUser', response.data)
+          console.log(response.data.data)
+          return response.data.data
         })
         .catch(() => {})
+      // this.$store.dispatch('auth/updateUser', newUser)
+      if (typeof newUser !== 'undefined') {
+        this.$store.dispatch('auth/updateUser', newUser)
+      }
     }
   }
 }
