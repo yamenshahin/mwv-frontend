@@ -88,6 +88,9 @@
                 >
                   Driver Jobs
                 </nuxt-link>
+                <nuxt-link to="/profile" class="nav-link" role="menuitem" exact>
+                  Profile
+                </nuxt-link>
               </b-nav-item-dropdown>
             </span>
             <span v-else></span>
@@ -114,10 +117,17 @@
               <template slot="button-content">
                 <em>My Account</em>
               </template>
-              <b-dropdown-item href="#">{{ user.name }}</b-dropdown-item>
-              <b-dropdown-item @click.prevent="logout">
+              <nuxt-link to="/profile" class="nav-link" role="menuitem" exact>
+                {{ user.name }}
+              </nuxt-link>
+              <a
+                href="#"
+                class="nav-link"
+                role="menuitem"
+                @click.prevent="logout"
+              >
                 Sign Out
-              </b-dropdown-item>
+              </a>
             </b-nav-item-dropdown>
             <span v-else></span>
           </b-navbar-nav>
@@ -137,7 +147,7 @@ export default {
     async setRole(role) {
       console.log(role)
       await this.$axios
-        .post('/set-role', {
+        .post('user/set-role', {
           role
         })
         .then(function(response) {
