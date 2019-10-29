@@ -12,34 +12,17 @@
                       We Provide You With
                       <strong>A Smarter Way To Move</strong>
                     </div>
-                    <div
-                      v-for="addressItem in addressItems"
-                      :key="addressItem.index"
-                    >
-                      <div v-if="addressItem.name === 'Collection'">
-                        <b-form-group>
-                          <gmap-autocomplete
-                            class="form-control"
-                            placeholder="Collection Address"
-                            :value="collectionPlaceObject.address"
-                            required
-                            @place_changed="setCollectionPlace"
-                          ></gmap-autocomplete>
-                        </b-form-group>
-                      </div>
 
-                      <div v-if="addressItem.name === 'Delivery'">
-                        <b-form-group>
-                          <gmap-autocomplete
-                            class="form-control"
-                            placeholder="Delivery Address"
-                            :value="deliveryPlaceObject.address"
-                            required
-                            @place_changed="setDeliveryPlace"
-                          ></gmap-autocomplete>
-                        </b-form-group>
-                      </div>
-                    </div>
+                    <b-form-group>
+                      <gmap-autocomplete
+                        class="form-control main-address"
+                        placeholder="Collection Address"
+                        :value="collectionPlaceObject.address"
+                        required
+                        @place_changed="setCollectionPlace"
+                      ></gmap-autocomplete>
+                    </b-form-group>
+
                     <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
                       +
                       <fa :icon="['fas', 'map-marker-alt']" />
@@ -72,6 +55,16 @@
                         </div>
                       </div>
                     </div>
+
+                    <b-form-group>
+                      <gmap-autocomplete
+                        class="form-control main-address"
+                        placeholder="Delivery Address"
+                        :value="deliveryPlaceObject.address"
+                        required
+                        @place_changed="setDeliveryPlace"
+                      ></gmap-autocomplete>
+                    </b-form-group>
                   </b-col>
                   <b-col md>
                     <b-button
