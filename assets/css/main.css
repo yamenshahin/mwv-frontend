@@ -905,3 +905,28 @@ list-scheme
 .banner_mod-b .ui-subtitle-block {
 	color: #26c9ff;
 }
+.main-address {
+	height: calc(1.5em + 0.75rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1.25rem;
+	font-weight: 400;
+	line-height: 1.5;
+}
+.page-my-move .custom-radio {
+	padding-top: 80px;
+}
+.page-my-move .custom-radio .svg-inline--fa, .page-my-move .custom-radio .radio-img {
+	position: absolute;
+	top: -55px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	font-size: 50px;
+	color: #26c9ff;
+}
+.page-my-move .radio-van .custom-radio {
+	padding-top: 100px;
+}
+.page-my-move .custom-radio .radio-img {
+	min-width: 150px;
+	top: -90px;
+}

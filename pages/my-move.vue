@@ -13,14 +13,56 @@
                 <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
                 <h2 class="ui-title-block">Which Vehicle Do You Need?</h2>
                 <div class="border-color border-color_default"></div>
-                <b-form-group>
+                <b-form-group class="text-center">
                   <b-form-radio-group
                     v-model="vanSizeComputed"
-                    :options="vanSizeOptions"
-                    class="theme-green"
+                    class="theme-green radio-van"
                     required
                     @input="setSerchMeta($event, 'vanSize')"
-                  ></b-form-radio-group>
+                  >
+                    <b-row>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="1">
+                          <img
+                            src="~assets/images/vans/van-sm.png"
+                            alt="small van"
+                            class="img-fluid radio-img"
+                          />
+                          Small Van
+                        </b-form-radio>
+                      </b-col>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="2">
+                          <img
+                            src="~assets/images/vans/van-md.png"
+                            alt="Medium van"
+                            class="img-fluid radio-img"
+                          />
+                          Medium Van
+                        </b-form-radio>
+                      </b-col>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="3">
+                          <img
+                            src="~assets/images/vans/van-lg.png"
+                            alt="Large van"
+                            class="img-fluid radio-img"
+                          />
+                          Large Van
+                        </b-form-radio>
+                      </b-col>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="4">
+                          <img
+                            src="~assets/images/vans/van-xl.png"
+                            alt="Giant van"
+                            class="img-fluid radio-img"
+                          />
+                          Giant Van
+                        </b-form-radio>
+                      </b-col>
+                    </b-row>
+                  </b-form-radio-group>
                 </b-form-group>
               </div>
             </div>
@@ -35,14 +77,40 @@
                   Will You Need Help With Loading And Unloading?
                 </h2>
                 <div class="border-color border-color_default"></div>
-                <b-form-group>
+                <b-form-group class="text-center">
                   <b-form-radio-group
                     v-model="helpersRequiredComputed"
-                    :options="helpersRequiredOptions"
                     class="theme-green"
                     required
                     @input="setSerchMeta($event, 'helpersRequired')"
-                  ></b-form-radio-group>
+                  >
+                    <b-row>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="0">
+                          <fa :icon="['fas', 'user-slash']" />
+                          No help needed
+                        </b-form-radio>
+                      </b-col>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="1">
+                          <fa :icon="['fas', 'user']" />
+                          Driver helping
+                        </b-form-radio>
+                      </b-col>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="2">
+                          <fa :icon="['fas', 'user-friends']" />
+                          Driver helping + 1 helper
+                        </b-form-radio>
+                      </b-col>
+                      <b-col sm="6" md="3">
+                        <b-form-radio value="3">
+                          <fa :icon="['fas', 'users']" />
+                          Driver helping + 2 helpers
+                        </b-form-radio>
+                      </b-col>
+                    </b-row>
+                  </b-form-radio-group>
                 </b-form-group>
               </div>
             </div>
