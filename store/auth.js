@@ -12,6 +12,9 @@ export const getters = {
 export const mutations = {
   SET_ROLE(state, role) {
     state.user.role = role
+  },
+  UPDATE_USER(state, role) {
+    state.user = role
   }
 }
 
@@ -19,5 +22,8 @@ export const mutations = {
 export const actions = {
   setRole({ commit }, role) {
     commit('SET_ROLE', role)
+  },
+  updateUser({ commit }, role) {
+    commit('UPDATE_USER', role)
   }
 }
