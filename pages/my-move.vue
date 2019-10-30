@@ -80,7 +80,7 @@
                 <b-form-group class="text-center">
                   <b-form-radio-group
                     v-model="helpersRequiredComputed"
-                    class="theme-green"
+                    class="theme-green radio-help"
                     required
                     @input="setSerchMeta($event, 'helpersRequired')"
                   >
