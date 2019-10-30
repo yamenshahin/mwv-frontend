@@ -912,7 +912,7 @@ list-scheme
 	font-weight: 400;
 	line-height: 1.5;
 }
-.page-my-move .custom-radio {
+.page-my-move .radio-help .custom-radio {
 	padding-top: 80px;
 }
 .page-my-move .custom-radio .svg-inline--fa, .page-my-move .custom-radio .radio-img {
