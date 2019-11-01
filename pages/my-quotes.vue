@@ -66,8 +66,8 @@
                             class="disabled-alt"
                           >
                             <fa
-                              v-for="index in Math.round(place.score)"
-                              :key="index"
+                              v-for="indexy in Math.round(place.score)"
+                              :key="indexy"
                               :icon="['fas', 'star']"
                             />
                             <fa
@@ -404,11 +404,16 @@ export default {
       const quote = this.searchResultObject.data[placeIndex]
       quote.job_meta = this.searchResultObject.job_meta
       console.log(quote)
+      const that = this
       await this.$axios
         .$post('/user/email/send-quote', quote)
         .then(function(response) {
           // handle success
-          return response
+          that.$bvToast.toast('Your quote has been sent successfully.', {
+            title: 'Quote Sent',
+            variant: 'success',
+            solid: true
+          })
         })
         .catch(function(error) {
           console.log(error)
