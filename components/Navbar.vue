@@ -66,6 +66,23 @@
             >
               Join Us
             </nuxt-link>
+
+            <b-nav-item-dropdown right>
+              <!-- Using 'button-content' slot -->
+              <template slot="button-content">
+                Help
+              </template>
+              <nuxt-link to="/" class="nav-link" role="menuitem" exact>
+                Van Size Calculator
+              </nuxt-link>
+              <nuxt-link to="/" class="nav-link" role="menuitem" exact>
+                FAQ
+              </nuxt-link>
+              <nuxt-link to="/contact" class="nav-link" role="menuitem" exact>
+                Contact Us
+              </nuxt-link>
+            </b-nav-item-dropdown>
+
             <span v-if="authenticated">
               <b-nav-item-dropdown v-if="user.role === 'driver'" right>
                 <!-- Using 'button-content' slot -->
