@@ -109,7 +109,9 @@
                           <p>Includes VAT &amp; booking fee</p>
                           <p>
                             For the first
-                            <strong>{{ jobMeta.totalTime }} hours</strong>
+                            <strong>
+                              {{ searchResultObject.job_meta.totalTime }} hours
+                            </strong>
                             and then
                             <strong>
                               {{ place.price.additionalTimePrice | currency }}
@@ -142,7 +144,11 @@
                       </b-row>
                       <b-row>
                         <b-col xl>
-                          <b-button block class="mb-1">
+                          <b-button
+                            block
+                            class="mb-1"
+                            @click.prevent="emailQuote(index)"
+                          >
                             <fa :icon="['fas', 'share']" />
                             Email Qoute
                           </b-button>
@@ -358,7 +364,6 @@ export default {
   },
   data() {
     return {
-      jobMeta: {},
       sorteOptions: [
         { text: 'Sort My Quotes', value: null },
         { text: 'Price (Lowest to Highest)', value: '0' },
@@ -394,6 +399,20 @@ export default {
         })
       await this.$store.dispatch('checkout/setCheckout', response.data)
       this.$router.push('/checkout')
+    },
+    async emailQuote(placeIndex) {
+      const quote = this.searchResultObject.data[placeIndex]
+      quote.job_meta = this.searchResultObject.job_meta
+      console.log(quote)
+      await this.$axios
+        .$post('/user/email/send-quote', quote)
+        .then(function(response) {
+          // handle success
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
     },
     async sortPlaces(sortOrder) {
       await this.$store.dispatch('search-result/sortSearchResult', sortOrder)
