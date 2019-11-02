@@ -65,6 +65,13 @@
         <b-alert show variant="success">
           <h2>Success!</h2>
           <p>Your order has been processed, it will be delivered shortly.</p>
+          <p v-if="!authenticated">
+            Your account has been created successfully.
+            <nuxt-link to="/login" class="btn mb-1 btn-secondary btn-block lg">
+              Login Now
+            </nuxt-link>
+          </p>
+          <span v-else></span>
         </b-alert>
       </div>
     </div>

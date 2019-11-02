@@ -23,7 +23,92 @@
       :options="stripeOptions"
       @change="complete = $event.complete"
     />
+    <!-- regNotDone ? onSubmit : pay -->
+    <b-form
+      v-if="!authenticated"
+      @submit.prevent="regNotDone ? onSubmit() : pay()"
+    >
+      <h2 class="ui-title-block mt-2">Create Your Account:</h2>
+      <div class="border-color border-color_default"></div>
+      <div class="form-group">
+        <label>Name:</label>
+        <input
+          v-model="form.name"
+          type="text"
+          name="name"
+          class="form-control"
+          placeholder="Enter your full name"
+          :class="{ 'is-invalid': form.errors.has('name') }"
+        />
+        <has-error :form="form" field="name"></has-error>
+      </div>
+
+      <div class="form-group">
+        <label>Email:</label>
+        <input
+          v-model="form.email"
+          type="email"
+          name="email"
+          class="form-control"
+          placeholder="Enter your email"
+          :class="{ 'is-invalid': form.errors.has('email') }"
+        />
+        <small class="form-text text-muted">
+          We'll never share your email with anyone else.
+        </small>
+        <has-error :form="form" field="email"></has-error>
+      </div>
+
+      <div class="form-group">
+        <label>Phone:</label>
+        <input
+          v-model="form.phone"
+          type="text"
+          name="phone"
+          class="form-control"
+          placeholder="Enter your phone number"
+          :class="{ 'is-invalid': form.errors.has('phone') }"
+        />
+        <has-error :form="form" field="phone"></has-error>
+      </div>
+
+      <div class="form-group">
+        <label>Password:</label>
+        <input
+          v-model="form.password"
+          type="password"
+          name="password"
+          class="form-control"
+          placeholder="Enter password"
+          :class="{ 'is-invalid': form.errors.has('password') }"
+        />
+        <has-error :form="form" field="password"></has-error>
+      </div>
+
+      <div class="form-group">
+        <label>Password Confirmation:</label>
+        <input
+          v-model="form.password_confirmation"
+          type="password"
+          name="password_confirmation"
+          class="form-control"
+          placeholder="Confirm password"
+          :class="{ 'is-invalid': form.errors.has('password_confirmation') }"
+        />
+        <has-error :form="form" field="password_confirmation"></has-error>
+      </div>
+      <b-button
+        type="submit"
+        variant="dark"
+        block
+        class="lg mb-1 pay-with-stripe"
+        :disabled="!complete"
+      >
+        Pay with credit card
+      </b-button>
+    </b-form>
     <b-button
+      v-else
       variant="dark"
       block
       class="lg mb-1 pay-with-stripe"
@@ -53,6 +138,14 @@ export default {
 
   data() {
     return {
+      regNotDone: true,
+      form: this.$vform({
+        name: '',
+        email: '',
+        phone: '',
+        password: '',
+        password_confirmation: ''
+      }),
       submitted: false,
       complete: false,
       status: '',
@@ -62,7 +155,28 @@ export default {
       }
     }
   },
+  mounted() {
+    if (!this.authenticated) {
+      this.form.fill({
+        name: this.searchMetaObject.customerInfoName,
+        email: this.searchMetaObject.customerInfoEmail,
+        phone: this.searchMetaObject.customerInfoPhone,
+        password: '',
+        password_confirmation: ''
+      })
+    }
+  },
   methods: {
+    async onSubmit() {
+      const that = this
+      await this.form
+        .post('register')
+        .then(() => {
+          that.regNotDone = false
+          that.pay()
+        })
+        .catch(() => {})
+    },
     async pay() {
       // createToken returns a Promise which resolves in a result object with
       // either a token or an error key.
@@ -74,7 +188,8 @@ export default {
           .$post('/jobs/checkout', {
             stripeToken: data.token.id,
             id: this.checkoutObject.id,
-            amount: this.total
+            amount: this.total,
+            customerEmail: this.form.email
           })
           .then((response) => {
             this.status = 'success'
