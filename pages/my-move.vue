@@ -157,7 +157,14 @@
             <!-- Customer Info -->
             <div class="card mt-3 section_mod-2">
               <div class="card-body">
-                <div class="ui-subtitle-block">YOUR INFO</div>
+                <div class="ui-subtitle-block">
+                  YOUR INFO
+                  <span v-if="!authenticated">
+                    ((We'll use this to create your account if you are not
+                    logged in))
+                  </span>
+                  <span v-else></span>
+                </div>
                 <h2 class="ui-title-block">About You</h2>
                 <div class="border-color border-color_default"></div>
                 <b-row>
