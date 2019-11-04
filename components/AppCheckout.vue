@@ -167,7 +167,7 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
+    /* async onSubmit() {
       const that = this
       await this.form
         .post('register')
@@ -176,7 +176,7 @@ export default {
           that.pay()
         })
         .catch(() => {})
-    },
+    }, */
     async pay() {
       // createToken returns a Promise which resolves in a result object with
       // either a token or an error key.
