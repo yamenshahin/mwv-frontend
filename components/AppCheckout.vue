@@ -26,7 +26,7 @@
     <!-- regNotDone ? onSubmit : pay -->
     <b-form
       v-if="!authenticated"
-      @submit.prevent="regNotDone ? onSubmit() : pay()"
+      @submit.prevent="regNotDone ? onSubmitCredit() : payCredit()"
     >
       <h2 class="ui-title-block mt-2">Create Your Account:</h2>
       <div class="border-color border-color_default"></div>
@@ -106,17 +106,36 @@
       >
         Pay with credit card
       </b-button>
+      <b-button
+        type="button"
+        variant="dark"
+        block
+        class="lg mb-1 pay-with-stripe"
+        @click.prevent="regNotDone ? onSubmitCash() : payCash()"
+      >
+        Cash on delivery
+      </b-button>
     </b-form>
-    <b-button
-      v-else
-      variant="dark"
-      block
-      class="lg mb-1 pay-with-stripe"
-      :disabled="!complete"
-      @click="pay"
-    >
-      Pay with credit card
-    </b-button>
+    <div v-else>
+      <b-button
+        variant="dark"
+        block
+        class="lg mb-1 pay-with-stripe"
+        :disabled="!complete"
+        @click.prevent="pay()"
+      >
+        Pay with credit card
+      </b-button>
+      <b-button
+        type="button"
+        variant="dark"
+        block
+        class="lg mb-1 pay-with-stripe"
+        @click.prevent="payCash()"
+      >
+        Cash on delivery
+      </b-button>
+    </div>
   </div>
 </template>
 
@@ -167,7 +186,36 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
+    async onSubmitCash() {
+      const that = this
+      await this.form
+        .post('register')
+        .then(() => {
+          that.regNotDone = false
+          that.payCash()
+        })
+        .catch(() => {})
+    },
+    async payCash() {
+      await this.$axios
+        .$post('/jobs/checkout-cash', {
+          id: this.checkoutObject.id,
+          customerEmail: this.form.email
+        })
+        .then((response) => {
+          this.status = 'success'
+          this.$emit('successSubmit')
+          this.restCheckoutState()
+          this.submitted = true
+          this.response = response
+        })
+        .catch((error) => {
+          this.status = 'failure'
+          this.response = 'Error!: ' + error
+          console.log(this.response)
+        })
+    },
+    async onSubmitCredit() {
       const that = this
       await this.form
         .post('register')
@@ -177,7 +225,7 @@ export default {
         })
         .catch(() => {})
     },
-    async pay() {
+    async payCredit() {
       // createToken returns a Promise which resolves in a result object with
       // either a token or an error key.
       // See https://stripe.com/docs/api#tokens for the token object.
@@ -185,7 +233,7 @@ export default {
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
       await createToken().then((data) => {
         this.$axios
-          .$post('/jobs/checkout', {
+          .$post('/jobs/checkout-credit', {
             stripeToken: data.token.id,
             id: this.checkoutObject.id,
             amount: this.total,
