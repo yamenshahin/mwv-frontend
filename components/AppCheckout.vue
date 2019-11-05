@@ -122,7 +122,7 @@
         block
         class="lg mb-1 pay-with-stripe"
         :disabled="!complete"
-        @click.prevent="pay()"
+        @click.prevent="payCredit()"
       >
         Pay with credit card
       </b-button>
