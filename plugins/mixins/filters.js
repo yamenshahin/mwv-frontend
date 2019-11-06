@@ -17,6 +17,9 @@ const Filters = {
         currency(amount) {
           return '£' + amount
         },
+        percentage(amount) {
+          return amount + '%'
+        },
         vanSize(vanSize) {
           if (vanSize === '1') {
             return 'Small Van'

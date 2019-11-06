@@ -147,7 +147,6 @@
                 >
                   <b-form-input
                     v-model="descriptionComputed"
-                    required
                     @input="setSerchMeta($event, 'description')"
                   ></b-form-input>
                 </b-form-group>
@@ -216,6 +215,7 @@
                     <b-row>
                       <b-col md>
                         <b-form-group>
+                          Moving from address
                           <no-ssr>
                             <gmap-autocomplete
                               class="form-control"
@@ -229,6 +229,7 @@
                       </b-col>
                       <b-col md>
                         <b-form-group>
+                          At my collection address there
                           <b-form-select
                             :value="collectionPlaceObject.stairs"
                             :options="stairsOptions"
@@ -242,6 +243,7 @@
                     <b-row>
                       <b-col md>
                         <b-form-group>
+                          Moving To address
                           <no-ssr>
                             <gmap-autocomplete
                               class="form-control"
@@ -255,6 +257,7 @@
                       </b-col>
                       <b-col md>
                         <b-form-group>
+                          At my delivery address there
                           <b-form-select
                             :value="deliveryPlaceObject.stairs"
                             :options="stairsOptions"
@@ -268,7 +271,7 @@
                     <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
                       +
                       <fa :icon="['fas', 'map-marker-alt']" />
-                      Add Waypoint
+                      Add Stop
                     </b-button>
                     <div
                       v-for="(wayPointPlacesObjectSingle,
@@ -282,7 +285,7 @@
                               <gmap-autocomplete
                                 :value="wayPointPlacesObject[index].address"
                                 class="form-control"
-                                placeholder="Waypoint Address"
+                                placeholder="Stop Address"
                                 required
                                 @click="setCurrentWayPointIndex(index)"
                                 @place_changed="setWayPointPlace"
@@ -472,7 +475,7 @@ export default {
       vanSizeComputed: null,
       helpersRequiredComputed: null,
       movingDateComputed: null,
-      descriptionComputed: null,
+      descriptionComputed: ' ',
       customerInfoNameComputed: null,
       customerInfoEmailComputed: null,
       customerInfoPhoneComputed: null,

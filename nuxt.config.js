@@ -90,8 +90,6 @@ export default {
     { ssr: false, src: '~/plugins/full-calendar'  },
     // Get all places (id, lat, lng) used for area we cover
     '~plugins/mixins/area.js',
-    // Get payment
-    '~plugins/mixins/payment.js',
   ],
   /*
    ** Nuxt.js dev-modules

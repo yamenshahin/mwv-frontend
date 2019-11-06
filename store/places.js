@@ -6,7 +6,7 @@ export const state = () => ({
     city: '',
     lat: 0.0,
     lng: 0.0,
-    stairs: null
+    stairs: 0
   },
   deliveryPlace: {
     postcode: '',
@@ -14,7 +14,7 @@ export const state = () => ({
     city: '',
     lat: 0.0,
     lng: 0.0,
-    stairs: null
+    stairs: 0
   },
   wayPointPlaces: []
 })
@@ -71,7 +71,7 @@ export const mutations = {
         city: '',
         lat: 0,
         lng: 0,
-        stairs: null
+        stairs: 0
       })
     } else {
       const index = wayPointPlaces.id
