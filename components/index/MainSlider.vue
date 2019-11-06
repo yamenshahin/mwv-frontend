@@ -23,10 +23,14 @@
                       ></gmap-autocomplete>
                     </b-form-group>
 
-                    <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+                    <b-button
+                      size="sm"
+                      class="mb-3"
+                      @click.prevent="addEmptyWayPoint"
+                    >
                       +
                       <fa :icon="['fas', 'map-marker-alt']" />
-                      Add Waypoint
+                      Add Stop
                     </b-button>
                     <div
                       v-for="(wayPointPlacesObjectSingle,
@@ -37,7 +41,7 @@
                         <gmap-autocomplete
                           :value="wayPointPlacesObject[index].address"
                           class="form-control"
-                          placeholder="Way Point Address"
+                          placeholder="Stop Address"
                           @click="setCurrentWayPointIndex(index)"
                           @place_changed="setWayPointPlace"
                         ></gmap-autocomplete>
@@ -65,8 +69,6 @@
                         @place_changed="setDeliveryPlace"
                       ></gmap-autocomplete>
                     </b-form-group>
-                  </b-col>
-                  <b-col md>
                     <b-button
                       v-if="
                         !collectionPlaceObject.address ||
@@ -87,24 +89,13 @@
                           deliveryPlaceObject.address
                       "
                       to="/my-move"
-                      class="btn btn-secondary mb-1"
+                      class="btn mb-1 btn-secondary btn-lg"
                     >
                       <fa :icon="['fas', 'shipping-fast']" />
                       Get Free Quotes
                     </nuxt-link>
-                    <b-button
-                      v-if="
-                        collectionPlaceObject.address &&
-                          deliveryPlaceObject.address
-                      "
-                      variant="primary"
-                      class="mb-1"
-                      @click="getDirection"
-                    >
-                      <fa :icon="['fas', 'route']" />
-                      Check Direction
-                    </b-button>
-
+                  </b-col>
+                  <b-col md>
                     <!-- Map -->
                     <gmap-map
                       v-show="showMap"

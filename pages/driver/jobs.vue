@@ -6,28 +6,6 @@
       <div class="pb-5"></div>
     </div>
     <b-container>
-      <b-card class="mb-2">
-        <b-row>
-          <b-col md>
-            <h3>Your payment will be process once every week.</h3>
-          </b-col>
-          <b-col md>
-            <h3>Your wallet has: {{ wallet | currency }}</h3>
-          </b-col>
-          <b-col md>
-            <b-button
-              type="button"
-              variant="dark"
-              block
-              class="mb-1 pay-with-stripe"
-              @click.prevent="requestPayment()"
-            >
-              Request Payment
-            </b-button>
-          </b-col>
-        </b-row>
-      </b-card>
-
       <Calendar :events="events" />
     </b-container>
 
@@ -130,7 +108,7 @@
                           <p>Helpers Required: {{ job_meta.value }}</p>
                         </div>
                         <div v-if="job_meta.key === 'fee'">
-                          <p>Fee: {{ job_meta.value }}</p>
+                          <p>Fee: {{ job_meta.value | percentage }}</p>
                         </div>
                         <div v-if="job_meta.key === 'total'">
                           <h3>Total Price: {{ job_meta.value | currency }}</h3>
@@ -207,31 +185,7 @@ export default {
       }
       this.events = eventObject
     }
-
-    const responseWallet = await this.$axios
-      .$get('/driver/wallet')
-      .then(function(response) {
-        // handle success
-        return response
-      })
-      .catch(function(error) {
-        console.log(error)
-      })
-    this.wallet = responseWallet
   },
-  methods: {
-    async requestPayment() {
-      const response = await this.$axios
-        .$post('/driver/request-payment', this.paymentObject)
-        .then(function(response) {
-          // handle success
-          return response
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
-      this.$store.dispatch('payment/setPayment', response)
-    }
-  }
+  methods: {}
 }
 </script>
