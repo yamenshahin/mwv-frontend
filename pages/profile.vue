@@ -78,6 +78,7 @@
             </div>
 
             <b-button type="submit" variant="primary">Submit</b-button>
+            <alert-success :form="form" class="mt-2">Saved</alert-success>
           </b-form>
           <span v-else></span>
         </b-col>

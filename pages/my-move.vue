@@ -24,6 +24,13 @@
                       <b-col sm="6" md="3">
                         <b-form-radio value="1">
                           <img
+                            v-if="vanSizeComputed === '1'"
+                            src="~assets/images/vans/van-sm-alt.png"
+                            alt="small van"
+                            class="img-fluid radio-img"
+                          />
+                          <img
+                            v-else
                             src="~assets/images/vans/van-sm.png"
                             alt="small van"
                             class="img-fluid radio-img"
@@ -34,6 +41,13 @@
                       <b-col sm="6" md="3">
                         <b-form-radio value="2">
                           <img
+                            v-if="vanSizeComputed === '2'"
+                            src="~assets/images/vans/van-md-alt.png"
+                            alt="Medium van"
+                            class="img-fluid radio-img"
+                          />
+                          <img
+                            v-else
                             src="~assets/images/vans/van-md.png"
                             alt="Medium van"
                             class="img-fluid radio-img"
@@ -44,6 +58,13 @@
                       <b-col sm="6" md="3">
                         <b-form-radio value="3">
                           <img
+                            v-if="vanSizeComputed === '3'"
+                            src="~assets/images/vans/van-lg-alt.png"
+                            alt="Large van"
+                            class="img-fluid radio-img"
+                          />
+                          <img
+                            v-else
                             src="~assets/images/vans/van-lg.png"
                             alt="Large van"
                             class="img-fluid radio-img"
@@ -54,6 +75,13 @@
                       <b-col sm="6" md="3">
                         <b-form-radio value="4">
                           <img
+                            v-if="vanSizeComputed === '4'"
+                            src="~assets/images/vans/van-xl-alt.png"
+                            alt="Giant van"
+                            class="img-fluid radio-img"
+                          />
+                          <img
+                            v-else
                             src="~assets/images/vans/van-xl.png"
                             alt="Giant van"
                             class="img-fluid radio-img"
@@ -87,25 +115,45 @@
                     <b-row>
                       <b-col sm="6" md="3">
                         <b-form-radio value="0">
-                          <fa :icon="['fas', 'user-slash']" />
+                          <fa
+                            v-if="helpersRequiredComputed === '0'"
+                            :icon="['fas', 'user-slash']"
+                            class="icon-dark"
+                          />
+                          <fa v-else :icon="['fas', 'user-slash']" />
                           No help needed
                         </b-form-radio>
                       </b-col>
                       <b-col sm="6" md="3">
                         <b-form-radio value="1">
-                          <fa :icon="['fas', 'user']" />
+                          <fa
+                            v-if="helpersRequiredComputed === '1'"
+                            :icon="['fas', 'user']"
+                            class="icon-dark"
+                          />
+                          <fa v-else :icon="['fas', 'user']" />
                           Driver helping
                         </b-form-radio>
                       </b-col>
                       <b-col sm="6" md="3">
                         <b-form-radio value="2">
-                          <fa :icon="['fas', 'user-friends']" />
+                          <fa
+                            v-if="helpersRequiredComputed === '2'"
+                            :icon="['fas', 'user-friends']"
+                            class="icon-dark"
+                          />
+                          <fa v-else :icon="['fas', 'user-friends']" />
                           Driver helping + 1 helper
                         </b-form-radio>
                       </b-col>
                       <b-col sm="6" md="3">
                         <b-form-radio value="3">
-                          <fa :icon="['fas', 'users']" />
+                          <fa
+                            v-if="helpersRequiredComputed === '3'"
+                            :icon="['fas', 'user-friends']"
+                            class="icon-dark"
+                          />
+                          <fa v-else :icon="['fas', 'user-friends']" />
                           Driver helping + 2 helpers
                         </b-form-radio>
                       </b-col>

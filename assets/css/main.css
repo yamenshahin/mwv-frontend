@@ -160,6 +160,15 @@ Footer
     padding-bottom: 40px;
     color: #ccc;
 }
+.footer .legal-links {
+	margin-bottom: 40px;
+}
+.footer .legal-links a{
+	color:#fff;
+}
+.footer .legal-links .last-item {
+	padding-left: 20px;
+}
 /**
 Sections
 **/
@@ -922,6 +931,9 @@ list-scheme
 	transform: translate(-50%, 0);
 	font-size: 50px;
 	color: #26c9ff;
+}
+.page-my-move .custom-radio .svg-inline--fa.icon-dark {
+	color: #212529;
 }
 .page-my-move .radio-van .custom-radio {
 	padding-top: 100px;
