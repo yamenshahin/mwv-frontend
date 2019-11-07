@@ -50,7 +50,7 @@
                     <b-col>
                       <h2 class="ui-title-block">
                         {{ place.user.name }}
-                        <b-badge variant="warning">Gold</b-badge>
+                        <!-- <b-badge variant="warning">Gold</b-badge> -->
                       </h2>
                       <div class="border-color border-color_default"></div>
                       <div class="driver-desc">
@@ -198,7 +198,7 @@
                       </div>
                       <h2 class="ui-title-block">
                         Sammy's North London Logistics
-                        <b-badge variant="warning">Gold</b-badge>
+                        <!-- <b-badge variant="warning">Gold</b-badge> -->
                       </h2>
                       <div class="border-color border-color_default"></div>
                       <div class="driver-desc">
