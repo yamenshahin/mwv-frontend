@@ -75,7 +75,7 @@
               <nuxt-link to="/" class="nav-link" role="menuitem" exact>
                 Van Size Calculator
               </nuxt-link>
-              <nuxt-link to="/" class="nav-link" role="menuitem" exact>
+              <nuxt-link to="/faq" class="nav-link" role="menuitem" exact>
                 FAQ
               </nuxt-link>
               <nuxt-link to="/contact" class="nav-link" role="menuitem" exact>
