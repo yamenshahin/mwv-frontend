@@ -7,65 +7,11 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <div class="ui-subtitle-block">HOW WE CAN HELP YOU</div>
-            <h2 class="ui-title-block">BEST MOVING COMPANY</h2>
+            <h2 class="ui-title-block">
+              {{ homeHtmlObject.underStatisticsTitle }}
+            </h2>
             <div class="border-color border-color_default"></div>
-            <p>
-              Pellentesque habitant morbi tristique senectus sed neus eft
-              malesuada fames ac turpis egest as Aenean non tell donec pede quam
-              placerat ristique faucibus poserw aulet elobor justo. Quis que
-              orci neque pellentesque.
-            </p>
-            <ul class="list-mark list-mark_small">
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  About VanMan.io
-                </a>
-              </li>
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  Residential Relocation
-                </a>
-              </li>
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  Commercial Relocation
-                </a>
-              </li>
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  Short-Term Storage
-                </a>
-              </li>
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  Long-Term Storage
-                </a>
-              </li>
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  Special Services
-                </a>
-              </li>
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  Commercial Moving
-                </a>
-              </li>
-              <li class="list-mark__item">
-                <a href="#" class="list-mark__link">
-                  <i class="icon"></i>
-                  Big &amp; Large Move Experts
-                </a>
-              </li>
-            </ul>
+            <span v-html="homeHtmlObject.underStatisticsText"></span>
             <nuxt-link to="/my-move" class="btn btn-secondary mb-1" exact>
               <fa :icon="['fas', 'shipping-fast']" />
               Get Free Quotes
@@ -79,9 +25,6 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <div class="ui-subtitle-block">We Provide</div>
-            <h2 class="ui-title-block">WORLD CLASS LOGISTIC SERVICES</h2>
-            <div class="border-color border-color_default"></div>
             <div class="mt-2"></div>
             <img
               src="~assets/images/service_3.jpg"

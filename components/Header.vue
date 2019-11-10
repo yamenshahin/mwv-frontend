@@ -45,7 +45,7 @@
               </a>
               <a href="mail:info@domain.com">
                 <fa :icon="['fas', 'envelope-square']" />
-                info@domain.com
+                info@HelloVans.com
               </a>
             </div>
           </b-col>

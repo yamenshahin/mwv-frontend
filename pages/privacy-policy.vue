@@ -6,7 +6,14 @@
     <b-container class="section_mod-2">
       <b-row>
         <b-col>
-          Privacy policy
+          <b-tabs content-class="mt-3">
+            <b-tab title="Privacy policy" active>
+              <span v-html="dynamicHTML.privacyText"></span>
+            </b-tab>
+            <b-tab title="Cancelation Policy">
+              <span v-html="dynamicHTML.cancelationText"></span>
+            </b-tab>
+          </b-tabs>
         </b-col>
       </b-row>
     </b-container>
@@ -32,9 +39,32 @@ export default {
     EmptySpace
   },
   data() {
-    return {}
+    return {
+      dynamicHTML: {
+        page: 'privacy',
+        privacyText: '',
+        cancelationText: ''
+      }
+    }
   },
   mounted() {},
-  methods: {}
+  created() {
+    this.getPage()
+  },
+  methods: {
+    async getPage() {
+      const pageHTML = await this.$axios
+        .$post('/pages', { page: this.dynamicHTML.page })
+        .then(function(response) {
+          // handle success
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      console.log(pageHTML)
+      this.dynamicHTML = pageHTML
+    }
+  }
 }
 </script>
