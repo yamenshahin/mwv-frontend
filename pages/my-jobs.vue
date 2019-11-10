@@ -150,15 +150,8 @@
           {{ form.job }}
         </pre> -->
         <form form="voteForm" @submit.prevent="vote()">
-          <b-form-group label="Stars:">
-            <b-form-input
-              v-model="form.stars"
-              type="number"
-              required
-              placeholder="Enter stars"
-            ></b-form-input>
-          </b-form-group>
-          <b-form-group label="Comment:">
+          <star-vote v-model="form.stars"></star-vote>
+          <b-form-group label="Comment:" class="mt-2">
             <b-form-textarea
               v-model="form.comment"
               placeholder="Enter comment..."
