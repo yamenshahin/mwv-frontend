@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Man Van',
+    title: 'Hello Vans',
     htmlAttrs: {
       lang: 'en'
     },
@@ -90,6 +90,9 @@ export default {
     { ssr: false, src: '~/plugins/full-calendar'  },
     // Get all places (id, lat, lng) used for area we cover
     '~plugins/mixins/area.js',
+    // Star Rating Component for Vue 2.x
+    // https://github.com/craigh411/vue-star-rating
+    '~plugins/star-vote.js',
   ],
   /*
    ** Nuxt.js dev-modules
