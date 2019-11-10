@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Man Van',
+    title: 'Hello Vans',
     htmlAttrs: {
       lang: 'en'
     },

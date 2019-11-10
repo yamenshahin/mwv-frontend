@@ -111,6 +111,28 @@
                         <h3>Total Price: {{ job_meta.value | currency }}</h3>
                       </div>
                     </div>
+                    <span v-if="job.feedback === 0"></span>
+                    <b-button
+                      v-else-if="job.feedback === null"
+                      block
+                      @click.prevent="voteModal(job)"
+                    >
+                      Give Feedback To Driver
+                    </b-button>
+                    <div v-else>
+                      <p>
+                        Rating:
+                        <fa
+                          v-for="star in job.feedback.stars"
+                          :key="star"
+                          :icon="['fas', 'star']"
+                        />
+                      </p>
+                      <div>
+                        <p>Comment:</p>
+                        <p>{{ job.feedback.comment }}</p>
+                      </div>
+                    </div>
                   </b-col>
                 </b-row>
               </div>
@@ -118,6 +140,49 @@
           </b-col>
         </b-row>
       </div>
+      <b-modal
+        v-model="voteModalShow"
+        :hide-footer="voteModalFooterHide"
+        class="vote-modal"
+        :title="'Give ' + form.job.driver.name + ' your feedback'"
+      >
+        <!-- <pre>
+          {{ form.job }}
+        </pre> -->
+        <form form="voteForm" @submit.prevent="vote()">
+          <b-form-group label="Stars:">
+            <b-form-input
+              v-model="form.stars"
+              type="number"
+              required
+              placeholder="Enter stars"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group label="Comment:">
+            <b-form-textarea
+              v-model="form.comment"
+              placeholder="Enter comment..."
+              rows="3"
+              max-rows="6"
+            ></b-form-textarea>
+          </b-form-group>
+          <div class="modal-footer justify-content-between">
+            <b-button type="submit">
+              Send Feedback
+            </b-button>
+            <b-button
+              variant="primary"
+              type="button"
+              @click.prevent="hideVoteForm()"
+            >
+              Close
+            </b-button>
+          </div>
+          <alert-success :form="form">
+            Thank you for Your feedback!
+          </alert-success>
+        </form>
+      </b-modal>
     </b-container>
   </div>
 </template>
@@ -141,7 +206,19 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      voteModalShow: false,
+      voteModalFooterHide: true,
+      form: this.$vform({
+        job: {
+          driver: {
+            name: ''
+          }
+        },
+        comment: '',
+        stars: 5
+      })
+    }
   },
   async mounted() {
     const response = await this.$axios
@@ -156,6 +233,18 @@ export default {
     this.$store.dispatch('customer-jobs/setCustomerJobs', response.data)
   },
   methods: {
+    async updateJobs() {
+      const response = await this.$axios
+        .$get('/jobs/show')
+        .then(function(response) {
+          console.log('update jobs')
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      this.$store.dispatch('customer-jobs/setCustomerJobs', response.data)
+    },
     getClassNames(status) {
       if (status === 'booked') {
         return 'bg-success'
@@ -176,6 +265,22 @@ export default {
         })
       await this.$store.dispatch('checkout/setCheckout', response.data)
       this.$router.push('/checkout')
+    },
+    voteModal(job) {
+      this.voteModalShow = true
+      this.form.clear()
+      this.form.reset()
+      this.form.job = job
+    },
+    async vote() {
+      await this.form
+        .post('feedback/place/store')
+        .then(function(response) {})
+        .catch(() => {})
+      this.updateJobs()
+    },
+    hideVoteForm() {
+      this.voteModalShow = false
     }
   }
 }
