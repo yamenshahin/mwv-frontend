@@ -8,12 +8,7 @@
               <form>
                 <b-row>
                   <b-col md>
-                    <div class="slide-title">
-                      We Provide You With
-                      <strong>A Smarter Way To Move</strong>
-                    </div>
-
-                    <b-form-group>
+                    <b-form-group class="mt-2">
                       <gmap-autocomplete
                         class="form-control main-address"
                         placeholder="Collection Address"
@@ -79,6 +74,7 @@
                       size="lg"
                       title="Please select a valid collection and delivery address"
                       class="mb-1"
+                      block
                     >
                       <fa :icon="['fas', 'shipping-fast']" />
                       GET FREE QUOTES
@@ -89,7 +85,7 @@
                           deliveryPlaceObject.address
                       "
                       to="/my-move"
-                      class="btn mb-1 btn-secondary btn-lg"
+                      class="btn mb-1 btn-secondary btn-lg btn-block"
                     >
                       <fa :icon="['fas', 'shipping-fast']" />
                       Get Free Quotes

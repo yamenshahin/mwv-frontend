@@ -14,8 +14,8 @@
                         ARE YOU AN EXCELLENT DRIVER?
                       </h2>
                       <p>
-                        Pellentesque habitant morbi tristique senectus sed neus
-                        eft malesuada fames ac turpis egest as Aenean non tell
+                        Sign up and receive confirmed bookings direct to your
+                        phone and email
                       </p>
                     </div>
                     <a
@@ -48,8 +48,8 @@
                       ARE YOU AN EXCELLENT DRIVER?
                     </h2>
                     <p>
-                      Pellentesque habitant morbi tristique senectus sed neus
-                      eft malesuada fames ac turpis egest as Aenean non tell
+                      Sign up and receive confirmed bookings direct to your
+                      phone and email
                     </p>
                   </div>
                   <nuxt-link

@@ -6,7 +6,7 @@
     <b-container class="section_mod-2">
       <b-row>
         <b-col>
-          FAQ
+          <span v-html="dynamicHTML.faqText"></span>
         </b-col>
       </b-row>
     </b-container>
@@ -32,9 +32,31 @@ export default {
     EmptySpace
   },
   data() {
-    return {}
+    return {
+      dynamicHTML: {
+        page: 'faq',
+        faqText: ''
+      }
+    }
   },
   mounted() {},
-  methods: {}
+  created() {
+    this.getPage()
+  },
+  methods: {
+    async getPage() {
+      const pageHTML = await this.$axios
+        .$post('/pages', { page: this.dynamicHTML.page })
+        .then(function(response) {
+          // handle success
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      console.log(pageHTML)
+      this.dynamicHTML = pageHTML
+    }
+  }
 }
 </script>

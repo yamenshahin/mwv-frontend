@@ -6,7 +6,7 @@
     <Statistics />
     <UnderStatistics />
     <DriverBanner />
-    <Client />
+    <About />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import WorkSteps from '~/components/index/WorkSteps'
 import Statistics from '~/components/index/Statistics'
 import UnderStatistics from '~/components/index/UnderStatistics'
 import DriverBanner from '~/components/index/DriverBanner'
-import Client from '~/components/index/Client'
+import About from '~/components/index/About'
 
 export default {
   components: {
@@ -27,7 +27,25 @@ export default {
     Statistics,
     UnderStatistics,
     DriverBanner,
-    Client
+    About
+  },
+  created() {
+    this.getPage()
+  },
+  methods: {
+    async getPage() {
+      const pageHTML = await this.$axios
+        .$post('/pages', { page: this.homeHtmlObject.page })
+        .then(function(response) {
+          // handle success
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      await this.$store.dispatch('home-html/setHomeHtml', pageHTML)
+      this.dynamicHTML = pageHTML
+    }
   }
 }
 </script>

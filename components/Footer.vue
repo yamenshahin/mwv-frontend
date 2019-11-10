@@ -6,7 +6,7 @@
           <div class="copyright text-center">
             <span>
               © Copyrights 2019
-              <strong>VanMan.io</strong>
+              <strong>HelloVans.com</strong>
             </span>
             <span>All Rights Reserved.</span>
           </div>

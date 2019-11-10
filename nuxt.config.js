@@ -93,6 +93,8 @@ export default {
     // Star Rating Component for Vue 2.x
     // https://github.com/craigh411/vue-star-rating
     '~plugins/star-vote.js',
+    // Home HTML
+    '~plugins/mixins/home-html.js',
   ],
   /*
    ** Nuxt.js dev-modules

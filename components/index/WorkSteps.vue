@@ -5,9 +5,9 @@
         <b-col>
           <div class="mt-50"></div>
           <div class="ui-subtitle-block">
-            <strong>WANT TO MOVE WITH US?</strong>
+            <strong>{{ homeHtmlObject.workStepsSubTitle }}</strong>
           </div>
-          <h2 class="ui-title-block">HOW WE MAKE IT HAPPEN</h2>
+          <h2 class="ui-title-block">{{ homeHtmlObject.workStepsTitle }}</h2>
           <div class="border-color border-color_center"></div>
         </b-col>
       </b-row>
@@ -18,12 +18,11 @@
             <li class="list-scheme__item">
               <a href="#" class="list-scheme__link">
                 <span class="icon helper">
-                  <fa :icon="['fas', 'clipboard-check']" />
+                  <fa :icon="['fas', 'comment-dots']" />
                 </span>
                 <span class="list-scheme__number">1</span>
                 <div class="list-scheme__title">
-                  YOU BOOK
-                  <span class="br">AN ORDER WITH US</span>
+                  {{ homeHtmlObject.workStep1 }}
                 </div>
               </a>
               <span class="arrow">
@@ -33,12 +32,25 @@
             <li class="list-scheme__item">
               <a href="#" class="list-scheme__link">
                 <span class="icon helper">
-                  <fa :icon="['fas', 'truck-loading']" />
+                  <fa :icon="['fas', 'server']" />
                 </span>
                 <span class="list-scheme__number">2</span>
                 <div class="list-scheme__title">
-                  WE COME &amp; PACK
-                  <span class="br">YOUR HOME CONTENTS</span>
+                  {{ homeHtmlObject.workStep2 }}
+                </div>
+              </a>
+              <span class="arrow">
+                <fa :icon="['fas', 'angle-right']" class="arrow__inner" />
+              </span>
+            </li>
+            <li class="list-scheme__item">
+              <a href="#" class="list-scheme__link">
+                <span class="icon helper">
+                  <fa :icon="['fas', 'clipboard-check']" />
+                </span>
+                <span class="list-scheme__number">3</span>
+                <div class="list-scheme__title">
+                  {{ homeHtmlObject.workStep3 }}
                 </div>
               </a>
               <span class="arrow">
@@ -50,26 +62,10 @@
                 <span class="icon helper">
                   <fa :icon="['fas', 'shipping-fast']" />
                 </span>
-                <span class="list-scheme__number">3</span>
-                <div class="list-scheme__title">
-                  WE DRIVE &amp; DELIVER TO
-                  <span class="br">YOUR NEW PLACE</span>
-                </div>
-              </a>
-              <span class="arrow">
-                <fa :icon="['fas', 'angle-right']" class="arrow__inner" />
-              </span>
-            </li>
-            <li class="list-scheme__item">
-              <a href="#" class="list-scheme__link">
-                <span class="icon helper">
-                  <fa :icon="['fas', 'user-shield']" />
-                </span>
 
                 <span class="list-scheme__number">4</span>
                 <div class="list-scheme__title">
-                  YOU SATISFIED -
-                  <span class="br">WE HAPPY !</span>
+                  {{ homeHtmlObject.workStep4 }}
                 </div>
               </a>
             </li>

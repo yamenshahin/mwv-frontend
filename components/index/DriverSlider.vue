@@ -14,8 +14,8 @@
                         To Get More Jobs Set Your Base Information Now
                       </h2>
                       <p>
-                        By setting you base information senectus sed neus eft
-                        malesuada fames ac turpis egest as Aenean non tell
+                        By setting you base information you will receive
+                        confirmed bookings direct to your phone and email
                       </p>
                     </div>
                     <nuxt-link

@@ -679,6 +679,7 @@ list-scheme
 
 .list-progress__info {
 	float: right;
+	margin-left: 5px;
 }
 
 .list-progress__label {
