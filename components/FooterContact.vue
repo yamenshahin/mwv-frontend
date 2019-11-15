@@ -6,13 +6,13 @@
           <div class="block-contacts__item">
             <div class="block-contacts__title">
               <fa :icon="['fas', 'clock']" />
-              MONDAY TO SATURDAY
+              OPEN 7 DAYS A WEEK
             </div>
-            <div class="block-contacts__text">9:00 AM to 7:00 PM</div>
+            <!-- <div class="block-contacts__text">9:00 AM to 7:00 PM</div> -->
           </div>
           <div class="block-contacts__item">
-            <div class="block-contacts__title">SUNDAY</div>
-            <div class="block-contacts__text">We Take Some Rest</div>
+            <div class="block-contacts__title">CHAT</div>
+            <div class="block-contacts__text">24/7</div>
           </div>
         </b-col>
         <b-col md class="text-center">
@@ -46,7 +46,7 @@
         </b-col>
         <b-col md class="text-right">
           <div class="block-contacts__phone">
-            0800-123456
+            020 3633 8267
             <fa :icon="['fas', 'phone-square-alt']" />
           </div>
           <div class="block-contacts__text">

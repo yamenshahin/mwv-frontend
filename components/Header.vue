@@ -39,9 +39,9 @@
           </b-col>
           <b-col md>
             <div class="header-contacts text-right">
-              <a href="tel:+0800-123456">
+              <a href="tel:02036338267">
                 <fa :icon="['fas', 'phone-square-alt']" />
-                0800-123456
+                020 3633 8267
               </a>
               <a href="mail:info@domain.com">
                 <fa :icon="['fas', 'envelope-square']" />

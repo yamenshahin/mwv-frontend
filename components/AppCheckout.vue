@@ -221,7 +221,7 @@ export default {
         .post('register')
         .then(() => {
           that.regNotDone = false
-          that.pay()
+          that.payCredit()
         })
         .catch(() => {})
     },

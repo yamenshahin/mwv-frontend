@@ -11,8 +11,8 @@
             <span>All Rights Reserved.</span>
           </div>
           <div class="legal-links text-center">
-            <nuxt-link to="/terms-of-service" role="menuitem" exact>
-              Terms of service
+            <nuxt-link to="/terms-and-conditions" role="menuitem" exact>
+              Terms and Conditions
             </nuxt-link>
             <nuxt-link
               to="/privacy-policy"

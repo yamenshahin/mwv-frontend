@@ -14,7 +14,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Move Man description'
+        content: 'Hello Vans description'
       },
       {
         hid: 'keywords',
