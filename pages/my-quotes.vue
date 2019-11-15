@@ -77,8 +77,8 @@
                           </b-button>
                           <b-button
                             variant="primary"
-                            disabled
                             class="disabled-alt"
+                            @click.prevent="showReviews(place.user.id)"
                           >
                             <fa :icon="['fas', 'thumbs-up']" />
                             {{ place.votes }} Reviews
@@ -184,48 +184,51 @@
                       </b-button>
 
                       <div class="text-right">
-                        <h3>Total £50.44</h3>
+                        <h3>Total {{ place.price.total | currency }}</h3>
                         <p>Includes VAT &amp; booking fee</p>
                         <p>
                           For the first
-                          <strong>1.5 hours</strong>
+                          <strong>
+                            {{ searchResultObject.job_meta.totalTime }} hours
+                          </strong>
                           and then
                           <strong>
-                            £7
+                            {{ place.price.additionalTimePrice | currency }}
                           </strong>
                           per half hour
                         </p>
                       </div>
                       <h2 class="ui-title-block">
-                        Sammy's North London Logistics
+                        {{ place.user.name }}
                         <!-- <b-badge variant="warning">Gold</b-badge> -->
                       </h2>
                       <div class="border-color border-color_default"></div>
                       <div class="driver-desc">
                         <p>
-                          ** I DO NOT TRANSPORT PIANOS ** ** ONLY MOVES 50 MILES
-                          AWAY FROM LONDON ** specialist moving company based in
-                          London, offering fast home and office removals
-                          services.
+                          {{ place.disc }}
                         </p>
                         <b-button
                           variant="primary"
                           disabled
                           class="disabled-alt"
                         >
-                          <fa :icon="['fas', 'star']" />
-                          <fa :icon="['fas', 'star']" />
-                          <fa :icon="['fas', 'star']" />
-                          <fa :icon="['fas', 'star']" />
-                          <fa :icon="['fas', 'star-half']" />
+                          <fa
+                            v-for="indexy in Math.round(place.score)"
+                            :key="indexy"
+                            :icon="['fas', 'star']"
+                          />
+                          <fa
+                            v-if="Math.round(place.score) < place.score"
+                            :icon="['fas', 'star-half']"
+                          />
                         </b-button>
                         <b-button
                           variant="primary"
-                          disabled
                           class="disabled-alt"
+                          @click.prevent="showReviews(place.user.id)"
                         >
                           <fa :icon="['fas', 'thumbs-up']" />
-                          109 Reviews
+                          {{ place.votes }} Reviews
                         </b-button>
                         <b-button
                           variant="primary"
@@ -233,7 +236,7 @@
                           class="disabled-alt"
                         >
                           <fa :icon="['fas', 'shipping-fast']" />
-                          170 Jobs
+                          {{ place.jobsBooked }} Jobs
                         </b-button>
                         <b-button
                           variant="primary"
@@ -241,7 +244,7 @@
                           class="disabled-alt"
                         >
                           <fa :icon="['fas', 'gas-pump']" />
-                          3k Miles driven
+                          {{ place.milesDriven }} Miles driven
                         </b-button>
                         <b-button
                           block
@@ -332,6 +335,20 @@
           </b-card>
         </b-collapse>
       </div>
+      <b-modal v-model="reviewsModalShow" title="Driver Reviews" ok-only>
+        <div v-for="driverReview in driverReviews" :key="driverReview.id">
+          <b-card class="driver-review mb-2">
+            <h1 class="driver-review-stars">
+              <fa
+                v-for="star in driverReview.stars"
+                :key="star"
+                :icon="['fas', 'star']"
+              />
+            </h1>
+            <p>{{ driverReview.comment }}</p>
+          </b-card>
+        </div>
+      </b-modal>
     </b-container>
   </div>
 </template>
@@ -356,6 +373,7 @@ export default {
   },
   data() {
     return {
+      reviewsModalShow: false,
       sorteOptions: [
         { text: 'Sort My Quotes', value: null },
         { text: 'Price (Lowest to Highest)', value: '0' },
@@ -364,6 +382,11 @@ export default {
         { text: 'Miles Driven', value: '3' },
         { text: 'Number Of Jobs Done', value: '4' },
         { text: 'Reviews', value: '5' }
+      ],
+      driverReviews: [
+        {
+          id: 0
+        }
       ]
     }
   },
@@ -430,6 +453,19 @@ export default {
     },
     async sortPlaces(sortOrder) {
       await this.$store.dispatch('search-result/sortSearchResult', sortOrder)
+    },
+    async showReviews(userId) {
+      const response = await this.$axios
+        .$post('/feedback/place/show', { userId })
+        .then(function(response) {
+          // handle success
+          return response
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+      this.driverReviews = response
+      this.reviewsModalShow = true
     }
   }
 }
