@@ -267,7 +267,7 @@ export default {
     },
     async vote() {
       await this.form
-        .post('feedback/place/store')
+        .post('feedback/job/store')
         .then(function(response) {})
         .catch(() => {})
       this.updateJobs()
