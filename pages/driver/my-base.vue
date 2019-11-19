@@ -800,6 +800,7 @@ export default {
   },
   head() {
     return {
+      saveSuccess: false,
       title: 'My Base',
       meta: [
         {
@@ -917,10 +918,17 @@ export default {
       await this.$store.dispatch('driver-place/setDriverPlaceLegal', metaObject)
     },
     async onSubmit() {
+      const that = this
+
       const responseDataLegal = await this.$axios
         .post('/driver/create-update-legal', this.driverPlaceLegalObject)
         .then(function(response) {
           // handle success
+          that.$bvToast.toast('Your base has been saved successfully.', {
+            title: 'Base Saved',
+            variant: 'success',
+            solid: true
+          })
           return response.data.data
         })
         .catch(function(error) {
