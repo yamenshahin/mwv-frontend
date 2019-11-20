@@ -95,6 +95,10 @@ export default {
     '~plugins/star-vote.js',
     // Home HTML
     '~plugins/mixins/home-html.js',
+    // Lazy load
+    //https://github.com/Akryum/vue-observe-visibility
+    //https://vueschool.io/articles/vuejs-tutorials/async-vuejs-components/
+    '~plugins/lazyload.js',
   ],
   /*
    ** Nuxt.js dev-modules

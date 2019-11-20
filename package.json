@@ -34,6 +34,7 @@
     "vform": "^1.0.1",
     "vue-datetime": "^1.0.0-beta.10",
     "vue-mq": "^1.0.1",
+    "vue-observe-visibility": "^0.4.6",
     "vue-star-rating": "^1.6.1",
     "vue-stripe-elements-plus": "^0.3.2",
     "vue2-google-maps": "^0.10.7",
