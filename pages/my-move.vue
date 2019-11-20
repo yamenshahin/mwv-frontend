@@ -10,9 +10,22 @@
             <!-- Van Size -->
             <div class="card mt-3 section_mod-2">
               <div class="card-body">
-                <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
-                <h2 class="ui-title-block">Which Vehicle Do You Need?</h2>
-                <div class="border-color border-color_default"></div>
+                <b-row>
+                  <b-col lg>
+                    <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
+                    <h2 class="ui-title-block">Which Vehicle Do You Need?</h2>
+                    <div class="border-color border-color_default"></div>
+                  </b-col>
+                  <b-col lg>
+                    <nuxt-link
+                      to="size-calculator"
+                      class="btn mb-1 btn-secondary btn-lg btn-block"
+                      exact
+                    >
+                      Use Van Size Calculator
+                    </nuxt-link>
+                  </b-col>
+                </b-row>
                 <b-form-group class="text-center">
                   <b-form-radio-group
                     v-model="vanSizeComputed"
@@ -150,10 +163,10 @@
                         <b-form-radio value="3">
                           <fa
                             v-if="helpersRequiredComputed === '3'"
-                            :icon="['fas', 'user-friends']"
+                            :icon="['fas', 'users']"
                             class="icon-dark"
                           />
-                          <fa v-else :icon="['fas', 'user-friends']" />
+                          <fa v-else :icon="['fas', 'users']" />
                           Driver helping + 2 helpers
                         </b-form-radio>
                       </b-col>

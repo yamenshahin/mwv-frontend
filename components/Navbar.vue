@@ -72,7 +72,12 @@
               <template slot="button-content">
                 Help
               </template>
-              <nuxt-link to="/" class="nav-link" role="menuitem" exact>
+              <nuxt-link
+                to="size-calculator"
+                class="nav-link"
+                role="menuitem"
+                exact
+              >
                 Van Size Calculator
               </nuxt-link>
               <nuxt-link to="/faq" class="nav-link" role="menuitem" exact>

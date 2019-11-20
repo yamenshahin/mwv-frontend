@@ -456,7 +456,7 @@ export default {
     },
     async showReviews(userId) {
       const response = await this.$axios
-        .$post('/feedback/place/show', { userId })
+        .$post('/feedback/job/show', { userId })
         .then(function(response) {
           // handle success
           return response

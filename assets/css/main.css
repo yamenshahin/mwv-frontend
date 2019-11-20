@@ -947,3 +947,42 @@ list-scheme
 .driver-review-stars {
 	color:  #ffd526;
 }
+
+.bg-theme-blue {
+	background-color: #26c9ff;
+}
+.bg-theme-yellow {
+	background-color: #ffd526;
+}
+
+
+/**
+Size page
+**/
+.size-page .item {
+	display: inline-block;
+	height: 45px;
+	margin: 5px;
+	cursor: pointer;
+	text-align: center;
+}
+.size-page .item span {
+	display: inline-block;
+	padding: 12px 10px;
+}
+.size-page .van-image {
+	display: block;
+}
+.size-page .icon {
+	display: inline-block;
+	padding-top: 33.5px;
+	padding-bottom: 33.5px;
+}
+.size-page .icon .svg-inline--fa {
+    font-size: 80px;
+    color: #26c9ff;
+}
+.size-page .van-image .alert {
+	margin-top: 10px;
+	border-radius: 0;
+}

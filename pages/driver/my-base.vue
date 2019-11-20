@@ -1,5 +1,5 @@
 <template>
-  <div class="page-pricing">
+  <div class="page-my-base">
     <h1 class="ui-title-page">My Base</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
