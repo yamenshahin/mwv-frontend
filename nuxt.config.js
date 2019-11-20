@@ -127,7 +127,12 @@ export default {
           icons: ['fab']
         },
       ]
-    }]
+    }],
+    // https://github.com/HapLifeMan/nuxt-trustbox-module
+    ['nuxt-trustbox-module', {
+      businessunitId: '5cdf3f58188c010001d2d032',
+      businessunitName: 'helloservices.co.uk',
+    }],
   ],
   /**
    * .env

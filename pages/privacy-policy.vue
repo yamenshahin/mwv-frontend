@@ -1,5 +1,5 @@
 <template>
-  <div class="area-we-cover-page">
+  <div class="privacy-policy-page">
     <h1 class="ui-title-page">Privacy policy</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />

@@ -1,5 +1,5 @@
 <template>
-  <div class="area-we-cover-page">
+  <div class="faq-page">
     <h1 class="ui-title-page">FAQ</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />

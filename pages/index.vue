@@ -3,6 +3,7 @@
     <DriverSlider />
     <MainSlider />
     <WorkSteps />
+    <TrustBox />
     <Statistics />
     <UnderStatistics />
     <DriverBanner />
@@ -18,6 +19,7 @@ import Statistics from '~/components/index/Statistics'
 import UnderStatistics from '~/components/index/UnderStatistics'
 import DriverBanner from '~/components/index/DriverBanner'
 import About from '~/components/index/About'
+import TrustBox from '~/components/index/TrustBox'
 
 export default {
   components: {
@@ -27,7 +29,8 @@ export default {
     Statistics,
     UnderStatistics,
     DriverBanner,
-    About
+    About,
+    TrustBox
   },
   created() {
     this.getPage()

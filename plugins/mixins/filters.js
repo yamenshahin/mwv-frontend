@@ -56,6 +56,9 @@ const Filters = {
             ':' +
             minutes
           )
+        },
+        intToFloatString(value) {
+          return value.toFixed(1)
         }
       }
     })

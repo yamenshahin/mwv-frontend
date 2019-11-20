@@ -11,11 +11,12 @@
                   <div class="banner">
                     <div class="banner__inner">
                       <h2 class="ui-subtitle-block">
-                        To Get More Jobs Set Your Base Information Now
+                        To Get More Jobs By Setting Your Base Information Now
                       </h2>
                       <p>
                         By setting you base information you will receive
-                        confirmed bookings direct to your phone and email
+                        confirmed bookings direct to your phone and email and
+                        will appear in search for quotes results.
                       </p>
                     </div>
                     <nuxt-link

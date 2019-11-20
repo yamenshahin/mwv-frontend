@@ -1,5 +1,5 @@
 <template>
-  <div class="area-we-cover-page">
+  <div class="terms-and-conditions-page">
     <h1 class="ui-title-page">Terms and Conditions</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
