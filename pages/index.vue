@@ -2,40 +2,39 @@
   <div class="page-index mb-5">
     <DriverSlider />
     <MainSlider />
-    <WorkSteps />
-    <TrustBox />
-    <Statistics />
-    <UnderStatistics />
-    <DriverBanner />
-    <About />
+    <div v-observe-visibility="lazyload" class="any">
+      <div v-if="showLazyLoad">
+        <WorkSteps />
+        <TrustBox />
+        <Statistics />
+        <UnderStatistics />
+        <DriverBanner />
+        <About />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import DriverSlider from '~/components/index/DriverSlider'
-import MainSlider from '~/components/index/MainSlider'
-import WorkSteps from '~/components/index/WorkSteps'
-import Statistics from '~/components/index/Statistics'
-import UnderStatistics from '~/components/index/UnderStatistics'
-import DriverBanner from '~/components/index/DriverBanner'
-import About from '~/components/index/About'
-import TrustBox from '~/components/index/TrustBox'
-
 export default {
   components: {
-    DriverSlider,
-    MainSlider,
-    WorkSteps,
-    Statistics,
-    UnderStatistics,
-    DriverBanner,
-    About,
-    TrustBox
+    DriverSlider: () => import('~/components/index/DriverSlider'),
+    MainSlider: () => import('~/components/index/MainSlider'),
+    WorkSteps: () => import('~/components/index/WorkSteps'),
+    Statistics: () => import('~/components/index/Statistics'),
+    UnderStatistics: () => import('~/components/index/UnderStatistics'),
+    DriverBanner: () => import('~/components/index/DriverBanner'),
+    About: () => import('~/components/index/About'),
+    TrustBox: () => import('~/components/index/TrustBox')
   },
+  data: () => ({ showLazyLoad: false }),
   created() {
     this.getPage()
   },
   methods: {
+    lazyload(isVisible, entry) {
+      this.showLazyLoad = isVisible
+    },
     async getPage() {
       const pageHTML = await this.$axios
         .$post('/pages', { page: this.homeHtmlObject.page })
