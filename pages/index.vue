@@ -1,7 +1,13 @@
 <template>
   <div class="page-index mb-5">
-    <DriverSlider />
-    <MainSlider />
+    <button @click="show = true">Load Tooltip</button>
+    <div v-if="show">
+      <DriverSlider />
+    </div>
+    <div v-if="show">
+      <MainSlider />
+    </div>
+
     <WorkSteps />
     <TrustBox />
     <Statistics />
@@ -12,8 +18,6 @@
 </template>
 
 <script>
-import DriverSlider from '~/components/index/DriverSlider'
-import MainSlider from '~/components/index/MainSlider'
 import WorkSteps from '~/components/index/WorkSteps'
 import Statistics from '~/components/index/Statistics'
 import UnderStatistics from '~/components/index/UnderStatistics'
@@ -23,14 +27,20 @@ import TrustBox from '~/components/index/TrustBox'
 
 export default {
   components: {
-    DriverSlider,
-    MainSlider,
+    DriverSlider: () => import('~/components/index/DriverSlider'),
+    MainSlider: () => import('~/components/index/MainSlider'),
+
     WorkSteps,
     Statistics,
     UnderStatistics,
     DriverBanner,
     About,
     TrustBox
+  },
+  data() {
+    return {
+      show: false
+    }
   },
   created() {
     this.getPage()

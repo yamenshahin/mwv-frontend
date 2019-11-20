@@ -95,6 +95,7 @@ export default {
     '~plugins/star-vote.js',
     // Home HTML
     '~plugins/mixins/home-html.js',
+    
   ],
   /*
    ** Nuxt.js dev-modules
