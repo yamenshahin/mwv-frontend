@@ -109,26 +109,53 @@
           </span>
         </b-col>
         <b-col cols="12" lg="9">
+          <div>
+            <b-nav>
+              <b-nav-item active @click.prevent="showGroup('Living Room')">
+                Living Room
+              </b-nav-item>
+              <b-nav-item @click.prevent="showGroup('Office Items')">
+                Office Items
+              </b-nav-item>
+              <b-nav-item @click.prevent="showGroup('Kitchen / Hallway')">
+                Kitchen / Hallway
+              </b-nav-item>
+              <b-nav-item @click.prevent="showGroup('Outside / Garden')">
+                Outside / Garden
+              </b-nav-item>
+              <b-nav-item @click.prevent="showGroup('Boxes and Luggage')">
+                Boxes and Luggage
+              </b-nav-item>
+              <b-nav-item @click.prevent="showGroup('Bedroom')">
+                Bedroom
+              </b-nav-item>
+              <b-nav-item @click.prevent="showGroup('Bathroom')">
+                Bathroom
+              </b-nav-item>
+            </b-nav>
+          </div>
           <span v-for="item in items" :key="item.id">
-            <span class="item bg-theme-blue">
-              <span
-                v-if="item.counter !== 0"
-                class="item-count bg-theme-yellow"
-              >
-                {{ item.counter }}
-              </span>
-              <span
-                class="item-name bg-theme-blue"
-                @click.prevent="addItem(item)"
-              >
-                {{ item.name }}
-              </span>
-              <span
-                v-if="item.counter !== 0"
-                class="item-delete bg-danger color-white"
-                @click.prevent="removeItem(item)"
-              >
-                X
+            <span v-if="group === item.group">
+              <span class="item bg-theme-blue">
+                <span
+                  v-if="item.counter !== 0"
+                  class="item-count bg-theme-yellow"
+                >
+                  {{ item.counter }}
+                </span>
+                <span
+                  class="item-name bg-theme-blue"
+                  @click.prevent="addItem(item)"
+                >
+                  {{ item.name }}
+                </span>
+                <span
+                  v-if="item.counter !== 0"
+                  class="item-delete bg-danger color-white"
+                  @click.prevent="removeItem(item)"
+                >
+                  X
+                </span>
               </span>
             </span>
           </span>
@@ -159,6 +186,7 @@ export default {
   data() {
     return {
       total: 0.0,
+      group: 'Living Room',
       vanType: {
         type1: {
           type: 'Small van',
@@ -1773,6 +1801,9 @@ export default {
         await this.$store.dispatch('search/setSearchMetaValue', metaObject)
       }
       this.$router.push('/my-move')
+    },
+    showGroup(group) {
+      this.group = group
     }
   }
 }
