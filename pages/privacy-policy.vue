@@ -25,12 +25,14 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   head() {
     return {
-      title: 'Privacy policy',
+      title:
+        'Privacy policy | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Privacy policy description'
+          content:
+            'Privacy policy description | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

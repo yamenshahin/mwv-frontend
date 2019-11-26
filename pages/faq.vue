@@ -18,12 +18,14 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   head() {
     return {
-      title: 'FAQ',
+      title:
+        'FAQ | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'FAQ description'
+          content:
+            'FAQ  | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }
@@ -54,7 +56,6 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
-      console.log(pageHTML)
       this.dynamicHTML = pageHTML
     }
   }

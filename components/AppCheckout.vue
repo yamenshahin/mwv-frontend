@@ -3,11 +3,11 @@
     <h2 class="ui-title-block">Please Enter Your Payment Details:</h2>
     <div class="border-color border-color_default"></div>
     <label for="card">Credit Card</label>
-    <p>
+    <!-- <p>
       Test using this credit card:
       <span class="cc-number">4242 4242 4242 4242</span>
       , and enter any 5 digits for the zip code
-    </p>
+    </p> -->
     <div v-if="status === 'failure'">
       <b-alert show variant="danger">
         <h3>Oh No!</h3>
@@ -133,7 +133,7 @@
         class="lg mb-1 pay-with-stripe"
         @click.prevent="payCash()"
       >
-        Cash on delivery
+        Cash on completion
       </b-button>
     </div>
   </div>

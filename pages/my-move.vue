@@ -521,12 +521,14 @@ export default {
   },
   head() {
     return {
-      title: 'My Move',
+      title:
+        'My Move | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'My Move description'
+          content:
+            'My Move | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }
@@ -574,9 +576,9 @@ export default {
         { text: 'is a lift', value: '9' }
       ],
       totalTimeOptions: [
-        { text: '30 minutes', value: '0.5' },
+        /* { text: '30 minutes', value: '0.5' },
         { text: '1 hour', value: '1' },
-        { text: '1 and a half hours', value: '1.5' },
+        { text: '1 and a half hours', value: '1.5' }, */
         { text: '2 hour', value: '2' },
         { text: '2 and a half hours', value: '2.5' },
         { text: '3 hour', value: '3' },

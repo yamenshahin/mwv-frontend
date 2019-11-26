@@ -129,12 +129,14 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   head() {
     return {
-      title: 'Profile',
+      title:
+        'Profile | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Profile description'
+          content:
+            'Profile  | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

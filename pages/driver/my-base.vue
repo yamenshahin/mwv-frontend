@@ -40,7 +40,7 @@
                         ></b-form-input>
                       </b-form-group>
 
-                      <b-form-group label="National Insurance number">
+                      <!-- <b-form-group label="National Insurance number">
                         <b-form-input
                           type="text"
                           :value="
@@ -54,7 +54,7 @@
                             )
                           "
                         ></b-form-input>
-                      </b-form-group>
+                      </b-form-group> -->
 
                       <b-form-group label="Driving licence number">
                         <b-form-input
@@ -74,17 +74,18 @@
                           placeholder="Choose a file or drop it here..."
                           drop-placeholder="Drop file here..."
                           class="mb-2"
+                          required
                           @change="btnToggle"
                         ></b-form-file>
                       </b-form-group>
 
-                      <b-button
+                      <!-- <b-button
                         class="mr-2"
                         :disabled="btnDisabled"
                         @click="handleFileUpload"
                       >
                         Upload
-                      </b-button>
+                      </b-button> -->
                       <p v-if="driverPlaceFilesObject.placeImageURL !== ''">
                         <img
                           :src="
@@ -801,12 +802,14 @@ export default {
   head() {
     return {
       saveSuccess: false,
-      title: 'My Base',
+      title:
+        'My Base | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'My Base description'
+          content:
+            'My Base  | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }
@@ -815,7 +818,8 @@ export default {
     return {
       showMap: true,
       file: null,
-      btnDisabled: true
+      btnDisabled: true,
+      btnSubmitDisabled: true
     }
   },
   computed: {
@@ -862,7 +866,6 @@ export default {
         this.$store.dispatch('driver-place/setDriverPlaceLegal', metaObject)
       }
 
-      // TODO: handle case where no id
       const responseDataLocation = await this.$axios
         .get('/driver/get-location')
         .then(function(response) {
@@ -877,19 +880,18 @@ export default {
         responseDataLocation
       )
 
-      const responseDataFiles = await this.$axios
+      const that = this
+      await this.$axios
         .get('/files/user-file/' + 'places/')
         .then(function(response) {
-          return response.data.data
+          that.$store.dispatch(
+            'driver-place/setDriverPlaceFiles',
+            response.data.data.url
+          )
         })
         .catch(function(error) {
           console.log(error)
         })
-
-      await this.$store.dispatch(
-        'driver-place/setDriverPlaceFiles',
-        responseDataFiles.url
-      )
     } else {
       this.$router.push('/')
     }
@@ -919,7 +921,7 @@ export default {
     },
     async onSubmit() {
       const that = this
-
+      this.handleFileUpload()
       const responseDataLegal = await this.$axios
         .post('/driver/create-update-legal', this.driverPlaceLegalObject)
         .then(function(response) {

@@ -89,12 +89,14 @@ export default {
   },
   head() {
     return {
-      title: 'Checkout',
+      title:
+        'Checkout | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Checkout description'
+          content:
+            'Checkout  | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

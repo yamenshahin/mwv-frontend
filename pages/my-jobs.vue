@@ -188,12 +188,14 @@ export default {
   },
   head() {
     return {
-      title: 'My Jobs',
+      title:
+        'My Jobs | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'My Jobs description'
+          content:
+            'My Jobs | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }
@@ -218,6 +220,7 @@ export default {
       .$get('/jobs/show')
       .then(function(response) {
         // handle success
+        console.log(response)
         return response
       })
       .catch(function(error) {

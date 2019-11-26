@@ -39,12 +39,14 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   head() {
     return {
-      title: 'Area We Cover',
+      title:
+        'Area We Cover | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Area We Cover description'
+          content:
+            'Area We Cover description | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

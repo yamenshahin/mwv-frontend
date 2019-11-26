@@ -8,6 +8,12 @@
               <fa :icon="['fas', 'clock']" />
               OPEN 7 DAYS A WEEK
             </div>
+
+            <div class="block-contacts__text">
+              Hello Vans, Richmond road Studios
+              <br />
+              Richmond road, Uk, KT2 5Bx
+            </div>
             <!-- <div class="block-contacts__text">9:00 AM to 7:00 PM</div> -->
           </div>
           <div class="block-contacts__item">
@@ -45,10 +51,12 @@
           </ul>
         </b-col>
         <b-col md class="text-right">
-          <div class="block-contacts__phone">
-            020 3633 8267
-            <fa :icon="['fas', 'phone-square-alt']" />
-          </div>
+          <a href="tel:02036338267">
+            <div class="block-contacts__phone">
+              020 3633 8267
+              <fa :icon="['fas', 'phone-square-alt']" />
+            </div>
+          </a>
           <div class="block-contacts__text">
             Ask Questions or Need a Free Estimate?
           </div>

@@ -4,6 +4,10 @@
       <b-row>
         <b-col>
           <ul class="list-progress">
+            <div class="text-center mb-5">
+              <h2 class="ui-title-block">IN THE LAST 30 DAYS</h2>
+              <div class="border-color border-color_center"></div>
+            </div>
             <li class="list-progress__item">
               <fa :icon="['fas', 'check']" class="icon" />
               <div class="list-progress__info">
