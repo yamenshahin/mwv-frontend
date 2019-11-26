@@ -170,12 +170,14 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   head() {
     return {
-      title: 'Van Size Calculator',
+      title:
+        'Van Size Calculator | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Van Size Calculator description'
+          content:
+            'Van Size Calculator description | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

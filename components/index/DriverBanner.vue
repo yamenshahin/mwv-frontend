@@ -11,7 +11,7 @@
                   <div class="banner">
                     <div class="banner__inner">
                       <h2 class="ui-subtitle-block">
-                        ARE YOU AN EXCELLENT DRIVER?
+                        ARE YOU AN EXCELLENT MAN WITH A VAN PROVIDER?
                       </h2>
                       <p>
                         Sign up and receive confirmed bookings direct to your
@@ -45,7 +45,7 @@
                 <div class="banner">
                   <div class="banner__inner">
                     <h2 class="ui-subtitle-block">
-                      ARE YOU AN EXCELLENT DRIVER?
+                      ARE YOU AN EXCELLENT MAN WITH A VAN PROVIDER?
                     </h2>
                     <p>
                       Sign up and receive confirmed bookings direct to your

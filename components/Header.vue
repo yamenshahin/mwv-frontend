@@ -4,7 +4,7 @@
       <b-container>
         <b-row>
           <b-col md>
-            <div class="slogan">PROFESSIONAL MOVING SERVICES YOU CAN TRUST</div>
+            <div class="slogan">UK’S MAN WITH A VAN QUOTE COMPARISON</div>
           </b-col>
           <b-col md>
             <div class="header__social text-center">
@@ -43,7 +43,7 @@
                 <fa :icon="['fas', 'phone-square-alt']" />
                 020 3633 8267
               </a>
-              <a href="mail:info@domain.com">
+              <a href="mail:info@HelloVans.com">
                 <fa :icon="['fas', 'envelope-square']" />
                 info@HelloVans.com
               </a>

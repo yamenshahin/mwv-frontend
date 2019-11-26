@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Hello Vans',
+    title: 'Hello Vans |  | Compare low cost Man with a van quotes - book Man and van for Removals',
     htmlAttrs: {
       lang: 'en'
     },
@@ -14,7 +14,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Hello Vans description'
+        content: 'Hello Vans |  | Compare low cost Man with a van quotes - book Man and van for Removals'
       },
       {
         hid: 'keywords',
@@ -137,6 +137,9 @@ export default {
       businessunitId: '5cdf3f58188c010001d2d032',
       businessunitName: 'helloservices.co.uk',
     }],
+    //
+    '@nuxtjs/sitemap',
+    
   ],
   /**
    * .env
@@ -149,14 +152,14 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com/api/',
+    baseURL: 'https://hellovansapi.com/api/',
     //credentials: false
     //proxy: true,
     //https: true
   },
   proxy: {
     '/api/': {
-      target: 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com/'
+      target: 'https://hellovansapi.com/'
     }
   }, 
   auth: {
@@ -183,7 +186,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    analyze: true,
+    //analyze: true,
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
@@ -202,5 +205,8 @@ export default {
   server: {
     port: 3001, // default: 3000
     host: 'localhost' // default: localhost
+  },
+  sitemap: {
+    hostname: 'https://hellovans.com',
   }
 }

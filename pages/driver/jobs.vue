@@ -138,12 +138,14 @@ export default {
   components,
   head() {
     return {
-      title: 'Jobs',
+      title:
+        'Jobs | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Jobs description'
+          content:
+            'Jobs | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

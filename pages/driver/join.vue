@@ -17,12 +17,14 @@ export default {
   },
   head() {
     return {
-      title: 'Join',
+      title:
+        'Join | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Join description'
+          content:
+            'Join | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

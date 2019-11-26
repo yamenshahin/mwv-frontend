@@ -16,12 +16,14 @@ export default {
   },
   head() {
     return {
-      title: 'Login',
+      title:
+        'Login | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Login description'
+          content:
+            'Login  | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }

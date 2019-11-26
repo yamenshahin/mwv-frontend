@@ -53,12 +53,12 @@ export const state = () => ({
   },
   driverPlaceLegal: {
     vehicleRegistration: '',
-    nationalInsuranceNumber: '',
+    /* nationalInsuranceNumber: '', */
     drivingLicenceNumber: '',
     disc: ''
   },
   driverPlaceFiles: {
-    baseUrl: 'https://hellovans-files.s3.eu-west-2.amazonaws.com',
+    baseUrl: 'https://hellovans-assets.s3.eu-west-2.amazonaws.com',
     placeImageURL: ''
   }
 })

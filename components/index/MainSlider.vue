@@ -8,6 +8,11 @@
               <form>
                 <b-row>
                   <b-col md>
+                    <div class="slide-title">
+                      Compare Multiple Movers In One Place
+                      <strong>Save Up To 50%</strong>
+                    </div>
+
                     <b-form-group class="mt-2">
                       <gmap-autocomplete
                         class="form-control main-address"

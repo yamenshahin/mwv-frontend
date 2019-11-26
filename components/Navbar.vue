@@ -3,7 +3,7 @@
     <no-ssr>
       <b-navbar toggleable="lg" type="light">
         <nuxt-link to="/" class="navbar-brand" exact>
-          <img class="navbar-logo" src="~/assets/images/logo-moveman-YB.png" />
+          <img class="navbar-logo" src="~/assets/images/logo.jpg" />
         </nuxt-link>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -73,7 +73,7 @@
                 Help
               </template>
               <nuxt-link
-                to="size-calculator"
+                to="/size-calculator"
                 class="nav-link"
                 role="menuitem"
                 exact

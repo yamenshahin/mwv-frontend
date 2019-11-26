@@ -39,11 +39,22 @@
             <div class="desktop d-none d-md-block">
               <b-row>
                 <b-col cols="2">
-                  <img
-                    :src="driverPlaceFilesObject.baseUrl + place.placeFile.url"
-                    alt="place-image"
-                    class="img-fluid"
-                  />
+                  <span v-if="place.placeFile.url === null">
+                    <img
+                      src="https://hellovans-assets.s3.eu-west-2.amazonaws.com/user-files/places/2019/11/user-800_800.png"
+                      alt="place-image"
+                      class="img-fluid"
+                    />
+                  </span>
+                  <span v-else>
+                    <img
+                      :src="
+                        driverPlaceFilesObject.baseUrl + place.placeFile.url
+                      "
+                      alt="place-image"
+                      class="img-fluid"
+                    />
+                  </span>
                 </b-col>
                 <b-col cols="10">
                   <b-row>
@@ -65,15 +76,20 @@
                             disabled
                             class="disabled-alt"
                           >
-                            <fa
-                              v-for="indexy in Math.round(place.score)"
-                              :key="indexy"
-                              :icon="['fas', 'star']"
-                            />
-                            <fa
-                              v-if="Math.round(place.score) < place.score"
-                              :icon="['fas', 'star-half']"
-                            />
+                            <span v-if="place.score !== 0">
+                              <fa
+                                v-for="indexy in Math.round(place.score)"
+                                :key="indexy"
+                                :icon="['fas', 'star']"
+                              />
+                              <fa
+                                v-if="Math.round(place.score) < place.score"
+                                :icon="['fas', 'star-half']"
+                              />
+                            </span>
+                            <span v-else>
+                              No Feedback
+                            </span>
                           </b-button>
                           <b-button
                             variant="primary"
@@ -81,7 +97,10 @@
                             @click.prevent="showReviews(place.user.id)"
                           >
                             <fa :icon="['fas', 'thumbs-up']" />
-                            {{ place.votes }} Reviews
+                            <span v-if="place.votes === 0">
+                              No Reviews
+                            </span>
+                            <span v-else>{{ place.votes }} Reviews</span>
                           </b-button>
                           <b-button
                             variant="primary"
@@ -163,14 +182,25 @@
 
             <div class="mobile d-block d-md-none d-lg-none d-xl-none">
               <b-row>
-                <b-col cols="2">
-                  <img
-                    :src="driverPlaceFilesObject.baseUrl + place.placeFile.url"
-                    alt="place-image"
-                    class="img-fluid"
-                  />
+                <b-col cols="12" class="mb-1">
+                  <span v-if="place.placeFile.url === null">
+                    <img
+                      src="https://hellovans-assets.s3.eu-west-2.amazonaws.com/user-files/places/2019/11/user-800_800.png"
+                      alt="place-image"
+                      class="img-fluid"
+                    />
+                  </span>
+                  <span v-else>
+                    <img
+                      :src="
+                        driverPlaceFilesObject.baseUrl + place.placeFile.url
+                      "
+                      alt="place-image"
+                      class="img-fluid"
+                    />
+                  </span>
                 </b-col>
-                <b-col cols="10">
+                <b-col cols="12">
                   <b-row>
                     <b-col>
                       <b-button
@@ -212,15 +242,20 @@
                           disabled
                           class="disabled-alt"
                         >
-                          <fa
-                            v-for="indexy in Math.round(place.score)"
-                            :key="indexy"
-                            :icon="['fas', 'star']"
-                          />
-                          <fa
-                            v-if="Math.round(place.score) < place.score"
-                            :icon="['fas', 'star-half']"
-                          />
+                          <span v-if="place.score !== 0">
+                            <fa
+                              v-for="indexy in Math.round(place.score)"
+                              :key="indexy"
+                              :icon="['fas', 'star']"
+                            />
+                            <fa
+                              v-if="Math.round(place.score) < place.score"
+                              :icon="['fas', 'star-half']"
+                            />
+                          </span>
+                          <span v-else>
+                            No Feedback
+                          </span>
                         </b-button>
                         <b-button
                           variant="primary"
@@ -228,7 +263,10 @@
                           @click.prevent="showReviews(place.user.id)"
                         >
                           <fa :icon="['fas', 'thumbs-up']" />
-                          {{ place.votes }} Reviews
+                          <span v-if="place.votes === 0">
+                            No Reviews
+                          </span>
+                          <span v-else>{{ place.votes }} Reviews</span>
                         </b-button>
                         <b-button
                           variant="primary"
@@ -361,12 +399,14 @@ export default {
   },
   head() {
     return {
-      title: 'Quotes Results',
+      title:
+        'Quotes Results | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: 'Quotes Results description'
+          content:
+            'Quotes Results | Compare low cost Man with a van quotes - book Man and van for Removals'
         }
       ]
     }
