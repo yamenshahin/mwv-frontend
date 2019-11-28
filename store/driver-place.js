@@ -53,7 +53,7 @@ export const state = () => ({
   },
   driverPlaceLegal: {
     vehicleRegistration: '',
-    /* nationalInsuranceNumber: '', */
+    nationalInsuranceNumber: '',
     drivingLicenceNumber: '',
     disc: ''
   },

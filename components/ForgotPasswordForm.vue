@@ -17,20 +17,9 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-form-group id="input-group-2" label="Password:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.password"
-          type="password"
-          required
-          placeholder="Enter password"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Login</b-button>
-      <!-- <nuxt-link to="/forgot-password" class="btn btn-secondary" exact>
-        Forgot Password
-      </nuxt-link> -->
+      <b-button type="submit" variant="primary">
+        Send Email for Reset Password
+      </b-button>
     </b-form>
     <span v-else></span>
   </div>
@@ -41,8 +30,7 @@ export default {
   data() {
     return {
       form: {
-        email: '',
-        password: ''
+        email: ''
       },
       errorText: '',
       showError: false

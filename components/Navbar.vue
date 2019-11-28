@@ -161,8 +161,17 @@
 
 <script>
 export default {
+  data() {
+    return {
+      placeImageURL: ''
+    }
+  },
   methods: {
     logout() {
+      this.$store.dispatch(
+        'driver-place/setDriverPlaceFiles',
+        this.placeImageURL
+      )
       this.$auth.logout()
       this.$router.push('/')
     },
