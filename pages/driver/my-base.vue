@@ -74,7 +74,6 @@
                           placeholder="Choose a file or drop it here..."
                           drop-placeholder="Drop file here..."
                           class="mb-2"
-                          required
                           @change="btnToggle"
                         ></b-form-file>
                       </b-form-group>
@@ -882,8 +881,11 @@ export default {
 
       const that = this
       await this.$axios
-        .get('/files/user-file/' + 'places/')
+        .post('/files/file-get', {
+          key: 'places'
+        })
         .then(function(response) {
+          console.log(response.data.data.url)
           that.$store.dispatch(
             'driver-place/setDriverPlaceFiles',
             response.data.data.url
@@ -972,24 +974,25 @@ export default {
     async handleFileUpload() {
       // console.log(this.$refs.fileInput.$refs.input.files[0])
 
-      console.log(this.file)
-      const formData = new FormData()
-      formData.append('file', this.file)
-      formData.append('key', 'places')
-      // formData.append('_method', 'PUT')
-      const responseDataFiles = await this.$axios
-        .$post('/files/user-file', formData)
-        .then(function(response) {
-          // handle success
-          return response.data
-        })
-        .catch(function(error) {
-          console.log(error)
-        })
-      await this.$store.dispatch(
-        'driver-place/setDriverPlaceFiles',
-        responseDataFiles.url
-      )
+      if (this.file !== null) {
+        const formData = new FormData()
+        formData.append('file', this.file)
+        formData.append('key', 'places')
+        // formData.append('_method', 'PUT')
+        const responseDataFiles = await this.$axios
+          .$post('/files/user-file', formData)
+          .then(function(response) {
+            // handle success
+            return response.data
+          })
+          .catch(function(error) {
+            console.log(error)
+          })
+        await this.$store.dispatch(
+          'driver-place/setDriverPlaceFiles',
+          responseDataFiles.url
+        )
+      }
     },
     btnToggle() {
       if (this.file !== '') {

@@ -988,3 +988,6 @@ Size page
 	margin-top: 10px;
 	border-radius: 0;
 }
+.badge-dark {
+	background-color: #aaa9ad ;
+}

@@ -61,7 +61,13 @@
                     <b-col>
                       <h2 class="ui-title-block">
                         {{ place.user.name }}
-                        <!-- <b-badge variant="warning">Gold</b-badge> -->
+                        <span v-if="place.user.level === 'gold'">
+                          <b-badge variant="warning">Gold</b-badge>
+                        </span>
+                        <span v-else-if="place.user.level === 'silver'">
+                          <b-badge variant="dark">Silver</b-badge>
+                        </span>
+                        <span v-else></span>
                       </h2>
                       <div class="border-color border-color_default"></div>
                       <div class="driver-desc">
@@ -230,7 +236,13 @@
                       </div>
                       <h2 class="ui-title-block">
                         {{ place.user.name }}
-                        <!-- <b-badge variant="warning">Gold</b-badge> -->
+                        <span v-if="place.user.level === 'gold'">
+                          <b-badge variant="warning">Gold</b-badge>
+                        </span>
+                        <span v-else-if="place.user.level === 'silver'">
+                          <b-badge variant="dark">Silver</b-badge>
+                        </span>
+                        <span v-else></span>
                       </h2>
                       <div class="border-color border-color_default"></div>
                       <div class="driver-desc">
