@@ -18,6 +18,7 @@ $ npm run start
 # generate static project
 $ npm run generate
 $ aws s3 cp dist s3://hellovans.com --recursive
+$ aws s3 cp dist s3://manvanstage.com --recursive
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

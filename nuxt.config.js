@@ -152,14 +152,14 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: 'https://hellovansapi.com/api/',
+    baseURL: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/api/' : 'https://hellovansapi.com/api/',
     //credentials: false
     //proxy: true,
     //https: true
   },
   proxy: {
     '/api/': {
-      target: 'https://hellovansapi.com/'
+      target: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/' : 'https://hellovansapi.com/'
     }
   }, 
   auth: {
