@@ -1,24 +1,30 @@
 <template>
   <div>
     <b-form v-if="!authenticated" @submit.prevent="onSubmit">
-      <b-alert :show="showError" variant="danger">{{ errorText }}</b-alert>
-      <b-form-group
-        id="input-group-1"
-        label="Email address:"
-        label-for="input-1"
-        description="We'll never share your email with anyone else."
-      >
-        <b-form-input
-          id="input-1"
+      <alert-success :form="form" class="mt-2">
+        {{ message }}
+      </alert-success>
+      <alert-error :form="form" class="mt-2">
+        There were some problems with your email address.
+      </alert-error>
+      <div class="form-group">
+        <label>Email:</label>
+        <input
           v-model="form.email"
           type="email"
-          required
-          placeholder="Enter email"
-        ></b-form-input>
-      </b-form-group>
+          name="email"
+          class="form-control"
+          placeholder="Enter your email"
+          :class="{ 'is-invalid': form.errors.has('email') }"
+        />
+        <small class="form-text text-muted">
+          We'll never share your email with anyone else.
+        </small>
+        <has-error :form="form" field="email"></has-error>
+      </div>
 
       <b-button type="submit" variant="primary">
-        Send Email for Reset Password
+        Send Me Link to Reset My Password
       </b-button>
     </b-form>
     <span v-else></span>
@@ -29,26 +35,21 @@
 export default {
   data() {
     return {
-      form: {
+      form: this.$vform({
         email: ''
-      },
-      errorText: '',
-      showError: false
+      }),
+      message: ''
     }
   },
   methods: {
     async onSubmit() {
-      await this.$auth
-        .loginWith('local', {
-          data: this.form
+      const that = this
+      await this.form
+        .post('/forget')
+        .then(function(response) {
+          that.message = response.data.message
         })
-        .then(() => {
-          this.showError = false
-        })
-        .catch(() => {
-          this.errorText = 'Wrong details'
-          this.showError = true
-        })
+        .catch(() => {})
     }
   }
 }
