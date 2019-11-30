@@ -17,7 +17,7 @@ export default {
   head() {
     return {
       title:
-        'Login | Compare low cost Man with a van quotes - book Man and van for Removals',
+        'Forgot Password | Compare low cost Man with a van quotes - book Man and van for Removals',
       meta: [
         {
           hid: 'description',

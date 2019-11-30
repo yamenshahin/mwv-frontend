@@ -28,9 +28,13 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary">Login</b-button>
-      <!-- <nuxt-link to="/forgot-password" class="btn btn-secondary" exact>
+      <nuxt-link
+        to="/forgot-password"
+        class="btn btn-secondary float-right"
+        exact
+      >
         Forgot Password
-      </nuxt-link> -->
+      </nuxt-link>
     </b-form>
     <span v-else></span>
   </div>
