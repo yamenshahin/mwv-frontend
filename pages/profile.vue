@@ -129,7 +129,6 @@ export default {
         .post('user/update')
         .then(function(response) {
           // handle success
-          console.log(response.data.data)
           return response.data.data
         })
         .catch(() => {})

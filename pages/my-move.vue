@@ -4,6 +4,20 @@
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
     <b-container>
+      <b-alert show variant="primary">
+        <h4 class="alert-heading mt-2">
+          You could get Man with a van quote for as little as £50
+        </h4>
+        <p>
+          We only charge you from the pick up to the delivery address, so
+          <b>
+            you wont be charge for the time the van is on the way to the pick up
+            address.
+          </b>
+          Note: all drivers are pay as you and you can extend it for as many
+          hours as you like.
+        </p>
+      </b-alert>
       <form @submit.prevent="onSubmit">
         <b-row>
           <b-col>
@@ -175,7 +189,21 @@
                 </b-form-group>
               </div>
             </div>
-
+            <b-alert show variant="primary" class="mt-3">
+              <h4 class="alert-heading mt-2">
+                Will I be able to travel in the Van to the destination?
+              </h4>
+              <p>
+                Drivers at
+                <nuxt-link to="/" exact>
+                  Hellovans.com
+                </nuxt-link>
+                are happy to offer a seat in their vans to the destination,
+                Number of seats available is based on the size of the van you
+                require and the number of helpers you need, Its always best to
+                check with the man and van provider once booked.
+              </p>
+            </b-alert>
             <!-- Date time -->
             <div class="card mt-3 section_mod-2">
               <div class="card-body">
@@ -419,7 +447,7 @@
                 <div class="border-color border-color_default"></div>
                 <div class="row">
                   <div class="col-xs-12 col-sm-1">
-                    <p>Est:</p>
+                    <p>Estimated:</p>
                   </div>
 
                   <div class="col-xs-12 col-sm-3">
@@ -452,7 +480,7 @@
                   <div class="col-xs-12 col-sm-3">
                     <p>
                       <fa :icon="['fas', 'clock']" />
-                      Total time:
+                      We estimate you book:
                       <strong>
                         <span class="estimated-total-time">
                           {{
@@ -478,7 +506,7 @@
             <!-- Notification -->
             <div class="card mt-3 section_mod-2 ">
               <div class="card-body">
-                <div class="ui-subtitle-block">CHOOSE VEHICLE SIZE</div>
+                <div class="ui-subtitle-block">BY EMAIL AND SMS</div>
                 <h2 class="ui-title-block">Notify Me</h2>
                 <div class="border-color border-color_default"></div>
                 <b-form-group

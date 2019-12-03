@@ -44,18 +44,15 @@ export default {
       this.showLazyLoad = isVisible
     },
     async getPage() {
-      console.log('Hello World')
       const pageHTML = await this.$axios
         .$post('/pages', { page: this.homeHtmlObject.page })
         .then(function(response) {
           // handle success
-          console.log(response)
           return response
         })
         .catch(function(error) {
           console.log(error)
         })
-      console.log(pageHTML)
       await this.$store.dispatch('home-html/setHomeHtml', pageHTML)
       this.dynamicHTML = pageHTML
     }

@@ -991,3 +991,6 @@ Size page
 .badge-dark {
 	background-color: #aaa9ad ;
 }
+.trustbox-img {
+	max-width: 455px;
+}

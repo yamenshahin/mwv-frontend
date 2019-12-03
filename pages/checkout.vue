@@ -36,6 +36,20 @@
                   <div v-if="job_meta.key === 'movingDate'">
                     Moving Date: {{ job_meta.value | isoDateToString }}
                   </div>
+                  <div v-if="job_meta.key === 'vanSize'">
+                    Van Size: {{ job_meta.value | vanSize }}
+                  </div>
+                  <div v-if="job_meta.key === 'helpersRequired'">
+                    Helpers Required: {{ job_meta.value | helpersRequired }}
+                  </div>
+                  <div v-if="job_meta.key === 'additionalTimePrice'">
+                    Additional Time Price: {{ job_meta.value | currency }} per
+                    half hour
+                  </div>
+                  <div v-if="job_meta.key === 'totalTime'">
+                    Total Time:
+                    {{ job_meta.value | timeInFloatToSec | timeInHoursMinutes }}
+                  </div>
                   <div v-if="job_meta.key === 'total'">
                     <br />
                     <h3>Total Price: {{ job_meta.value | currency }}</h3>
@@ -63,15 +77,33 @@
       <!--If there's a success, let's let people know it's being processed, we'll add a success component later on-->
       <div v-else>
         <b-alert show variant="success">
-          <h2>Success!</h2>
-          <p>Your order has been processed, it will be delivered shortly.</p>
-          <p v-if="!authenticated">
-            Your account has been created successfully.
-            <nuxt-link to="/login" class="btn mb-1 btn-secondary btn-block lg">
-              Login Now
-            </nuxt-link>
+          <h2>Thank you for booking with HelloVans.com</h2>
+          <p>
+            We have received your booking and its being taken care of, you will
+            soon receive booking confirmation to your email.
           </p>
-          <span v-else></span>
+          <p v-if="!authenticated">
+            Your account has been created successfully. You can now
+            <nuxt-link to="/login">
+              login
+            </nuxt-link>
+            and can see your job by clicking on jobs section and you can see the
+            contact details of the service provider.
+          </p>
+          <p v-else>
+            You are now logged in and can see your job by clicking on
+            <nuxt-link to="/my-jobs">jobs</nuxt-link>
+            section and you can see the contact details of the service provider.
+          </p>
+          <p>
+            If you have paid for the service online then you will also get a
+            receipt at the end of the job, if the payment is paid in cash on the
+            moving day then you need to pay it to the service provider and email
+            us for a receipt. Should you have any questions about your booking
+            please do not hesitate to
+            <nuxt-link to="/contact">contact us</nuxt-link>
+            or speak to us here on the live chat.
+          </p>
         </b-alert>
       </div>
     </div>

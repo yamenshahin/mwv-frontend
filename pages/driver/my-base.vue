@@ -18,7 +18,7 @@
                           <div class="border-color border-color_default"></div>
                         </div>
                         <b-form-group
-                          label="Describe your service"
+                          label="Please give a brief description about the service you provide"
                           description="150 characters max"
                         >
                           <b-form-textarea
@@ -40,22 +40,6 @@
                             "
                           ></b-form-input>
                         </b-form-group>
-
-                        <!-- <b-form-group label="National Insurance number">
-                        <b-form-input
-                          type="text"
-                          :value="
-                            driverPlaceLegalObject.nationalInsuranceNumber
-                          "
-                          required
-                          @input="
-                            setDriverPlaceLegal(
-                              $event,
-                              'nationalInsuranceNumber'
-                            )
-                          "
-                        ></b-form-input>
-                      </b-form-group> -->
 
                         <b-form-group label="Driving licence number">
                           <b-form-input
@@ -82,13 +66,6 @@
                           ></b-form-file>
                         </b-form-group>
 
-                        <!-- <b-button
-                        class="mr-2"
-                        :disabled="btnDisabled"
-                        @click="handleFileUpload"
-                      >
-                        Upload
-                      </b-button> -->
                         <p v-if="driverPlaceFilesObject.placeImageURL !== ''">
                           <img
                             :src="
@@ -107,8 +84,26 @@
             </b-col>
           </b-row>
           <b-row>
+            <b-col>
+              <b-alert show variant="primary" class="mt-3">
+                <p class="mt-2">
+                  Below are prices per hour, we have options for different type
+                  of vans, small, medium, large, Giant vans.
+                </p>
+                <p>
+                  <b>Note:</b>
+                  We have two hours minimum charge and each quote is based on
+                  two hours, there is also price per mile applied for the
+                  distance travelled between pick up and delivery. We recommend
+                  £1 per mile. However, its entirely up to you what price you
+                  set.
+                </p>
+              </b-alert>
+            </b-col>
+          </b-row>
+          <b-row>
             <b-col md>
-              <b-card title="Small Van" class="mt-3">
+              <b-card title="Small Van" class="mt-1">
                 <b-card-body>
                   <b-row>
                     <b-col>
@@ -680,8 +675,14 @@
           </b-row>
           <b-row>
             <b-col>
-              <b-card title="Charges related to the journey" class="mt-3">
+              <b-card class="mt-3">
                 <b-card-body>
+                  <div class="driver-info">
+                    <h2 class="ui-title-block">
+                      Charges Related To The Journey
+                    </h2>
+                    <div class="border-color border-color_default"></div>
+                  </div>
                   <b-form-group
                     label="Your fee for stopping at Via addresses on route to destination"
                     description="Minimum: £1.00"
@@ -728,8 +729,23 @@
 
           <b-row>
             <b-col>
-              <b-card title="Service Area" class="mt-3">
+              <b-card class="mt-3">
                 <b-card-body>
+                  <div class="driver-info">
+                    <h2 class="ui-title-block">
+                      Service Area
+                    </h2>
+                    <div class="border-color border-color_default"></div>
+                  </div>
+                  <b-alert show variant="primary" class="mt-3">
+                    <p class="mt-2">
+                      This is the coverage area you can cover from your base
+                      post code, This should be for local jobs and its your
+                      responsibility to attend jobs booked on your account
+                      within the coverage area, Our recommended coverage is 20
+                      miles from base
+                    </p>
+                  </b-alert>
                   <b-row>
                     <b-col>
                       <b-form-group label="Base address">
@@ -772,6 +788,43 @@
                       :options="{ fillColor: 'red', fillOpacity: 0.5 }"
                     ></GmapCircle>
                   </GmapMap>
+                </b-card-body>
+              </b-card>
+            </b-col>
+          </b-row>
+
+          <b-row>
+            <b-col>
+              <b-card class="mt-3">
+                <b-card-body>
+                  <b-row>
+                    <b-col>
+                      <div>
+                        <div class="driver-info">
+                          <h2 class="ui-title-block">
+                            Drivers Terms and Conditions
+                          </h2>
+                          <div class="border-color border-color_default"></div>
+                        </div>
+                        <b-form-group
+                          label="Do you accept Drivers Terms and Conditions?"
+                        >
+                          <b-form-checkbox
+                            v-model="statusDTAC"
+                            name="DTAC"
+                            value="accepted"
+                            unchecked-value="not_accepted"
+                            required
+                          >
+                            I accept the
+                            <nuxt-link to="/driver-terms-and-conditions" exact>
+                              Drivers Terms and Conditions
+                            </nuxt-link>
+                          </b-form-checkbox>
+                        </b-form-group>
+                      </div>
+                    </b-col>
+                  </b-row>
                 </b-card-body>
               </b-card>
             </b-col>
@@ -821,6 +874,7 @@ export default {
   },
   data() {
     return {
+      statusDTAC: 'accepted',
       showMap: true,
       file: null,
       btnDisabled: true,
@@ -891,7 +945,6 @@ export default {
           key: 'places'
         })
         .then(function(response) {
-          console.log(response.data.data.url)
           that.$store.dispatch(
             'driver-place/setDriverPlaceFiles',
             response.data.data.url
@@ -978,13 +1031,10 @@ export default {
       )
     },
     async handleFileUpload() {
-      // console.log(this.$refs.fileInput.$refs.input.files[0])
-
       if (this.file !== null) {
         const formData = new FormData()
         formData.append('file', this.file)
         formData.append('key', 'places')
-        // formData.append('_method', 'PUT')
         const responseDataFiles = await this.$axios
           .$post('/files/user-file', formData)
           .then(function(response) {
