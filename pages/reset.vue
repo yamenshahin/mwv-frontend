@@ -91,7 +91,6 @@ export default {
   created() {
     this.form.token = this.$route.query.token
     this.form.email = this.$route.query.email
-    console.log(this.$route)
   },
   methods: {
     async onSubmit() {

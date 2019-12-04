@@ -102,7 +102,26 @@
                         <p>Van Size: {{ job_meta.value | vanSize }}</p>
                       </div>
                       <div v-if="job_meta.key === 'helpersRequired'">
-                        <p>Helpers Required: {{ job_meta.value }}</p>
+                        <p>
+                          Helpers Required:
+                          {{ job_meta.value | helpersRequired }}
+                        </p>
+                      </div>
+                      <div v-if="job_meta.key === 'totalTime'">
+                        <p>
+                          Total Time:
+                          {{
+                            job_meta.value
+                              | timeInFloatToSec
+                              | timeInHoursMinutes
+                          }}
+                        </p>
+                      </div>
+                      <div v-if="job_meta.key === 'additionalTimePrice'">
+                        <p>
+                          Additional Time Price:
+                          {{ job_meta.value | currency }} per half hour
+                        </p>
                       </div>
                       <div v-if="job_meta.key === 'description'">
                         <p>Note: {{ job_meta.value }}</p>
@@ -220,7 +239,6 @@ export default {
       .$get('/jobs/show')
       .then(function(response) {
         // handle success
-        console.log(response)
         return response
       })
       .catch(function(error) {
@@ -233,7 +251,6 @@ export default {
       const response = await this.$axios
         .$get('/jobs/show')
         .then(function(response) {
-          console.log('update jobs')
           return response
         })
         .catch(function(error) {

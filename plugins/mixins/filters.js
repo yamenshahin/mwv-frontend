@@ -4,6 +4,9 @@ const Filters = {
   install(Vue, Options) {
     Vue.mixin({
       filters: {
+        timeInFloatToSec(timeInFloat) {
+          return timeInFloat * 60 * 60
+        },
         timeInHoursMinutes(timeInSec) {
           const h = Math.floor(timeInSec / 3600)
           const m = Math.floor((timeInSec % 3600) / 60)
@@ -59,6 +62,17 @@ const Filters = {
         },
         intToFloatString(value) {
           return value.toFixed(1)
+        },
+        helpersRequired(helpersRequired) {
+          if (helpersRequired === '0') {
+            return 'No help needed'
+          } else if (helpersRequired === '1') {
+            return 'Driver helping'
+          } else if (helpersRequired === '2') {
+            return 'Driver helping + 1 helper'
+          } else {
+            return ' Driver helping + 2 helpers'
+          }
         }
       }
     })

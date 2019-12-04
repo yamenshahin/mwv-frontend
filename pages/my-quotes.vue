@@ -166,7 +166,7 @@
                             @click.prevent="emailQuote(index)"
                           >
                             <fa :icon="['fas', 'share']" />
-                            Email Qoute
+                            Email me this Quote
                           </b-button>
                         </b-col>
                         <b-col xl>
@@ -302,7 +302,7 @@
                           @click.prevent="emailQuote(index)"
                         >
                           <fa :icon="['fas', 'share']" />
-                          Email Qoute
+                          Email me this Quote
                         </b-button>
                         <b-button
                           v-b-toggle="'collapse-' + index"
@@ -487,7 +487,6 @@ export default {
     async emailQuote(placeIndex) {
       const quote = this.searchResultObject.data[placeIndex]
       quote.job_meta = this.searchResultObject.job_meta
-      console.log(quote)
       const that = this
       await this.$axios
         .$post('/user/email/send-quote', quote)

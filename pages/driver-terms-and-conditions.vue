@@ -1,19 +1,12 @@
 <template>
-  <div class="privacy-policy-page">
-    <h1 class="ui-title-page">Privacy policy</h1>
+  <div class="terms-and-conditions-page">
+    <h1 class="ui-title-page">Drivers Terms and Conditions</h1>
     <div class="triagl triagl-btm"></div>
     <EmptySpace />
     <b-container class="section_mod-2">
       <b-row>
         <b-col>
-          <b-tabs content-class="mt-3">
-            <b-tab title="Privacy policy" active>
-              <span v-html="dynamicHTML.privacyText"></span>
-            </b-tab>
-            <b-tab title="Cancelation Policy">
-              <span v-html="dynamicHTML.cancelationText"></span>
-            </b-tab>
-          </b-tabs>
+          <span v-html="dynamicHTML.driversTermsText"></span>
         </b-col>
       </b-row>
     </b-container>
@@ -25,14 +18,12 @@ import EmptySpace from '~/components/EmptySpace.vue'
 export default {
   head() {
     return {
-      title:
-        'Privacy policy | Compare low cost Man with a van quotes - book Man and van for Removals',
+      title: 'Drivers Terms And Conditions',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content:
-            'Privacy policy description | Compare low cost Man with a van quotes - book Man and van for Removals'
+          content: 'Drivers Terms And Conditions description'
         }
       ]
     }
@@ -43,9 +34,8 @@ export default {
   data() {
     return {
       dynamicHTML: {
-        page: 'privacy',
-        privacyText: '',
-        cancelationText: ''
+        page: 'driversTerms',
+        driversTermsText: ''
       }
     }
   },
