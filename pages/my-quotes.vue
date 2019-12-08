@@ -29,6 +29,17 @@
           </b-form-group>
         </b-col>
       </b-row>
+      <b-row>
+        <b-col>
+          <b-alert show variant="primary" class="mt-2">
+            <p class="mt-3">
+              Below are the list of Man with a van / Removals providers that can
+              provide you the service on the date and time you have selected,
+              They can be booked in less than 2 minutes.
+            </p>
+          </b-alert>
+        </b-col>
+      </b-row>
       <div
         v-for="(place, index) in searchResultObject.data"
         :key="index"

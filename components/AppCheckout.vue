@@ -19,7 +19,7 @@
       id="card"
       class="stripe-card"
       :class="{ complete }"
-      stripe="pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74"
+      stripe="pk_live_lclxGfi4gE7tP2oLiGpasP8900PLpojQPu"
       :options="stripeOptions"
       @change="complete = $event.complete"
     />
@@ -97,12 +97,26 @@
         />
         <has-error :form="form" field="password_confirmation"></has-error>
       </div>
+      <b-form-group label="Do you accept Terms and Conditions?">
+        <b-form-checkbox
+          v-model="statusTAC"
+          name="DTAC"
+          value="accepted"
+          unchecked-value="not_accepted"
+          required
+        >
+          I accept the
+          <nuxt-link to="/terms-and-conditions" exact>
+            Terms and Conditions
+          </nuxt-link>
+        </b-form-checkbox>
+      </b-form-group>
       <b-button
         type="submit"
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
-        :disabled="!complete"
+        :disabled="!complete || statusTAC === 'not_accepted'"
       >
         Pay with credit card
       </b-button>
@@ -111,17 +125,32 @@
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
+        :disabled="statusTAC === 'not_accepted'"
         @click.prevent="regNotDone ? onSubmitCash() : payCash()"
       >
         Cash on delivery
       </b-button>
     </b-form>
     <div v-else>
+      <b-form-group label="Do you accept Terms and Conditions?">
+        <b-form-checkbox
+          v-model="statusTAC"
+          name="DTAC"
+          value="accepted"
+          unchecked-value="not_accepted"
+          required
+        >
+          I accept the
+          <nuxt-link to="/terms-and-conditions" exact>
+            Terms and Conditions
+          </nuxt-link>
+        </b-form-checkbox>
+      </b-form-group>
       <b-button
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
-        :disabled="!complete"
+        :disabled="!complete || statusTAC === 'not_accepted'"
         @click.prevent="payCredit()"
       >
         Pay with credit card
@@ -131,6 +160,7 @@
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
+        :disabled="statusTAC === 'not_accepted'"
         @click.prevent="payCash()"
       >
         Cash on completion
@@ -157,6 +187,7 @@ export default {
 
   data() {
     return {
+      statusTAC: 'not_accepted',
       regNotDone: true,
       form: this.$vform({
         name: '',

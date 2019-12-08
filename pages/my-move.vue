@@ -6,17 +6,8 @@
     <b-container>
       <b-alert show variant="primary">
         <h4 class="alert-heading mt-2">
-          You could get Man with a van quote for as little as £50
+          Your Man with a van quote could be as little as £50
         </h4>
-        <p>
-          We only charge you from the pick up to the delivery address, so
-          <b>
-            you wont be charge for the time the van is on the way to the pick up
-            address.
-          </b>
-          Note: all drivers are pay as you and you can extend it for as many
-          hours as you like.
-        </p>
       </b-alert>
       <form @submit.prevent="onSubmit">
         <b-row>
@@ -502,6 +493,18 @@
                 </b-form-group>
               </div>
             </div>
+
+            <b-alert show variant="primary" class="mt-2">
+              <p class="mt-3">
+                We only charge you from the pick up to the delivery address, so
+                <b>
+                  you wont be charge for the time the van is on the way to the
+                  pick up address.
+                </b>
+                Note: all drivers are pay as you and you can extend it for as
+                many hours as you like.
+              </p>
+            </b-alert>
 
             <!-- Notification -->
             <div class="card mt-3 section_mod-2 ">
