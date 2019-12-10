@@ -209,6 +209,7 @@
                   use12-hour
                   required
                   @input="setSerchMeta($event, 'movingDate')"
+                  @click.prevent="setChatWindowZIndex()"
                 ></datetime>
               </div>
             </div>
@@ -787,6 +788,11 @@ export default {
         })
       await this.$store.dispatch('search-result/setSearchResult', responseData)
       this.$router.push('/my-quotes')
+    },
+    setChatWindowZIndex() {
+      if (document.getElementById('tawkchat-container')) {
+        document.getElementById('tawkchat-container').style.zIndex = 990
+      }
     }
   }
 }

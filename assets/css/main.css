@@ -1181,3 +1181,9 @@ Loader
 	border: none;
 	border-radius: 0;
 }
+
+/**
+**/
+body #tawkchat-container {
+  z-index: 999 !important;
+}
