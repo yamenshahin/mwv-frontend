@@ -30,6 +30,7 @@ export default {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap' }
     ]
   },
+  
   /*
    ** Customize the progress-bar color
    */
@@ -145,7 +146,8 @@ export default {
    * .env
    */
   env: {
-    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY
+    VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
+    stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_live_lclxGfi4gE7tP2oLiGpasP8900PLpojQPu',
   },
   /*
    ** Axios module configuration

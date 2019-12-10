@@ -6,6 +6,17 @@
     <b-container class="section_mod-2">
       <b-row>
         <b-col>
+          <b-alert show variant="primary">
+            <h4 class="alert-heading mt-2">
+              Our aim is to cover the Entire UK
+            </h4>
+            <p>
+              If we your moving from or moving to is within the blue circle then
+              we do cover you and
+              <b>man and van providers are just few clicks away</b>
+              from you.
+            </p>
+          </b-alert>
           <GmapMap
             v-show="showMap"
             ref="mapDir"

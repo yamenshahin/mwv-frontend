@@ -34,6 +34,8 @@ const GoogleMapCommonTasks = {
         },
         getDirection() {
           const calculatedWayPoint = this.wayPoints
+          let distanceMeters = 0
+          let travelTimeInSec = 0
           this.$gmapApiPromiseLazy().then(() => {
             this.$options.directionsDisplay.set('directions', null)
             this.$options.directionsService.route(
@@ -52,12 +54,18 @@ const GoogleMapCommonTasks = {
               },
               (result, status) => {
                 if (status === 'OK') {
-                  const meters = result.routes[0].legs[0].distance.value
+                  result.routes[0].legs.forEach((leg) => {
+                    distanceMeters = distanceMeters + leg.distance.value
+                    travelTimeInSec = travelTimeInSec + leg.duration.value
+                  })
+                  console.log(distanceMeters)
+                  console.log(travelTimeInSec)
+                  // const meters = result.routes[0].legs[0].distance.value
                   const travelTimeObject = {
-                    travelTime: result.routes[0].legs[0].duration.value
+                    travelTime: travelTimeInSec
                   }
                   const milesDrivenObject = {
-                    milesDriven: this.convertMeterToMile(meters)
+                    milesDriven: this.convertMeterToMile(distanceMeters)
                   }
                   this.$options.directionsDisplay.setDirections(result)
 

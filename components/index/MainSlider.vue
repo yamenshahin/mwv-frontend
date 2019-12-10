@@ -9,8 +9,8 @@
                 <b-row>
                   <b-col md>
                     <div class="slide-title">
-                      Compare Multiple Movers In One Place
-                      <strong>Save Up To 50%</strong>
+                      <strong>100s Man With Van Providers</strong>
+                      To Compare And Book For Your Next Move
                     </div>
 
                     <b-form-group class="mt-2">

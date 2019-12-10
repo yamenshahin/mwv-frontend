@@ -19,7 +19,7 @@
       id="card"
       class="stripe-card"
       :class="{ complete }"
-      stripe="pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74"
+      :stripe="stripe_key"
       :options="stripeOptions"
       @change="complete = $event.complete"
     />
@@ -97,12 +97,26 @@
         />
         <has-error :form="form" field="password_confirmation"></has-error>
       </div>
+      <b-form-group label="Do you accept Terms and Conditions?">
+        <b-form-checkbox
+          v-model="statusTAC"
+          name="DTAC"
+          value="accepted"
+          unchecked-value="not_accepted"
+          required
+        >
+          I accept the
+          <nuxt-link to="/terms-and-conditions" exact>
+            Terms and Conditions
+          </nuxt-link>
+        </b-form-checkbox>
+      </b-form-group>
       <b-button
         type="submit"
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
-        :disabled="!complete"
+        :disabled="!complete || statusTAC === 'not_accepted' || processing"
       >
         Pay with credit card
       </b-button>
@@ -111,17 +125,32 @@
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
+        :disabled="statusTAC === 'not_accepted' || processing"
         @click.prevent="regNotDone ? onSubmitCash() : payCash()"
       >
         Cash on delivery
       </b-button>
     </b-form>
     <div v-else>
+      <b-form-group label="Do you accept Terms and Conditions?">
+        <b-form-checkbox
+          v-model="statusTAC"
+          name="DTAC"
+          value="accepted"
+          unchecked-value="not_accepted"
+          required
+        >
+          I accept the
+          <nuxt-link to="/terms-and-conditions" exact>
+            Terms and Conditions
+          </nuxt-link>
+        </b-form-checkbox>
+      </b-form-group>
       <b-button
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
-        :disabled="!complete"
+        :disabled="!complete || statusTAC === 'not_accepted' || processing"
         @click.prevent="payCredit()"
       >
         Pay with credit card
@@ -131,11 +160,13 @@
         variant="dark"
         block
         class="lg mb-1 pay-with-stripe"
+        :disabled="statusTAC === 'not_accepted' || processing"
         @click.prevent="payCash()"
       >
         Cash on completion
       </b-button>
     </div>
+    <Processing />
   </div>
 </template>
 
@@ -143,7 +174,10 @@
 import { Card, createToken } from 'vue-stripe-elements-plus'
 
 export default {
-  components: { Card },
+  components: {
+    Card,
+    Processing: () => import('~/components/Processing')
+  },
   props: {
     total: {
       type: [Number, String],
@@ -157,6 +191,9 @@ export default {
 
   data() {
     return {
+      stripe_key: process.env.stripe_key,
+      processing: false,
+      statusTAC: 'not_accepted',
       regNotDone: true,
       form: this.$vform({
         name: '',
@@ -188,15 +225,21 @@ export default {
   methods: {
     async onSubmitCash() {
       const that = this
+      this.processing = true
       await this.form
         .post('register')
         .then(() => {
           that.regNotDone = false
           that.payCash()
         })
-        .catch(() => {})
+        .catch(() => {
+          that.processing = false
+        })
     },
     async payCash() {
+      const that = this
+      this.processing = true
+      this.$bvModal.show('processing')
       await this.$axios
         .$post('/jobs/checkout-cash', {
           id: this.checkoutObject.id,
@@ -208,22 +251,28 @@ export default {
           this.restCheckoutState()
           this.submitted = true
           this.response = response
+          that.$bvModal.hide('processing')
         })
         .catch((error) => {
           this.status = 'failure'
           this.response = 'Error!: ' + error
           console.log(this.response)
+          that.processing = false
+          that.$bvModal.hide('processing')
         })
     },
     async onSubmitCredit() {
       const that = this
+      this.processing = true
       await this.form
         .post('register')
         .then(() => {
           that.regNotDone = false
           that.payCredit()
         })
-        .catch(() => {})
+        .catch(() => {
+          that.processing = false
+        })
     },
     async payCredit() {
       // createToken returns a Promise which resolves in a result object with
@@ -231,6 +280,9 @@ export default {
       // See https://stripe.com/docs/api#tokens for the token object.
       // See https://stripe.com/docs/api#errors for the error object.
       // More general https://stripe.com/docs/stripe.js#stripe-create-token.
+      const that = this
+      this.processing = true
+      this.$bvModal.show('processing')
       await createToken().then((data) => {
         this.$axios
           .$post('/jobs/checkout-credit', {
@@ -245,11 +297,14 @@ export default {
             this.restCheckoutState()
             this.submitted = true
             this.response = response
+            that.$bvModal.hide('processing')
           })
           .catch((error) => {
             this.status = 'failure'
             this.response = 'Error!: ' + error
             console.log(this.response)
+            that.processing = false
+            that.$bvModal.hide('processing')
           })
       })
     },
@@ -258,6 +313,8 @@ export default {
       this.status = ''
       this.complete = false
       this.response = ''
+      this.processing = false
+      this.$bvModal.hide('processing')
     },
     restCheckoutState() {
       const checkoutState = {
