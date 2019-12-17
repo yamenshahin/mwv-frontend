@@ -172,7 +172,13 @@ export default {
       return null
     }
   },
-  mounted() {},
+  mounted() {
+    if (process.browser) {
+      this.$gtag('event', 'conversion', {
+        send_to: 'AW-983351056/ovYBCIrH37YBEJD-8tQD'
+      })
+    }
+  },
   methods: {}
 }
 </script>

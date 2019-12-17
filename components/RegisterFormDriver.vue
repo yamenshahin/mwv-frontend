@@ -106,7 +106,7 @@ export default {
               password: this.form.password
             }
           })
-          this.$router.push('/driver/my-base')
+          this.$router.push('/')
         })
         .catch(() => {})
     }
