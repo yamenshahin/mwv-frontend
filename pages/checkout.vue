@@ -135,7 +135,8 @@ export default {
   },
   data() {
     return {
-      success: false
+      success: false,
+      google_tag_on: process.env.google_tag_on
     }
   },
   computed: {
@@ -173,11 +174,12 @@ export default {
     }
   },
   mounted() {
-    if (process.browser) {
+    if (process.browser && this.google_tag_on) {
       this.$gtag('event', 'conversion', {
         send_to: 'AW-983351056/ovYBCIrH37YBEJD-8tQD'
       })
     }
+    console.log(this.google_tag_on)
   },
   methods: {}
 }

@@ -502,7 +502,7 @@
                   you wont be charge for the time the van is on the way to the
                   pick up address.
                 </b>
-                Note: all drivers are pay as you and you can extend it for as
+                Note: all drivers are pay as you go and you can extend it for as
                 many hours as you like.
               </p>
             </b-alert>

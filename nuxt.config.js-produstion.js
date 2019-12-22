@@ -149,6 +149,7 @@ export default {
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
     stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_live_lclxGfi4gE7tP2oLiGpasP8900PLpojQPu',
+    google_tag_on:true, 
   },
   /*
    ** Axios module configuration

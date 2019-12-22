@@ -11,8 +11,8 @@
               Our aim is to cover the Entire UK
             </h4>
             <p>
-              If we your moving from or moving to is within the blue circle then
-              we do cover you and
+              If where you are moving from or moving to is within the blue
+              circle then we do cover you and
               <b>man and van providers are just few clicks away</b>
               from you.
             </p>
