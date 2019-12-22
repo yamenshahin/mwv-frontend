@@ -10,9 +10,9 @@
             </div>
 
             <div class="block-contacts__text">
-              Hello Vans, Richmond road Studios
-              <br />
-              Richmond road, Uk, KT2 5Bx
+              Hello Vans Trading under Hello Services Ltd, Registered address,
+              Richmond Road Studios, Kingston Upon Thames, KT2 5BX, Company's
+              registration number 12004893
             </div>
             <!-- <div class="block-contacts__text">9:00 AM to 7:00 PM</div> -->
           </div>
@@ -59,6 +59,9 @@
           </a>
           <div class="block-contacts__text">
             Ask Questions or Need a Free Estimate?
+            <br />
+            We are open all over the Xmas and would like to wish everyone a
+            merry Christmas and a happy new year.
           </div>
         </b-col>
       </b-row>
