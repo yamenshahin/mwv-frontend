@@ -1,4 +1,4 @@
-export const isSameURL = (a, b) => a.split('?')[0] === b.split('?')[0]
+/* export const isSameURL = (a, b) => a.split('?')[0] === b.split('?')[0]
 
 export const isRelativeURL = (u) =>
   u &&
@@ -56,3 +56,4 @@ export default function({ app }) {
 
   app.$auth.redirect = redirect.bind(app.$auth)
 }
+ */
