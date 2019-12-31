@@ -7,7 +7,8 @@
       <b-row>
         <b-col>
           <youtube
-            :player-vars="{ autoplay: 1 }"
+            class="video-container"
+            :player-vars="{ autoplay: 0 }"
             :player-width="640"
             :player-height="360"
             :video-id="videoId"

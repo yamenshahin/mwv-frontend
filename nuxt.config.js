@@ -142,30 +142,31 @@ export default {
       businessunitName: 'hellovans.com',
     }],
     //
-    '@nuxtjs/sitemap'
-   
+    '@nuxtjs/sitemap',
+    //https://github.com/nuxt-community/google-gtag
+    '@nuxtjs/google-gtag',
   ],
   /**
    * .env
    */
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
-    stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74',
-    google_tag_on:false, 
+    stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_live_lclxGfi4gE7tP2oLiGpasP8900PLpojQPu',
+    google_tag_on:true, 
   },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/api/' : 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com/api/',
+    baseURL: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/api/' : 'https://hellovansapi.com/api/',
     //credentials: false
     //proxy: true,
     //https: true
   },
   proxy: {
     '/api/': {
-      target: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/' : 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com/'
+      target: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/' : 'https://hellovansapi.com/'
     }
   }, 
   auth: {
@@ -213,6 +214,18 @@ export default {
     host: 'localhost' // default: localhost
   },
   sitemap: {
-    hostname: 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com',
+    hostname: 'https://hellovans.com',
+  },
+  'google-gtag': {
+    id: 'AW-983351056',
+    config: {
+      //anonymize_ip: true, // anonymize IP 
+      //send_page_view: false, // might be necessary to avoid duplicated page track on page reload
+      linker: {
+        domains: ['hellovans.com']
+      }
+    },
+    debug: false, // enable to track in dev mode
+    disableAutoPageTrack: true, // disable if you don't want to track each page route with router.afterEach(...).
   }
 }
