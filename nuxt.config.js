@@ -100,6 +100,9 @@ export default {
     //https://github.com/Akryum/vue-observe-visibility
     //https://vueschool.io/articles/vuejs-tutorials/async-vuejs-components/
     '~plugins/lazyload.js',
+    //https://github.com/kaorun343/vue-youtube-embed
+    //https://github.com/kaorun343/vue-youtube-embed/issues/44
+    { ssr: false, src: '~plugins/youtube.js'  },
   ],
   /*
    ** Nuxt.js dev-modules

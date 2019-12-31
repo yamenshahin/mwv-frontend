@@ -80,6 +80,9 @@
               >
                 Van Size Calculator
               </nuxt-link>
+              <nuxt-link to="/tutorial" class="nav-link" role="menuitem" exact>
+                Tutorial
+              </nuxt-link>
               <nuxt-link to="/faq" class="nav-link" role="menuitem" exact>
                 FAQ
               </nuxt-link>
