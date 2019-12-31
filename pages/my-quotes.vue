@@ -133,7 +133,7 @@
                             class="disabled-alt"
                           >
                             <fa :icon="['fas', 'gas-pump']" />
-                            {{ place.milesDriven }} Miles driven
+                            {{ place.milesDriven | round2Decimal }} Miles driven
                           </b-button>
                         </b-col>
                       </b-row>
@@ -305,7 +305,7 @@
                           class="disabled-alt"
                         >
                           <fa :icon="['fas', 'gas-pump']" />
-                          {{ place.milesDriven }} Miles driven
+                          {{ place.milesDriven | round2Decimal }} Miles driven
                         </b-button>
                         <b-button
                           block
