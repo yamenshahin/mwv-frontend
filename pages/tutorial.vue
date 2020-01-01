@@ -6,14 +6,16 @@
     <b-container class="section_mod-2">
       <b-row>
         <b-col>
-          <youtube
-            class="video-container"
-            :player-vars="{ autoplay: 0 }"
-            :player-width="640"
-            :player-height="360"
-            :video-id="videoId"
-            @ready="ready"
-          />
+          <no-ssr>
+            <youtube
+              class="video-container"
+              :player-vars="{ autoplay: 0 }"
+              :player-width="640"
+              :player-height="360"
+              :video-id="videoId"
+              @ready="ready"
+            />
+          </no-ssr>
         </b-col>
       </b-row>
     </b-container>

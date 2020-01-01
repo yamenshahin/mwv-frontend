@@ -28,7 +28,7 @@
             <div v-for="area in areasObject" :key="area.index">
               <GmapCircle
                 :center="area.center"
-                :radius="32186.88"
+                :radius="16093.44"
                 :visible="true"
                 :options="{
                   strokeWeight: '1',
