@@ -9,7 +9,7 @@
                 <b-row>
                   <b-col md>
                     <div class="slide-title">
-                      <span v-html="homeHtmlObject.mainSliderTitle"></span>
+                      <span v-html="ukHtmlObject.meta.mainSliderTitle"></span>
                     </div>
 
                     <b-form-group class="mt-2">

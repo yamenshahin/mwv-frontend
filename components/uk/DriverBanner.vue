@@ -11,9 +11,9 @@
                   <div class="banner">
                     <div class="banner__inner">
                       <h2 class="ui-subtitle-block">
-                        {{ homeHtmlObject.driverBannerTitle }}
+                        {{ ukHtmlObject.meta.driverBannerTitle }}
                       </h2>
-                      <span v-html="homeHtmlObject.driverBannerText"></span>
+                      <span v-html="ukHtmlObject.meta.driverBannerText"></span>
                     </div>
                     <a
                       href="#"
@@ -42,9 +42,9 @@
                 <div class="banner">
                   <div class="banner__inner">
                     <h2 class="ui-subtitle-block">
-                      {{ homeHtmlObject.driverBannerTitle }}
+                      {{ ukHtmlObject.meta.driverBannerTitle }}
                     </h2>
-                    <span v-html="homeHtmlObject.driverBannerText"></span>
+                    <span v-html="ukHtmlObject.meta.driverBannerText"></span>
                   </div>
                   <nuxt-link
                     to="/driver/join"

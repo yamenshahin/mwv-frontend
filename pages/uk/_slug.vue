@@ -18,18 +18,20 @@
 <script>
 export default {
   components: {
-    DriverSlider: () => import('~/components/index/DriverSlider'),
-    MainSlider: () => import('~/components/index/MainSlider'),
-    WorkSteps: () => import('~/components/index/WorkSteps'),
-    Statistics: () => import('~/components/index/Statistics'),
-    UnderStatistics: () => import('~/components/index/UnderStatistics'),
-    DriverBanner: () => import('~/components/index/DriverBanner'),
-    About: () => import('~/components/index/About'),
-    TrustBox: () => import('~/components/index/TrustBox')
+    DriverSlider: () => import('~/components/uk/DriverSlider'),
+    MainSlider: () => import('~/components/uk/MainSlider'),
+    WorkSteps: () => import('~/components/uk/WorkSteps'),
+    Statistics: () => import('~/components/uk/Statistics'),
+    UnderStatistics: () => import('~/components/uk/UnderStatistics'),
+    DriverBanner: () => import('~/components/uk/DriverBanner'),
+    About: () => import('~/components/uk/About'),
+    TrustBox: () => import('~/components/uk/TrustBox')
   },
   data() {
     return {
-      showLazyLoad: false
+      slug: this.$route.params.slug,
+      showLazyLoad: false,
+      category: 'uk'
     }
   },
   created() {
@@ -41,15 +43,15 @@ export default {
     },
     async getPage() {
       const pageHTML = await this.$axios
-        .$post('/pages', { page: this.homeHtmlObject.page })
+        .$post('/dynamic-pages', { slug: this.slug, category: this.category })
         .then(function(response) {
           // handle success
-          return response
+          return response.data
         })
         .catch(function(error) {
           console.log(error)
         })
-      await this.$store.dispatch('home-html/setHomeHtml', pageHTML)
+      await this.$store.dispatch('uk-html/setUkHtml', pageHTML)
     }
   }
 }
