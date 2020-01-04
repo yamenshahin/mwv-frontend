@@ -25,12 +25,22 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <div class="mt-2"></div>
-            <img
+            <div class="pt-5"></div>
+            <no-ssr>
+              <youtube
+                class="video-container"
+                :player-vars="{ autoplay: 0 }"
+                :player-width="640"
+                :player-height="360"
+                :video-id="videoId"
+                @ready="ready"
+              />
+            </no-ssr>
+            <!-- <img
               src="~assets/images/service_3.jpg"
               alt="WORLD CLASS LOGISTIC SERVICES"
               class="img-fluid"
-            />
+            /> -->
           </div>
         </b-col>
       </b-row>
@@ -43,3 +53,13 @@
     </mq-layout>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      videoId: 'zL2AvIPWSxs'
+    }
+  }
+}
+</script>
