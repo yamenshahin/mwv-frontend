@@ -27,6 +27,20 @@ export default {
     About: () => import('~/components/index/About'),
     TrustBox: () => import('~/components/index/TrustBox')
   },
+  head() {
+    return {
+      title:
+        'Hello Vans | Compare low cost Man with a van quotes - book Man and van for Removals',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Hello Vans  | Compare low cost Man with a van quotes - book Man and van for Removals'
+        }
+      ]
+    }
+  },
   data() {
     return {
       showLazyLoad: false

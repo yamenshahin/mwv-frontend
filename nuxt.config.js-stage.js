@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Hello Vans |  | Compare low cost Man with a van quotes - book Man and van for Removals',
+    // title: 'Hello Vans |  | Compare low cost Man with a van quotes - book Man and van for Removals',
     htmlAttrs: {
       lang: 'en'
     },

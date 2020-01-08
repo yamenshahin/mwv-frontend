@@ -27,11 +27,44 @@ export default {
     About: () => import('~/components/uk/About'),
     TrustBox: () => import('~/components/uk/TrustBox')
   },
+  head() {
+    // console.log('this.pageTitle', this.pageTitle)
+    return {
+      title: this.pageTitle,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.pageDescription
+        }
+      ]
+    }
+  },
   data() {
     return {
       slug: this.$route.params.slug,
       showLazyLoad: false,
       category: 'uk'
+    }
+  },
+  async asyncData({ $axios, route }) {
+    const pageHTML = await $axios
+      .post('/dynamic-pages', {
+        slug: route.params.slug,
+        category: 'uk'
+      })
+      .then(function(response) {
+        // handle success
+        return response.data
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+    console.log('pageHTML', pageHTML)
+
+    return {
+      pageTitle: pageHTML.data.meta.pageTitle,
+      pageDescription: pageHTML.data.meta.pageDescription
     }
   },
   created() {
