@@ -1,0 +1,20 @@
+branch-defaults:
+  master:
+    environment: Front-end-HelloVans-Live
+environment-defaults:
+  Front-end-HelloVans-Stage:
+    branch: null
+    repository: null
+global:
+  application_name: hellovans
+  default_ec2_keyname: null
+  default_platform: arn:aws:elasticbeanstalk:eu-west-2::platform/Node.js running on
+    64bit Amazon Linux/4.12.0
+  default_region: eu-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: git
+  workspace_type: Application
