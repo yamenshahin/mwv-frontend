@@ -1,6 +1,5 @@
 <template>
   <div class="page-index mb-5">
-    <h1>Stage</h1>
     <DriverSlider />
     <MainSlider />
     <div v-observe-visibility="lazyload" class="any">
