@@ -1,4 +1,7 @@
 export default {
+  /**
+   * STAGE
+   */
   mode: 'universal',
   /*
    ** Headers of the page

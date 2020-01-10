@@ -15,6 +15,10 @@ $ npm run dev
 $ npm run build
 $ npm run start
 
+# deploy
+eb deploy Front-end-HelloVans-Stage
+eb deploy Front-end-HelloVans-Live
+
 # generate static project
 $ npm run generate
 $ aws s3 cp dist s3://hellovans.com --recursive

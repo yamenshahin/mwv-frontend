@@ -1,4 +1,7 @@
 export default {
+  /**
+   * LIVE
+   */
   mode: 'universal',
   /*
    ** Headers of the page
