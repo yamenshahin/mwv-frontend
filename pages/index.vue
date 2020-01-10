@@ -27,12 +27,22 @@ export default {
     About: () => import('~/components/index/About'),
     TrustBox: () => import('~/components/index/TrustBox')
   },
+  head() {
+    return {
+      title:
+        'Hello Vans | Compare low cost Man with a van quotes - book Man and van for Removals',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            'Hello Vans  | Compare low cost Man with a van quotes - book Man and van for Removals'
+        }
+      ]
+    }
+  },
   data() {
     return {
-      dynamicHTML: {
-        page: 'faq',
-        homeText: ''
-      },
       showLazyLoad: false
     }
   },
@@ -54,7 +64,6 @@ export default {
           console.log(error)
         })
       await this.$store.dispatch('home-html/setHomeHtml', pageHTML)
-      this.dynamicHTML = pageHTML
     }
   }
 }

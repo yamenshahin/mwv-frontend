@@ -8,10 +8,10 @@
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
             <h2 class="ui-title-block">
-              {{ homeHtmlObject.underStatisticsTitle }}
+              {{ ukHtmlObject.meta.underStatisticsTitle }}
             </h2>
             <div class="border-color border-color_default"></div>
-            <span v-html="homeHtmlObject.underStatisticsText"></span>
+            <span v-html="ukHtmlObject.meta.underStatisticsText"></span>
             <nuxt-link to="/my-move" class="btn btn-secondary mb-1" exact>
               <fa :icon="['fas', 'shipping-fast']" />
               Get Free Quotes
@@ -53,7 +53,6 @@
     </mq-layout>
   </div>
 </template>
-
 <script>
 export default {
   data() {

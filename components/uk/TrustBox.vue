@@ -3,7 +3,7 @@
     <b-container class="mt-5 mb-5">
       <b-row>
         <b-col class="text-center">
-          <h2 class="ui-title-block">{{ homeHtmlObject.trustBoxTitle }}</h2>
+          <h2 class="ui-title-block">{{ ukHtmlObject.meta.trustBoxTitle }}</h2>
           <div class="border-color border-color_center"></div>
         </b-col>
       </b-row>

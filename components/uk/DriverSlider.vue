@@ -11,9 +11,9 @@
                   <div class="banner">
                     <div class="banner__inner">
                       <h2 class="ui-subtitle-block">
-                        {{ homeHtmlObject.driverSliderTitle }}
+                        {{ ukHtmlObject.meta.driverSliderTitle }}
                       </h2>
-                      <span v-html="homeHtmlObject.driverSliderText"></span>
+                      <span v-html="ukHtmlObject.meta.driverSliderText"></span>
                     </div>
                     <nuxt-link
                       to="/driver/my-base"

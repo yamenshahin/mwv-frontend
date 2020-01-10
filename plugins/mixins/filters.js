@@ -7,6 +7,9 @@ const Filters = {
         timeInFloatToSec(timeInFloat) {
           return timeInFloat * 60 * 60
         },
+        round2Decimal(value) {
+          return Math.round(value * 100) / 100
+        },
         timeInHoursMinutes(timeInSec) {
           const h = Math.floor(timeInSec / 3600)
           const m = Math.floor((timeInSec % 3600) / 60)

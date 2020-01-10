@@ -5,14 +5,36 @@
     <EmptySpace />
     <div class="container">
       <div v-if="checkoutObject.driver.name != ''">
+        <h2 class="ui-title-block mt-2">Choose Your Payment Method:</h2>
+        <div class="border-color border-color_default"></div>
+        <form action="">
+          <b-form-group>
+            <b-form-radio-group
+              id="radio-group-1"
+              v-model="paymentMethod"
+              :options="paymentOptions"
+              name="radio-options"
+            ></b-form-radio-group>
+          </b-form-group>
+        </form>
         <div>
           <b-row>
             <b-col md>
-              <app-checkout
-                :total="total"
-                :success="success"
-                @successSubmit="success = true"
-              ></app-checkout>
+              <span v-if="paymentMethod === 'cash'">
+                <app-checkout-cash
+                  :total="total"
+                  :success="success"
+                  @successSubmit="success = true"
+                ></app-checkout-cash>
+              </span>
+              <span v-else-if="paymentMethod === 'credit'">
+                <app-checkout-credit
+                  :total="total"
+                  :success="success"
+                  @successSubmit="success = true"
+                ></app-checkout-credit>
+              </span>
+              <span v-else></span>
             </b-col>
             <b-col md>
               <h2 class="ui-title-block">Your Move:</h2>
@@ -111,12 +133,14 @@
 </template>
 
 <script>
-import AppCheckout from '~/components/AppCheckout.vue'
+import AppCheckoutCash from '~/components/AppCheckoutCash.vue'
+import AppCheckoutCredit from '~/components/AppCheckoutCredit.vue'
 import EmptySpace from '~/components/EmptySpace.vue'
 
 export default {
   components: {
-    AppCheckout,
+    AppCheckoutCash,
+    AppCheckoutCredit,
     EmptySpace
   },
   head() {
@@ -136,7 +160,12 @@ export default {
   data() {
     return {
       success: false,
-      google_tag_on: process.env.google_tag_on
+      google_tag_on: process.env.google_tag_on,
+      paymentMethod: 'cash',
+      paymentOptions: [
+        { text: 'Cash on completion', value: 'cash' },
+        { text: 'Pay with credit card', value: 'credit' }
+      ]
     }
   },
   computed: {

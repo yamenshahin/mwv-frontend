@@ -4,7 +4,6 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'Hello Vans |  | Compare low cost Man with a van quotes - book Man and van for Removals',
     htmlAttrs: {
       lang: 'en'
     },
@@ -96,17 +95,22 @@ export default {
     '~plugins/star-vote.js',
     // Home HTML
     '~plugins/mixins/home-html.js',
+    // UK HTML
+    '~plugins/mixins/uk-html.js',
     // Lazy load
     //https://github.com/Akryum/vue-observe-visibility
     //https://vueschool.io/articles/vuejs-tutorials/async-vuejs-components/
     '~plugins/lazyload.js',
+    //https://github.com/kaorun343/vue-youtube-embed
+    //https://github.com/kaorun343/vue-youtube-embed/issues/44
+    { ssr: false, src: '~plugins/youtube.js'  },
   ],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
   ],
   /*
    ** Nuxt.js modules
@@ -135,8 +139,8 @@ export default {
     }],
     // https://github.com/HapLifeMan/nuxt-trustbox-module
     ['nuxt-trustbox-module', {
-      businessunitId: '5cdf3f58188c010001d2d032',
-      businessunitName: 'helloservices.co.uk',
+      businessunitId: '5de00432a521610001945a1c',
+      businessunitName: 'hellovans.com',
     }],
     //
     '@nuxtjs/sitemap',
@@ -206,10 +210,6 @@ export default {
       }
     }
   },
-  server: {
-    port: 3001, // default: 3000
-    host: 'localhost' // default: localhost
-  },
   sitemap: {
     hostname: 'https://hellovans.com',
   },
@@ -219,7 +219,7 @@ export default {
       //anonymize_ip: true, // anonymize IP 
       //send_page_view: false, // might be necessary to avoid duplicated page track on page reload
       linker: {
-        domains: ['hellovans.com']
+        domains: ['https://hellovans.com']
       }
     },
     debug: false, // enable to track in dev mode
