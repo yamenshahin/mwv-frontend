@@ -152,7 +152,7 @@ export default {
    */
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
-    stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_live_lclxGfi4gE7tP2oLiGpasP8900PLpojQPu',
+    stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74',
     google_tag_on:false, 
   },
   /*
@@ -210,7 +210,7 @@ export default {
     }
   },
   sitemap: {
-    hostname: 'http://hellovans.eu-west-2.elasticbeanstalk.com',
+    hostname: 'http://front-end-hellovans-stage.eu-west-2.elasticbeanstalk.com',
   },
   'google-gtag': {
     id: 'AW-983351056',
@@ -218,7 +218,7 @@ export default {
       //anonymize_ip: true, // anonymize IP 
       //send_page_view: false, // might be necessary to avoid duplicated page track on page reload
       linker: {
-        domains: ['hellovans.eu-west-2.elasticbeanstalk.com']
+        domains: ['front-end-hellovans-stage.eu-west-2.elasticbeanstalk.com']
       }
     },
     debug: false, // enable to track in dev mode
