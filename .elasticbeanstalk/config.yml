@@ -1,8 +1,6 @@
 branch-defaults:
-  live:
-    environment: Front-end-HelloVans-Live
   master:
-    environment: Front-end-HelloVans-Stage
+    environment: Front-end-HelloVans-Live
 environment-defaults:
   Front-end-HelloVans-Stage:
     branch: null
