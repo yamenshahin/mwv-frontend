@@ -6,6 +6,12 @@
     <b-container class="section_mod-2">
       <b-row>
         <b-col>
+          <b-alert show variant="primary">
+            <h4 class="alert-heading mt-2">
+              Learn how you can get quotes and book the best van for your next
+              move.
+            </h4>
+          </b-alert>
           <no-ssr>
             <youtube
               class="video-container"
@@ -13,7 +19,6 @@
               :player-width="640"
               :player-height="360"
               :video-id="videoId"
-              @ready="ready"
             />
           </no-ssr>
         </b-col>

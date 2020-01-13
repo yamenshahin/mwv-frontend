@@ -25,7 +25,10 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <div class="pt-5"></div>
+            <h2 class="ui-title-block">
+              {{ ukHtmlObject.meta.underStatisticsVideoTitle }}
+            </h2>
+            <div class="border-color border-color_default"></div>
             <no-ssr>
               <youtube
                 class="video-container"
@@ -33,7 +36,6 @@
                 :player-width="640"
                 :player-height="360"
                 :video-id="videoId"
-                @ready="ready"
               />
             </no-ssr>
             <!-- <img
