@@ -3,6 +3,7 @@ export const state = () => ({
   landingHtml: {
     slug: '',
     parentSlug: '',
+    url: '',
     meta: {
       driverSliderTitle:
         'To Get More Jobs By Setting Your Base Information Now',

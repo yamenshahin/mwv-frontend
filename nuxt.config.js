@@ -158,6 +158,7 @@ export default {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
     stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74',
     google_tag_on:false, 
+    filesBaseURL: 'https://hellovans-assets.s3.eu-west-2.amazonaws.com',
   },
   /*
    ** Axios module configuration

@@ -46,7 +46,7 @@ export default {
       parentSlug: 'index'
     }
   },
-  /* async asyncData({ $axios, route }) {
+  async asyncData({ $axios, route }) {
     const pageHTML = await $axios
       .post('/dynamic-pages', {
         slug: route.params.landing,
@@ -63,7 +63,7 @@ export default {
       pageTitle: pageHTML.data.meta.pageTitle,
       pageDescription: pageHTML.data.meta.pageDescription
     }
-  }, */
+  },
   created() {
     this.getPage()
   },

@@ -42,11 +42,12 @@
                 <div class="mt-50"></div>
                 <div class="banner">
                   <div class="banner__inner">
-                    <h2 class="ui-subtitle-block">
-                      {{ homeHtmlObject.driverBannerTitle }}
-                    </h2>
-                    <span v-html="homeHtmlObject.driverBannerText"></span>
-                  </div>
+                      <div
+                        v-html="homeHtmlObject.driverBannerTitle"
+                        class="ui-subtitle-block"
+                      ></div>
+                      <span v-html="homeHtmlObject.driverBannerText"></span>
+                    </div>
                   <nuxt-link
                     to="/driver/join"
                     class="btn btn-secondary mb-1"

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-slider-bg">
+  <div class="main-slider-bg" :style="{ backgroundImage: 'url(https://hellovans-assets.s3.eu-west-2.amazonaws.com/dynamic-pages-files/mainSliderBackground/2020/01/B0UMNfmwNyiMTbJYePrhermCyfDFjj54EzDg6eBg.jpeg)' }">
     <b-container fluid class="main-slider main-slider_mod-2">
       <b-row>
         <b-col>
@@ -124,6 +124,7 @@ export default {
   /* global google */
   data() {
     return {
+      filesBaseURL: process.env.filesBaseURL,
       showMap: true,
       center: {
         lat: 51.507441,
