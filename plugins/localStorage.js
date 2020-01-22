@@ -7,7 +7,7 @@ export default ({ store }) => {
     createPersistedState({
       reducer: (persistedState) => {
         const stateFilter = Object.assign({}, persistedState)
-        const blackList = ['authentication']
+        const blackList = ['auth']
 
         blackList.forEach((item) => {
           delete stateFilter[item]

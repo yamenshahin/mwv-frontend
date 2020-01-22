@@ -1,5 +1,10 @@
 <template>
-  <div class="main-slider-bg" :style="{ backgroundImage: 'url(https://hellovans-assets.s3.eu-west-2.amazonaws.com/dynamic-pages-files/mainSliderBackground/2020/01/B0UMNfmwNyiMTbJYePrhermCyfDFjj54EzDg6eBg.jpeg)' }">
+  <div
+    :style="{
+      backgroundImage: 'url(' + filesBaseURL + landingHtmlObject.url + ')'
+    }"
+    class="main-slider-bg"
+  >
     <b-container fluid class="main-slider main-slider_mod-2">
       <b-row>
         <b-col>
