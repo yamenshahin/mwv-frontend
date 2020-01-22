@@ -6,7 +6,7 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .editorconfig
-
+reprt.*.json
 
 # Mac OSX
 .DS_Store

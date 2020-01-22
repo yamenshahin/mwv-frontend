@@ -34,9 +34,9 @@
                 <b-form-group class="text-center">
                   <b-form-radio-group
                     v-model="vanSizeComputed"
+                    @input="setSerchMeta($event, 'vanSize')"
                     class="theme-green radio-van"
                     required
-                    @input="setSerchMeta($event, 'vanSize')"
                   >
                     <b-row>
                       <b-col sm="6" md="3">
@@ -126,9 +126,9 @@
                 <b-form-group class="text-center">
                   <b-form-radio-group
                     v-model="helpersRequiredComputed"
+                    @input="setSerchMeta($event, 'helpersRequired')"
                     class="theme-green radio-help"
                     required
-                    @input="setSerchMeta($event, 'helpersRequired')"
                   >
                     <b-row>
                       <b-col sm="6" md="3">
@@ -203,13 +203,13 @@
                 <div class="border-color border-color_default"></div>
                 <datetime
                   v-model="movingDateComputed"
-                  class="theme-green"
-                  type="datetime"
                   :value-zone="getUTCPlusTimeOffset"
-                  use12-hour
-                  required
                   @input="setSerchMeta($event, 'movingDate')"
                   @click.prevent="setChatWindowZIndex()"
+                  class="theme-green"
+                  type="datetime"
+                  use12-hour
+                  required
                 ></datetime>
               </div>
             </div>
@@ -252,8 +252,8 @@
                     <b-form-group label="Name" label-for="customerInfoName">
                       <b-form-input
                         v-model="customerInfoNameComputed"
-                        required
                         @input="setSerchMeta($event, 'customerInfoName')"
+                        required
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
@@ -261,9 +261,9 @@
                     <b-form-group label="Email" label-for="customerInfoEmail">
                       <b-form-input
                         v-model="customerInfoEmailComputed"
+                        @input="setSerchMeta($event, 'customerInfoEmail')"
                         type="email"
                         required
-                        @input="setSerchMeta($event, 'customerInfoEmail')"
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
@@ -274,8 +274,8 @@
                     >
                       <b-form-input
                         v-model="customerInfoPhoneComputed"
-                        required
                         @input="setSerchMeta($event, 'customerInfoPhone')"
+                        required
                       ></b-form-input>
                     </b-form-group>
                   </b-col>
@@ -299,11 +299,11 @@
                           Moving from address
                           <no-ssr>
                             <gmap-autocomplete
+                              :value="collectionPlaceObject.address"
+                              @place_changed="setCollectionPlace"
                               class="form-control"
                               placeholder="Collection Address"
-                              :value="collectionPlaceObject.address"
                               required
-                              @place_changed="setCollectionPlace"
                             ></gmap-autocomplete>
                           </no-ssr>
                         </b-form-group>
@@ -314,8 +314,8 @@
                           <b-form-select
                             :value="collectionPlaceObject.stairs"
                             :options="stairsOptions"
-                            required
                             @input="setStairs($event, 'collection')"
+                            required
                           ></b-form-select>
                         </b-form-group>
                       </b-col>
@@ -327,11 +327,11 @@
                           Moving To address
                           <no-ssr>
                             <gmap-autocomplete
+                              :value="deliveryPlaceObject.address"
+                              @place_changed="setDeliveryPlace"
                               class="form-control"
                               placeholder="Delivery Address"
-                              :value="deliveryPlaceObject.address"
                               required
-                              @place_changed="setDeliveryPlace"
                             ></gmap-autocomplete>
                           </no-ssr>
                         </b-form-group>
@@ -342,14 +342,14 @@
                           <b-form-select
                             :value="deliveryPlaceObject.stairs"
                             :options="stairsOptions"
-                            required
                             @input="setStairs($event, 'delivery')"
+                            required
                           ></b-form-select>
                         </b-form-group>
                       </b-col>
                     </b-row>
 
-                    <b-button class="mb-3" @click.prevent="addEmptyWayPoint">
+                    <b-button @click.prevent="addEmptyWayPoint" class="mb-3">
                       +
                       <fa :icon="['fas', 'map-marker-alt']" />
                       Add Stop
@@ -365,11 +365,11 @@
                             <no-ssr>
                               <gmap-autocomplete
                                 :value="wayPointPlacesObject[index].address"
+                                @click="setCurrentWayPointIndex(index)"
+                                @place_changed="setWayPointPlace"
                                 class="form-control"
                                 placeholder="Stop Address"
                                 required
-                                @click="setCurrentWayPointIndex(index)"
-                                @place_changed="setWayPointPlace"
                               ></gmap-autocomplete>
                             </no-ssr>
 
@@ -378,8 +378,8 @@
                               class="input-group-append"
                             >
                               <span
-                                class="input-group-text bg-danger color-white"
                                 @click.prevent="deleteWayPoint(index)"
+                                class="input-group-text bg-danger color-white"
                               >
                                 X
                               </span>
@@ -391,8 +391,8 @@
                             <b-form-select
                               :value="wayPointPlacesObject[index].stairs"
                               :options="stairsOptions"
-                              required
                               @input="setStairs($event, 'waypoint', index)"
+                              required
                             ></b-form-select>
                           </b-form-group>
                         </b-col>
@@ -405,8 +405,8 @@
                         collectionPlaceObject.address &&
                           deliveryPlaceObject.address
                       "
-                      variant="primary"
                       @click="getDirection"
+                      variant="primary"
                     >
                       <fa :icon="['fas', 'route']" />
                       Check Direction
@@ -414,11 +414,11 @@
                     <!-- Map -->
                     <no-ssr>
                       <gmap-map
-                        v-show="showMap"
                         ref="mapDir"
-                        class="mt-2"
+                        v-show="showMap"
                         :center="center"
                         :zoom="15"
+                        class="mt-2"
                         style="width: 100%; height: 300px"
                       ></gmap-map>
                     </no-ssr>
@@ -488,8 +488,8 @@
                   <b-form-select
                     v-model="totalTimeComputed"
                     :options="totalTimeOptions"
-                    required
                     @input="setSerchMeta($event, 'totalTime')"
+                    required
                   ></b-form-select>
                 </b-form-group>
               </div>
@@ -519,9 +519,9 @@
                   <b-form-radio-group
                     v-model="notificationComputed"
                     :options="notificationOptions"
+                    @input="setSerchMeta($event, 'notification')"
                     class="theme-green"
                     required
-                    @input="setSerchMeta($event, 'notification')"
                   ></b-form-radio-group>
                 </b-form-group>
               </div>

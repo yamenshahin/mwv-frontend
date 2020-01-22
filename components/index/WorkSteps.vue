@@ -4,10 +4,14 @@
       <b-row>
         <b-col>
           <div class="mt-50"></div>
-          <div class="ui-subtitle-block">
-            <strong>{{ homeHtmlObject.workStepsSubTitle }}</strong>
-          </div>
-          <h2 class="ui-title-block">{{ homeHtmlObject.workStepsTitle }}</h2>
+          <div
+            v-html="homeHtmlObject.workStepsSubTitle"
+            class="ui-subtitle-block"
+          ></div>
+          <div
+            v-html="homeHtmlObject.workStepsTitle"
+            class="ui-title-block"
+          ></div>
           <div class="border-color border-color_center"></div>
         </b-col>
       </b-row>

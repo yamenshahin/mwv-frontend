@@ -4,10 +4,14 @@
       <b-row>
         <b-col>
           <div class="mt-50"></div>
-          <div class="ui-subtitle-block">
-            <strong>{{ ukHtmlObject.meta.workStepsSubTitle }}</strong>
-          </div>
-          <h2 class="ui-title-block">{{ ukHtmlObject.meta.workStepsTitle }}</h2>
+          <div
+            v-html="landingHtmlObject.meta.workStepsSubTitle"
+            class="ui-subtitle-block"
+          ></div>
+          <div
+            v-html="landingHtmlObject.meta.workStepsTitle"
+            class="ui-title-block"
+          ></div>
           <div class="border-color border-color_center"></div>
         </b-col>
       </b-row>
@@ -22,7 +26,7 @@
                 </span>
                 <span class="list-scheme__number">1</span>
                 <div class="list-scheme__title">
-                  {{ ukHtmlObject.meta.workStep1 }}
+                  {{ landingHtmlObject.meta.workStep1 }}
                 </div>
               </a>
               <span class="arrow">
@@ -36,7 +40,7 @@
                 </span>
                 <span class="list-scheme__number">2</span>
                 <div class="list-scheme__title">
-                  {{ ukHtmlObject.meta.workStep2 }}
+                  {{ landingHtmlObject.meta.workStep2 }}
                 </div>
               </a>
               <span class="arrow">
@@ -50,7 +54,7 @@
                 </span>
                 <span class="list-scheme__number">3</span>
                 <div class="list-scheme__title">
-                  {{ ukHtmlObject.meta.workStep3 }}
+                  {{ landingHtmlObject.meta.workStep3 }}
                 </div>
               </a>
               <span class="arrow">
@@ -65,7 +69,7 @@
 
                 <span class="list-scheme__number">4</span>
                 <div class="list-scheme__title">
-                  {{ ukHtmlObject.meta.workStep4 }}
+                  {{ landingHtmlObject.meta.workStep4 }}
                 </div>
               </a>
             </li>

@@ -7,9 +7,10 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <h2 class="ui-title-block">
-              {{ homeHtmlObject.underStatisticsTitle }}
-            </h2>
+            <div
+              v-html="homeHtmlObject.underStatisticsTitle"
+              class="ui-title-block"
+            ></div>
             <div class="border-color border-color_default"></div>
             <span v-html="homeHtmlObject.underStatisticsText"></span>
             <nuxt-link to="/my-move" class="btn btn-secondary mb-1" exact>
@@ -25,24 +26,20 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <h2 class="ui-title-block">
-              {{ homeHtmlObject.underStatisticsVideoTitle }}
-            </h2>
+            <div
+              v-html="homeHtmlObject.underStatisticsVideoTitle"
+              class="ui-title-block"
+            ></div>
             <div class="border-color border-color_default"></div>
             <no-ssr>
               <youtube
-                class="video-container"
                 :player-vars="{ autoplay: 0 }"
                 :player-width="640"
                 :player-height="360"
                 :video-id="videoId"
+                class="video-container"
               />
             </no-ssr>
-            <!-- <img
-              src="~assets/images/service_3.jpg"
-              alt="WORLD CLASS LOGISTIC SERVICES"
-              class="img-fluid"
-            /> -->
           </div>
         </b-col>
       </b-row>

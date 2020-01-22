@@ -28,10 +28,10 @@
                   <b-col xl="4">
                     <b-button
                       v-if="job.status === 'unbooked'"
+                      @click.prevent="createCurrnetJob(job.id)"
                       block
                       variant="dark"
                       class="lg mb-1"
-                      @click.prevent="createCurrnetJob(job.id)"
                     >
                       <fa :icon="['fas', 'calendar-check']" />
                       Book Now
@@ -133,8 +133,8 @@
                     <span v-if="job.feedback === 0"></span>
                     <b-button
                       v-else-if="job.feedback === null"
-                      block
                       @click.prevent="voteModal(job)"
+                      block
                     >
                       Give Feedback To Driver
                     </b-button>
@@ -162,13 +162,13 @@
       <b-modal
         v-model="voteModalShow"
         :hide-footer="voteModalFooterHide"
-        class="vote-modal"
         :title="'Give ' + form.job.driver.name + ' your feedback'"
+        class="vote-modal"
       >
         <!-- <pre>
           {{ form.job }}
         </pre> -->
-        <form form="voteForm" @submit.prevent="vote()">
+        <form @submit.prevent="vote()" form="voteForm">
           <star-vote v-model="form.stars"></star-vote>
           <b-form-group label="Comment:" class="mt-2">
             <b-form-textarea
@@ -183,9 +183,9 @@
               Send Feedback
             </b-button>
             <b-button
+              @click.prevent="hideVoteForm()"
               variant="primary"
               type="button"
-              @click.prevent="hideVoteForm()"
             >
               Close
             </b-button>

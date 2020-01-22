@@ -11,11 +11,11 @@
         <label>Email:</label>
         <input
           v-model="form.email"
+          :class="{ 'is-invalid': form.errors.has('email') }"
           type="email"
           name="email"
           class="form-control"
           placeholder="Enter your email"
-          :class="{ 'is-invalid': form.errors.has('email') }"
         />
         <small class="form-text text-muted">
           We'll never share your email with anyone else.

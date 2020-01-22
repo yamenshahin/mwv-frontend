@@ -1,10 +1,10 @@
 <template>
   <div>
     <FullCalendar
-      default-view="dayGridMonth"
       :plugins="calendarPlugins"
       :events="events"
       @eventClick="onEventClick"
+      default-view="dayGridMonth"
     />
   </div>
 </template>

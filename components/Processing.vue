@@ -1,9 +1,9 @@
 <template>
   <b-modal
     id="processing"
-    centered
     :hide-header="true"
     :hide-footer="true"
+    centered
     no-close-on-backdrop
   >
     <div class="loader">Processing...</div>

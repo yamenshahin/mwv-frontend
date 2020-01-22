@@ -9,9 +9,9 @@
           <div class="mt-2 mb-2">
             <b-button
               v-if="total <= vanType.type4.capacity"
+              @click.prevent="setVanSize()"
               block
               size="lg"
-              @click.prevent="setVanSize()"
             >
               Select This Van
             </b-button>
@@ -92,15 +92,15 @@
                   {{ item.counter }}
                 </span>
                 <span
-                  class="item-name bg-theme-blue"
                   @click.prevent="addItem(item)"
+                  class="item-name bg-theme-blue"
                 >
                   {{ item.name }}
                 </span>
                 <span
                   v-if="item.counter !== 0"
-                  class="item-delete bg-danger color-white"
                   @click.prevent="removeItem(item)"
+                  class="item-delete bg-danger color-white"
                 >
                   X
                 </span>
@@ -111,7 +111,7 @@
         <b-col cols="12" lg="9">
           <div>
             <b-nav>
-              <b-nav-item active @click.prevent="showGroup('Living Room')">
+              <b-nav-item @click.prevent="showGroup('Living Room')" active>
                 Living Room
               </b-nav-item>
               <b-nav-item @click.prevent="showGroup('Office Items')">
@@ -144,15 +144,15 @@
                   {{ item.counter }}
                 </span>
                 <span
-                  class="item-name bg-theme-blue"
                   @click.prevent="addItem(item)"
+                  class="item-name bg-theme-blue"
                 >
                   {{ item.name }}
                 </span>
                 <span
                   v-if="item.counter !== 0"
-                  class="item-delete bg-danger color-white"
                   @click.prevent="removeItem(item)"
+                  class="item-delete bg-danger color-white"
                 >
                   X
                 </span>

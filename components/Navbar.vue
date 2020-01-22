@@ -50,8 +50,8 @@
             <span v-if="authenticated">
               <b-nav-item
                 v-if="user.role !== 'driver'"
-                href="#"
                 @click.prevent="setRole('driver')"
+                href="#"
               >
                 Join Us
               </b-nav-item>
@@ -146,10 +146,10 @@
                 {{ user.name }}
               </nuxt-link>
               <a
+                @click.prevent="logout"
                 href="#"
                 class="nav-link"
                 role="menuitem"
-                @click.prevent="logout"
               >
                 Sign Out
               </a>

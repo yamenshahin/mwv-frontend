@@ -16,11 +16,11 @@
               <label>Subject:</label>
               <input
                 v-model="form.subject"
+                :class="{ 'is-invalid': form.errors.has('subject') }"
                 type="text"
                 name="subject"
                 class="form-control"
                 placeholder="Enter message subject"
-                :class="{ 'is-invalid': form.errors.has('subject') }"
               />
               <has-error :form="form" field="subject"></has-error>
             </div>
@@ -29,9 +29,9 @@
               <label>Message:</label>
               <textarea
                 v-model="form.message"
+                :class="{ 'is-invalid': form.errors.has('message') }"
                 name="message"
                 class="form-control"
-                :class="{ 'is-invalid': form.errors.has('message') }"
                 rows="3"
               ></textarea>
               <has-error :form="form" field="message"></has-error>
@@ -49,11 +49,11 @@
               <label>Name:</label>
               <input
                 v-model="form.name"
+                :class="{ 'is-invalid': form.errors.has('name') }"
                 type="text"
                 name="name"
                 class="form-control"
                 placeholder="Enter your full name"
-                :class="{ 'is-invalid': form.errors.has('name') }"
               />
               <has-error :form="form" field="name"></has-error>
             </div>
@@ -62,11 +62,11 @@
               <label>Email:</label>
               <input
                 v-model="form.email"
+                :class="{ 'is-invalid': form.errors.has('email') }"
                 type="email"
                 name="email"
                 class="form-control"
                 placeholder="Enter your email"
-                :class="{ 'is-invalid': form.errors.has('email') }"
               />
               <small class="form-text text-muted">
                 We'll never share your email with anyone else.
@@ -78,11 +78,11 @@
               <label>Phone:</label>
               <input
                 v-model="form.phone"
+                :class="{ 'is-invalid': form.errors.has('phone') }"
                 type="text"
                 name="phone"
                 class="form-control"
                 placeholder="Enter your phone number"
-                :class="{ 'is-invalid': form.errors.has('phone') }"
               />
               <has-error :form="form" field="phone"></has-error>
             </div>
@@ -91,11 +91,11 @@
               <label>Subject:</label>
               <input
                 v-model="form.subject"
+                :class="{ 'is-invalid': form.errors.has('subject') }"
                 type="text"
                 name="subject"
                 class="form-control"
                 placeholder="Enter message subject"
-                :class="{ 'is-invalid': form.errors.has('subject') }"
               />
               <has-error :form="form" field="subject"></has-error>
             </div>
@@ -104,9 +104,9 @@
               <label>Message:</label>
               <textarea
                 v-model="form.message"
+                :class="{ 'is-invalid': form.errors.has('message') }"
                 name="message"
                 class="form-control"
-                :class="{ 'is-invalid': form.errors.has('message') }"
                 rows="3"
               ></textarea>
               <has-error :form="form" field="message"></has-error>

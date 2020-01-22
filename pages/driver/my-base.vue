@@ -28,43 +28,43 @@
                             description="150 characters max"
                           >
                             <b-form-textarea
-                              type="text"
                               :value="driverPlaceLegalObject.disc"
+                              @input="setDriverPlaceLegal($event, 'disc')"
+                              type="text"
                               required
                               maxlength="150"
-                              @input="setDriverPlaceLegal($event, 'disc')"
                             ></b-form-textarea>
                           </b-form-group>
 
                           <b-form-group label="Vehicle registration">
                             <b-form-input
-                              type="text"
                               :value="
                                 driverPlaceLegalObject.vehicleRegistration
                               "
-                              required
                               @input="
                                 setDriverPlaceLegal(
                                   $event,
                                   'vehicleRegistration'
                                 )
                               "
+                              type="text"
+                              required
                             ></b-form-input>
                           </b-form-group>
 
                           <b-form-group label="Driving licence number">
                             <b-form-input
-                              type="text"
                               :value="
                                 driverPlaceLegalObject.drivingLicenceNumber
                               "
-                              required
                               @input="
                                 setDriverPlaceLegal(
                                   $event,
                                   'drivingLicenceNumber'
                                 )
                               "
+                              type="text"
+                              required
                             ></b-form-input>
                           </b-form-group>
 
@@ -72,10 +72,10 @@
                             <b-form-file
                               ref="fileInput"
                               v-model="file"
+                              @change="btnToggle"
                               placeholder="Choose a file or drop it here..."
                               drop-placeholder="Drop file here..."
                               class="mb-2"
-                              @change="btnToggle"
                             ></b-form-file>
                           </b-form-group>
 
@@ -125,9 +125,6 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceSmallVanWeekday"
                             @input="
                               setDriverPlacePrice(
@@ -135,6 +132,9 @@
                                 'priceSmallVanWeekday'
                               )
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -144,9 +144,6 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceSmallVanWeekend"
                             @input="
                               setDriverPlacePrice(
@@ -154,6 +151,9 @@
                                 'priceSmallVanWeekend'
                               )
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -165,9 +165,6 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceSmallVanWeekday1
                             "
@@ -177,6 +174,9 @@
                                 'priceSmallVanWeekday1'
                               )
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -186,9 +186,6 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceSmallVanWeekend1
                             "
@@ -198,6 +195,9 @@
                                 'priceSmallVanWeekend1'
                               )
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -209,9 +209,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceSmallVanWeekday2
                             "
@@ -221,6 +218,9 @@
                                 'priceSmallVanWeekday2'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -230,9 +230,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceSmallVanWeekend2
                             "
@@ -242,6 +239,9 @@
                                 'priceSmallVanWeekend2'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -253,9 +253,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceSmallVanWeekday3
                             "
@@ -265,6 +262,9 @@
                                 'priceSmallVanWeekday3'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -274,9 +274,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceSmallVanWeekend3
                             "
@@ -286,6 +283,9 @@
                                 'priceSmallVanWeekend3'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -303,13 +303,13 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekday"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekday')
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -319,13 +319,13 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekend"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekend')
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -337,13 +337,13 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekday1"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekday1')
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -353,13 +353,13 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekend1"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekend1')
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -371,13 +371,13 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekday2"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekday2')
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -387,13 +387,13 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekend2"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekend2')
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -405,13 +405,13 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekday3"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekday3')
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -421,13 +421,13 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="driverPlacePriceObject.priceMidVanWeekend3"
                             @input="
                               setDriverPlacePrice($event, 'priceMidVanWeekend3')
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -447,9 +447,6 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceLargeVanWeekday"
                             @input="
                               setDriverPlacePrice(
@@ -457,6 +454,9 @@
                                 'priceLargeVanWeekday'
                               )
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -466,9 +466,6 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceLargeVanWeekend"
                             @input="
                               setDriverPlacePrice(
@@ -476,6 +473,9 @@
                                 'priceLargeVanWeekend'
                               )
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -487,9 +487,6 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceLargeVanWeekday1
                             "
@@ -499,6 +496,9 @@
                                 'priceLargeVanWeekday1'
                               )
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -508,9 +508,6 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceLargeVanWeekend1
                             "
@@ -520,6 +517,9 @@
                                 'priceLargeVanWeekend1'
                               )
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -531,9 +531,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceLargeVanWeekday2
                             "
@@ -543,6 +540,9 @@
                                 'priceLargeVanWeekday2'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -552,9 +552,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceLargeVanWeekend2
                             "
@@ -564,6 +561,9 @@
                                 'priceLargeVanWeekend2'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -575,9 +575,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceLargeVanWeekday3
                             "
@@ -587,6 +584,9 @@
                                 'priceLargeVanWeekday3'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -596,9 +596,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceLargeVanWeekend3
                             "
@@ -608,6 +605,9 @@
                                 'priceLargeVanWeekend3'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -625,9 +625,6 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceGiantVanWeekday"
                             @input="
                               setDriverPlacePrice(
@@ -635,6 +632,9 @@
                                 'priceGiantVanWeekday'
                               )
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -644,9 +644,6 @@
                           description="Minimum: £10.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="10"
-                            type="number"
                             :value="driverPlacePriceObject.priceGiantVanWeekend"
                             @input="
                               setDriverPlacePrice(
@@ -654,6 +651,9 @@
                                 'priceGiantVanWeekend'
                               )
                             "
+                            step="0.01"
+                            min="10"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -665,9 +665,6 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceGiantVanWeekday1
                             "
@@ -677,6 +674,9 @@
                                 'priceGiantVanWeekday1'
                               )
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -686,9 +686,6 @@
                           description="Minimum: £12.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="12"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceGiantVanWeekend1
                             "
@@ -698,6 +695,9 @@
                                 'priceGiantVanWeekend1'
                               )
                             "
+                            step="0.01"
+                            min="12"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -709,9 +709,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceGiantVanWeekday2
                             "
@@ -721,6 +718,9 @@
                                 'priceGiantVanWeekday2'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -730,9 +730,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceGiantVanWeekend2
                             "
@@ -742,6 +739,9 @@
                                 'priceGiantVanWeekend2'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -753,9 +753,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceGiantVanWeekday3
                             "
@@ -765,6 +762,9 @@
                                 'priceGiantVanWeekday3'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -774,9 +774,6 @@
                           description="Minimum: £20.00"
                         >
                           <b-form-input
-                            step="0.01"
-                            min="20"
-                            type="number"
                             :value="
                               driverPlacePriceObject.priceGiantVanWeekend3
                             "
@@ -786,6 +783,9 @@
                                 'priceGiantVanWeekend3'
                               )
                             "
+                            step="0.01"
+                            min="20"
+                            type="number"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
@@ -809,12 +809,12 @@
                       description="Minimum: £1.00"
                     >
                       <b-form-input
+                        :value="driverPlacePriceObject.priceStop"
+                        @input="setDriverPlacePrice($event, 'priceStop')"
                         step="0.01"
                         min="1"
                         type="number"
                         required
-                        :value="driverPlacePriceObject.priceStop"
-                        @input="setDriverPlacePrice($event, 'priceStop')"
                       ></b-form-input>
                     </b-form-group>
                     <b-form-group
@@ -822,12 +822,12 @@
                       description="Minimum: £1.00"
                     >
                       <b-form-input
+                        :value="driverPlacePriceObject.priceStairs"
+                        @input="setDriverPlacePrice($event, 'priceStairs')"
                         step="0.01"
                         min="1"
                         type="number"
                         required
-                        :value="driverPlacePriceObject.priceStairs"
-                        @input="setDriverPlacePrice($event, 'priceStairs')"
                       ></b-form-input>
                     </b-form-group>
                     <b-form-group
@@ -835,12 +835,12 @@
                       description="Minimum: £0.6"
                     >
                       <b-form-input
+                        :value="driverPlacePriceObject.priceMile"
+                        @input="setDriverPlacePrice($event, 'priceMile')"
                         step="0.01"
                         min="0.6"
                         type="number"
                         required
-                        :value="driverPlacePriceObject.priceMile"
-                        @input="setDriverPlacePrice($event, 'priceMile')"
                       ></b-form-input>
                     </b-form-group>
                   </b-card-body>
@@ -871,10 +871,10 @@
                       <b-col>
                         <b-form-group label="Base address">
                           <gmap-autocomplete
-                            class="form-control"
                             :value="driverPlaceLocationObject.address"
-                            required
                             @place_changed="setDriverPlaceLocation"
+                            class="form-control"
+                            required
                           ></gmap-autocomplete>
                         </b-form-group>
                       </b-col>
@@ -885,20 +885,20 @@
                         >
                           <b-form-input
                             :value="driverPlaceLocationObject.distance"
+                            @input="setDistance($event)"
                             type="number"
                             min="0"
-                            @input="setDistance($event)"
                           ></b-form-input>
                         </b-form-group>
                       </b-col>
                     </b-row>
 
                     <GmapMap
-                      v-show="showMap"
                       ref="mapDir"
-                      class="mt-2"
+                      v-show="showMap"
                       :center="mapCenter"
                       :zoom="7"
+                      class="mt-2"
                       style="width: 100%; height: 300px"
                     >
                       <GmapMarker :position="mapCenter"></GmapMarker>

@@ -4,12 +4,13 @@
       <b-row>
         <b-col>
           <div class="section_mod-2">
-            <h2 class="ui-title-block">
-              {{ ukHtmlObject.meta.aboutTitle }}
-            </h2>
+            <div
+              v-html="landingHtmlObject.meta.aboutTitle"
+              class="ui-title-block"
+            ></div>
             <div class="border-color border-color_default"></div>
           </div>
-          <span v-html="ukHtmlObject.meta.aboutText"></span>
+          <span v-html="landingHtmlObject.meta.aboutText"></span>
         </b-col>
       </b-row>
     </b-container>

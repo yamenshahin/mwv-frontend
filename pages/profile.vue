@@ -11,11 +11,11 @@
               <label>Name:</label>
               <input
                 v-model="form.name"
+                :class="{ 'is-invalid': form.errors.has('name') }"
                 type="text"
                 name="name"
                 class="form-control"
                 placeholder="Enter your full name"
-                :class="{ 'is-invalid': form.errors.has('name') }"
               />
               <has-error :form="form" field="name"></has-error>
             </div>
@@ -24,11 +24,11 @@
               <label>Email:</label>
               <input
                 v-model="form.email"
+                :class="{ 'is-invalid': form.errors.has('email') }"
                 type="email"
                 name="email"
                 class="form-control"
                 placeholder="Enter your email"
-                :class="{ 'is-invalid': form.errors.has('email') }"
               />
               <small class="form-text text-muted">
                 We'll never share your email with anyone else.
@@ -40,11 +40,11 @@
               <label>Phone:</label>
               <input
                 v-model="form.phone"
+                :class="{ 'is-invalid': form.errors.has('phone') }"
                 type="text"
                 name="phone"
                 class="form-control"
                 placeholder="Enter your phone number"
-                :class="{ 'is-invalid': form.errors.has('phone') }"
               />
               <has-error :form="form" field="phone"></has-error>
             </div>
@@ -53,11 +53,11 @@
               <label>Password:</label>
               <input
                 v-model="form.password"
+                :class="{ 'is-invalid': form.errors.has('password') }"
                 type="password"
                 name="password"
                 class="form-control"
                 placeholder="Enter new password"
-                :class="{ 'is-invalid': form.errors.has('password') }"
               />
               <has-error :form="form" field="password"></has-error>
             </div>
@@ -66,13 +66,13 @@
               <label>Password Confirmation:</label>
               <input
                 v-model="form.password_confirmation"
+                :class="{
+                  'is-invalid': form.errors.has('password_confirmation')
+                }"
                 type="password"
                 name="password_confirmation"
                 class="form-control"
                 placeholder="Confirm password"
-                :class="{
-                  'is-invalid': form.errors.has('password_confirmation')
-                }"
               />
               <has-error :form="form" field="password_confirmation"></has-error>
             </div>

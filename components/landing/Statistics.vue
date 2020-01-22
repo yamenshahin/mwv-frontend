@@ -5,9 +5,10 @@
         <b-col>
           <ul class="list-progress">
             <div class="text-center mb-5">
-              <h2 class="ui-title-block">
-                {{ ukHtmlObject.meta.statisticTitle }}
-              </h2>
+              <div
+                v-html="landingHtmlObject.meta.statisticTitle"
+                class="ui-title-block"
+              ></div>
               <div class="border-color border-color_center"></div>
             </div>
             <li class="list-progress__item">
@@ -15,7 +16,7 @@
               <div class="list-progress__info">
                 <span data-percent="648" class="chart">
                   <span class="percent">
-                    {{ ukHtmlObject.meta.statisticNumber1 }}
+                    {{ landingHtmlObject.meta.statisticNumber1 }}
                   </span>
                   <canvas height="0" width="0"></canvas>
                 </span>
@@ -30,7 +31,7 @@
                 />
               </i>
               <span class="list-progress__label">
-                {{ ukHtmlObject.meta.statisticText1 }}
+                {{ landingHtmlObject.meta.statisticText1 }}
               </span>
             </li>
             <li class="list-progress__item">
@@ -38,7 +39,7 @@
               <div class="list-progress__info">
                 <span data-percent="1694" class="chart">
                   <span class="percent">
-                    {{ ukHtmlObject.meta.statisticNumber2 }}
+                    {{ landingHtmlObject.meta.statisticNumber2 }}
                   </span>
                   <canvas height="0" width="0"></canvas>
                 </span>
@@ -53,7 +54,7 @@
                 />
               </i>
               <span class="list-progress__label">
-                {{ ukHtmlObject.meta.statisticText2 }}
+                {{ landingHtmlObject.meta.statisticText2 }}
               </span>
             </li>
             <li class="list-progress__item">
@@ -61,7 +62,7 @@
               <div class="list-progress__info">
                 <span data-percent="56" class="chart">
                   <span class="percent">
-                    {{ ukHtmlObject.meta.statisticNumber3 }}
+                    {{ landingHtmlObject.meta.statisticNumber3 }}
                   </span>
                   <canvas height="0" width="0"></canvas>
                 </span>
@@ -76,7 +77,7 @@
                 />
               </i>
               <span class="list-progress__label">
-                {{ ukHtmlObject.meta.statisticText3 }}
+                {{ landingHtmlObject.meta.statisticText3 }}
               </span>
             </li>
             <li class="list-progress__item">
@@ -84,7 +85,7 @@
               <div class="list-progress__info">
                 <span data-percent="2543" class="chart">
                   <span class="percent">
-                    {{ ukHtmlObject.meta.statisticNumber4 }}
+                    {{ landingHtmlObject.meta.statisticNumber4 }}
                   </span>
                   <canvas height="0" width="0"></canvas>
                 </span>
@@ -99,7 +100,7 @@
                 />
               </i>
               <span class="list-progress__label">
-                {{ ukHtmlObject.meta.statisticText4 }}
+                {{ landingHtmlObject.meta.statisticText4 }}
               </span>
             </li>
             <li class="list-progress__item">
@@ -107,7 +108,7 @@
               <div class="list-progress__info">
                 <span data-percent="926" class="chart">
                   <span class="percent">
-                    {{ ukHtmlObject.meta.statisticNumber5 }}
+                    {{ landingHtmlObject.meta.statisticNumber5 }}
                   </span>
                   <canvas height="0" width="0"></canvas>
                 </span>
@@ -122,7 +123,7 @@
                 />
               </i>
               <span class="list-progress__label">
-                {{ ukHtmlObject.meta.statisticText5 }}
+                {{ landingHtmlObject.meta.statisticText5 }}
               </span>
             </li>
           </ul>

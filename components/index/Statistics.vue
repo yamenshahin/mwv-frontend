@@ -5,9 +5,10 @@
         <b-col>
           <ul class="list-progress">
             <div class="text-center mb-5">
-              <h2 class="ui-title-block">
-                {{ homeHtmlObject.statisticTitle }}
-              </h2>
+              <div
+                v-html="homeHtmlObject.statisticTitle"
+                class="ui-title-block"
+              ></div>
               <div class="border-color border-color_center"></div>
             </div>
             <li class="list-progress__item">

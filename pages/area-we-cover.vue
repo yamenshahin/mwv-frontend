@@ -18,11 +18,11 @@
             </p>
           </b-alert>
           <GmapMap
-            v-show="showMap"
             ref="mapDir"
-            class="mt-2"
+            v-show="showMap"
             :center="mapCenter"
             :zoom="6"
+            class="mt-2"
             style="width: 100%; height: 700px"
           >
             <div v-for="area in areasObject" :key="area.index">

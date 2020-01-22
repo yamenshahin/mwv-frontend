@@ -10,9 +10,10 @@
                   <div class="mt-50"></div>
                   <div class="banner">
                     <div class="banner__inner">
-                      <h2 class="ui-subtitle-block">
-                        {{ homeHtmlObject.driverSliderTitle }}
-                      </h2>
+                      <div
+                        v-html="homeHtmlObject.driverSliderTitle"
+                        class="ui-subtitle-block"
+                      ></div>
                       <span v-html="homeHtmlObject.driverSliderText"></span>
                     </div>
                     <nuxt-link

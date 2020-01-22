@@ -18,17 +18,16 @@
 <script>
 export default {
   components: {
-    DriverSlider: () => import('~/components/uk/DriverSlider'),
-    MainSlider: () => import('~/components/uk/MainSlider'),
-    WorkSteps: () => import('~/components/uk/WorkSteps'),
-    Statistics: () => import('~/components/uk/Statistics'),
-    UnderStatistics: () => import('~/components/uk/UnderStatistics'),
-    DriverBanner: () => import('~/components/uk/DriverBanner'),
-    About: () => import('~/components/uk/About'),
-    TrustBox: () => import('~/components/uk/TrustBox')
+    DriverSlider: () => import('~/components/landing/DriverSlider'),
+    MainSlider: () => import('~/components/landing/MainSlider'),
+    WorkSteps: () => import('~/components/landing/WorkSteps'),
+    Statistics: () => import('~/components/landing/Statistics'),
+    UnderStatistics: () => import('~/components/landing/UnderStatistics'),
+    DriverBanner: () => import('~/components/landing/DriverBanner'),
+    About: () => import('~/components/landing/About'),
+    TrustBox: () => import('~/components/landing/TrustBox')
   },
   head() {
-    // console.log('this.pageTitle', this.pageTitle)
     return {
       title: this.pageTitle,
       meta: [
@@ -42,16 +41,16 @@ export default {
   },
   data() {
     return {
-      slug: this.$route.params.slug,
+      slug: this.$route.params.landing,
       showLazyLoad: false,
-      category: 'uk'
+      parentSlug: 'index'
     }
   },
-  async asyncData({ $axios, route }) {
+  /* async asyncData({ $axios, route }) {
     const pageHTML = await $axios
       .post('/dynamic-pages', {
-        slug: route.params.slug,
-        category: 'uk'
+        slug: route.params.landing,
+        parentSlug: 'index'
       })
       .then(function(response) {
         // handle success
@@ -60,13 +59,11 @@ export default {
       .catch(function(error) {
         console.log(error)
       })
-    console.log('pageHTML', pageHTML)
-
     return {
       pageTitle: pageHTML.data.meta.pageTitle,
       pageDescription: pageHTML.data.meta.pageDescription
     }
-  },
+  }, */
   created() {
     this.getPage()
   },
@@ -76,7 +73,10 @@ export default {
     },
     async getPage() {
       const pageHTML = await this.$axios
-        .$post('/dynamic-pages', { slug: this.slug, category: this.category })
+        .$post('/dynamic-pages', {
+          slug: this.slug,
+          parentSlug: this.parentSlug
+        })
         .then(function(response) {
           // handle success
           return response.data
@@ -84,7 +84,7 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
-      await this.$store.dispatch('uk-html/setUkHtml', pageHTML)
+      await this.$store.dispatch('landing-html/setLandingHtml', pageHTML)
     }
   }
 }

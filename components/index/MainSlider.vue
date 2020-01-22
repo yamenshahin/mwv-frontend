@@ -8,24 +8,25 @@
               <form>
                 <b-row>
                   <b-col md>
-                    <div class="slide-title">
-                      <span v-html="homeHtmlObject.mainSliderTitle"></span>
-                    </div>
+                    <div
+                      v-html="homeHtmlObject.mainSliderTitle"
+                      class="slide-title"
+                    ></div>
 
                     <b-form-group class="mt-2">
                       <gmap-autocomplete
+                        :value="collectionPlaceObject.address"
+                        @place_changed="setCollectionPlace"
                         class="form-control main-address"
                         placeholder="Collection Address"
-                        :value="collectionPlaceObject.address"
                         required
-                        @place_changed="setCollectionPlace"
                       ></gmap-autocomplete>
                     </b-form-group>
 
                     <b-button
+                      @click.prevent="addEmptyWayPoint"
                       size="sm"
                       class="mb-3"
-                      @click.prevent="addEmptyWayPoint"
                     >
                       +
                       <fa :icon="['fas', 'map-marker-alt']" />
@@ -39,10 +40,10 @@
                       <div class="input-group mb-3">
                         <gmap-autocomplete
                           :value="wayPointPlacesObject[index].address"
-                          class="form-control"
-                          placeholder="Stop Address"
                           @click="setCurrentWayPointIndex(index)"
                           @place_changed="setWayPointPlace"
+                          class="form-control"
+                          placeholder="Stop Address"
                         ></gmap-autocomplete>
 
                         <div
@@ -50,8 +51,8 @@
                           class="input-group-append"
                         >
                           <span
-                            class="input-group-text bg-danger color-white"
                             @click.prevent="deleteWayPoint(index)"
+                            class="input-group-text bg-danger color-white"
                           >
                             X
                           </span>
@@ -61,11 +62,11 @@
 
                     <b-form-group>
                       <gmap-autocomplete
+                        :value="deliveryPlaceObject.address"
+                        @place_changed="setDeliveryPlace"
                         class="form-control main-address"
                         placeholder="Delivery Address"
-                        :value="deliveryPlaceObject.address"
                         required
-                        @place_changed="setDeliveryPlace"
                       ></gmap-autocomplete>
                     </b-form-group>
                     <b-button
@@ -98,11 +99,11 @@
                   <b-col md>
                     <!-- Map -->
                     <gmap-map
-                      v-show="showMap"
                       ref="mapDir"
-                      class="mt-2 mb-3"
+                      v-show="showMap"
                       :center="center"
                       :zoom="15"
+                      class="mt-2 mb-3"
                       style="width: 100%; height: 300px"
                     >
                       <span></span>

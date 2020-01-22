@@ -225,14 +225,25 @@ Sections
   text-shadow: 1px 2px 0 rgba(0, 0, 0, .14);
 }
 
-.main-slider .slide-title {
+.main-slider .slide-title h1,
+.main-slider .slide-title h2,
+.main-slider .slide-title h3,
+.main-slider .slide-title h4,
+.main-slider .slide-title h5,
+.main-slider .slide-title h6 {
   font-family: 'Roboto Condensed';
   font-size: 34px;
   text-shadow: 1px 2px 0 rgba(0, 0, 0, .14);
 }
 
 @media screen and (max-width: 992px) {
-  .main-slider .slide-title {
+
+  .main-slider .slide-title h1,
+  .main-slider .slide-title h2,
+  .main-slider .slide-title h3,
+  .main-slider .slide-title h4,
+  .main-slider .slide-title h5,
+  .main-slider .slide-title h6 {
     font-size: 24px;
   }
 }
@@ -242,14 +253,25 @@ Sections
   line-height: 1;
 }
 
-.main-slider_mod-2 .slide-title strong {
+.main-slider_mod-2 .slide-title h1 strong,
+.main-slider_mod-2 .slide-title h2 strong,
+.main-slider_mod-2 .slide-title h3 strong,
+.main-slider_mod-2 .slide-title h4 strong,
+.main-slider_mod-2 .slide-title h5 strong,
+.main-slider_mod-2 .slide-title h6 strong {
   display: block;
   font-size: 40px;
   font-weight: 700;
 }
 
 @media screen and (max-width: 992px) {
-  .main-slider_mod-2 .slide-title strong {
+
+  .main-slider_mod-2 .slide-title h1 strong,
+  .main-slider_mod-2 .slide-title h2 strong,
+  .main-slider_mod-2 .slide-title h3 strong,
+  .main-slider_mod-2 .slide-title h4 strong,
+  .main-slider_mod-2 .slide-title h5 strong,
+  .main-slider_mod-2 .slide-title h6 strong {
     font-size: 25px;
   }
 }
@@ -989,7 +1011,7 @@ list-scheme
   border-left: 5px solid #ffd526;
 }
 
-.banner .ui-subtitle-block {
+.banner .ui-subtitle-block h1, .banner .ui-subtitle-block h2, .banner .ui-subtitle-block h3, .banner .ui-subtitle-block h4, .banner .ui-subtitle-block h5, .banner .ui-subtitle-block h6 {
   font-size: 22px;
   text-transform: none;
 }
@@ -1177,9 +1199,9 @@ Loader
 }
 
 #processing .modal-content {
-	background-color: #ffd526;
-	border: none;
-	border-radius: 0;
+  background-color: #ffd526;
+  border: none;
+  border-radius: 0;
 }
 
 /**
@@ -1188,21 +1210,31 @@ Tawk
 body #tawkchat-container {
   z-index: 999 !important;
 }
+
 /**
 You tube
 **/
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
-  padding-top: 30px; height: 0; overflow: hidden;
-  }
-   
-  .video-container iframe,
-  .video-container object,
-  .video-container embed {
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  }
+}
+
+/**
+Other titles of the homepage
+**/
+.page-index .ui-title-block h1, .page-index .ui-title-block h2, .page-index .ui-title-block h3, .page-index .ui-title-block h4, .page-index .ui-title-block h5, .page-index .ui-title-block h6{
+  font-size: 2rem; 
+}

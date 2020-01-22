@@ -98,8 +98,9 @@ export default {
     '~plugins/star-vote.js',
     // Home HTML
     '~plugins/mixins/home-html.js',
-    // UK HTML
-    '~plugins/mixins/uk-html.js',
+    
+    // Landing  HTML
+    '~plugins/mixins/landing-html.js',
     // Lazy load
     //https://github.com/Akryum/vue-observe-visibility
     //https://vueschool.io/articles/vuejs-tutorials/async-vuejs-components/

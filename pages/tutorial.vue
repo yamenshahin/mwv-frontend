@@ -14,11 +14,11 @@
           </b-alert>
           <no-ssr>
             <youtube
-              class="video-container"
               :player-vars="{ autoplay: 0 }"
               :player-width="640"
               :player-height="360"
               :video-id="videoId"
+              class="video-container"
             />
           </no-ssr>
         </b-col>

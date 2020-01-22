@@ -109,9 +109,9 @@
                             </span>
                           </b-button>
                           <b-button
+                            @click.prevent="showReviews(place.user.id)"
                             variant="primary"
                             class="disabled-alt"
-                            @click.prevent="showReviews(place.user.id)"
                           >
                             <fa :icon="['fas', 'thumbs-up']" />
                             <span v-if="place.votes === 0">
@@ -159,10 +159,10 @@
                       <b-row>
                         <b-col>
                           <b-button
+                            @click.prevent="createCustomerJobs(index)"
                             variant="dark"
                             block
                             class="lg mb-1"
-                            @click.prevent="createCustomerJobs(index)"
                           >
                             <fa :icon="['fas', 'calendar-check']" />
                             Book Now
@@ -172,9 +172,9 @@
                       <b-row>
                         <b-col xl>
                           <b-button
+                            @click.prevent="emailQuote(index)"
                             block
                             class="mb-1"
-                            @click.prevent="emailQuote(index)"
                           >
                             <fa :icon="['fas', 'share']" />
                             Email me this Quote
@@ -221,10 +221,10 @@
                   <b-row>
                     <b-col>
                       <b-button
+                        @click.prevent="createCustomerJobs(index)"
                         variant="dark"
                         block
                         class="lg mb-1"
-                        @click.prevent="createCustomerJobs(index)"
                       >
                         <fa :icon="['fas', 'calendar-check']" />
                         Book Now
@@ -281,9 +281,9 @@
                           </span>
                         </b-button>
                         <b-button
+                          @click.prevent="showReviews(place.user.id)"
                           variant="primary"
                           class="disabled-alt"
-                          @click.prevent="showReviews(place.user.id)"
                         >
                           <fa :icon="['fas', 'thumbs-up']" />
                           <span v-if="place.votes === 0">
@@ -308,9 +308,9 @@
                           {{ place.milesDriven | round2Decimal }} Miles driven
                         </b-button>
                         <b-button
+                          @click.prevent="emailQuote(index)"
                           block
                           class="mb-1"
-                          @click.prevent="emailQuote(index)"
                         >
                           <fa :icon="['fas', 'share']" />
                           Email me this Quote

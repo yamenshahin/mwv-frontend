@@ -1,8 +1,8 @@
 // Create a global store
 export const state = () => ({
-  ukHtml: {
-    category: 'uk',
+  landingHtml: {
     slug: '',
+    parentSlug: '',
     meta: {
       driverSliderTitle:
         'To Get More Jobs By Setting Your Base Information Now',
@@ -44,21 +44,21 @@ export const state = () => ({
 
 // Getters
 export const getters = {
-  ukHtml(state) {
-    return state.ukHtml
+  landingHtml(state) {
+    return state.landingHtml
   }
 }
 
 // Mutations
 export const mutations = {
-  SET_UK_HTML(state, ukHtml) {
-    state.ukHtml = ukHtml
+  SET_LANDING_HTML(state, landingHtml) {
+    state.landingHtml = landingHtml
   }
 }
 
 // Actions
 export const actions = {
-  setUkHtml({ commit }, ukHtml) {
-    commit('SET_UK_HTML', ukHtml)
+  setLandingHtml({ commit }, landingHtml) {
+    commit('SET_LANDING_HTML', landingHtml)
   }
 }

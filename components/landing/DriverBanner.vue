@@ -10,15 +10,18 @@
                   <div class="mt-50"></div>
                   <div class="banner">
                     <div class="banner__inner">
-                      <h2 class="ui-subtitle-block">
-                        {{ ukHtmlObject.meta.driverBannerTitle }}
-                      </h2>
-                      <span v-html="ukHtmlObject.meta.driverBannerText"></span>
+                      <div
+                        v-html="landingHtmlObject.meta.driverBannerTitle"
+                        class="ui-subtitle-block"
+                      ></div>
+                      <span
+                        v-html="landingHtmlObject.meta.driverBannerText"
+                      ></span>
                     </div>
                     <a
+                      @click.prevent="setRole('driver')"
                       href="#"
                       class="btn btn-secondary mb-1"
-                      @click.prevent="setRole('driver')"
                     >
                       Apply As A Driver Now
                     </a>
@@ -42,9 +45,11 @@
                 <div class="banner">
                   <div class="banner__inner">
                     <h2 class="ui-subtitle-block">
-                      {{ ukHtmlObject.meta.driverBannerTitle }}
+                      {{ landingHtmlObject.meta.driverBannerTitle }}
                     </h2>
-                    <span v-html="ukHtmlObject.meta.driverBannerText"></span>
+                    <span
+                      v-html="landingHtmlObject.meta.driverBannerText"
+                    ></span>
                   </div>
                   <nuxt-link
                     to="/driver/join"

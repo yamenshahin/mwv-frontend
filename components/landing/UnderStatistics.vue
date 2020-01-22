@@ -7,11 +7,12 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <h2 class="ui-title-block">
-              {{ ukHtmlObject.meta.underStatisticsTitle }}
-            </h2>
+            <div
+              v-html="landingHtmlObject.meta.underStatisticsTitle"
+              class="ui-title-block"
+            ></div>
             <div class="border-color border-color_default"></div>
-            <span v-html="ukHtmlObject.meta.underStatisticsText"></span>
+            <span v-html="landingHtmlObject.meta.underStatisticsText"></span>
             <nuxt-link to="/my-move" class="btn btn-secondary mb-1" exact>
               <fa :icon="['fas', 'shipping-fast']" />
               Get Free Quotes
@@ -25,24 +26,20 @@
         <b-col md>
           <div class="mt-100 d-none d-md-block"></div>
           <div class="section_mod-2">
-            <h2 class="ui-title-block">
-              {{ ukHtmlObject.meta.underStatisticsVideoTitle }}
-            </h2>
+            <div
+              v-html="landingHtmlObject.meta.underStatisticsVideoTitle"
+              class="ui-title-block"
+            ></div>
             <div class="border-color border-color_default"></div>
             <no-ssr>
               <youtube
-                class="video-container"
                 :player-vars="{ autoplay: 0 }"
                 :player-width="640"
                 :player-height="360"
                 :video-id="videoId"
+                class="video-container"
               />
             </no-ssr>
-            <!-- <img
-              src="~assets/images/service_3.jpg"
-              alt="WORLD CLASS LOGISTIC SERVICES"
-              class="img-fluid"
-            /> -->
           </div>
         </b-col>
       </b-row>
@@ -55,6 +52,7 @@
     </mq-layout>
   </div>
 </template>
+
 <script>
 export default {
   data() {
