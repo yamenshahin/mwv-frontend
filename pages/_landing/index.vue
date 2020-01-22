@@ -36,6 +36,12 @@ export default {
           name: 'description',
           content: this.pageDescription
         }
+      ],
+      link: [
+        {
+          rel: 'canonical',
+          href: this.canonical
+        }
       ]
     }
   },
@@ -61,7 +67,8 @@ export default {
       })
     return {
       pageTitle: pageHTML.data.meta.pageTitle,
-      pageDescription: pageHTML.data.meta.pageDescription
+      pageDescription: pageHTML.data.meta.pageDescription,
+      canonical: pageHTML.data.meta.canonical
     }
   },
   created() {
