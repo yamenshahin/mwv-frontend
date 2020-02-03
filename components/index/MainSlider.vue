@@ -1,18 +1,22 @@
 <template>
-  <div class="main-slider-bg">
+  <div
+    :style="{
+      backgroundImage: 'url(https://hellovans-assets.s3.eu-west-2.amazonaws.com/'  + homeHtmlObject.url + ')'
+    }"
+    class="main-slider-bg"
+  >
     <b-container fluid class="main-slider main-slider_mod-2">
       <b-row>
         <b-col>
           <b-container>
-            <no-ssr>
-              <form>
-                <b-row>
-                  <b-col md>
-                    <div
-                      v-html="homeHtmlObject.mainSliderTitle"
-                      class="slide-title"
-                    ></div>
-
+            <form>
+              <b-row>
+                <b-col md>
+                  <div
+                    v-html="homeHtmlObject.mainSliderTitle"
+                    class="slide-title"
+                  ></div>
+                  <no-ssr>
                     <b-form-group class="mt-2">
                       <gmap-autocomplete
                         :value="collectionPlaceObject.address"
@@ -22,22 +26,24 @@
                         required
                       ></gmap-autocomplete>
                     </b-form-group>
+                  </no-ssr>
 
-                    <b-button
-                      @click.prevent="addEmptyWayPoint"
-                      size="sm"
-                      class="mb-3"
-                    >
-                      +
-                      <fa :icon="['fas', 'map-marker-alt']" />
-                      Add Stop
-                    </b-button>
-                    <div
-                      v-for="(wayPointPlacesObjectSingle,
-                      index) in wayPointPlacesObject"
-                      :key="index"
-                    >
-                      <div class="input-group mb-3">
+                  <b-button
+                    @click.prevent="addEmptyWayPoint"
+                    size="sm"
+                    class="mb-3"
+                  >
+                    +
+                    <fa :icon="['fas', 'map-marker-alt']" />
+                    Add Stop
+                  </b-button>
+                  <div
+                    v-for="(wayPointPlacesObjectSingle,
+                    index) in wayPointPlacesObject"
+                    :key="index"
+                  >
+                    <div class="input-group mb-3">
+                      <no-ssr>
                         <gmap-autocomplete
                           :value="wayPointPlacesObject[index].address"
                           @click="setCurrentWayPointIndex(index)"
@@ -45,21 +51,22 @@
                           class="form-control"
                           placeholder="Stop Address"
                         ></gmap-autocomplete>
+                      </no-ssr>
 
-                        <div
-                          v-if="wayPointPlacesObject.length - 1 == index"
-                          class="input-group-append"
+                      <div
+                        v-if="wayPointPlacesObject.length - 1 == index"
+                        class="input-group-append"
+                      >
+                        <span
+                          @click.prevent="deleteWayPoint(index)"
+                          class="input-group-text bg-danger color-white"
                         >
-                          <span
-                            @click.prevent="deleteWayPoint(index)"
-                            class="input-group-text bg-danger color-white"
-                          >
-                            X
-                          </span>
-                        </div>
+                          X
+                        </span>
                       </div>
                     </div>
-
+                  </div>
+                  <no-ssr>
                     <b-form-group>
                       <gmap-autocomplete
                         :value="deliveryPlaceObject.address"
@@ -69,49 +76,50 @@
                         required
                       ></gmap-autocomplete>
                     </b-form-group>
-                    <b-button
-                      v-if="
-                        !collectionPlaceObject.address ||
-                          !deliveryPlaceObject.address
-                      "
-                      v-b-tooltip.hover
-                      type="submit"
-                      size="lg"
-                      title="Please select a valid collection and delivery address"
-                      class="mb-1"
-                      block
-                    >
-                      <fa :icon="['fas', 'shipping-fast']" />
-                      GET FREE QUOTES
-                    </b-button>
-                    <nuxt-link
-                      v-if="
-                        collectionPlaceObject.address &&
-                          deliveryPlaceObject.address
-                      "
-                      to="/my-move"
-                      class="btn mb-1 btn-secondary btn-lg btn-block"
-                    >
-                      <fa :icon="['fas', 'shipping-fast']" />
-                      Get Free Quotes
-                    </nuxt-link>
-                  </b-col>
-                  <b-col md>
-                    <!-- Map -->
-                    <gmap-map
-                      ref="mapDir"
-                      v-show="showMap"
-                      :center="center"
-                      :zoom="15"
-                      class="mt-2 mb-3"
-                      style="width: 100%; height: 300px"
-                    >
-                      <span></span>
-                    </gmap-map>
-                  </b-col>
-                </b-row>
-              </form>
-            </no-ssr>
+                  </no-ssr>
+
+                  <b-button
+                    v-if="
+                      !collectionPlaceObject.address ||
+                        !deliveryPlaceObject.address
+                    "
+                    v-b-tooltip.hover
+                    type="submit"
+                    size="lg"
+                    title="Please select a valid collection and delivery address"
+                    class="mb-1"
+                    block
+                  >
+                    <fa :icon="['fas', 'shipping-fast']" />
+                    GET FREE QUOTES
+                  </b-button>
+                  <nuxt-link
+                    v-if="
+                      collectionPlaceObject.address &&
+                        deliveryPlaceObject.address
+                    "
+                    to="/my-move"
+                    class="btn mb-1 btn-secondary btn-lg btn-block"
+                  >
+                    <fa :icon="['fas', 'shipping-fast']" />
+                    Get Free Quotes
+                  </nuxt-link>
+                </b-col>
+                <b-col md>
+                  <!-- Map -->
+                  <gmap-map
+                    ref="mapDir"
+                    v-show="showMap"
+                    :center="center"
+                    :zoom="15"
+                    class="mt-2 mb-3"
+                    style="width: 100%; height: 300px"
+                  >
+                    <span></span>
+                  </gmap-map>
+                </b-col>
+              </b-row>
+            </form>
           </b-container>
         </b-col>
       </b-row>

@@ -10,11 +10,28 @@
         <form action="">
           <b-form-group>
             <b-form-radio-group
-              id="radio-group-1"
               v-model="paymentMethod"
-              :options="paymentOptions"
-              name="radio-options"
-            ></b-form-radio-group>
+              class="theme-green radio-help"
+            >
+              <b-form-radio value="cash">
+                <fa
+                  v-if="paymentMethod === 'cash'"
+                  :icon="['fas', 'money-bill']"
+                  class="icon-dark"
+                />
+                <fa v-else :icon="['fas', 'money-bill']" />
+                Cash on completion
+              </b-form-radio>
+              <b-form-radio value="credit">
+                <fa
+                  v-if="paymentMethod === 'credit'"
+                  :icon="['fas', 'credit-card']"
+                  class="icon-dark"
+                />
+                <fa v-else :icon="['fas', 'credit-card']" />
+                Pay with credit card
+              </b-form-radio>
+            </b-form-radio-group>
           </b-form-group>
         </form>
         <div>

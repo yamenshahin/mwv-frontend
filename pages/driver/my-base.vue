@@ -10,6 +10,18 @@
           <form @submit.prevent="onSubmit">
             <b-row>
               <b-col>
+                <b-alert show variant="primary" class="mt-3">
+                  <p class="mt-0 mb-0">
+                    Learn how you can get jobs and
+                    <nuxt-link to="/driver-tutorial" exact>
+                      setup your base information.
+                    </nuxt-link>
+                  </p>
+                </b-alert>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
                 <b-card>
                   <b-card-body>
                     <b-row>

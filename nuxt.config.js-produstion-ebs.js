@@ -108,6 +108,9 @@ export default {
     //https://github.com/kaorun343/vue-youtube-embed
     //https://github.com/kaorun343/vue-youtube-embed/issues/44
     { ssr: false, src: '~plugins/youtube.js'  },
+    //https://stackoverflow.com/questions/51644901/using-tawk-to-with-nuxt-vue-application
+    { ssr: false, src: '~plugins/tawk.js'  },
+    
   ],
   /*
    ** Nuxt.js dev-modules
@@ -158,7 +161,7 @@ export default {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
     stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74',
     google_tag_on:false, 
-    filesBaseURL: 'https://hellovans-assets.s3.eu-west-2.amazonaws.com',
+    filesBaseURL: 'https://hellovans-files.s3.eu-west-2.amazonaws.com',
   },
   /*
    ** Axios module configuration

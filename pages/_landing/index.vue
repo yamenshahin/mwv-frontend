@@ -2,30 +2,34 @@
   <div class="page-index mb-5">
     <DriverSlider />
     <MainSlider />
-    <div v-observe-visibility="lazyload" class="any">
-      <div v-if="showLazyLoad">
-        <WorkSteps />
-        <TrustBox />
-        <Statistics />
-        <UnderStatistics />
-        <DriverBanner />
-        <About />
-      </div>
-    </div>
+    <WorkSteps />
+    <TrustBox />
+    <Statistics />
+    <UnderStatistics />
+    <DriverBanner />
+    <About />
   </div>
 </template>
 
 <script>
+import DriverSlider from '~/components/landing/DriverSlider.vue'
+import MainSlider from '~/components/landing/MainSlider.vue'
+import WorkSteps from '~/components/landing/WorkSteps.vue'
+import Statistics from '~/components/landing/Statistics.vue'
+import UnderStatistics from '~/components/landing/UnderStatistics.vue'
+import DriverBanner from '~/components/landing/DriverBanner.vue'
+import About from '~/components/landing/About.vue'
+import TrustBox from '~/components/landing/TrustBox.vue'
 export default {
   components: {
-    DriverSlider: () => import('~/components/landing/DriverSlider'),
-    MainSlider: () => import('~/components/landing/MainSlider'),
-    WorkSteps: () => import('~/components/landing/WorkSteps'),
-    Statistics: () => import('~/components/landing/Statistics'),
-    UnderStatistics: () => import('~/components/landing/UnderStatistics'),
-    DriverBanner: () => import('~/components/landing/DriverBanner'),
-    About: () => import('~/components/landing/About'),
-    TrustBox: () => import('~/components/landing/TrustBox')
+    DriverSlider,
+    MainSlider,
+    WorkSteps,
+    Statistics,
+    UnderStatistics,
+    DriverBanner,
+    About,
+    TrustBox
   },
   head() {
     return {
@@ -48,7 +52,6 @@ export default {
   data() {
     return {
       slug: this.$route.params.landing,
-      showLazyLoad: false,
       parentSlug: 'index'
     }
   },
@@ -75,9 +78,6 @@ export default {
     this.getPage()
   },
   methods: {
-    lazyload(isVisible, entry) {
-      this.showLazyLoad = isVisible
-    },
     async getPage() {
       const pageHTML = await this.$axios
         .$post('/dynamic-pages', {

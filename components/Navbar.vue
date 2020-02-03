@@ -29,15 +29,26 @@
             >
               Checkout
             </nuxt-link>
-            <nuxt-link
-              v-if="authenticated"
-              to="/my-jobs"
-              class="nav-link"
-              role="menuitem"
-              exact
-            >
-              Jobs
-            </nuxt-link>
+            <span v-if="authenticated">
+              <b-nav-item-dropdown v-if="user.role === 'driver'" right>
+                <template slot="button-content">
+                  <em>Customer</em>
+                </template>
+                <nuxt-link to="/my-jobs" class="nav-link" role="menuitem" exact>
+                  Jobs
+                </nuxt-link>
+              </b-nav-item-dropdown>
+              <nuxt-link
+                v-else
+                to="/my-jobs"
+                class="nav-link"
+                role="menuitem"
+                exact
+              >
+                Jobs
+              </nuxt-link>
+            </span>
+
             <nuxt-link
               to="/area-we-cover"
               class="nav-link"
@@ -82,6 +93,14 @@
               </nuxt-link>
               <nuxt-link to="/tutorial" class="nav-link" role="menuitem" exact>
                 Tutorial
+              </nuxt-link>
+              <nuxt-link
+                to="/driver-tutorial"
+                class="nav-link"
+                role="menuitem"
+                exact
+              >
+                Driver Tutorial
               </nuxt-link>
               <nuxt-link to="/faq" class="nav-link" role="menuitem" exact>
                 FAQ

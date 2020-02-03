@@ -41,6 +41,7 @@
     "vue-observe-visibility": "^0.4.6",
     "vue-star-rating": "^1.6.1",
     "vue-stripe-elements-plus": "^0.3.2",
+    "vue-tawk": "^1.0.1",
     "vue-youtube-embed": "^2.2.2",
     "vue2-google-maps": "^0.10.7",
     "vuex-persistedstate": "^2.7.0",

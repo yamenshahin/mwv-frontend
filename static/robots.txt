@@ -1,2 +1,3 @@
 User-agent: *
 Disallow: /index/
+Sitemap: https://hellovans.com/sitemap.xml

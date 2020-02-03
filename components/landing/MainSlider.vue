@@ -17,16 +17,17 @@
                       v-html="landingHtmlObject.meta.mainSliderTitle"
                       class="slide-title"
                     ></div>
-
-                    <b-form-group class="mt-2">
-                      <gmap-autocomplete
-                        :value="collectionPlaceObject.address"
-                        @place_changed="setCollectionPlace"
-                        class="form-control main-address"
-                        placeholder="Collection Address"
-                        required
-                      ></gmap-autocomplete>
-                    </b-form-group>
+                    <no-ssr>
+                      <b-form-group class="mt-2">
+                        <gmap-autocomplete
+                          :value="collectionPlaceObject.address"
+                          @place_changed="setCollectionPlace"
+                          class="form-control main-address"
+                          placeholder="Collection Address"
+                          required
+                        ></gmap-autocomplete>
+                      </b-form-group>
+                    </no-ssr>
 
                     <b-button
                       @click.prevent="addEmptyWayPoint"
@@ -43,13 +44,15 @@
                       :key="index"
                     >
                       <div class="input-group mb-3">
-                        <gmap-autocomplete
-                          :value="wayPointPlacesObject[index].address"
-                          @click="setCurrentWayPointIndex(index)"
-                          @place_changed="setWayPointPlace"
-                          class="form-control"
-                          placeholder="Stop Address"
-                        ></gmap-autocomplete>
+                        <no-ssr>
+                          <gmap-autocomplete
+                            :value="wayPointPlacesObject[index].address"
+                            @click="setCurrentWayPointIndex(index)"
+                            @place_changed="setWayPointPlace"
+                            class="form-control"
+                            placeholder="Stop Address"
+                          ></gmap-autocomplete>
+                        </no-ssr>
 
                         <div
                           v-if="wayPointPlacesObject.length - 1 == index"
@@ -66,13 +69,15 @@
                     </div>
 
                     <b-form-group>
-                      <gmap-autocomplete
-                        :value="deliveryPlaceObject.address"
-                        @place_changed="setDeliveryPlace"
-                        class="form-control main-address"
-                        placeholder="Delivery Address"
-                        required
-                      ></gmap-autocomplete>
+                      <no-ssr>
+                        <gmap-autocomplete
+                          :value="deliveryPlaceObject.address"
+                          @place_changed="setDeliveryPlace"
+                          class="form-control main-address"
+                          placeholder="Delivery Address"
+                          required
+                        ></gmap-autocomplete>
+                      </no-ssr>
                     </b-form-group>
                     <b-button
                       v-if="

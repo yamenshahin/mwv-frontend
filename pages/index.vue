@@ -2,57 +2,70 @@
   <div class="page-index mb-5">
     <DriverSlider />
     <MainSlider />
-    <div v-observe-visibility="lazyload" class="any">
-      <div v-if="showLazyLoad">
-        <WorkSteps />
-        <TrustBox />
-        <Statistics />
-        <UnderStatistics />
-        <DriverBanner />
-        <About />
-      </div>
-    </div>
+    <WorkSteps />
+    <TrustBox />
+    <Statistics />
+    <UnderStatistics />
+    <DriverBanner />
+    <About />
   </div>
 </template>
 
 <script>
+import DriverSlider from '~/components/index/DriverSlider.vue'
+import MainSlider from '~/components/index/MainSlider.vue'
+import WorkSteps from '~/components/index/WorkSteps.vue'
+import Statistics from '~/components/index/Statistics.vue'
+import UnderStatistics from '~/components/index/UnderStatistics.vue'
+import DriverBanner from '~/components/index/DriverBanner.vue'
+import About from '~/components/index/About.vue'
+import TrustBox from '~/components/index/TrustBox.vue'
 export default {
   components: {
-    DriverSlider: () => import('~/components/index/DriverSlider'),
-    MainSlider: () => import('~/components/index/MainSlider'),
-    WorkSteps: () => import('~/components/index/WorkSteps'),
-    Statistics: () => import('~/components/index/Statistics'),
-    UnderStatistics: () => import('~/components/index/UnderStatistics'),
-    DriverBanner: () => import('~/components/index/DriverBanner'),
-    About: () => import('~/components/index/About'),
-    TrustBox: () => import('~/components/index/TrustBox')
+    DriverSlider,
+    MainSlider,
+    WorkSteps,
+    Statistics,
+    UnderStatistics,
+    DriverBanner,
+    About,
+    TrustBox
   },
   head() {
     return {
-      title:
-        'Hello Vans | Compare low cost Man with a van quotes - book Man and van for Removals',
+      title: this.pageTitle,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content:
-            'Hello Vans  | Compare low cost Man with a van quotes - book Man and van for Removals'
+          content: this.pageDescription
         }
       ]
     }
   },
   data() {
+    return {}
+  },
+  async asyncData({ $axios, route }) {
+    const pageHTML = await $axios
+      .$post('/pages', { page: 'home' })
+      .then(function(response) {
+        // handle success
+        return response
+      })
+      .catch(function(error) {
+        console.log(error)
+      })
+    console.log('pageHTML', pageHTML)
     return {
-      showLazyLoad: false
+      pageTitle: pageHTML.pageTitle,
+      pageDescription: pageHTML.pageDescription
     }
   },
   created() {
     this.getPage()
   },
   methods: {
-    lazyload(isVisible, entry) {
-      this.showLazyLoad = isVisible
-    },
     async getPage() {
       const pageHTML = await this.$axios
         .$post('/pages', { page: this.homeHtmlObject.page })

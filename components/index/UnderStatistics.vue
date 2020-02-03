@@ -31,15 +31,14 @@
               class="ui-title-block"
             ></div>
             <div class="border-color border-color_default"></div>
-            <no-ssr>
-              <youtube
-                :player-vars="{ autoplay: 0 }"
-                :player-width="640"
-                :player-height="360"
-                :video-id="videoId"
-                class="video-container"
-              />
-            </no-ssr>
+
+            <youtube
+              :player-vars="{ autoplay: 0 }"
+              :player-width="640"
+              :player-height="360"
+              :video-id="videoId"
+              class="video-container"
+            />
           </div>
         </b-col>
       </b-row>

@@ -1034,12 +1034,14 @@ list-scheme
   line-height: 1.5;
 }
 
-.page-my-move .radio-help .custom-radio {
+.page-my-move .radio-help .custom-radio, .page-checkout .radio-help .custom-radio{
   padding-top: 80px;
 }
 
 .page-my-move .custom-radio .svg-inline--fa,
-.page-my-move .custom-radio .radio-img {
+.page-my-move .custom-radio .radio-img,
+.page-checkout .custom-radio .svg-inline--fa,
+.page-checkout .custom-radio .radio-img {
   position: absolute;
   top: -55px;
   left: 50%;
@@ -1048,15 +1050,15 @@ list-scheme
   color: #26c9ff;
 }
 
-.page-my-move .custom-radio .svg-inline--fa.icon-dark {
+.page-my-move .custom-radio .svg-inline--fa.icon-dark, .page-checkout .custom-radio .svg-inline--fa.icon-dark  {
   color: #212529;
 }
 
-.page-my-move .radio-van .custom-radio {
+.page-my-move .radio-van .custom-radio, .page-checkout .radio-van .custom-radio {
   padding-top: 100px;
 }
 
-.page-my-move .custom-radio .radio-img {
+.page-my-move .custom-radio .radio-img, .page-checkout .custom-radio .radio-img {
   min-width: 150px;
   top: -90px;
 }

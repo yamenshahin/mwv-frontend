@@ -1,6 +1,6 @@
 export default {
   /**
-   * STAGE
+   * LIVE
    */
   mode: 'universal',
   /*
@@ -108,6 +108,8 @@ export default {
     //https://github.com/kaorun343/vue-youtube-embed
     //https://github.com/kaorun343/vue-youtube-embed/issues/44
     { ssr: false, src: '~plugins/youtube.js'  },
+    //https://stackoverflow.com/questions/51644901/using-tawk-to-with-nuxt-vue-application
+    { ssr: false, src: '~plugins/tawk.js'  },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -156,8 +158,8 @@ export default {
    */
   env: {
     VUE_APP_GOOGLE_MAPS_API_KEY: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
-    stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74',
-    google_tag_on:false, 
+    stripe_key: process.env.NODE_ENV !== 'production' ? 'pk_test_CCgY3WR7wVqUaPrlKbZf8yHp00ktjc8X74' : 'pk_live_lclxGfi4gE7tP2oLiGpasP8900PLpojQPu',
+    google_tag_on:true, 
     filesBaseURL: 'https://hellovans-assets.s3.eu-west-2.amazonaws.com',
   },
   /*
@@ -165,14 +167,15 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/api/' : 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com/api/',
+    baseURL: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/api/' : 'https://hellovansapi.com/api/',
     //credentials: false
     //proxy: true,
     //https: true
   },
   proxy: {
     '/api/': {
-      target: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/' : 'http://hellovans-env.rqeysdn8mi.eu-west-2.elasticbeanstalk.com/'    }
+      target: process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/' : 'https://hellovansapi.com/'
+    }
   }, 
   auth: {
     //plugins: ['~/plugins/auth.js'],
@@ -215,7 +218,7 @@ export default {
     }
   },
   sitemap: {
-    hostname: 'http://front-end-hellovans-stage.eu-west-2.elasticbeanstalk.com',
+    hostname: 'https://hellovans.com',
   },
   'google-gtag': {
     id: 'AW-983351056',
@@ -223,7 +226,7 @@ export default {
       //anonymize_ip: true, // anonymize IP 
       //send_page_view: false, // might be necessary to avoid duplicated page track on page reload
       linker: {
-        domains: ['front-end-hellovans-stage.eu-west-2.elasticbeanstalk.com']
+        domains: ['https://hellovans.com']
       }
     },
     debug: false, // enable to track in dev mode

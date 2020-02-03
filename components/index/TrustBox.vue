@@ -12,16 +12,15 @@
       </b-row>
       <b-row>
         <b-col>
-          <no-ssr>
-            <trustbox
-              template-id="539ad60defb9600b94d7df2c"
-              style-height="500px"
-              style-width="100%"
-              stars="3,4,5"
-              theme="light"
-              locale="en-GB"
-            />
-          </no-ssr>
+          <trustbox
+            template-id="539ad60defb9600b94d7df2c"
+            style-height="500px"
+            style-width="100%"
+            stars="3,4,5"
+            theme="light"
+            locale="en-GB"
+          />
+
           <!-- TrustBox widget - List -->
         </b-col>
       </b-row>

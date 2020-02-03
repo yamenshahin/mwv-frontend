@@ -59,9 +59,6 @@
           </a>
           <div class="block-contacts__text">
             Ask Questions or Need a Free Estimate?
-            <br />
-            We are open all over the Xmas and would like to wish everyone a
-            merry Christmas and a happy new year.
           </div>
         </b-col>
       </b-row>

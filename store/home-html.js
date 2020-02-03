@@ -2,6 +2,9 @@
 export const state = () => ({
   homeHtml: {
     page: 'home',
+    url: '',
+    pageTitle: '',
+    pageDescription: '',
     driverSliderTitle: 'To Get More Jobs By Setting Your Base Information Now',
     driverSliderText:
       '<p>By setting you base information you will receive confirmed bookings direct to your phone and email and will appear in search for quotes results.</p>',

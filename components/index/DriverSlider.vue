@@ -1,38 +1,36 @@
 <template>
   <div class="main-driver-banner">
-    <no-ssr>
-      <div v-if="authenticated">
-        <div v-if="user.role === 'driver'">
-          <div class="section_banner">
-            <b-container>
-              <b-row>
-                <b-col>
-                  <div class="mt-50"></div>
-                  <div class="banner">
-                    <div class="banner__inner">
-                      <div
-                        v-html="homeHtmlObject.driverSliderTitle"
-                        class="ui-subtitle-block"
-                      ></div>
-                      <span v-html="homeHtmlObject.driverSliderText"></span>
-                    </div>
-                    <nuxt-link
-                      to="/driver/my-base"
-                      class="btn btn-secondary mb-1"
-                    >
-                      Set Your Base Information
-                    </nuxt-link>
+    <div v-if="authenticated">
+      <div v-if="user.role === 'driver'">
+        <div class="section_banner">
+          <b-container>
+            <b-row>
+              <b-col>
+                <div class="mt-50"></div>
+                <div class="banner">
+                  <div class="banner__inner">
+                    <div
+                      v-html="homeHtmlObject.driverSliderTitle"
+                      class="ui-subtitle-block"
+                    ></div>
+                    <span v-html="homeHtmlObject.driverSliderText"></span>
                   </div>
-                  <div class="mt-50"></div>
-                </b-col>
-              </b-row>
-            </b-container>
-          </div>
+                  <nuxt-link
+                    to="/driver/my-base"
+                    class="btn btn-secondary mb-1"
+                  >
+                    Set Your Base Information
+                  </nuxt-link>
+                </div>
+                <div class="mt-50"></div>
+              </b-col>
+            </b-row>
+          </b-container>
         </div>
-        <span v-else></span>
       </div>
       <span v-else></span>
-    </no-ssr>
+    </div>
+    <span v-else></span>
   </div>
 </template>
 <script>
