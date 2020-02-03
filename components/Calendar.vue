@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     onEventClick(info) {
-      console.log(info.event.id)
       this.$bvModal.show(info.event.id)
     }
   }

@@ -169,7 +169,6 @@ export default {
         .post('user/email/send')
         .then(function(response) {
           // handle success
-          // console.log(response)
         })
         .catch(() => {})
     }

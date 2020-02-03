@@ -241,9 +241,7 @@ export default {
         // handle success
         return response
       })
-      .catch(function(error) {
-        console.log(error)
-      })
+      .catch()
     this.$store.dispatch('customer-jobs/setCustomerJobs', response.data)
   },
   methods: {
@@ -253,9 +251,7 @@ export default {
         .then(function(response) {
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       this.$store.dispatch('customer-jobs/setCustomerJobs', response.data)
     },
     getClassNames(status) {
@@ -273,9 +269,7 @@ export default {
 
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch('checkout/setCheckout', response.data)
       this.$router.push('/checkout')
     },

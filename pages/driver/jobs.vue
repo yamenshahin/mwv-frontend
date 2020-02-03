@@ -81,7 +81,7 @@
                               job_meta.value.length > 0
                           "
                         >
-                          <h5>Waypoints:</h5>
+                          <h5>Stops:</h5>
                           <div
                             v-for="waypoint in job_meta.value"
                             :key="waypoint.index"
@@ -182,9 +182,7 @@ export default {
         // handle success
         return response
       })
-      .catch(function(error) {
-        console.log(error)
-      })
+      .catch()
     this.$store.dispatch('driver-jobs/setDriverJobs', response.data)
 
     if (Object.keys(this.driverJobsObject).length) {

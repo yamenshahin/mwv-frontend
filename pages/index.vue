@@ -53,10 +53,7 @@ export default {
         // handle success
         return response
       })
-      .catch(function(error) {
-        console.log(error)
-      })
-    console.log('pageHTML', pageHTML)
+      .catch()
     return {
       pageTitle: pageHTML.pageTitle,
       pageDescription: pageHTML.pageDescription
@@ -73,9 +70,7 @@ export default {
           // handle success
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch('home-html/setHomeHtml', pageHTML)
     }
   }

@@ -61,10 +61,60 @@
                 <div>Name: {{ customerName }}</div>
                 <div>Email: {{ customerEmail }}</div>
                 <div>Phone: {{ customerPhone }}</div>
+                <hr />
               </div>
               <div class="driver-info">
                 <h4>Driver info:</h4>
                 <div>Name: {{ checkoutObject.driver.name }}</div>
+                <hr />
+              </div>
+              <div class="driver-info">
+                <h4>Addresses:</h4>
+                <div
+                  v-for="job_meta in checkoutObject.job_metas"
+                  :key="job_meta.index"
+                >
+                  <div v-if="job_meta.key === 'collection'">
+                    <div><b>Collection:</b></div>
+                    <div>Postcode: {{ job_meta.value.postcode }}</div>
+                    <div>Address: {{ job_meta.value.address }}</div>
+                    <div>City: {{ job_meta.value.city }}</div>
+                    <hr />
+                  </div>
+                </div>
+                <div
+                  v-for="job_meta in checkoutObject.job_metas"
+                  :key="job_meta.index"
+                >
+                  <div
+                    v-if="
+                      job_meta.key === 'waypoints' && job_meta.value.length > 0
+                    "
+                  >
+                    <div><b>Stops:</b></div>
+                    <div
+                      v-for="waypoint in job_meta.value"
+                      :key="waypoint.index"
+                    >
+                      <div>Postcode: {{ waypoint.postcode }}</div>
+                      <div>Address: {{ waypoint.address }}</div>
+                      <div>City: {{ waypoint.city }}</div>
+                      <hr />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  v-for="job_meta in checkoutObject.job_metas"
+                  :key="job_meta.index"
+                >
+                  <div v-if="job_meta.key === 'delivery'">
+                    <div><b>Delivery:</b></div>
+                    <div>Postcode: {{ job_meta.value.postcode }}</div>
+                    <div>Address: {{ job_meta.value.address }}</div>
+                    <div>City: {{ job_meta.value.city }}</div>
+                    <hr />
+                  </div>
+                </div>
               </div>
               <div class="job-meta">
                 <h4>Others info:</h4>
@@ -225,7 +275,6 @@ export default {
         send_to: 'AW-983351056/ovYBCIrH37YBEJD-8tQD'
       })
     }
-    console.log(this.google_tag_on)
   },
   methods: {}
 }

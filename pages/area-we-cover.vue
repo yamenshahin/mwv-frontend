@@ -85,9 +85,7 @@ export default {
         // handle success
         return response.data.data
       })
-      .catch(function(error) {
-        console.log(error)
-      })
+      .catch()
     this.$store.dispatch('area/setAreas', areas)
   }
 }

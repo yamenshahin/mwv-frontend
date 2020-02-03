@@ -1037,9 +1037,7 @@ export default {
           // handle success
           return response.data
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       let entries = Object.entries(responseDataPrice.data)
       for (let i = 0; i < entries.length; i++) {
         const metaObject = {
@@ -1054,9 +1052,7 @@ export default {
           // handle success
           return response.data
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       entries = Object.entries(responseDataLegal.data)
       for (let i = 0; i < entries.length; i++) {
         const metaObject = {
@@ -1071,9 +1067,7 @@ export default {
           // handle success
           return response.data.data
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       this.$store.dispatch(
         'driver-place/setDriverPlaceLocationFromDb',
         responseDataLocation
@@ -1090,9 +1084,7 @@ export default {
             response.data.data.url
           )
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
 
       this.firstEnter = false
     } else {
@@ -1136,9 +1128,7 @@ export default {
           })
           return response.data.data
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch(
         'driver-place/setDriverPlaceLegal',
         responseDataLegal
@@ -1150,9 +1140,7 @@ export default {
           // handle success
           return response.data.data
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch(
         'driver-place/setDriverPlacePrice',
         responseDataPrice
@@ -1164,9 +1152,7 @@ export default {
           // handle success
           return response.data.data
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch(
         'driver-place/setDriverPlaceLocationFromDb',
         responseDataLocation
@@ -1183,9 +1169,7 @@ export default {
             // handle success
             return response.data
           })
-          .catch(function(error) {
-            console.log(error)
-          })
+          .catch()
         await this.$store.dispatch(
           'driver-place/setDriverPlaceFiles',
           responseDataFiles.url

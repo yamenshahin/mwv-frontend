@@ -783,18 +783,14 @@ export default {
           // handle success
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$axios
         .$post('/quotes', this.searchData)
         .then(function(response) {
           // handle success
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch('search-result/setSearchResult', responseData)
       this.$router.push('/my-quotes')
     },

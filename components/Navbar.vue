@@ -198,7 +198,6 @@ export default {
       this.$router.push('/')
     },
     async setRole(role) {
-      console.log(role)
       await this.$axios
         .post('user/set-role', {
           role
@@ -207,9 +206,7 @@ export default {
           // handle success
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch('auth/setRole', role)
       this.$router.push('/driver/my-base')
     }

@@ -1075,7 +1075,11 @@ list-scheme
   background-color: #ffd526;
 }
 
-
+.page-checkout hr {
+  max-width: 338px;
+  margin-left: 0;
+  background-color: #26c9ff;
+}
 /**
 Size page
 **/

@@ -1,7 +1,10 @@
 <template>
   <div
     :style="{
-      backgroundImage: 'url(https://hellovans-assets.s3.eu-west-2.amazonaws.com/'  + homeHtmlObject.url + ')'
+      backgroundImage:
+        'url(https://hellovans-assets.s3.eu-west-2.amazonaws.com/' +
+        homeHtmlObject.url +
+        ')'
     }"
     class="main-slider-bg"
   >

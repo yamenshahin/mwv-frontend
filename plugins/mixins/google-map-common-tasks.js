@@ -58,8 +58,6 @@ const GoogleMapCommonTasks = {
                     distanceMeters = distanceMeters + leg.distance.value
                     travelTimeInSec = travelTimeInSec + leg.duration.value
                   })
-                  console.log(distanceMeters)
-                  console.log(travelTimeInSec)
                   // const meters = result.routes[0].legs[0].distance.value
                   const travelTimeObject = {
                     travelTime: travelTimeInSec

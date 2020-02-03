@@ -224,7 +224,6 @@ export default {
         .catch((error) => {
           this.status = 'failure'
           this.response = 'Error!: ' + error
-          console.log(this.response)
           that.processing = false
           that.$bvModal.hide('processing')
         })

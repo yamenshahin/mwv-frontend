@@ -65,9 +65,7 @@ export default {
         // handle success
         return response.data
       })
-      .catch(function(error) {
-        console.log(error)
-      })
+      .catch()
     return {
       pageTitle: pageHTML.data.meta.pageTitle,
       pageDescription: pageHTML.data.meta.pageDescription,
@@ -88,9 +86,7 @@ export default {
           // handle success
           return response.data
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch('landing-html/setLandingHtml', pageHTML)
     }
   }

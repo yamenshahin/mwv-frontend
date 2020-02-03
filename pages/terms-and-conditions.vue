@@ -51,9 +51,7 @@ export default {
           // handle success
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       this.dynamicHTML = pageHTML
     }
   }

@@ -74,7 +74,6 @@
 export default {
   methods: {
     async setRole(role) {
-      console.log(role)
       await this.$axios
         .post('/set-role', {
           role
@@ -83,9 +82,7 @@ export default {
           // handle success
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       await this.$store.dispatch('auth/setRole', role)
       this.$router.push('/driver/my-base')
     }

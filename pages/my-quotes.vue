@@ -473,9 +473,7 @@ export default {
             // handle success
             return response
           })
-          .catch(function(error) {
-            console.log(error)
-          })
+          .catch()
         await this.$store.dispatch('checkout/setCheckout', response.data)
         this.$router.push('/checkout')
       } else {
@@ -488,9 +486,7 @@ export default {
             // handle success
             return response
           })
-          .catch(function(error) {
-            console.log(error)
-          })
+          .catch()
         await this.$store.dispatch('checkout/setCheckout', response.data)
         this.$router.push('/checkout')
       }
@@ -509,9 +505,7 @@ export default {
             solid: true
           })
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
     },
     async sortPlaces(sortOrder) {
       await this.$store.dispatch('search-result/sortSearchResult', sortOrder)
@@ -523,9 +517,7 @@ export default {
           // handle success
           return response
         })
-        .catch(function(error) {
-          console.log(error)
-        })
+        .catch()
       this.driverReviews = response
       this.reviewsModalShow = true
     }
